@@ -1354,7 +1354,7 @@ module.exports = grammar({
       ),
 
     _class_member_declarations: ($) =>
-      repeat1(seq($._type_level_declaration, $._semi)),
+      seq(sep1($._type_level_declaration, $._semi), optional($._semi)),
 
     _function_value_parameters: ($) =>
       seq("(", optional(sep1($._function_value_parameter, ",")), ")"),
@@ -1456,7 +1456,7 @@ module.exports = grammar({
       seq("{", optional($._protocol_member_declarations), "}"),
 
     _protocol_member_declarations: ($) =>
-      repeat1(seq($._protocol_member_declaration, $._semi)),
+      seq(sep1($._protocol_member_declaration, $._semi), optional($._semi)),
 
     _protocol_member_declaration: ($) =>
       choice(
