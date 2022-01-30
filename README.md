@@ -14,7 +14,7 @@ To use this parser to parse Swift code, you'll want to depend on either the Rust
 ### Rust
 To use the Rust crate, you'll add this to your `Cargo.toml`:
 ```
-tree-sitter = "0.20.0"
+tree-sitter = "0.20.3"
 tree-sitter-swift = "=0.1.2"
 ```
 
