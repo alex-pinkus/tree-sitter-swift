@@ -6,8 +6,7 @@ known_failures="$parser_dir/script-data/known_failures.txt"
 top_repositories="$parser_dir/script-data/top-repositories.txt"
 
 # Run all this logic in a temporary directory that we delete on exit
-tmpdir="$(mktemp -d -t top-10-XXXXXX)"
-trap 'rm -rf "$tmpdir"' EXIT
+tmpdir="/tmp/top-repos"
 
 # Function to check out a git repository at a given tag.
 #
