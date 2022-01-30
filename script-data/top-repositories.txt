@@ -1,2 +1,2 @@
-Alamofire Alamofire/Alamofire 5.4.4
+Alamofire Alamofire/Alamofire 5.5.0
 iina iina/iina v1.2.0
