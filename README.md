@@ -1,4 +1,4 @@
-![Parse rate badge](https://byob.yarr.is/alex-pinkus/tree-sitter-swift/parse_rate)
+4[Parse rate badge](https://byob.yarr.is/alex-pinkus/tree-sitter-swift/parse_rate)
 [![Crates.io badge](https://byob.yarr.is/alex-pinkus/tree-sitter-swift/crates_io_version)](https://crates.io/crates/tree-sitter-swift)
 [![NPM badge](https://byob.yarr.is/alex-pinkus/tree-sitter-swift/npm_version)](https://www.npmjs.com/package/tree-sitter-swift)
 [![Build](https://github.com/alex-pinkus/tree-sitter-swift/actions/workflows/top-repos.yml/badge.svg)](https://github.com/alex-pinkus/tree-sitter-swift/actions/workflows/top-repos.yml)
@@ -15,7 +15,7 @@ To use this parser to parse Swift code, you'll want to depend on either the Rust
 To use the Rust crate, you'll add this to your `Cargo.toml`:
 ```
 tree-sitter = "0.20.0"
-tree-sitter-swift = "=0.1.3"
+tree-sitter-swift = "=0.1.4"
 ```
 
 Then you can use a `tree-sitter` parser with the language declared here:
@@ -35,7 +35,7 @@ let tree = parser.parse(&my_source_code, None)
 To use this from NPM, you'll add similar dependencies to `package.json`:
 ```
 "dependencies: {
-  "tree-sitter-swift": "0.1.3",
+  "tree-sitter-swift": "0.1.4",
   "tree-sitter": "^0.20.0"
 }
 ```
