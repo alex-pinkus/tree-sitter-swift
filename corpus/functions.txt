@@ -343,6 +343,27 @@ public prefix func ! (value: Wrapped<F>) -> Bool {
           (boolean_literal))))))
 
 ================================================================================
+'<' at the end of custom operator doesn't get confused for type arguments
+================================================================================
+
+infix operator <*< : MyPrecedence
+
+func <*<<<T>() {}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (operator_declaration
+    (custom_operator)
+    (simple_identifier))
+  (function_declaration
+    (custom_operator)
+    (type_parameters
+      (type_parameter
+        (type_identifier)))
+    (function_body)))
+
+================================================================================
 Custom operators
 ================================================================================
 

@@ -28,7 +28,8 @@ enum TokenType {
     AS_KEYWORD,
     AS_QUEST,
     AS_BANG,
-    ASYNC_KEYWORD
+    ASYNC_KEYWORD,
+    OPERATOR_LT
 };
 
 #define OPERATOR_COUNT 22
@@ -139,7 +140,6 @@ bool is_cross_semi_token(enum TokenType op) {
     case AS_BANG:
     case ASYNC_KEYWORD:
         return true;
-    case BANG:
     default:
         return false;
     }
@@ -398,7 +398,7 @@ static enum ParseDirective eat_whitespace(
 
     lexer->mark_end(lexer);
 
-    if (true && ws_directive == CONTINUE_PARSING_TOKEN_FOUND && lookahead == '/') {
+    if (ws_directive == CONTINUE_PARSING_TOKEN_FOUND && lookahead == '/') {
         bool has_seen_single_comment = false;
         while (lexer->lookahead == '/') {
             // It's possible that this is a comment - start an exploratory mission to find out, and if it is, look for what
@@ -601,6 +601,16 @@ bool tree_sitter_swift_external_scanner_scan(
         lexer->mark_end(lexer);
         lexer->result_symbol = comment_result;
         return true;
+    }
+
+    if (valid_symbols[OPERATOR_LT] && lexer->lookahead == '<') {
+      advance(lexer);
+      // Check that a type argument does not follow '<'
+      if (!isalpha(lexer->lookahead)) {
+        lexer->mark_end(lexer);
+        lexer->result_symbol = OPERATOR_LT;
+        return true;
+      }
     }
 
     // NOTE: this will consume any `#` characters it sees, even if it does not find a result. Keep

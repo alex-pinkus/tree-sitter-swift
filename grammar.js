@@ -74,20 +74,6 @@ if (tree_sitter_version_supports_emoji()) {
   LEXICAL_IDENTIFIER = /[_\p{XID_Start}][_\p{XID_Continue}]*/;
 }
 
-const CUSTOM_OPERATORS = token(
-  choice(
-    // https://docs.swift.org/swift-book/ReferenceManual/LexicalStructure.html#ID418
-    // This supports a subset of the operators that Swift does but I'm really not concerned about the esoteric ones.
-    // Someone who wants unicode support can add it. What this does do is:
-    // * Avoid the reserved operators by saying that certain characters are only available if you don't start with them.
-    // * Entirely forbid `<` as the last char because it creates ambiguity with type arguments
-    /[\\<>&?=][\/=\-+!*%<>&|^?~\.]*[\/=\-+!*%>&|^?~]+/,
-    /[\-+!*%|^~]+[\/=\-+!*%<>&|^?~]*[\/=\-+!*%>&|^?~]+/,
-    /[\-+!*%|^~\.]+[\/=\-+!*%<>&|^?~\.]*[\/=\-+!*%>&|^?~\.]+/,
-    /[\/]+[=\-+!*%<>&|^?~]*[=\-+!*%>&|^?~]+/,
-    /[\/]+[=\-+!*%<>&|^?~\.]*[=\-+!*%>&|^?~\.]+/
-  )
-);
 // XXX need custom scanner for:
 // * Custom operators and `<` for type arguments
 module.exports = grammar({
@@ -110,8 +96,8 @@ module.exports = grammar({
     // applying some modifiers to a capture or pattern.
     [$.modifiers],
     // Custom operators get weird special handling for `<` characters in silly stuff like `func =<<<<T>(...)`
-    [$.custom_operator],
     [$._prefix_unary_operator, $._referenceable_operator],
+    [$._prefix_unary_operator, $._referenceable_operator_without_custom],
     // `+(...)` is ambigously either "call the function produced by a reference to the operator `+`" or "use the unary
     // operator `+` on the result of the parenthetical expression."
     [$._additive_operator, $._prefix_unary_operator],
@@ -155,6 +141,9 @@ module.exports = grammar({
     // The `class` modifier is legal in many of the same positions that a class declaration itself would be.
     [$._bodyless_function_declaration, $.property_modifier],
     [$._local_class_declaration, $.modifiers],
+  ],
+  precedences: ($) => [
+    [$._non_constructor_function_decl, $.function_definition_operator]
   ],
   extras: ($) => [
     $.comment,
@@ -213,6 +202,8 @@ module.exports = grammar({
     $._as_quest_custom,
     $._as_bang_custom,
     $._async_keyword_custom,
+    // Disambiguates '<' followed by function type arguments, e.g. func <<<T>
+    $._operator_lt_external
   ],
   inline: ($) => [$._locally_permitted_modifiers],
   rules: {
@@ -613,7 +604,7 @@ module.exports = grammar({
           field("rhs", $._expression)
         )
       ),
-    custom_operator: ($) => seq(CUSTOM_OPERATORS, optional("<")),
+    custom_operator: ($) => token(custom_operator_regexp()),
     // Suffixes
     navigation_suffix: ($) =>
       seq(
@@ -1376,14 +1367,14 @@ module.exports = grammar({
           "name",
           choice(
             $.simple_identifier,
-            $._referenceable_operator,
+            $._referenceable_operator_without_custom,
+            alias($.function_definition_operator, $.custom_operator),
             $._bitwise_binary_operator
           )
         )
       ),
-    _referenceable_operator: ($) =>
+    _referenceable_operator_without_custom: ($) =>
       choice(
-        $.custom_operator,
         $._comparison_operator,
         $._additive_operator,
         $._multiplicative_operator,
@@ -1394,6 +1385,18 @@ module.exports = grammar({
         $.bang,
         "~"
       ),
+    _referenceable_operator: ($) =>
+      choice(
+        $._referenceable_operator_without_custom,
+        $.custom_operator
+      ),
+    function_definition_operator: ($) => choice(
+      $._referenceable_operator_without_custom,
+      repeat1(seq(
+        $._operator_lt_external,
+        optional(token.immediate(custom_operator_regexp({ exclude: ['<'] }))),
+      ))
+    ),
     // Hide the fact that certain symbols come from the custom scanner by aliasing them to their
     // string variants. This keeps us from having to see them in the syntax tree (which would be
     // noisy) but allows callers to refer to them as nodes by their text form like with any
@@ -1800,6 +1803,29 @@ function generate_pattern_matching_rule(
     .concat(case_pattern)
     .concat(expression_pattern);
   return seq(choice.apply(void 0, all_patterns), optional($._quest));
+}
+
+function custom_operator_regexp({ exclude } = {}) {
+  const chars = [
+    '/', '=', '-', '+', '!', '*', '%', '<',
+    '>', '&', '|', '^', '~', '?', ']', '+'
+  ]
+
+  const escaped_chars = chars
+    .filter((ch) => !exclude?.includes(ch))
+    .map((ch) => {
+      switch (ch) {
+        case ']':
+        case '-': {
+          return `\\${ch}`
+        }
+        default: {
+          return ch
+        }
+      }
+    })
+
+  return new RegExp(`[${escaped_chars.join("")}]+`)
 }
 
 function tree_sitter_version_supports_emoji() {
