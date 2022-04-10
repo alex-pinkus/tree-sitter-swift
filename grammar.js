@@ -1367,7 +1367,6 @@ module.exports = grammar({
           "name",
           choice(
             $.simple_identifier,
-            $._referenceable_operator_without_custom,
             alias($.function_definition_operator, $.custom_operator),
             $._bitwise_binary_operator
           )
