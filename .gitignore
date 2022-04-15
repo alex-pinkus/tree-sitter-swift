@@ -1,0 +1,11 @@
+node_modules
+*.swp
+/build
+/test
+Cargo.lock
+/target/*
+*.a
+*.dylib
+*.so
+*.o
+bindings/c/*.h
