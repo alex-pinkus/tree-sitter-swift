@@ -222,7 +222,13 @@ module.exports = grammar({
     source_file: ($) =>
       seq(
         optional($.shebang_line),
-        repeat(seq($._top_level_statement, $._semi))
+        optional(
+          seq(
+            $._top_level_statement,
+            repeat(seq($._semi, $._top_level_statement)),
+            optional($._semi)
+          )
+        )
       ),
     shebang_line: ($) => seq("#!", /[^\r\n]*/),
     ////////////////////////////////
