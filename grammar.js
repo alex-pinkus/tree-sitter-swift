@@ -155,6 +155,11 @@ module.exports = grammar({
     // The `class` modifier is legal in many of the same positions that a class declaration itself would be.
     [$._bodyless_function_declaration, $.property_modifier],
     [$._local_class_declaration, $.modifiers],
+    // Patterns, man
+    [$._navigable_type_expression, $._case_pattern],
+    [$._no_expr_pattern_already_bound, $._binding_pattern_with_expr],
+    [$._no_expr_pattern_already_bound, $._expression],
+    [$._no_expr_pattern_already_bound, $._binding_pattern_no_expr],
   ],
   extras: ($) => [
     $.comment,
@@ -948,16 +953,13 @@ module.exports = grammar({
         $.statements,
         optional("fallthrough")
       ),
-    switch_pattern: ($) => generate_pattern_matching_rule($, true, false, true),
+    switch_pattern: ($) => alias($._binding_pattern_with_expr, $.pattern),
     do_statement: ($) =>
       prec.right(PRECS["do"], seq("do", $._block, repeat($.catch_block))),
     catch_block: ($) =>
       seq(
         $.catch_keyword,
-        field(
-          "error",
-          optional(generate_pattern_matching_rule($, true, false))
-        ),
+        field("error", optional(alias($._binding_pattern_no_expr, $.pattern))),
         optional($.where_clause),
         $._block
       ),
@@ -1075,7 +1077,7 @@ module.exports = grammar({
           "for",
           optional($._try_operator),
           optional($._await_operator),
-          field("item", generate_pattern_matching_rule($, true, true, false)),
+          field("item", alias($._binding_pattern_no_expr, $.pattern)),
           optional($.type_annotation),
           "in",
           field("collection", $._expression),
@@ -1213,7 +1215,7 @@ module.exports = grammar({
       prec.right(
         seq(
           optional($.modifiers),
-          field("name", $.value_binding_pattern),
+          field("name", alias($._binding_kind_and_pattern, $.pattern)),
           optional($.type_annotation),
           optional($.type_constraints),
           $.protocol_property_requirements
@@ -1226,13 +1228,10 @@ module.exports = grammar({
     _modifierless_property_declaration: ($) =>
       prec.right(
         seq(
-          choice(seq(optional($._async_modifier), "let"), "var"),
+          $._possibly_async_binding_pattern_kind,
           sep1(
             seq(
-              field(
-                "name",
-                alias($.property_binding_pattern, $.value_binding_pattern)
-              ),
+              field("name", alias($._no_expr_pattern_already_bound, $.pattern)),
               optional($.type_annotation),
               optional($.type_constraints),
               optional(
@@ -1246,8 +1245,6 @@ module.exports = grammar({
           )
         )
       ),
-    property_binding_pattern: ($) =>
-      generate_pattern_matching_rule($, false, false),
     typealias_declaration: ($) =>
       seq(optional($.modifiers), $._modifierless_typealias_declaration),
     _modifierless_typealias_declaration: ($) =>
@@ -1428,12 +1425,7 @@ module.exports = grammar({
     _as: ($) => alias($._as_custom, "as"),
     _as_quest: ($) => alias($._as_quest_custom, "as?"),
     _as_bang: ($) => alias($._as_bang_custom, "as!"),
-    _async_keyword: function ($) {
-      // Backward compatibility: make `async` both a named node and a string node. Remove this once downstream queries
-      // have all been switched over.
-      return prec(-1, alias($._async_keyword_internal, $.async));
-    },
-    _async_keyword_internal: ($) => alias($._async_keyword_custom, "async"),
+    _async_keyword: ($) => alias($._async_keyword_custom, "async"),
     _async_modifier: ($) => token("async"),
     throws: ($) => choice($._throws_keyword, $._rethrows_keyword),
     enum_class_body: ($) =>
@@ -1615,41 +1607,88 @@ module.exports = grammar({
     ////////////////////////////////
     // Patterns - https://docs.swift.org/swift-book/ReferenceManual/Patterns.html
     ////////////////////////////////
-    // Higher-than-default precedence to resolve `x as SomeType` ambiguity (expression patterns seem not to support
-    // as-expressions)
-    binding_pattern: ($) =>
-      prec.left(1, generate_pattern_matching_rule($, true, false, false, true)),
-    non_binding_pattern: ($) =>
-      prec.left(
-        1,
-        generate_pattern_matching_rule($, false, false, false, true)
+    _universally_allowed_pattern: ($) =>
+      choice(
+        $.wildcard_pattern,
+        $._tuple_pattern,
+        $._type_casting_pattern,
+        $._case_pattern
       ),
-    // Higher precedence than pattern w/o binding since these are strictly more flexible
+    _bound_identifier: ($) => field("bound_identifier", $.simple_identifier),
+
+    _binding_pattern_no_expr: ($) =>
+      seq(
+        choice(
+          $._universally_allowed_pattern,
+          $._binding_pattern,
+          $._bound_identifier
+        ),
+        optional($._quest)
+      ),
+    _no_expr_pattern_already_bound: ($) =>
+      seq(
+        choice($._universally_allowed_pattern, $._bound_identifier),
+        optional($._quest)
+      ),
     _binding_pattern_with_expr: ($) =>
-      prec.left(2, generate_pattern_matching_rule($, true, false, true, true)),
+      seq(
+        choice(
+          $._universally_allowed_pattern,
+          $._binding_pattern,
+          $._expression
+        ),
+        optional($._quest)
+      ),
     _non_binding_pattern_with_expr: ($) =>
-      prec.left(2, generate_pattern_matching_rule($, false, false, true, true)),
+      seq(
+        choice($._universally_allowed_pattern, $._expression),
+        optional($._quest)
+      ),
     _direct_or_indirect_binding: ($) =>
       seq(
         choice(
-          $.value_binding_pattern,
-          seq("case", generate_pattern_matching_rule($, true, false, false))
+          $._binding_kind_and_pattern,
+          seq("case", $._binding_pattern_no_expr)
         ),
         optional($.type_annotation)
       ),
-    wildcard_pattern: ($) => "_",
-    binding_pattern_kind: ($) => choice("var", "let"),
-    value_binding_pattern: ($) =>
-      prec.left(
-        choice(
-          seq("var", generate_pattern_matching_rule($, false, false)),
-          seq(
-            optional($._async_modifier),
-            "let",
-            generate_pattern_matching_rule($, false, false)
-          )
-        )
+    _binding_pattern_kind: ($) => field("mutability", choice("var", "let")),
+    _possibly_async_binding_pattern_kind: ($) =>
+      seq(optional($._async_modifier), $._binding_pattern_kind),
+    _binding_kind_and_pattern: ($) =>
+      seq(
+        $._possibly_async_binding_pattern_kind,
+        $._no_expr_pattern_already_bound
       ),
+    wildcard_pattern: ($) => "_",
+    _tuple_pattern_item: ($) =>
+      choice(
+        seq(
+          $.simple_identifier,
+          seq(":", alias($._binding_pattern_with_expr, $.pattern))
+        ),
+        alias($._binding_pattern_with_expr, $.pattern)
+      ),
+    _tuple_pattern: ($) => seq("(", sep1($._tuple_pattern_item, ","), ")"),
+    _case_pattern: ($) =>
+      seq(
+        optional("case"),
+        optional($.user_type), // XXX this should just be _type but that creates ambiguity
+        $._dot,
+        $.simple_identifier,
+        optional($._tuple_pattern)
+      ),
+    _type_casting_pattern: ($) =>
+      choice(
+        seq("is", $._type),
+        seq(alias($._binding_pattern_no_expr, $.pattern), $._as, $._type)
+      ),
+    _binding_pattern: ($) =>
+      seq(
+        seq(optional("case"), $._binding_pattern_kind),
+        $._no_expr_pattern_already_bound
+      ),
+
     // ==========
     // Modifiers
     // ==========
@@ -1735,87 +1774,6 @@ module.exports = grammar({
 });
 function sep1(rule, separator) {
   return seq(rule, repeat(seq(separator, rule)));
-}
-function generate_tuple_pattern($, allows_binding, allows_expressions) {
-  var pattern_rule = generate_pattern_matching_rule(
-    $,
-    allows_binding,
-    false,
-    allows_expressions
-  );
-  var tuple_pattern_item = choice(
-    seq($.simple_identifier, seq(":", pattern_rule)),
-    pattern_rule
-  );
-  return seq("(", sep1(tuple_pattern_item, ","), ")", optional($._quest));
-}
-function generate_case_pattern($, allows_binding, force) {
-  return seq(
-    optional($.user_type), // XXX this should just be _type but that creates ambiguity
-    $._dot,
-    $.simple_identifier,
-    optional(generate_tuple_pattern($, allows_binding, true)),
-    optional($._quest)
-  );
-}
-function generate_type_casting_pattern($, allows_binding) {
-  return choice(
-    seq("is", $._type),
-    seq(
-      generate_pattern_matching_rule($, allows_binding, false),
-      $._as,
-      $._type
-    )
-  );
-}
-function generate_pattern_matching_rule(
-  $,
-  allows_binding,
-  allows_case_keyword,
-  allows_expressions,
-  force
-) {
-  if (!force && !allows_case_keyword) {
-    if (allows_binding && !allows_expressions) {
-      return $.binding_pattern;
-    }
-    if (!allows_binding && !allows_expressions) {
-      return $.non_binding_pattern;
-    }
-    if (allows_binding && allows_expressions) {
-      return $._binding_pattern_with_expr;
-    }
-    if (!allows_binding && allows_expressions) {
-      return $._non_binding_pattern_with_expr;
-    }
-  }
-  var always_allowed_patterns = [
-    $.wildcard_pattern,
-    generate_tuple_pattern($, allows_binding, allows_expressions || false),
-    generate_type_casting_pattern($, allows_binding),
-  ];
-  var binding_pattern_prefix = allows_case_keyword
-    ? seq(optional("case"), $.binding_pattern_kind)
-    : $.binding_pattern_kind;
-  var binding_pattern_if_allowed = allows_binding
-    ? [
-        seq(
-          binding_pattern_prefix,
-          generate_pattern_matching_rule($, false, false, false)
-        ),
-      ]
-    : [];
-  var case_pattern = allows_case_keyword
-    ? seq("case", generate_case_pattern($, allows_binding))
-    : generate_case_pattern($, allows_binding);
-  var expression_pattern = allows_expressions
-    ? $._expression
-    : field("bound_identifier", $.simple_identifier);
-  var all_patterns = always_allowed_patterns
-    .concat(binding_pattern_if_allowed)
-    .concat(case_pattern)
-    .concat(expression_pattern);
-  return seq(choice.apply(void 0, all_patterns), optional($._quest));
 }
 
 function tree_sitter_version_supports_emoji() {

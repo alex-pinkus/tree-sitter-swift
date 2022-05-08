@@ -10,24 +10,21 @@ let `default` = 0
 
 (source_file
   (property_declaration
-    (value_binding_pattern
-      (non_binding_pattern
-        (simple_identifier)))
+    (pattern
+      (simple_identifier))
     (integer_literal))
   (property_declaration
-    (value_binding_pattern
-      (non_binding_pattern
-        (non_binding_pattern
-          (simple_identifier))
-        (non_binding_pattern
-          (simple_identifier))))
+    (pattern
+      (pattern
+        (simple_identifier))
+      (pattern
+        (simple_identifier)))
     (tuple_expression
       (integer_literal)
       (integer_literal)))
   (property_declaration
-    (value_binding_pattern
-      (non_binding_pattern
-        (simple_identifier)))
+    (pattern
+      (simple_identifier))
     (integer_literal)))
 
 ================================================================================
@@ -40,21 +37,17 @@ var one = 1, two = 2, four = 4, eight = 8
 
 (source_file
   (property_declaration
-    (value_binding_pattern
-      (non_binding_pattern
-        (simple_identifier)))
+    (pattern
+      (simple_identifier))
     (integer_literal)
-    (value_binding_pattern
-      (non_binding_pattern
-        (simple_identifier)))
+    (pattern
+      (simple_identifier))
     (integer_literal)
-    (value_binding_pattern
-      (non_binding_pattern
-        (simple_identifier)))
+    (pattern
+      (simple_identifier))
     (integer_literal)
-    (value_binding_pattern
-      (non_binding_pattern
-        (simple_identifier)))
+    (pattern
+      (simple_identifier))
     (integer_literal)))
 
 ================================================================================
@@ -77,7 +70,8 @@ for var value in values where value.isExcellent() {
 
 (source_file
   (for_statement
-    (simple_identifier)
+    (pattern
+      (simple_identifier))
     (type_annotation
       (user_type
         (type_identifier)))
@@ -90,19 +84,26 @@ for var value in values where value.isExcellent() {
             (value_argument
               (simple_identifier)))))))
   (for_statement
-    (simple_identifier)
-    (simple_identifier)
+    (pattern
+      (simple_identifier)
+      (pattern
+        (simple_identifier)))
     (simple_identifier))
   (for_statement
-    (simple_identifier)
-    (simple_identifier)
-    (integer_literal)
-    (simple_identifier)
-    (integer_literal)
+    (pattern
+      (simple_identifier)
+      (pattern
+        (pattern
+          (simple_identifier)
+          (pattern
+            (integer_literal)))
+        (pattern
+          (simple_identifier)
+          (pattern
+            (integer_literal)))))
     (simple_identifier))
   (for_statement
-    (binding_pattern_kind)
-    (non_binding_pattern
+    (pattern
       (simple_identifier))
     (simple_identifier)
     (where_clause
@@ -138,28 +139,28 @@ outerLoop: for outerObject in dataArray {
 
 (source_file
   (for_statement
-    (binding_pattern_kind)
-    (non_binding_pattern
-      (non_binding_pattern
+    (pattern
+      (pattern
         (simple_identifier))
       (user_type
         (type_identifier)))
     (simple_identifier))
   (for_statement
-    (binding_pattern_kind)
-    (non_binding_pattern
-      (non_binding_pattern
+    (pattern
+      (pattern
         (simple_identifier))
-      (non_binding_pattern
+      (pattern
         (simple_identifier)))
     (simple_identifier))
   (statement_label)
   (for_statement
-    (simple_identifier)
+    (pattern
+      (simple_identifier))
     (simple_identifier)
     (statements
       (for_statement
-        (simple_identifier)
+        (pattern
+          (simple_identifier))
         (simple_identifier)
         (statements
           (if_statement
@@ -205,10 +206,9 @@ repeat {
       (integer_literal))
     (comment))
   (while_statement
-    (value_binding_pattern
-      (non_binding_pattern
-        (simple_identifier)
-        (simple_identifier)))
+    (simple_identifier)
+    (pattern
+      (simple_identifier))
     (call_expression
       (simple_identifier)
       (call_suffix
@@ -239,22 +239,25 @@ switch something {
     (simple_identifier)
     (switch_entry
       (switch_pattern
-        (simple_identifier))
+        (pattern
+          (simple_identifier)))
       (statements
         (control_transfer_statement
           (line_string_literal
             (line_str_text)))))
     (switch_entry
       (switch_pattern
-        (simple_identifier))
+        (pattern
+          (simple_identifier)))
       (statements
         (control_transfer_statement
           (line_string_literal
             (line_str_text)))))
     (switch_entry
       (switch_pattern
-        (line_string_literal
-          (line_str_text)))
+        (pattern
+          (line_string_literal
+            (line_str_text))))
       (statements
         (control_transfer_statement
           (line_string_literal
@@ -290,20 +293,23 @@ case let .isExecutable(path?):
     (simple_identifier)
     (switch_entry
       (switch_pattern
-        (binding_pattern_kind)
-        (non_binding_pattern
+        (pattern
           (simple_identifier)
-          (wildcard_pattern)
-          (simple_identifier)))
+          (pattern
+            (wildcard_pattern))
+          (pattern
+            (simple_identifier))))
       (statements
         (simple_identifier)))
     (switch_entry
       (switch_pattern
-        (simple_identifier))
+        (pattern
+          (simple_identifier)))
       (where_keyword)
       (simple_identifier)
       (switch_pattern
-        (simple_identifier))
+        (pattern
+          (simple_identifier)))
       (statements
         (simple_identifier)))
     (switch_entry
@@ -320,10 +326,10 @@ case let .isExecutable(path?):
     (self_expression)
     (switch_entry
       (switch_pattern
-        (simple_identifier)
-        (binding_pattern_kind)
-        (non_binding_pattern
-          (simple_identifier)))
+        (pattern
+          (simple_identifier)
+          (pattern
+            (simple_identifier))))
       (statements
         (control_transfer_statement
           (line_string_literal
@@ -332,16 +338,41 @@ case let .isExecutable(path?):
               (simple_identifier))))))
     (switch_entry
       (switch_pattern
-        (binding_pattern_kind)
-        (non_binding_pattern
+        (pattern
           (simple_identifier)
-          (simple_identifier)))
+          (pattern
+            (simple_identifier))))
       (statements
         (control_transfer_statement
           (line_string_literal
             (line_str_text)
             (interpolated_expression
               (simple_identifier))))))))
+
+================================================================================
+Switch with extra parentheses
+================================================================================
+
+switch result {
+case let .success((successfulResult)):
+    return successfulResult
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (switch_statement
+    (simple_identifier)
+    (switch_entry
+      (switch_pattern
+        (pattern
+          (simple_identifier)
+          (pattern
+            (pattern
+              (simple_identifier)))))
+      (statements
+        (control_transfer_statement
+          (simple_identifier))))))
 
 ================================================================================
 Imports
@@ -395,32 +426,27 @@ do {
   (do_statement
     (statements
       (property_declaration
-        (value_binding_pattern
-          (non_binding_pattern
-            (simple_identifier)))
+        (pattern
+          (simple_identifier))
         (integer_literal)))
     (catch_block
       (catch_keyword)
-      (binding_pattern
-        (binding_pattern
-          (binding_pattern_kind)
-          (non_binding_pattern
-            (simple_identifier)))
+      (pattern
+        (pattern
+          (simple_identifier))
         (user_type
           (type_identifier))))
     (catch_block
       (catch_keyword)
-      (binding_pattern
+      (pattern
         (user_type
           (type_identifier))
         (simple_identifier)))
     (catch_block
       (catch_keyword)
-      (binding_pattern
-        (binding_pattern
-          (binding_pattern_kind)
-          (non_binding_pattern
-            (simple_identifier)))
+      (pattern
+        (pattern
+          (simple_identifier))
         (user_type
           (type_identifier)))
       (where_clause
@@ -433,31 +459,28 @@ do {
           (integer_literal))))
     (catch_block
       (catch_keyword)
-      (binding_pattern
-        (binding_pattern_kind)
-        (non_binding_pattern
-          (user_type
-            (type_identifier))
-          (simple_identifier)
+      (pattern
+        (user_type
+          (type_identifier))
+        (simple_identifier)
+        (pattern
           (simple_identifier))))
     (catch_block
       (catch_keyword)
-      (binding_pattern
+      (pattern
         (user_type
           (type_identifier))
         (simple_identifier)
         (simple_identifier)
-        (binding_pattern_kind)
-        (non_binding_pattern
+        (pattern
           (simple_identifier))))
     (catch_block
       (catch_keyword)))
   (do_statement
     (statements
       (property_declaration
-        (value_binding_pattern
-          (non_binding_pattern
-            (simple_identifier)))
+        (pattern
+          (simple_identifier))
         (integer_literal)))))
 
 ================================================================================
@@ -481,9 +504,7 @@ someLabel: if a.isEmpty, let b = getB() {
 
 (source_file
   (if_statement
-    (value_binding_pattern
-      (non_binding_pattern
-        (simple_identifier)))
+    (simple_identifier)
     (call_expression
       (simple_identifier)
       (call_suffix
@@ -494,17 +515,15 @@ someLabel: if a.isEmpty, let b = getB() {
         (call_suffix
           (value_arguments)))))
   (if_statement
-    (binding_pattern
-      (simple_identifier)
+    (simple_identifier)
+    (pattern
       (wildcard_pattern))
     (call_expression
       (simple_identifier)
       (call_suffix
         (value_arguments))))
   (if_statement
-    (value_binding_pattern
-      (non_binding_pattern
-        (simple_identifier)))
+    (simple_identifier)
     (type_annotation
       (user_type
         (type_identifier)))
@@ -518,9 +537,7 @@ someLabel: if a.isEmpty, let b = getB() {
       (simple_identifier)
       (navigation_suffix
         (simple_identifier)))
-    (value_binding_pattern
-      (non_binding_pattern
-        (simple_identifier)))
+    (simple_identifier)
     (call_expression
       (simple_identifier)
       (call_suffix
@@ -545,9 +562,7 @@ func doSomething() {
     (function_body
       (statements
         (if_statement
-          (value_binding_pattern
-            (non_binding_pattern
-              (simple_identifier)))
+          (simple_identifier)
           (try_expression
             (call_expression
               (navigation_expression
@@ -581,9 +596,7 @@ if let something = doThing(), let somethingElse = something.somethingElse() {
 
 (source_file
   (if_statement
-    (value_binding_pattern
-      (non_binding_pattern
-        (simple_identifier)))
+    (simple_identifier)
     (call_expression
       (simple_identifier)
       (call_suffix
@@ -601,16 +614,12 @@ if let something = doThing(), let somethingElse = something.somethingElse() {
         (call_suffix
           (value_arguments)))))
   (if_statement
-    (value_binding_pattern
-      (non_binding_pattern
-        (simple_identifier)))
+    (simple_identifier)
     (call_expression
       (simple_identifier)
       (call_suffix
         (value_arguments)))
-    (value_binding_pattern
-      (non_binding_pattern
-        (simple_identifier)))
+    (simple_identifier)
     (call_expression
       (navigation_expression
         (simple_identifier)
@@ -637,15 +646,11 @@ else if let cPrime = c {
 
 (source_file
   (if_statement
-    (value_binding_pattern
-      (non_binding_pattern
-        (simple_identifier)))
+    (simple_identifier)
     (simple_identifier)
     (else)
     (if_statement
-      (value_binding_pattern
-        (non_binding_pattern
-          (simple_identifier)))
+      (simple_identifier)
       (simple_identifier)))
   (if_statement
     (equality_expression
@@ -653,9 +658,7 @@ else if let cPrime = c {
       (simple_identifier))
     (else)
     (if_statement
-      (value_binding_pattern
-        (non_binding_pattern
-          (simple_identifier)))
+      (simple_identifier)
       (simple_identifier))))
 
 ================================================================================
@@ -696,19 +699,19 @@ If try
 --------------------------------------------------------------------------------
 
 (source_file
-      (if_statement
-        (conjunction_expression
-          (try_expression
-            (equality_expression
-              (simple_identifier)))
-          (conjunction_expression
-            (simple_identifier)
-            (prefix_expression
-              (bang)
-              (simple_identifier))))
-        (statements
-          (control_transfer_statement
-            (simple_identifier)))))
+  (if_statement
+    (conjunction_expression
+      (try_expression
+        (equality_expression
+          (simple_identifier)))
+      (conjunction_expression
+        (simple_identifier)
+        (prefix_expression
+          (bang)
+          (simple_identifier))))
+    (statements
+      (control_transfer_statement
+        (simple_identifier)))))
 
 ================================================================================
 Guard statements
@@ -731,9 +734,7 @@ guard case justIdentifier = bound else { }
 
 (source_file
   (guard_statement
-    (value_binding_pattern
-      (non_binding_pattern
-        (simple_identifier)))
+    (simple_identifier)
     (call_expression
       (simple_identifier)
       (call_suffix
@@ -756,20 +757,17 @@ guard case justIdentifier = bound else { }
         (call_suffix
           (value_arguments)))))
   (guard_statement
-    (binding_pattern
-      (simple_identifier)
-      (simple_identifier)
-      (binding_pattern_kind)
-      (non_binding_pattern
-        (simple_identifier)))
+    (simple_identifier)
+    (simple_identifier)
+    (pattern
+      (simple_identifier))
     (call_expression
       (simple_identifier)
       (call_suffix
         (value_arguments)))
     (else))
   (guard_statement
-    (binding_pattern
-      (simple_identifier))
+    (simple_identifier)
     (simple_identifier)
     (else)))
 
@@ -785,9 +783,7 @@ guard let something = doThing(), something.isSpecial() else {
 
 (source_file
   (guard_statement
-    (value_binding_pattern
-      (non_binding_pattern
-        (simple_identifier)))
+    (simple_identifier)
     (call_expression
       (simple_identifier)
       (call_suffix
@@ -818,10 +814,7 @@ guard case let size: Int = variable.size else {
 
 (source_file
   (guard_statement
-    (binding_pattern
-      (binding_pattern_kind)
-      (non_binding_pattern
-        (simple_identifier)))
+    (simple_identifier)
     (type_annotation
       (user_type
         (type_identifier)))
@@ -886,9 +879,8 @@ let ø = unicode()
 
 (source_file
   (property_declaration
-    (value_binding_pattern
-      (non_binding_pattern
-        (simple_identifier)))
+    (pattern
+      (simple_identifier))
     (call_expression
       (simple_identifier)
       (call_suffix
@@ -927,9 +919,8 @@ public init() {
         (comment)
         (property_declaration
           (ownership_modifier)
-          (value_binding_pattern
-            (non_binding_pattern
-              (simple_identifier)))
+          (pattern
+            (simple_identifier))
           (simple_identifier))
         (class_declaration
           (inheritance_modifier)
@@ -977,12 +968,10 @@ async let bar = 66
 
 (source_file
   (property_declaration
-    (value_binding_pattern
-      (non_binding_pattern
-        (simple_identifier)))
+    (pattern
+      (simple_identifier))
     (integer_literal))
   (property_declaration
-    (value_binding_pattern
-      (non_binding_pattern
-        (simple_identifier)))
+    (pattern
+      (simple_identifier))
     (integer_literal)))

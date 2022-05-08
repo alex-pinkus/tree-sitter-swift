@@ -84,18 +84,18 @@ a
   (conjunction_expression
     (simple_identifier)
     (call_expression
-          (simple_identifier)
-          (call_suffix
-            (value_arguments))))
+      (simple_identifier)
+      (call_suffix
+        (value_arguments))))
   (conjunction_expression
     (simple_identifier)
     (call_expression
-          (navigation_expression
-            (simple_identifier)
-            (navigation_suffix
-              (simple_identifier)))
-          (call_suffix
-            (value_arguments)))))
+      (navigation_expression
+        (simple_identifier)
+        (navigation_suffix
+          (simple_identifier)))
+      (call_suffix
+        (value_arguments)))))
 
 ================================================================================
 Bitwise operations
@@ -242,9 +242,8 @@ let e = array[...]
 
 (source_file
   (property_declaration
-    (value_binding_pattern
-      (non_binding_pattern
-        (simple_identifier)))
+    (pattern
+      (simple_identifier))
     (call_expression
       (simple_identifier)
       (call_suffix
@@ -261,9 +260,8 @@ let e = array[...]
               (integer_literal))))))
     (simple_identifier))
   (property_declaration
-    (value_binding_pattern
-      (non_binding_pattern
-        (simple_identifier)))
+    (pattern
+      (simple_identifier))
     (call_expression
       (simple_identifier)
       (call_suffix
@@ -272,9 +270,8 @@ let e = array[...]
             (simple_identifier)
             (simple_identifier))))))
   (property_declaration
-    (value_binding_pattern
-      (non_binding_pattern
-        (simple_identifier)))
+    (pattern
+      (simple_identifier))
     (call_expression
       (simple_identifier)
       (call_suffix
@@ -285,9 +282,8 @@ let e = array[...]
             (simple_identifier)
             (simple_identifier))))))
   (property_declaration
-    (value_binding_pattern
-      (non_binding_pattern
-        (simple_identifier)))
+    (pattern
+      (simple_identifier))
     (call_expression
       (simple_identifier)
       (call_suffix
@@ -322,14 +318,12 @@ _ = someCall()
 
 (source_file
   (property_declaration
-    (value_binding_pattern
-      (non_binding_pattern
-        (simple_identifier)))
+    (pattern
+      (simple_identifier))
     (integer_literal))
   (property_declaration
-    (value_binding_pattern
-      (non_binding_pattern
-        (simple_identifier)))
+    (pattern
+      (simple_identifier))
     (type_annotation
       (user_type
         (type_identifier)))
@@ -368,9 +362,8 @@ let a: SomeClass = .someInstance
 
 (source_file
   (property_declaration
-    (value_binding_pattern
-      (non_binding_pattern
-        (simple_identifier)))
+    (pattern
+      (simple_identifier))
     (type_annotation
       (user_type
         (type_identifier)))
@@ -394,9 +387,8 @@ func math() {
     (function_body
       (statements
         (property_declaration
-          (value_binding_pattern
-            (non_binding_pattern
-              (simple_identifier)))
+          (pattern
+            (simple_identifier))
           (type_annotation
             (tuple_type
               (tuple_type_item
@@ -463,9 +455,8 @@ var result2 = [String: [Complex<[String: Any]>]]()
 
 (source_file
   (property_declaration
-    (value_binding_pattern
-      (non_binding_pattern
-        (simple_identifier)))
+    (pattern
+      (simple_identifier))
     (constructor_expression
       (user_type
         (type_identifier)
@@ -475,9 +466,8 @@ var result2 = [String: [Complex<[String: Any]>]]()
       (constructor_suffix
         (value_arguments))))
   (property_declaration
-    (value_binding_pattern
-      (non_binding_pattern
-        (simple_identifier)))
+    (pattern
+      (simple_identifier))
     (constructor_expression
       (dictionary_type
         (user_type
@@ -521,9 +511,8 @@ modifyThis(&this)
           (type_identifier))))
     (function_body))
   (property_declaration
-    (value_binding_pattern
-      (non_binding_pattern
-        (simple_identifier)))
+    (pattern
+      (simple_identifier))
     (dictionary_literal))
   (call_expression
     (simple_identifier)
@@ -545,9 +534,8 @@ let setterSelector = #selector(setter: self.bar)
 
 (source_file
   (property_declaration
-    (value_binding_pattern
-      (non_binding_pattern
-        (simple_identifier)))
+    (pattern
+      (simple_identifier))
     (selector_expression
       (call_expression
         (navigation_expression
@@ -559,18 +547,16 @@ let setterSelector = #selector(setter: self.bar)
             (value_argument
               (simple_identifier)))))))
   (property_declaration
-    (value_binding_pattern
-      (non_binding_pattern
-        (simple_identifier)))
+    (pattern
+      (simple_identifier))
     (selector_expression
       (navigation_expression
         (self_expression)
         (navigation_suffix
           (simple_identifier)))))
   (property_declaration
-    (value_binding_pattern
-      (non_binding_pattern
-        (simple_identifier)))
+    (pattern
+      (simple_identifier))
     (selector_expression
       (navigation_expression
         (self_expression)
@@ -607,9 +593,8 @@ let result: MyEnumType = condition ? .someEnumCase : .someOtherEnum
 
 (source_file
   (property_declaration
-    (value_binding_pattern
-      (non_binding_pattern
-        (simple_identifier)))
+    (pattern
+      (simple_identifier))
     (ternary_expression
       (tuple_expression
         (equality_expression
@@ -619,9 +604,8 @@ let result: MyEnumType = condition ? .someEnumCase : .someOtherEnum
           (simple_identifier)))
       (array_literal)))
   (property_declaration
-    (value_binding_pattern
-      (non_binding_pattern
-        (simple_identifier)))
+    (pattern
+      (simple_identifier))
     (type_annotation
       (user_type
         (type_identifier)))
@@ -673,7 +657,8 @@ for i in 0 ..< something.count {
 
 (source_file
   (for_statement
-    (simple_identifier)
+    (pattern
+      (simple_identifier))
     (range_expression
       (integer_literal)
       (navigation_expression
@@ -780,18 +765,16 @@ let keyPathStringExpression = #keyPath(someProperty)
 
 (source_file
   (property_declaration
-    (value_binding_pattern
-      (non_binding_pattern
-        (simple_identifier)))
+    (pattern
+      (simple_identifier))
     (navigation_expression
       (key_path_expression
         (type_identifier))
       (navigation_suffix
         (simple_identifier))))
   (property_declaration
-    (value_binding_pattern
-      (non_binding_pattern
-        (simple_identifier)))
+    (pattern
+      (simple_identifier))
     (call_expression
       (simple_identifier)
       (call_suffix
@@ -839,9 +822,8 @@ let keyPathStringExpression = #keyPath(someProperty)
       (simple_identifier)
       (integer_literal)))
   (property_declaration
-    (value_binding_pattern
-      (non_binding_pattern
-        (simple_identifier)))
+    (pattern
+      (simple_identifier))
     (navigation_expression
       (navigation_expression
         (key_path_expression
@@ -851,9 +833,8 @@ let keyPathStringExpression = #keyPath(someProperty)
       (navigation_suffix
         (simple_identifier))))
   (property_declaration
-    (value_binding_pattern
-      (non_binding_pattern
-        (simple_identifier)))
+    (pattern
+      (simple_identifier))
     (key_path_string_expression
       (simple_identifier))))
 
@@ -978,9 +959,8 @@ let two = 2
 
 (source_file
   (property_declaration
-    (value_binding_pattern
-      (non_binding_pattern
-        (wildcard_pattern)))
+    (pattern
+      (wildcard_pattern))
     (multiplicative_expression
       (tuple_expression
         (additive_expression
@@ -988,9 +968,8 @@ let two = 2
           (integer_literal)))
       (integer_literal)))
   (property_declaration
-    (value_binding_pattern
-      (non_binding_pattern
-        (simple_identifier)))
+    (pattern
+      (simple_identifier))
     (equality_expression
       (tuple_expression
         (additive_expression
@@ -998,9 +977,8 @@ let two = 2
           (integer_literal)))
       (integer_literal)))
   (property_declaration
-    (value_binding_pattern
-      (non_binding_pattern
-        (simple_identifier)))
+    (pattern
+      (simple_identifier))
     (additive_expression
       (additive_expression
         (integer_literal)
@@ -1108,7 +1086,8 @@ for try await value in values {
 
 (source_file
   (for_statement
-    (simple_identifier)
+    (pattern
+      (simple_identifier))
     (simple_identifier)
     (statements
       (call_expression
@@ -1131,9 +1110,8 @@ let a = false
 
 (source_file
   (property_declaration
-    (value_binding_pattern
-      (non_binding_pattern
-        (simple_identifier)))
+    (pattern
+      (simple_identifier))
     (boolean_literal))
   (simple_identifier))
 

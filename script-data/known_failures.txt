@@ -1,4 +1,3 @@
 firefox-ios/Shared/Functions.swift
-RxSwift/RxExample/RxExample/Examples/GitHubSearchRepositories/GitHubSearchRepositories.swift
 SwiftLint/Source/SwiftLintFramework/Rules/Lint/ExpiringTodoRule.swift
 GRDB/GRDB/Core/Row.swift
