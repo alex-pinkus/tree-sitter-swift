@@ -117,18 +117,16 @@ internal open class Test {
       (property_declaration
         (modifiers
           (visibility_modifier))
-        (value_binding_pattern
-          (non_binding_pattern
-            (simple_identifier)))
+        (pattern
+          (simple_identifier))
         (type_annotation
           (user_type
             (type_identifier))))
       (property_declaration
         (modifiers
           (visibility_modifier))
-        (value_binding_pattern
-          (non_binding_pattern
-            (simple_identifier)))
+        (pattern
+          (simple_identifier))
         (type_annotation
           (user_type
             (type_identifier))))
@@ -400,17 +398,15 @@ class SomethingElse: ThingProvider {
     (type_identifier)
     (class_body
       (property_declaration
-        (value_binding_pattern
-          (non_binding_pattern
-            (simple_identifier)))
+        (pattern
+          (simple_identifier))
         (type_annotation
           (user_type
             (type_identifier)))
         (integer_literal))
       (property_declaration
-        (value_binding_pattern
-          (non_binding_pattern
-            (simple_identifier)))
+        (pattern
+          (simple_identifier))
         (type_annotation
           (optional_type
             (user_type
@@ -418,17 +414,15 @@ class SomethingElse: ThingProvider {
       (property_declaration
         (modifiers
           (property_behavior_modifier))
-        (value_binding_pattern
-          (non_binding_pattern
-            (simple_identifier)))
+        (pattern
+          (simple_identifier))
         (type_annotation
           (user_type
             (type_identifier)))
         (simple_identifier))
       (property_declaration
-        (value_binding_pattern
-          (non_binding_pattern
-            (simple_identifier)))
+        (pattern
+          (simple_identifier))
         (type_annotation
           (user_type
             (type_identifier)))
@@ -436,9 +430,8 @@ class SomethingElse: ThingProvider {
           (statements
             (simple_identifier))))
       (property_declaration
-        (value_binding_pattern
-          (non_binding_pattern
-            (simple_identifier)))
+        (pattern
+          (simple_identifier))
         (type_annotation
           (user_type
             (type_identifier)))
@@ -451,9 +444,8 @@ class SomethingElse: ThingProvider {
             (setter_specifier)
             (simple_identifier))))
       (property_declaration
-        (value_binding_pattern
-          (non_binding_pattern
-            (simple_identifier)))
+        (pattern
+          (simple_identifier))
         (type_annotation
           (user_type
             (type_identifier)))
@@ -477,18 +469,15 @@ class SomethingElse: ThingProvider {
         (type_identifier)))
     (class_body
       (property_declaration
-        (value_binding_pattern
-          (non_binding_pattern
-            (simple_identifier)))
+        (pattern
+          (simple_identifier))
         (type_annotation
           (user_type
             (type_identifier)))
         (computed_property
           (statements
             (guard_statement
-              (value_binding_pattern
-                (non_binding_pattern
-                  (simple_identifier)))
+              (simple_identifier)
               (simple_identifier)
               (else)
               (statements
@@ -499,9 +488,9 @@ class SomethingElse: ThingProvider {
             (control_transfer_statement
               (simple_identifier)))))
       (function_declaration
-          (modifiers
-            (property_modifier)
-            (member_modifier))
+        (modifiers
+          (property_modifier)
+          (member_modifier))
         (simple_identifier)
         (function_body)))))
 
@@ -522,16 +511,14 @@ class Alphabet {
     (type_identifier)
     (class_body
       (property_declaration
-        (value_binding_pattern
-          (non_binding_pattern
-            (simple_identifier)))
+        (pattern
+          (simple_identifier))
         (type_annotation
           (user_type
             (type_identifier)))
         (computed_property
           (computed_getter
-            (getter_specifier
-              (async))
+            (getter_specifier)
             (statements
               (integer_literal))))))))
 
@@ -549,9 +536,8 @@ class Cat { let noise: String = "meow"; let claws: String = "retractable" }
     (type_identifier)
     (class_body
       (property_declaration
-        (value_binding_pattern
-          (non_binding_pattern
-            (simple_identifier)))
+        (pattern
+          (simple_identifier))
         (type_annotation
           (user_type
             (type_identifier)))
@@ -561,18 +547,16 @@ class Cat { let noise: String = "meow"; let claws: String = "retractable" }
     (type_identifier)
     (class_body
       (property_declaration
-        (value_binding_pattern
-          (non_binding_pattern
-            (simple_identifier)))
+        (pattern
+          (simple_identifier))
         (type_annotation
           (user_type
             (type_identifier)))
         (line_string_literal
           (line_str_text)))
       (property_declaration
-        (value_binding_pattern
-          (non_binding_pattern
-            (simple_identifier)))
+        (pattern
+          (simple_identifier))
         (type_annotation
           (user_type
             (type_identifier)))
@@ -591,9 +575,8 @@ var propertyMap: NodePropertyMap & KeypathSearchable {
 
 (source_file
   (property_declaration
-    (value_binding_pattern
-      (non_binding_pattern
-        (simple_identifier)))
+    (pattern
+      (simple_identifier))
     (type_annotation
       (protocol_composition_type
         (user_type
@@ -624,9 +607,8 @@ struct Adder {
     (type_identifier)
     (class_body
       (property_declaration
-        (value_binding_pattern
-          (non_binding_pattern
-            (simple_identifier)))
+        (pattern
+          (simple_identifier))
         (type_annotation
           (user_type
             (type_identifier))))
@@ -696,9 +678,8 @@ protocol Wrapper {
     (type_identifier)
     (protocol_body
       (protocol_property_declaration
-        (value_binding_pattern
-          (non_binding_pattern
-            (simple_identifier)))
+        (pattern
+          (simple_identifier))
         (type_annotation
           (user_type
             (type_identifier)))
@@ -808,16 +789,14 @@ class Test {
     (type_identifier)
     (class_body
       (property_declaration
-        (value_binding_pattern
-          (non_binding_pattern
-            (simple_identifier)))
+        (pattern
+          (simple_identifier))
         (type_annotation
           (user_type
             (type_identifier))))
       (property_declaration
-        (value_binding_pattern
-          (non_binding_pattern
-            (simple_identifier)))
+        (pattern
+          (simple_identifier))
         (type_annotation
           (user_type
             (type_identifier))))
@@ -983,9 +962,8 @@ enum CStyle {
       (property_declaration
         (modifiers
           (property_modifier))
-        (value_binding_pattern
-          (non_binding_pattern
-            (simple_identifier)))
+        (pattern
+          (simple_identifier))
         (type_annotation
           (user_type
             (type_identifier)))
@@ -1088,17 +1066,15 @@ public extension Foo where T == (arg1: Arg1, arg2: Arg2) { }
       (property_declaration
         (modifiers
           (property_modifier))
-        (value_binding_pattern
-          (non_binding_pattern
-            (simple_identifier)))
+        (pattern
+          (simple_identifier))
         (line_string_literal
           (line_str_text)))
       (property_declaration
         (modifiers
           (property_modifier))
-        (value_binding_pattern
-          (non_binding_pattern
-            (simple_identifier)))
+        (pattern
+          (simple_identifier))
         (type_annotation
           (user_type
             (type_identifier)))
@@ -1196,9 +1172,8 @@ enum ComputeType {
             (simple_identifier)
             (line_string_literal
               (line_str_text))))
-        (value_binding_pattern
-          (non_binding_pattern
-            (simple_identifier)))
+        (pattern
+          (simple_identifier))
         (type_annotation
           (user_type
             (type_identifier))))
@@ -1248,9 +1223,8 @@ let result: HasGeneric<P1 & P2> = HasGeneric<P1 & P2>(t: "Hello")
 
 (source_file
   (property_declaration
-    (value_binding_pattern
-      (non_binding_pattern
-        (simple_identifier)))
+    (pattern
+      (simple_identifier))
     (type_annotation
       (user_type
         (type_identifier)
@@ -1347,9 +1321,8 @@ let result = greet("me") as P1 & P2
 
 (source_file
   (property_declaration
-    (value_binding_pattern
-      (non_binding_pattern
-        (simple_identifier)))
+    (pattern
+      (simple_identifier))
     (as_expression
       (call_expression
         (simple_identifier)
@@ -1393,18 +1366,16 @@ public final class Foo {
       (property_declaration
         (modifiers
           (visibility_modifier))
-        (value_binding_pattern
-          (non_binding_pattern
-            (simple_identifier)))
+        (pattern
+          (simple_identifier))
         (type_annotation
           (user_type
             (type_identifier))))
       (property_declaration
         (modifiers
           (visibility_modifier))
-        (value_binding_pattern
-          (non_binding_pattern
-            (simple_identifier)))
+        (pattern
+          (simple_identifier))
         (type_annotation
           (user_type
             (type_identifier)))
@@ -1438,9 +1409,8 @@ public var someVar: String {
   (property_declaration
     (modifiers
       (visibility_modifier))
-    (value_binding_pattern
-      (non_binding_pattern
-        (simple_identifier)))
+    (pattern
+      (simple_identifier))
     (type_annotation
       (user_type
         (type_identifier)))

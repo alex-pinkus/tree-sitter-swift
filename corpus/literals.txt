@@ -168,17 +168,15 @@ let numerals = [1: "I", 4: "IV", 5: "V", 10: "X"]
 
 (source_file
   (property_declaration
-    (value_binding_pattern
-      (non_binding_pattern
-        (simple_identifier)))
+    (pattern
+      (simple_identifier))
     (array_literal
       (integer_literal)
       (integer_literal)
       (integer_literal)))
   (property_declaration
-    (value_binding_pattern
-      (non_binding_pattern
-        (simple_identifier)))
+    (pattern
+      (simple_identifier))
     (dictionary_literal
       (integer_literal)
       (line_string_literal
@@ -237,9 +235,8 @@ let _ = nil
 
 (source_file
   (property_declaration
-    (value_binding_pattern
-      (non_binding_pattern
-        (wildcard_pattern)))))
+    (pattern
+      (wildcard_pattern))))
 
 ================================================================================
 Raw strings
@@ -252,15 +249,13 @@ let _ = ##"Hello, so-called "world"!"##
 
 (source_file
   (property_declaration
-    (value_binding_pattern
-      (non_binding_pattern
-        (wildcard_pattern)))
+    (pattern
+      (wildcard_pattern))
     (raw_string_literal
       (raw_str_end_part)))
   (property_declaration
-    (value_binding_pattern
-      (non_binding_pattern
-        (wildcard_pattern)))
+    (pattern
+      (wildcard_pattern))
     (raw_string_literal
       (raw_str_end_part))))
 
@@ -270,13 +265,12 @@ Doesn't hang for incomplete raw strings (issue #146)
 
 let _ = #"Foo"
 
----
+--------------------------------------------------------------------------------
 
 (source_file
   (property_declaration
-    (value_binding_pattern
-      (non_binding_pattern
-        (wildcard_pattern)))
+    (pattern
+      (wildcard_pattern))
     (ERROR
       (UNEXPECTED '"'))
     (line_string_literal
@@ -351,9 +345,8 @@ let _ = ##"\##(a)\#(b)\##(c)\#(d)"# ##"##
               (multiline_comment))
             (raw_str_end_part))))))
   (property_declaration
-    (value_binding_pattern
-      (non_binding_pattern
-        (wildcard_pattern)))
+    (pattern
+      (wildcard_pattern))
     (raw_string_literal
       (raw_str_part)
       (raw_str_interpolation
@@ -362,15 +355,13 @@ let _ = ##"\##(a)\#(b)\##(c)\#(d)"# ##"##
           (simple_identifier)))
       (raw_str_end_part)))
   (property_declaration
-    (value_binding_pattern
-      (non_binding_pattern
-        (wildcard_pattern)))
+    (pattern
+      (wildcard_pattern))
     (raw_string_literal
       (raw_str_end_part)))
   (property_declaration
-    (value_binding_pattern
-      (non_binding_pattern
-        (wildcard_pattern)))
+    (pattern
+      (wildcard_pattern))
     (raw_string_literal
       (raw_str_part)
       (raw_str_interpolation
@@ -396,22 +387,19 @@ let infinity = "\u{221E}"
 
 (source_file
   (property_declaration
-    (value_binding_pattern
-      (non_binding_pattern
-        (simple_identifier)))
+    (pattern
+      (simple_identifier))
     (line_string_literal
       (str_escaped_char)))
   (property_declaration
-    (value_binding_pattern
-      (non_binding_pattern
-        (simple_identifier)))
+    (pattern
+      (simple_identifier))
     (line_string_literal
       (line_str_text)
       (str_escaped_char)))
   (property_declaration
-    (value_binding_pattern
-      (non_binding_pattern
-        (simple_identifier)))
+    (pattern
+      (simple_identifier))
     (line_string_literal
       (str_escaped_char))))
 
@@ -425,9 +413,8 @@ let playgroundLiteral = #imageLiteral(resourceName: "heart")
 
 (source_file
   (property_declaration
-    (value_binding_pattern
-      (non_binding_pattern
-        (simple_identifier)))
+    (pattern
+      (simple_identifier))
     (simple_identifier)
     (line_string_literal
       (line_str_text))))

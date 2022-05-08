@@ -202,9 +202,8 @@ let c: (third: C, fourth: D)
       (user_type
         (type_identifier))))
   (property_declaration
-    (value_binding_pattern
-      (non_binding_pattern
-        (simple_identifier)))
+    (pattern
+      (simple_identifier))
     (type_annotation
       (tuple_type
         (tuple_type_item
@@ -228,9 +227,8 @@ private var dictionary: [String: Any?]?
   (property_declaration
     (modifiers
       (visibility_modifier))
-    (value_binding_pattern
-      (non_binding_pattern
-        (simple_identifier)))
+    (pattern
+      (simple_identifier))
     (type_annotation
       (optional_type
         (dictionary_type
@@ -252,9 +250,8 @@ private var dictionary: [String: Any?]!
   (property_declaration
     (modifiers
       (visibility_modifier))
-    (value_binding_pattern
-      (non_binding_pattern
-        (simple_identifier)))
+    (pattern
+      (simple_identifier))
     (type_annotation
       (dictionary_type
         (user_type

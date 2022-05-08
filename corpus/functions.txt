@@ -383,9 +383,8 @@ let messageCoerced = error ??? "nil"
 
 (source_file
   (property_declaration
-    (value_binding_pattern
-      (non_binding_pattern
-        (simple_identifier)))
+    (pattern
+      (simple_identifier))
     (infix_expression
       (simple_identifier)
       (custom_operator)
@@ -440,7 +439,6 @@ func maybe()
 (source_file
   (function_declaration
     (simple_identifier)
-    (async)
     (user_type
       (type_identifier))
     (function_body
@@ -450,7 +448,6 @@ func maybe()
             (integer_literal))))))
   (function_declaration
     (simple_identifier)
-    (async)
     (throws)
     (user_type
       (type_identifier))
@@ -722,9 +719,8 @@ private lazy var onCatClosure: (_ cat: Cat) throws -> Void = { _ in
     (modifiers
       (visibility_modifier)
       (property_behavior_modifier))
-    (value_binding_pattern
-      (non_binding_pattern
-        (simple_identifier)))
+    (pattern
+      (simple_identifier))
     (type_annotation
       (function_type
         (tuple_type
