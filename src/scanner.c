@@ -384,10 +384,12 @@ static enum ParseDirective eat_whitespace(
     uint32_t lookahead;
     while (should_treat_as_wspace(lookahead = lexer->lookahead)) {
         if (lookahead == ';') {
-            if (!semi_is_valid) {
-                break;
+            if (semi_is_valid) {
+                ws_directive = STOP_PARSING_TOKEN_FOUND;
+                lexer->advance(lexer, false);
             }
-            ws_directive = STOP_PARSING_TOKEN_FOUND;
+
+            break;
         }
 
         lexer->advance(lexer, true);
