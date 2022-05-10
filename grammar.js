@@ -1229,19 +1229,18 @@ module.exports = grammar({
       prec.right(
         seq(
           $._possibly_async_binding_pattern_kind,
-          sep1(
-            seq(
-              field("name", alias($._no_expr_pattern_already_bound, $.pattern)),
-              optional($.type_annotation),
-              optional($.type_constraints),
-              optional(
-                choice(
-                  seq($._equal_sign, field("value", $._expression)),
-                  field("computed_value", $.computed_property)
-                )
-              )
-            ),
-            ","
+          sep1($._single_modifierless_property_declaration, ",")
+        )
+      ),
+    _single_modifierless_property_declaration: ($) =>
+      seq(
+        field("name", alias($._no_expr_pattern_already_bound, $.pattern)),
+        optional($.type_annotation),
+        optional($.type_constraints),
+        optional(
+          choice(
+            seq($._equal_sign, field("value", $._expression)),
+            field("computed_value", $.computed_property)
           )
         )
       ),
