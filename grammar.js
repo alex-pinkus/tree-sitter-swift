@@ -604,16 +604,7 @@ module.exports = grammar({
         seq(
           field("lhs", $._expression),
           field("op", $._conjunction_operator),
-          prec.left(
-            PRECS.ternary_binary_suffix,
-            field(
-              "rhs",
-              choice(
-                $._expression,
-                alias($.expr_hack_at_ternary_binary_call, $.call_expression)
-              )
-            )
-          )
+          field("rhs", $._expr_hack_at_ternary_binary_suffix)
         )
       ),
     disjunction_expression: ($) =>
@@ -746,16 +737,15 @@ module.exports = grammar({
           $._quest,
           field("if_true", $._expression),
           ":",
-          prec.left(
-            PRECS.ternary_binary_suffix,
-            field(
-              "if_false",
-              choice(
-                $._expression,
-                alias($.expr_hack_at_ternary_binary_call, $.call_expression)
-              )
-            )
-          )
+          field("if_false", $._expr_hack_at_ternary_binary_suffix)
+        )
+      ),
+    _expr_hack_at_ternary_binary_suffix: ($) =>
+      prec.left(
+        PRECS.ternary_binary_suffix,
+        choice(
+          $._expression,
+          alias($.expr_hack_at_ternary_binary_call, $.call_expression)
         )
       ),
     expr_hack_at_ternary_binary_call: ($) =>
