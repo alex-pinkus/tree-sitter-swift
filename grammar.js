@@ -59,6 +59,11 @@ const PRECS = {
   comment: -3,
   lambda: -3,
 };
+
+const DYNAMIC_PRECS = {
+  call: 1,
+};
+
 const DEC_DIGITS = token(sep1(/[0-9]+/, /_+/));
 const HEX_DIGITS = token(sep1(/[0-9a-fA-F]+/, /_+/));
 const OCT_DIGITS = token(sep1(/[0-7]+/, /_+/));
@@ -756,7 +761,11 @@ module.exports = grammar({
       ),
     expr_hack_at_ternary_binary_call_suffix: ($) =>
       prec(PRECS.call_suffix, $.value_arguments),
-    call_expression: ($) => prec(PRECS.call, seq($._expression, $.call_suffix)),
+    call_expression: ($) =>
+      prec(
+        PRECS.call,
+        prec.dynamic(DYNAMIC_PRECS.call, seq($._expression, $.call_suffix))
+      ),
     _primary_expression: ($) =>
       choice(
         $.tuple_expression,
