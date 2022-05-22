@@ -24,7 +24,7 @@ Carthage Carthage/Carthage 0.38.0
 Rectangle rxhanson/Rectangle v0.56
 PromiseKit mxcl/PromiseKit 6.17.1
 Moya Moya/Moya 15.0.0
-MonitorControl MonitorControl/MonitorControl v4.0.2
+MonitorControl MonitorControl/MonitorControl v4.1.0
 ObjectMapper tristanhimmelman/ObjectMapper 4.2.0
 SkeletonView Juanpe/SkeletonView 1.29.2
 firefox-ios mozilla-mobile/firefox-ios v39.0 0 6
@@ -33,11 +33,11 @@ firefox-ios mozilla-mobile/firefox-ios v39.0 2 6
 firefox-ios mozilla-mobile/firefox-ios v39.0 3 6
 firefox-ios mozilla-mobile/firefox-ios v39.0 4 6
 firefox-ios mozilla-mobile/firefox-ios v39.0 5 6
-AudioKit AudioKit/AudioKit 5.4.1
+AudioKit AudioKit/AudioKit 5.4.2
 Starscream daltoniam/Starscream 4.0.4
-MessageKit MessageKit/MessageKit 4.0.0-beta.1
+MessageKit MessageKit/MessageKit 4.0.0-beta.2
 KeychainAccess kishikawakatsumi/KeychainAccess v4.2.2
-Nuke kean/Nuke 10.8.0
+Nuke kean/Nuke 10.10.0
 Swinject Swinject/Swinject 2.8.1
 GRDB groue/GRDB.swift v5.24.0 0 2
 GRDB groue/GRDB.swift v5.24.0 1 2
