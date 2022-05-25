@@ -700,15 +700,15 @@ If try
 
 (source_file
   (if_statement
-    (conjunction_expression
-      (try_expression
-        (equality_expression
-          (simple_identifier)))
-      (conjunction_expression
+    (try_expression
+      (equality_expression
         (simple_identifier)
-        (prefix_expression
-          (bang)
-          (simple_identifier))))
+        (conjunction_expression
+          (conjunction_expression
+            (simple_identifier)
+            (prefix_expression
+              (bang)
+              (simple_identifier))))))
     (statements
       (control_transfer_statement
         (simple_identifier)))))

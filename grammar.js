@@ -557,7 +557,7 @@ module.exports = grammar({
         seq(
           field("start", $._expression),
           field("op", $._range_operator),
-          field("end", $._expression)
+          field("end", $._expr_hack_at_ternary_binary_suffix)
         )
       ),
     infix_expression: ($) =>
@@ -566,7 +566,7 @@ module.exports = grammar({
         seq(
           field("lhs", $._expression),
           field("op", $.custom_operator),
-          field("rhs", $._expression)
+          field("rhs", $._expr_hack_at_ternary_binary_suffix)
         )
       ),
     nil_coalescing_expression: ($) =>
@@ -575,7 +575,7 @@ module.exports = grammar({
         seq(
           field("value", $._expression),
           $._nil_coalescing_operator,
-          field("if_nil", $._expression)
+          field("if_nil", $._expr_hack_at_ternary_binary_suffix)
         )
       ),
     check_expression: ($) =>
@@ -592,7 +592,7 @@ module.exports = grammar({
         seq(
           field("lhs", $._expression),
           field("op", $._comparison_operator),
-          field("rhs", $._expression)
+          field("rhs", $._expr_hack_at_ternary_binary_suffix)
         )
       ),
     equality_expression: ($) =>
@@ -601,7 +601,7 @@ module.exports = grammar({
         seq(
           field("lhs", $._expression),
           field("op", $._equality_operator),
-          field("rhs", $._expression)
+          field("rhs", $._expr_hack_at_ternary_binary_suffix)
         )
       ),
     conjunction_expression: ($) =>
@@ -619,7 +619,7 @@ module.exports = grammar({
         seq(
           field("lhs", $._expression),
           field("op", $._disjunction_operator),
-          field("rhs", $._expression)
+          field("rhs", $._expr_hack_at_ternary_binary_suffix)
         )
       ),
     bitwise_operation: ($) =>
@@ -627,7 +627,7 @@ module.exports = grammar({
         seq(
           field("lhs", $._expression),
           field("op", $._bitwise_binary_operator),
-          field("rhs", $._expression)
+          field("rhs", $._expr_hack_at_ternary_binary_suffix)
         )
       ),
     custom_operator: ($) => seq(CUSTOM_OPERATORS, optional("<")),
