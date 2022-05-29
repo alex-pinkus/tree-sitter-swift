@@ -1,6 +1,6 @@
 Alamofire Alamofire/Alamofire 5.6.1
 iina iina/iina v1.2.0
-Charts danielgindi/Charts v4.0.2
+Charts danielgindi/Charts v4.0.3
 lottie-ios airbnb/lottie-ios 3.3.0
 vapor vapor/vapor 3.3.3
 SwiftyJSON SwiftyJSON/SwiftyJSON 5.0.1
@@ -39,5 +39,5 @@ MessageKit MessageKit/MessageKit 4.0.0-beta.2
 KeychainAccess kishikawakatsumi/KeychainAccess v4.2.2
 Nuke kean/Nuke 10.10.0
 Swinject Swinject/Swinject 2.8.1
-GRDB groue/GRDB.swift v5.24.0 0 2
-GRDB groue/GRDB.swift v5.24.0 1 2
+GRDB groue/GRDB.swift v5.24.1 0 2
+GRDB groue/GRDB.swift v5.24.1 1 2
