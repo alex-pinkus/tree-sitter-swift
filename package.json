@@ -14,6 +14,15 @@
     "type": "git",
     "url": "git+https://github.com/alex-pinkus/tree-sitter-swift.git"
   },
+  "tree-sitter": [
+    {
+      "scope": "source.swift",
+      "file-types": [
+        "swift"
+      ],
+      "injection-regex": "swift"
+    }
+  ],
   "keywords": [
     "parser",
     "swift"
