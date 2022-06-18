@@ -2003,11 +2003,6 @@
     }
   },
   {
-    "type": "async",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "attribute",
     "named": true,
     "fields": {},
@@ -2540,279 +2535,6 @@
         ]
       }
     }
-  },
-  {
-    "type": "binding_pattern",
-    "named": true,
-    "fields": {
-      "bound_identifier": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "simple_identifier",
-            "named": true
-          }
-        ]
-      },
-      "name": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "array_type",
-            "named": true
-          },
-          {
-            "type": "dictionary_type",
-            "named": true
-          },
-          {
-            "type": "function_type",
-            "named": true
-          },
-          {
-            "type": "metatype",
-            "named": true
-          },
-          {
-            "type": "opaque_type",
-            "named": true
-          },
-          {
-            "type": "optional_type",
-            "named": true
-          },
-          {
-            "type": "protocol_composition_type",
-            "named": true
-          },
-          {
-            "type": "tuple_type",
-            "named": true
-          },
-          {
-            "type": "user_type",
-            "named": true
-          }
-        ]
-      }
-    },
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "additive_expression",
-          "named": true
-        },
-        {
-          "type": "array_literal",
-          "named": true
-        },
-        {
-          "type": "as_expression",
-          "named": true
-        },
-        {
-          "type": "assignment",
-          "named": true
-        },
-        {
-          "type": "await_expression",
-          "named": true
-        },
-        {
-          "type": "bang",
-          "named": true
-        },
-        {
-          "type": "bin_literal",
-          "named": true
-        },
-        {
-          "type": "binding_pattern",
-          "named": true
-        },
-        {
-          "type": "binding_pattern_kind",
-          "named": true
-        },
-        {
-          "type": "bitwise_operation",
-          "named": true
-        },
-        {
-          "type": "boolean_literal",
-          "named": true
-        },
-        {
-          "type": "call_expression",
-          "named": true
-        },
-        {
-          "type": "check_expression",
-          "named": true
-        },
-        {
-          "type": "comparison_expression",
-          "named": true
-        },
-        {
-          "type": "conjunction_expression",
-          "named": true
-        },
-        {
-          "type": "constructor_expression",
-          "named": true
-        },
-        {
-          "type": "custom_operator",
-          "named": true
-        },
-        {
-          "type": "dictionary_literal",
-          "named": true
-        },
-        {
-          "type": "disjunction_expression",
-          "named": true
-        },
-        {
-          "type": "equality_expression",
-          "named": true
-        },
-        {
-          "type": "fully_open_range",
-          "named": true
-        },
-        {
-          "type": "hex_literal",
-          "named": true
-        },
-        {
-          "type": "infix_expression",
-          "named": true
-        },
-        {
-          "type": "integer_literal",
-          "named": true
-        },
-        {
-          "type": "key_path_expression",
-          "named": true
-        },
-        {
-          "type": "key_path_string_expression",
-          "named": true
-        },
-        {
-          "type": "lambda_literal",
-          "named": true
-        },
-        {
-          "type": "line_string_literal",
-          "named": true
-        },
-        {
-          "type": "multi_line_string_literal",
-          "named": true
-        },
-        {
-          "type": "multiplicative_expression",
-          "named": true
-        },
-        {
-          "type": "navigation_expression",
-          "named": true
-        },
-        {
-          "type": "nil_coalescing_expression",
-          "named": true
-        },
-        {
-          "type": "non_binding_pattern",
-          "named": true
-        },
-        {
-          "type": "oct_literal",
-          "named": true
-        },
-        {
-          "type": "open_end_range_expression",
-          "named": true
-        },
-        {
-          "type": "open_start_range_expression",
-          "named": true
-        },
-        {
-          "type": "postfix_expression",
-          "named": true
-        },
-        {
-          "type": "prefix_expression",
-          "named": true
-        },
-        {
-          "type": "range_expression",
-          "named": true
-        },
-        {
-          "type": "raw_string_literal",
-          "named": true
-        },
-        {
-          "type": "real_literal",
-          "named": true
-        },
-        {
-          "type": "selector_expression",
-          "named": true
-        },
-        {
-          "type": "self_expression",
-          "named": true
-        },
-        {
-          "type": "simple_identifier",
-          "named": true
-        },
-        {
-          "type": "super_expression",
-          "named": true
-        },
-        {
-          "type": "ternary_expression",
-          "named": true
-        },
-        {
-          "type": "try_expression",
-          "named": true
-        },
-        {
-          "type": "tuple_expression",
-          "named": true
-        },
-        {
-          "type": "type_modifiers",
-          "named": true
-        },
-        {
-          "type": "user_type",
-          "named": true
-        },
-        {
-          "type": "wildcard_pattern",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "binding_pattern_kind",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "bitwise_operation",
@@ -4076,7 +3798,7 @@
         "required": false,
         "types": [
           {
-            "type": "binding_pattern",
+            "type": "pattern",
             "named": true
           }
         ]
@@ -9559,16 +9281,6 @@
     "type": "for_statement",
     "named": true,
     "fields": {
-      "bound_identifier": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "simple_identifier",
-            "named": true
-          }
-        ]
-      },
       "collection": {
         "multiple": true,
         "required": true,
@@ -9884,429 +9596,11 @@
         ]
       },
       "item": {
-        "multiple": true,
-        "required": false,
+        "multiple": false,
+        "required": true,
         "types": [
           {
-            "type": "!=",
-            "named": false
-          },
-          {
-            "type": "!==",
-            "named": false
-          },
-          {
-            "type": "#colorLiteral",
-            "named": false
-          },
-          {
-            "type": "#column",
-            "named": false
-          },
-          {
-            "type": "#dsohandle",
-            "named": false
-          },
-          {
-            "type": "#file",
-            "named": false
-          },
-          {
-            "type": "#fileID",
-            "named": false
-          },
-          {
-            "type": "#fileLiteral",
-            "named": false
-          },
-          {
-            "type": "#filePath",
-            "named": false
-          },
-          {
-            "type": "#function",
-            "named": false
-          },
-          {
-            "type": "#imageLiteral",
-            "named": false
-          },
-          {
-            "type": "#line",
-            "named": false
-          },
-          {
-            "type": "%",
-            "named": false
-          },
-          {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
-            "named": false
-          },
-          {
-            "type": "*",
-            "named": false
-          },
-          {
-            "type": "+",
-            "named": false
-          },
-          {
-            "type": "++",
-            "named": false
-          },
-          {
-            "type": ",",
-            "named": false
-          },
-          {
-            "type": "-",
-            "named": false
-          },
-          {
-            "type": "--",
-            "named": false
-          },
-          {
-            "type": ".",
-            "named": false
-          },
-          {
-            "type": "/",
-            "named": false
-          },
-          {
-            "type": ":",
-            "named": false
-          },
-          {
-            "type": "<",
-            "named": false
-          },
-          {
-            "type": "<=",
-            "named": false
-          },
-          {
-            "type": "==",
-            "named": false
-          },
-          {
-            "type": "===",
-            "named": false
-          },
-          {
-            "type": ">",
-            "named": false
-          },
-          {
-            "type": ">=",
-            "named": false
-          },
-          {
-            "type": "?",
-            "named": false
-          },
-          {
-            "type": "additive_expression",
-            "named": true
-          },
-          {
-            "type": "array_literal",
-            "named": true
-          },
-          {
-            "type": "array_type",
-            "named": true
-          },
-          {
-            "type": "as",
-            "named": false
-          },
-          {
-            "type": "as_expression",
-            "named": true
-          },
-          {
-            "type": "assignment",
-            "named": true
-          },
-          {
-            "type": "await_expression",
-            "named": true
-          },
-          {
-            "type": "bang",
-            "named": true
-          },
-          {
-            "type": "bin_literal",
-            "named": true
-          },
-          {
-            "type": "binding_pattern",
-            "named": true
-          },
-          {
-            "type": "binding_pattern_kind",
-            "named": true
-          },
-          {
-            "type": "bitwise_operation",
-            "named": true
-          },
-          {
-            "type": "boolean_literal",
-            "named": true
-          },
-          {
-            "type": "call_expression",
-            "named": true
-          },
-          {
-            "type": "case",
-            "named": false
-          },
-          {
-            "type": "check_expression",
-            "named": true
-          },
-          {
-            "type": "comparison_expression",
-            "named": true
-          },
-          {
-            "type": "conjunction_expression",
-            "named": true
-          },
-          {
-            "type": "constructor_expression",
-            "named": true
-          },
-          {
-            "type": "custom_operator",
-            "named": true
-          },
-          {
-            "type": "dictionary_literal",
-            "named": true
-          },
-          {
-            "type": "dictionary_type",
-            "named": true
-          },
-          {
-            "type": "disjunction_expression",
-            "named": true
-          },
-          {
-            "type": "equality_expression",
-            "named": true
-          },
-          {
-            "type": "fully_open_range",
-            "named": true
-          },
-          {
-            "type": "function_type",
-            "named": true
-          },
-          {
-            "type": "hex_literal",
-            "named": true
-          },
-          {
-            "type": "infix_expression",
-            "named": true
-          },
-          {
-            "type": "integer_literal",
-            "named": true
-          },
-          {
-            "type": "is",
-            "named": false
-          },
-          {
-            "type": "key_path_expression",
-            "named": true
-          },
-          {
-            "type": "key_path_string_expression",
-            "named": true
-          },
-          {
-            "type": "lambda_literal",
-            "named": true
-          },
-          {
-            "type": "line_string_literal",
-            "named": true
-          },
-          {
-            "type": "metatype",
-            "named": true
-          },
-          {
-            "type": "multi_line_string_literal",
-            "named": true
-          },
-          {
-            "type": "multiplicative_expression",
-            "named": true
-          },
-          {
-            "type": "navigation_expression",
-            "named": true
-          },
-          {
-            "type": "nil",
-            "named": false
-          },
-          {
-            "type": "nil_coalescing_expression",
-            "named": true
-          },
-          {
-            "type": "non_binding_pattern",
-            "named": true
-          },
-          {
-            "type": "oct_literal",
-            "named": true
-          },
-          {
-            "type": "opaque_type",
-            "named": true
-          },
-          {
-            "type": "open_end_range_expression",
-            "named": true
-          },
-          {
-            "type": "open_start_range_expression",
-            "named": true
-          },
-          {
-            "type": "optional_type",
-            "named": true
-          },
-          {
-            "type": "postfix_expression",
-            "named": true
-          },
-          {
-            "type": "prefix_expression",
-            "named": true
-          },
-          {
-            "type": "protocol_composition_type",
-            "named": true
-          },
-          {
-            "type": "range_expression",
-            "named": true
-          },
-          {
-            "type": "raw_string_literal",
-            "named": true
-          },
-          {
-            "type": "real_literal",
-            "named": true
-          },
-          {
-            "type": "selector_expression",
-            "named": true
-          },
-          {
-            "type": "self_expression",
-            "named": true
-          },
-          {
-            "type": "simple_identifier",
-            "named": true
-          },
-          {
-            "type": "super_expression",
-            "named": true
-          },
-          {
-            "type": "ternary_expression",
-            "named": true
-          },
-          {
-            "type": "try_expression",
-            "named": true
-          },
-          {
-            "type": "tuple_expression",
-            "named": true
-          },
-          {
-            "type": "tuple_type",
-            "named": true
-          },
-          {
-            "type": "type_modifiers",
-            "named": true
-          },
-          {
-            "type": "user_type",
-            "named": true
-          },
-          {
-            "type": "wildcard_pattern",
-            "named": true
-          },
-          {
-            "type": "~",
-            "named": false
-          }
-        ]
-      },
-      "name": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "array_type",
-            "named": true
-          },
-          {
-            "type": "dictionary_type",
-            "named": true
-          },
-          {
-            "type": "function_type",
-            "named": true
-          },
-          {
-            "type": "metatype",
-            "named": true
-          },
-          {
-            "type": "opaque_type",
-            "named": true
-          },
-          {
-            "type": "optional_type",
-            "named": true
-          },
-          {
-            "type": "protocol_composition_type",
-            "named": true
-          },
-          {
-            "type": "tuple_type",
-            "named": true
-          },
-          {
-            "type": "user_type",
+            "type": "pattern",
             "named": true
           }
         ]
@@ -10877,10 +10171,6 @@
       "required": false,
       "types": [
         {
-          "type": "async",
-          "named": true
-        },
-        {
           "type": "attribute",
           "named": true
         },
@@ -11032,13 +10322,9 @@
       }
     },
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": false,
       "types": [
-        {
-          "type": "async",
-          "named": true
-        },
         {
           "type": "throws",
           "named": true
@@ -11055,10 +10341,6 @@
       "required": false,
       "types": [
         {
-          "type": "async",
-          "named": true
-        },
-        {
           "type": "mutation_modifier",
           "named": true
         },
@@ -11073,6 +10355,16 @@
     "type": "guard_statement",
     "named": true,
     "fields": {
+      "bound_identifier": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "simple_identifier",
+            "named": true
+          }
+        ]
+      },
       "condition": {
         "multiple": true,
         "required": true,
@@ -11162,6 +10454,10 @@
             "named": false
           },
           {
+            "type": ".",
+            "named": false
+          },
+          {
             "type": "/",
             "named": false
           },
@@ -11210,12 +10506,24 @@
             "named": true
           },
           {
+            "type": "array_type",
+            "named": true
+          },
+          {
+            "type": "as",
+            "named": false
+          },
+          {
             "type": "as_expression",
             "named": true
           },
           {
             "type": "assignment",
             "named": true
+          },
+          {
+            "type": "async",
+            "named": false
           },
           {
             "type": "availability_condition",
@@ -11231,10 +10539,6 @@
           },
           {
             "type": "bin_literal",
-            "named": true
-          },
-          {
-            "type": "binding_pattern",
             "named": true
           },
           {
@@ -11278,6 +10582,10 @@
             "named": true
           },
           {
+            "type": "dictionary_type",
+            "named": true
+          },
+          {
             "type": "disjunction_expression",
             "named": true
           },
@@ -11287,6 +10595,10 @@
           },
           {
             "type": "fully_open_range",
+            "named": true
+          },
+          {
+            "type": "function_type",
             "named": true
           },
           {
@@ -11302,6 +10614,10 @@
             "named": true
           },
           {
+            "type": "is",
+            "named": false
+          },
+          {
             "type": "key_path_expression",
             "named": true
           },
@@ -11314,7 +10630,15 @@
             "named": true
           },
           {
+            "type": "let",
+            "named": false
+          },
+          {
             "type": "line_string_literal",
+            "named": true
+          },
+          {
+            "type": "metatype",
             "named": true
           },
           {
@@ -11342,6 +10666,10 @@
             "named": true
           },
           {
+            "type": "opaque_type",
+            "named": true
+          },
+          {
             "type": "open_end_range_expression",
             "named": true
           },
@@ -11350,11 +10678,23 @@
             "named": true
           },
           {
+            "type": "optional_type",
+            "named": true
+          },
+          {
+            "type": "pattern",
+            "named": true
+          },
+          {
             "type": "postfix_expression",
             "named": true
           },
           {
             "type": "prefix_expression",
+            "named": true
+          },
+          {
+            "type": "protocol_composition_type",
             "named": true
           },
           {
@@ -11398,16 +10738,88 @@
             "named": true
           },
           {
+            "type": "tuple_type",
+            "named": true
+          },
+          {
             "type": "type_annotation",
             "named": true
           },
           {
-            "type": "value_binding_pattern",
+            "type": "type_modifiers",
+            "named": true
+          },
+          {
+            "type": "user_type",
+            "named": true
+          },
+          {
+            "type": "var",
+            "named": false
+          },
+          {
+            "type": "wildcard_pattern",
             "named": true
           },
           {
             "type": "~",
             "named": false
+          }
+        ]
+      },
+      "mutability": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "let",
+            "named": false
+          },
+          {
+            "type": "var",
+            "named": false
+          }
+        ]
+      },
+      "name": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "array_type",
+            "named": true
+          },
+          {
+            "type": "dictionary_type",
+            "named": true
+          },
+          {
+            "type": "function_type",
+            "named": true
+          },
+          {
+            "type": "metatype",
+            "named": true
+          },
+          {
+            "type": "opaque_type",
+            "named": true
+          },
+          {
+            "type": "optional_type",
+            "named": true
+          },
+          {
+            "type": "protocol_composition_type",
+            "named": true
+          },
+          {
+            "type": "tuple_type",
+            "named": true
+          },
+          {
+            "type": "user_type",
+            "named": true
           }
         ]
       }
@@ -11446,6 +10858,16 @@
     "type": "if_statement",
     "named": true,
     "fields": {
+      "bound_identifier": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "simple_identifier",
+            "named": true
+          }
+        ]
+      },
       "condition": {
         "multiple": true,
         "required": true,
@@ -11535,6 +10957,10 @@
             "named": false
           },
           {
+            "type": ".",
+            "named": false
+          },
+          {
             "type": "/",
             "named": false
           },
@@ -11583,12 +11009,24 @@
             "named": true
           },
           {
+            "type": "array_type",
+            "named": true
+          },
+          {
+            "type": "as",
+            "named": false
+          },
+          {
             "type": "as_expression",
             "named": true
           },
           {
             "type": "assignment",
             "named": true
+          },
+          {
+            "type": "async",
+            "named": false
           },
           {
             "type": "availability_condition",
@@ -11604,10 +11042,6 @@
           },
           {
             "type": "bin_literal",
-            "named": true
-          },
-          {
-            "type": "binding_pattern",
             "named": true
           },
           {
@@ -11651,6 +11085,10 @@
             "named": true
           },
           {
+            "type": "dictionary_type",
+            "named": true
+          },
+          {
             "type": "disjunction_expression",
             "named": true
           },
@@ -11660,6 +11098,10 @@
           },
           {
             "type": "fully_open_range",
+            "named": true
+          },
+          {
+            "type": "function_type",
             "named": true
           },
           {
@@ -11675,6 +11117,10 @@
             "named": true
           },
           {
+            "type": "is",
+            "named": false
+          },
+          {
             "type": "key_path_expression",
             "named": true
           },
@@ -11687,7 +11133,15 @@
             "named": true
           },
           {
+            "type": "let",
+            "named": false
+          },
+          {
             "type": "line_string_literal",
+            "named": true
+          },
+          {
+            "type": "metatype",
             "named": true
           },
           {
@@ -11715,6 +11169,10 @@
             "named": true
           },
           {
+            "type": "opaque_type",
+            "named": true
+          },
+          {
             "type": "open_end_range_expression",
             "named": true
           },
@@ -11723,11 +11181,23 @@
             "named": true
           },
           {
+            "type": "optional_type",
+            "named": true
+          },
+          {
+            "type": "pattern",
+            "named": true
+          },
+          {
             "type": "postfix_expression",
             "named": true
           },
           {
             "type": "prefix_expression",
+            "named": true
+          },
+          {
+            "type": "protocol_composition_type",
             "named": true
           },
           {
@@ -11771,16 +11241,88 @@
             "named": true
           },
           {
+            "type": "tuple_type",
+            "named": true
+          },
+          {
             "type": "type_annotation",
             "named": true
           },
           {
-            "type": "value_binding_pattern",
+            "type": "type_modifiers",
+            "named": true
+          },
+          {
+            "type": "user_type",
+            "named": true
+          },
+          {
+            "type": "var",
+            "named": false
+          },
+          {
+            "type": "wildcard_pattern",
             "named": true
           },
           {
             "type": "~",
             "named": false
+          }
+        ]
+      },
+      "mutability": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "let",
+            "named": false
+          },
+          {
+            "type": "var",
+            "named": false
+          }
+        ]
+      },
+      "name": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "array_type",
+            "named": true
+          },
+          {
+            "type": "dictionary_type",
+            "named": true
+          },
+          {
+            "type": "function_type",
+            "named": true
+          },
+          {
+            "type": "metatype",
+            "named": true
+          },
+          {
+            "type": "opaque_type",
+            "named": true
+          },
+          {
+            "type": "optional_type",
+            "named": true
+          },
+          {
+            "type": "protocol_composition_type",
+            "named": true
+          },
+          {
+            "type": "tuple_type",
+            "named": true
+          },
+          {
+            "type": "user_type",
+            "named": true
           }
         ]
       }
@@ -13291,10 +12833,6 @@
       "multiple": true,
       "required": false,
       "types": [
-        {
-          "type": "async",
-          "named": true
-        },
         {
           "type": "lambda_function_type_parameters",
           "named": true
@@ -15333,266 +14871,6 @@
     }
   },
   {
-    "type": "non_binding_pattern",
-    "named": true,
-    "fields": {
-      "bound_identifier": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "simple_identifier",
-            "named": true
-          }
-        ]
-      },
-      "name": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "array_type",
-            "named": true
-          },
-          {
-            "type": "dictionary_type",
-            "named": true
-          },
-          {
-            "type": "function_type",
-            "named": true
-          },
-          {
-            "type": "metatype",
-            "named": true
-          },
-          {
-            "type": "opaque_type",
-            "named": true
-          },
-          {
-            "type": "optional_type",
-            "named": true
-          },
-          {
-            "type": "protocol_composition_type",
-            "named": true
-          },
-          {
-            "type": "tuple_type",
-            "named": true
-          },
-          {
-            "type": "user_type",
-            "named": true
-          }
-        ]
-      }
-    },
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "additive_expression",
-          "named": true
-        },
-        {
-          "type": "array_literal",
-          "named": true
-        },
-        {
-          "type": "as_expression",
-          "named": true
-        },
-        {
-          "type": "assignment",
-          "named": true
-        },
-        {
-          "type": "await_expression",
-          "named": true
-        },
-        {
-          "type": "bang",
-          "named": true
-        },
-        {
-          "type": "bin_literal",
-          "named": true
-        },
-        {
-          "type": "bitwise_operation",
-          "named": true
-        },
-        {
-          "type": "boolean_literal",
-          "named": true
-        },
-        {
-          "type": "call_expression",
-          "named": true
-        },
-        {
-          "type": "check_expression",
-          "named": true
-        },
-        {
-          "type": "comparison_expression",
-          "named": true
-        },
-        {
-          "type": "conjunction_expression",
-          "named": true
-        },
-        {
-          "type": "constructor_expression",
-          "named": true
-        },
-        {
-          "type": "custom_operator",
-          "named": true
-        },
-        {
-          "type": "dictionary_literal",
-          "named": true
-        },
-        {
-          "type": "disjunction_expression",
-          "named": true
-        },
-        {
-          "type": "equality_expression",
-          "named": true
-        },
-        {
-          "type": "fully_open_range",
-          "named": true
-        },
-        {
-          "type": "hex_literal",
-          "named": true
-        },
-        {
-          "type": "infix_expression",
-          "named": true
-        },
-        {
-          "type": "integer_literal",
-          "named": true
-        },
-        {
-          "type": "key_path_expression",
-          "named": true
-        },
-        {
-          "type": "key_path_string_expression",
-          "named": true
-        },
-        {
-          "type": "lambda_literal",
-          "named": true
-        },
-        {
-          "type": "line_string_literal",
-          "named": true
-        },
-        {
-          "type": "multi_line_string_literal",
-          "named": true
-        },
-        {
-          "type": "multiplicative_expression",
-          "named": true
-        },
-        {
-          "type": "navigation_expression",
-          "named": true
-        },
-        {
-          "type": "nil_coalescing_expression",
-          "named": true
-        },
-        {
-          "type": "non_binding_pattern",
-          "named": true
-        },
-        {
-          "type": "oct_literal",
-          "named": true
-        },
-        {
-          "type": "open_end_range_expression",
-          "named": true
-        },
-        {
-          "type": "open_start_range_expression",
-          "named": true
-        },
-        {
-          "type": "postfix_expression",
-          "named": true
-        },
-        {
-          "type": "prefix_expression",
-          "named": true
-        },
-        {
-          "type": "range_expression",
-          "named": true
-        },
-        {
-          "type": "raw_string_literal",
-          "named": true
-        },
-        {
-          "type": "real_literal",
-          "named": true
-        },
-        {
-          "type": "selector_expression",
-          "named": true
-        },
-        {
-          "type": "self_expression",
-          "named": true
-        },
-        {
-          "type": "simple_identifier",
-          "named": true
-        },
-        {
-          "type": "super_expression",
-          "named": true
-        },
-        {
-          "type": "ternary_expression",
-          "named": true
-        },
-        {
-          "type": "try_expression",
-          "named": true
-        },
-        {
-          "type": "tuple_expression",
-          "named": true
-        },
-        {
-          "type": "type_modifiers",
-          "named": true
-        },
-        {
-          "type": "user_type",
-          "named": true
-        },
-        {
-          "type": "wildcard_pattern",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "opaque_type",
     "named": true,
     "fields": {},
@@ -16442,6 +15720,280 @@
     }
   },
   {
+    "type": "pattern",
+    "named": true,
+    "fields": {
+      "bound_identifier": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "simple_identifier",
+            "named": true
+          }
+        ]
+      },
+      "mutability": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "let",
+            "named": false
+          },
+          {
+            "type": "var",
+            "named": false
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "array_type",
+            "named": true
+          },
+          {
+            "type": "dictionary_type",
+            "named": true
+          },
+          {
+            "type": "function_type",
+            "named": true
+          },
+          {
+            "type": "metatype",
+            "named": true
+          },
+          {
+            "type": "opaque_type",
+            "named": true
+          },
+          {
+            "type": "optional_type",
+            "named": true
+          },
+          {
+            "type": "protocol_composition_type",
+            "named": true
+          },
+          {
+            "type": "tuple_type",
+            "named": true
+          },
+          {
+            "type": "user_type",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "additive_expression",
+          "named": true
+        },
+        {
+          "type": "array_literal",
+          "named": true
+        },
+        {
+          "type": "as_expression",
+          "named": true
+        },
+        {
+          "type": "assignment",
+          "named": true
+        },
+        {
+          "type": "await_expression",
+          "named": true
+        },
+        {
+          "type": "bang",
+          "named": true
+        },
+        {
+          "type": "bin_literal",
+          "named": true
+        },
+        {
+          "type": "bitwise_operation",
+          "named": true
+        },
+        {
+          "type": "boolean_literal",
+          "named": true
+        },
+        {
+          "type": "call_expression",
+          "named": true
+        },
+        {
+          "type": "check_expression",
+          "named": true
+        },
+        {
+          "type": "comparison_expression",
+          "named": true
+        },
+        {
+          "type": "conjunction_expression",
+          "named": true
+        },
+        {
+          "type": "constructor_expression",
+          "named": true
+        },
+        {
+          "type": "custom_operator",
+          "named": true
+        },
+        {
+          "type": "dictionary_literal",
+          "named": true
+        },
+        {
+          "type": "disjunction_expression",
+          "named": true
+        },
+        {
+          "type": "equality_expression",
+          "named": true
+        },
+        {
+          "type": "fully_open_range",
+          "named": true
+        },
+        {
+          "type": "hex_literal",
+          "named": true
+        },
+        {
+          "type": "infix_expression",
+          "named": true
+        },
+        {
+          "type": "integer_literal",
+          "named": true
+        },
+        {
+          "type": "key_path_expression",
+          "named": true
+        },
+        {
+          "type": "key_path_string_expression",
+          "named": true
+        },
+        {
+          "type": "lambda_literal",
+          "named": true
+        },
+        {
+          "type": "line_string_literal",
+          "named": true
+        },
+        {
+          "type": "multi_line_string_literal",
+          "named": true
+        },
+        {
+          "type": "multiplicative_expression",
+          "named": true
+        },
+        {
+          "type": "navigation_expression",
+          "named": true
+        },
+        {
+          "type": "nil_coalescing_expression",
+          "named": true
+        },
+        {
+          "type": "oct_literal",
+          "named": true
+        },
+        {
+          "type": "open_end_range_expression",
+          "named": true
+        },
+        {
+          "type": "open_start_range_expression",
+          "named": true
+        },
+        {
+          "type": "pattern",
+          "named": true
+        },
+        {
+          "type": "postfix_expression",
+          "named": true
+        },
+        {
+          "type": "prefix_expression",
+          "named": true
+        },
+        {
+          "type": "range_expression",
+          "named": true
+        },
+        {
+          "type": "raw_string_literal",
+          "named": true
+        },
+        {
+          "type": "real_literal",
+          "named": true
+        },
+        {
+          "type": "selector_expression",
+          "named": true
+        },
+        {
+          "type": "self_expression",
+          "named": true
+        },
+        {
+          "type": "simple_identifier",
+          "named": true
+        },
+        {
+          "type": "super_expression",
+          "named": true
+        },
+        {
+          "type": "ternary_expression",
+          "named": true
+        },
+        {
+          "type": "try_expression",
+          "named": true
+        },
+        {
+          "type": "tuple_expression",
+          "named": true
+        },
+        {
+          "type": "type_modifiers",
+          "named": true
+        },
+        {
+          "type": "user_type",
+          "named": true
+        },
+        {
+          "type": "wildcard_pattern",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "postfix_expression",
     "named": true,
     "fields": {
@@ -17208,12 +16760,26 @@
           }
         ]
       },
+      "mutability": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "let",
+            "named": false
+          },
+          {
+            "type": "var",
+            "named": false
+          }
+        ]
+      },
       "name": {
         "multiple": true,
         "required": true,
         "types": [
           {
-            "type": "value_binding_pattern",
+            "type": "pattern",
             "named": true
           }
         ]
@@ -18244,10 +17810,6 @@
       "required": false,
       "types": [
         {
-          "type": "async",
-          "named": true
-        },
-        {
           "type": "attribute",
           "named": true
         },
@@ -18291,7 +17853,7 @@
         "required": true,
         "types": [
           {
-            "type": "value_binding_pattern",
+            "type": "pattern",
             "named": true
           }
         ]
@@ -19057,6 +18619,16 @@
     "type": "repeat_while_statement",
     "named": true,
     "fields": {
+      "bound_identifier": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "simple_identifier",
+            "named": true
+          }
+        ]
+      },
       "condition": {
         "multiple": true,
         "required": true,
@@ -19146,6 +18718,10 @@
             "named": false
           },
           {
+            "type": ".",
+            "named": false
+          },
+          {
             "type": "/",
             "named": false
           },
@@ -19194,12 +18770,24 @@
             "named": true
           },
           {
+            "type": "array_type",
+            "named": true
+          },
+          {
+            "type": "as",
+            "named": false
+          },
+          {
             "type": "as_expression",
             "named": true
           },
           {
             "type": "assignment",
             "named": true
+          },
+          {
+            "type": "async",
+            "named": false
           },
           {
             "type": "availability_condition",
@@ -19215,10 +18803,6 @@
           },
           {
             "type": "bin_literal",
-            "named": true
-          },
-          {
-            "type": "binding_pattern",
             "named": true
           },
           {
@@ -19262,6 +18846,10 @@
             "named": true
           },
           {
+            "type": "dictionary_type",
+            "named": true
+          },
+          {
             "type": "disjunction_expression",
             "named": true
           },
@@ -19271,6 +18859,10 @@
           },
           {
             "type": "fully_open_range",
+            "named": true
+          },
+          {
+            "type": "function_type",
             "named": true
           },
           {
@@ -19286,6 +18878,10 @@
             "named": true
           },
           {
+            "type": "is",
+            "named": false
+          },
+          {
             "type": "key_path_expression",
             "named": true
           },
@@ -19298,7 +18894,15 @@
             "named": true
           },
           {
+            "type": "let",
+            "named": false
+          },
+          {
             "type": "line_string_literal",
+            "named": true
+          },
+          {
+            "type": "metatype",
             "named": true
           },
           {
@@ -19326,6 +18930,10 @@
             "named": true
           },
           {
+            "type": "opaque_type",
+            "named": true
+          },
+          {
             "type": "open_end_range_expression",
             "named": true
           },
@@ -19334,11 +18942,23 @@
             "named": true
           },
           {
+            "type": "optional_type",
+            "named": true
+          },
+          {
+            "type": "pattern",
+            "named": true
+          },
+          {
             "type": "postfix_expression",
             "named": true
           },
           {
             "type": "prefix_expression",
+            "named": true
+          },
+          {
+            "type": "protocol_composition_type",
             "named": true
           },
           {
@@ -19382,16 +19002,88 @@
             "named": true
           },
           {
+            "type": "tuple_type",
+            "named": true
+          },
+          {
             "type": "type_annotation",
             "named": true
           },
           {
-            "type": "value_binding_pattern",
+            "type": "type_modifiers",
+            "named": true
+          },
+          {
+            "type": "user_type",
+            "named": true
+          },
+          {
+            "type": "var",
+            "named": false
+          },
+          {
+            "type": "wildcard_pattern",
             "named": true
           },
           {
             "type": "~",
             "named": false
+          }
+        ]
+      },
+      "mutability": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "let",
+            "named": false
+          },
+          {
+            "type": "var",
+            "named": false
+          }
+        ]
+      },
+      "name": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "array_type",
+            "named": true
+          },
+          {
+            "type": "dictionary_type",
+            "named": true
+          },
+          {
+            "type": "function_type",
+            "named": true
+          },
+          {
+            "type": "metatype",
+            "named": true
+          },
+          {
+            "type": "opaque_type",
+            "named": true
+          },
+          {
+            "type": "optional_type",
+            "named": true
+          },
+          {
+            "type": "protocol_composition_type",
+            "named": true
+          },
+          {
+            "type": "tuple_type",
+            "named": true
+          },
+          {
+            "type": "user_type",
+            "named": true
           }
         ]
       }
@@ -20804,256 +20496,13 @@
   {
     "type": "switch_pattern",
     "named": true,
-    "fields": {
-      "name": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "array_type",
-            "named": true
-          },
-          {
-            "type": "dictionary_type",
-            "named": true
-          },
-          {
-            "type": "function_type",
-            "named": true
-          },
-          {
-            "type": "metatype",
-            "named": true
-          },
-          {
-            "type": "opaque_type",
-            "named": true
-          },
-          {
-            "type": "optional_type",
-            "named": true
-          },
-          {
-            "type": "protocol_composition_type",
-            "named": true
-          },
-          {
-            "type": "tuple_type",
-            "named": true
-          },
-          {
-            "type": "user_type",
-            "named": true
-          }
-        ]
-      }
-    },
+    "fields": {},
     "children": {
-      "multiple": true,
-      "required": false,
+      "multiple": false,
+      "required": true,
       "types": [
         {
-          "type": "additive_expression",
-          "named": true
-        },
-        {
-          "type": "array_literal",
-          "named": true
-        },
-        {
-          "type": "as_expression",
-          "named": true
-        },
-        {
-          "type": "assignment",
-          "named": true
-        },
-        {
-          "type": "await_expression",
-          "named": true
-        },
-        {
-          "type": "bang",
-          "named": true
-        },
-        {
-          "type": "bin_literal",
-          "named": true
-        },
-        {
-          "type": "binding_pattern",
-          "named": true
-        },
-        {
-          "type": "binding_pattern_kind",
-          "named": true
-        },
-        {
-          "type": "bitwise_operation",
-          "named": true
-        },
-        {
-          "type": "boolean_literal",
-          "named": true
-        },
-        {
-          "type": "call_expression",
-          "named": true
-        },
-        {
-          "type": "check_expression",
-          "named": true
-        },
-        {
-          "type": "comparison_expression",
-          "named": true
-        },
-        {
-          "type": "conjunction_expression",
-          "named": true
-        },
-        {
-          "type": "constructor_expression",
-          "named": true
-        },
-        {
-          "type": "custom_operator",
-          "named": true
-        },
-        {
-          "type": "dictionary_literal",
-          "named": true
-        },
-        {
-          "type": "disjunction_expression",
-          "named": true
-        },
-        {
-          "type": "equality_expression",
-          "named": true
-        },
-        {
-          "type": "fully_open_range",
-          "named": true
-        },
-        {
-          "type": "hex_literal",
-          "named": true
-        },
-        {
-          "type": "infix_expression",
-          "named": true
-        },
-        {
-          "type": "integer_literal",
-          "named": true
-        },
-        {
-          "type": "key_path_expression",
-          "named": true
-        },
-        {
-          "type": "key_path_string_expression",
-          "named": true
-        },
-        {
-          "type": "lambda_literal",
-          "named": true
-        },
-        {
-          "type": "line_string_literal",
-          "named": true
-        },
-        {
-          "type": "multi_line_string_literal",
-          "named": true
-        },
-        {
-          "type": "multiplicative_expression",
-          "named": true
-        },
-        {
-          "type": "navigation_expression",
-          "named": true
-        },
-        {
-          "type": "nil_coalescing_expression",
-          "named": true
-        },
-        {
-          "type": "non_binding_pattern",
-          "named": true
-        },
-        {
-          "type": "oct_literal",
-          "named": true
-        },
-        {
-          "type": "open_end_range_expression",
-          "named": true
-        },
-        {
-          "type": "open_start_range_expression",
-          "named": true
-        },
-        {
-          "type": "postfix_expression",
-          "named": true
-        },
-        {
-          "type": "prefix_expression",
-          "named": true
-        },
-        {
-          "type": "range_expression",
-          "named": true
-        },
-        {
-          "type": "raw_string_literal",
-          "named": true
-        },
-        {
-          "type": "real_literal",
-          "named": true
-        },
-        {
-          "type": "selector_expression",
-          "named": true
-        },
-        {
-          "type": "self_expression",
-          "named": true
-        },
-        {
-          "type": "simple_identifier",
-          "named": true
-        },
-        {
-          "type": "super_expression",
-          "named": true
-        },
-        {
-          "type": "ternary_expression",
-          "named": true
-        },
-        {
-          "type": "try_expression",
-          "named": true
-        },
-        {
-          "type": "tuple_expression",
-          "named": true
-        },
-        {
-          "type": "type_modifiers",
-          "named": true
-        },
-        {
-          "type": "user_type",
-          "named": true
-        },
-        {
-          "type": "wildcard_pattern",
+          "type": "pattern",
           "named": true
         }
       ]
@@ -23943,21 +23392,6 @@
     }
   },
   {
-    "type": "value_binding_pattern",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "non_binding_pattern",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "visibility_modifier",
     "named": true,
     "fields": {}
@@ -24161,6 +23595,16 @@
     "type": "while_statement",
     "named": true,
     "fields": {
+      "bound_identifier": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "simple_identifier",
+            "named": true
+          }
+        ]
+      },
       "condition": {
         "multiple": true,
         "required": true,
@@ -24250,6 +23694,10 @@
             "named": false
           },
           {
+            "type": ".",
+            "named": false
+          },
+          {
             "type": "/",
             "named": false
           },
@@ -24298,12 +23746,24 @@
             "named": true
           },
           {
+            "type": "array_type",
+            "named": true
+          },
+          {
+            "type": "as",
+            "named": false
+          },
+          {
             "type": "as_expression",
             "named": true
           },
           {
             "type": "assignment",
             "named": true
+          },
+          {
+            "type": "async",
+            "named": false
           },
           {
             "type": "availability_condition",
@@ -24319,10 +23779,6 @@
           },
           {
             "type": "bin_literal",
-            "named": true
-          },
-          {
-            "type": "binding_pattern",
             "named": true
           },
           {
@@ -24366,6 +23822,10 @@
             "named": true
           },
           {
+            "type": "dictionary_type",
+            "named": true
+          },
+          {
             "type": "disjunction_expression",
             "named": true
           },
@@ -24375,6 +23835,10 @@
           },
           {
             "type": "fully_open_range",
+            "named": true
+          },
+          {
+            "type": "function_type",
             "named": true
           },
           {
@@ -24390,6 +23854,10 @@
             "named": true
           },
           {
+            "type": "is",
+            "named": false
+          },
+          {
             "type": "key_path_expression",
             "named": true
           },
@@ -24402,7 +23870,15 @@
             "named": true
           },
           {
+            "type": "let",
+            "named": false
+          },
+          {
             "type": "line_string_literal",
+            "named": true
+          },
+          {
+            "type": "metatype",
             "named": true
           },
           {
@@ -24430,6 +23906,10 @@
             "named": true
           },
           {
+            "type": "opaque_type",
+            "named": true
+          },
+          {
             "type": "open_end_range_expression",
             "named": true
           },
@@ -24438,11 +23918,23 @@
             "named": true
           },
           {
+            "type": "optional_type",
+            "named": true
+          },
+          {
+            "type": "pattern",
+            "named": true
+          },
+          {
             "type": "postfix_expression",
             "named": true
           },
           {
             "type": "prefix_expression",
+            "named": true
+          },
+          {
+            "type": "protocol_composition_type",
             "named": true
           },
           {
@@ -24486,16 +23978,88 @@
             "named": true
           },
           {
+            "type": "tuple_type",
+            "named": true
+          },
+          {
             "type": "type_annotation",
             "named": true
           },
           {
-            "type": "value_binding_pattern",
+            "type": "type_modifiers",
+            "named": true
+          },
+          {
+            "type": "user_type",
+            "named": true
+          },
+          {
+            "type": "var",
+            "named": false
+          },
+          {
+            "type": "wildcard_pattern",
             "named": true
           },
           {
             "type": "~",
             "named": false
+          }
+        ]
+      },
+      "mutability": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "let",
+            "named": false
+          },
+          {
+            "type": "var",
+            "named": false
+          }
+        ]
+      },
+      "name": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "array_type",
+            "named": true
+          },
+          {
+            "type": "dictionary_type",
+            "named": true
+          },
+          {
+            "type": "function_type",
+            "named": true
+          },
+          {
+            "type": "metatype",
+            "named": true
+          },
+          {
+            "type": "opaque_type",
+            "named": true
+          },
+          {
+            "type": "optional_type",
+            "named": true
+          },
+          {
+            "type": "protocol_composition_type",
+            "named": true
+          },
+          {
+            "type": "tuple_type",
+            "named": true
+          },
+          {
+            "type": "user_type",
+            "named": true
           }
         ]
       }
