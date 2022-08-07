@@ -357,6 +357,7 @@ module.exports = grammar({
           $.optional_type,
           $.metatype,
           $.opaque_type,
+          $.existential_type,
           $.protocol_composition_type
         )
       ),
@@ -416,6 +417,7 @@ module.exports = grammar({
     _quest: ($) => "?",
     _immediate_quest: ($) => token.immediate("?"),
     opaque_type: ($) => seq("some", $.user_type),
+    existential_type: ($) => seq("any", $.user_type),
     protocol_composition_type: ($) =>
       prec.right(
         seq(

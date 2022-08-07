@@ -327,3 +327,34 @@ protocol GetType {
         (user_type
           (type_identifier)
           (type_identifier))))))
+
+================================================================================
+Existential types
+================================================================================
+
+let p: any P = S()
+func q(using p: any P) { }
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (property_declaration
+    (pattern
+      (simple_identifier))
+    (type_annotation
+      (existential_type
+        (user_type
+          (type_identifier))))
+    (call_expression
+      (simple_identifier)
+      (call_suffix
+        (value_arguments))))
+  (function_declaration
+    (simple_identifier)
+    (parameter
+      (simple_identifier)
+      (simple_identifier)
+      (existential_type
+        (user_type
+          (type_identifier))))
+    (function_body)))
