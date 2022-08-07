@@ -586,10 +586,10 @@ test { @Special [weak self, otherSelf] (a) in }
     (simple_identifier)
     (call_suffix
       (lambda_literal
+        (attribute
+          (user_type
+            (type_identifier)))
         (capture_list
-          (attribute
-            (user_type
-              (type_identifier)))
           (capture_list_item
             (ownership_modifier)
             (simple_identifier))
@@ -792,10 +792,11 @@ func multipleType() -> Foo & Bar { return Foo() }
               (value_arguments))))))))
 
 ================================================================================
-Annotated function parameters in lambdas
+Lambdas with annotations
 ================================================================================
 
 types.flatMap { @Sendable _ in }
+let mainClosure = { @MainActor in print("Running on main") }
 
 --------------------------------------------------------------------------------
 
@@ -807,10 +808,25 @@ types.flatMap { @Sendable _ in }
         (simple_identifier)))
     (call_suffix
       (lambda_literal
+        (attribute
+          (user_type
+            (type_identifier)))
         (lambda_function_type
           (lambda_function_type_parameters
             (lambda_parameter
-              (attribute
-                (user_type
-                  (type_identifier)))
-              (simple_identifier))))))))
+              (simple_identifier)))))))
+  (property_declaration
+    (pattern
+      (simple_identifier))
+    (lambda_literal
+      (attribute
+        (user_type
+          (type_identifier)))
+      (statements
+        (call_expression
+          (simple_identifier)
+          (call_suffix
+            (value_arguments
+              (value_argument
+                (line_string_literal
+                  (line_str_text))))))))))
