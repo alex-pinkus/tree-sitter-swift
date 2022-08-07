@@ -166,6 +166,17 @@ module.exports = grammar({
     [$._no_expr_pattern_already_bound, $._binding_pattern_with_expr],
     [$._no_expr_pattern_already_bound, $._expression],
     [$._no_expr_pattern_already_bound, $._binding_pattern_no_expr],
+
+    // On encountering a closure starting with `{ @Foo ...`, we don't yet know if that attribute applies to the closure
+    // type or to a declaration within the closure. What a mess! We just have to hope that if we keep going, only one of
+    // those will parse (because there will be an `in` or a `let`).
+    [
+      $._lambda_type_declaration,
+      $._local_property_declaration,
+      $._local_typealias_declaration,
+      $._local_function_declaration,
+      $._local_class_declaration,
+    ],
   ],
   extras: ($) => [
     $.comment,
@@ -842,14 +853,19 @@ module.exports = grammar({
         PRECS.lambda,
         seq(
           "{",
-          prec(PRECS.expr, optional(field("captures", $.capture_list))),
-          optional(seq(optional(field("type", $.lambda_function_type)), "in")),
+          optional($._lambda_type_declaration),
           optional($.statements),
           "}"
         )
       ),
-    capture_list: ($) =>
-      seq(repeat($.attribute), "[", sep1($.capture_list_item, ","), "]"),
+    _lambda_type_declaration: ($) =>
+      seq(
+        repeat($.attribute),
+        prec(PRECS.expr, optional(field("captures", $.capture_list))),
+        optional(field("type", $.lambda_function_type)),
+        "in"
+      ),
+    capture_list: ($) => seq("[", sep1($.capture_list_item, ","), "]"),
     capture_list_item: ($) =>
       choice(
         field("name", $.self_expression),
@@ -883,7 +899,6 @@ module.exports = grammar({
     lambda_function_type_parameters: ($) => sep1($.lambda_parameter, ","),
     lambda_parameter: ($) =>
       seq(
-        optional($.attribute),
         choice(
           $.self_expression,
           prec(PRECS.expr, field("name", $.simple_identifier)),
