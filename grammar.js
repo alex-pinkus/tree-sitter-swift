@@ -1163,7 +1163,6 @@ module.exports = grammar({
         $.typealias_declaration,
         $.function_declaration,
         $.class_declaration,
-        // TODO actor declaration
         $.protocol_declaration,
         $.operator_declaration,
         $.precedence_group_declaration,
@@ -1315,7 +1314,7 @@ module.exports = grammar({
       prec.right(
         choice(
           seq(
-            field("declaration_kind", choice("class", "struct")),
+            field("declaration_kind", choice("class", "struct", "actor")),
             field("name", alias($.simple_identifier, $.type_identifier)),
             optional($.type_parameters),
             optional(seq(":", $._inheritance_specifiers)),
@@ -1727,7 +1726,8 @@ module.exports = grammar({
       ),
     property_behavior_modifier: ($) => "lazy",
     type_modifiers: ($) => repeat1($.attribute),
-    member_modifier: ($) => choice("override", "convenience", "required"),
+    member_modifier: ($) =>
+      choice("override", "convenience", "required", "nonisolated"),
     visibility_modifier: ($) =>
       seq(
         choice("public", "private", "internal", "fileprivate", "open"),

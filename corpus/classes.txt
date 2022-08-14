@@ -1444,3 +1444,65 @@ extension TrustMe: @unchecked Sendable { }
       (user_type
         (type_identifier)))
     (class_body)))
+
+================================================================================
+Actors
+================================================================================
+
+private actor CounterActor {
+    private var count = 0
+
+    func next() -> Int {
+        count += 1
+        return count
+    }
+
+    nonisolated func eventuallyIncrement() {
+        Task {
+            await next()
+        }
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (class_declaration
+    (modifiers
+      (visibility_modifier))
+    (type_identifier)
+    (class_body
+      (property_declaration
+        (modifiers
+          (visibility_modifier))
+        (pattern
+          (simple_identifier))
+        (integer_literal))
+      (function_declaration
+        (simple_identifier)
+        (user_type
+          (type_identifier))
+        (function_body
+          (statements
+            (assignment
+              (directly_assignable_expression
+                (simple_identifier))
+              (integer_literal))
+            (control_transfer_statement
+              (simple_identifier)))))
+      (function_declaration
+        (modifiers
+          (member_modifier))
+        (simple_identifier)
+        (function_body
+          (statements
+            (call_expression
+              (simple_identifier)
+              (call_suffix
+                (lambda_literal
+                  (statements
+                    (await_expression
+                      (call_expression
+                        (simple_identifier)
+                        (call_suffix
+                          (value_arguments))))))))))))))
