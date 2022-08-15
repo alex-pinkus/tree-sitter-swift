@@ -1,4 +1,6 @@
 node_modules
+/src/*
+!/src/scanner.c
 *.swp
 /build
 /test
@@ -9,3 +11,7 @@ Cargo.lock
 *.so
 *.o
 bindings/c/*.h
+bindings/c/tree-sitter-*.pc
+.vscode/
+.build/
+Package.resolved
