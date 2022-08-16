@@ -33,10 +33,15 @@
   "typealias"
   "struct"
   "class"
+  "actor"
   "enum"
   "protocol"
   "extension"
   "indirect"
+  "nonisolated"
+  "override"
+  "convenience"
+  "required"
   "some"
 ] @keyword
 
