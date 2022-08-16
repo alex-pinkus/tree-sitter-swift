@@ -1005,6 +1005,10 @@
           },
           {
             "type": "SYMBOL",
+            "name": "existential_type"
+          },
+          {
+            "type": "SYMBOL",
             "name": "protocol_composition_type"
           }
         ]
@@ -1389,6 +1393,19 @@
         {
           "type": "STRING",
           "value": "some"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "user_type"
+        }
+      ]
+    },
+    "existential_type": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "any"
         },
         {
           "type": "SYMBOL",
@@ -3326,52 +3343,11 @@
             "value": "{"
           },
           {
-            "type": "PREC",
-            "value": -1,
-            "content": {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "FIELD",
-                  "name": "captures",
-                  "content": {
-                    "type": "SYMBOL",
-                    "name": "capture_list"
-                  }
-                },
-                {
-                  "type": "BLANK"
-                }
-              ]
-            }
-          },
-          {
             "type": "CHOICE",
             "members": [
               {
-                "type": "SEQ",
-                "members": [
-                  {
-                    "type": "CHOICE",
-                    "members": [
-                      {
-                        "type": "FIELD",
-                        "name": "type",
-                        "content": {
-                          "type": "SYMBOL",
-                          "name": "lambda_function_type"
-                        }
-                      },
-                      {
-                        "type": "BLANK"
-                      }
-                    ]
-                  },
-                  {
-                    "type": "STRING",
-                    "value": "in"
-                  }
-                ]
+                "type": "SYMBOL",
+                "name": "_lambda_type_declaration"
               },
               {
                 "type": "BLANK"
@@ -3397,7 +3373,7 @@
         ]
       }
     },
-    "capture_list": {
+    "_lambda_type_declaration": {
       "type": "SEQ",
       "members": [
         {
@@ -3407,6 +3383,51 @@
             "name": "attribute"
           }
         },
+        {
+          "type": "PREC",
+          "value": -1,
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "FIELD",
+                "name": "captures",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "capture_list"
+                }
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "FIELD",
+              "name": "type",
+              "content": {
+                "type": "SYMBOL",
+                "name": "lambda_function_type"
+              }
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "in"
+        }
+      ]
+    },
+    "capture_list": {
+      "type": "SEQ",
+      "members": [
         {
           "type": "STRING",
           "value": "["
@@ -3629,18 +3650,6 @@
     "lambda_parameter": {
       "type": "SEQ",
       "members": [
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "attribute"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        },
         {
           "type": "CHOICE",
           "members": [
@@ -5982,6 +5991,10 @@
                     {
                       "type": "STRING",
                       "value": "struct"
+                    },
+                    {
+                      "type": "STRING",
+                      "value": "actor"
                     }
                   ]
                 }
@@ -8829,6 +8842,10 @@
         {
           "type": "STRING",
           "value": "required"
+        },
+        {
+          "type": "STRING",
+          "value": "nonisolated"
         }
       ]
     },
@@ -9279,6 +9296,13 @@
     [
       "_no_expr_pattern_already_bound",
       "_binding_pattern_no_expr"
+    ],
+    [
+      "_lambda_type_declaration",
+      "_local_property_declaration",
+      "_local_typealias_declaration",
+      "_local_function_declaration",
+      "_local_class_declaration"
     ]
   ],
   "precedences": [],

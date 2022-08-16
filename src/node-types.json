@@ -984,6 +984,10 @@
             "named": true
           },
           {
+            "type": "existential_type",
+            "named": true
+          },
+          {
             "type": "function_type",
             "named": true
           },
@@ -1027,6 +1031,10 @@
           },
           {
             "type": "dictionary_type",
+            "named": true
+          },
+          {
+            "type": "existential_type",
             "named": true
           },
           {
@@ -1392,6 +1400,10 @@
             "named": true
           },
           {
+            "type": "existential_type",
+            "named": true
+          },
+          {
             "type": "function_type",
             "named": true
           },
@@ -1431,6 +1443,10 @@
           },
           {
             "type": "dictionary_type",
+            "named": true
+          },
+          {
+            "type": "existential_type",
             "named": true
           },
           {
@@ -1861,6 +1877,10 @@
             "named": true
           },
           {
+            "type": "existential_type",
+            "named": true
+          },
+          {
             "type": "function_type",
             "named": true
           },
@@ -1907,6 +1927,10 @@
             "named": true
           },
           {
+            "type": "existential_type",
+            "named": true
+          },
+          {
             "type": "function_type",
             "named": true
           },
@@ -1950,6 +1974,10 @@
           },
           {
             "type": "dictionary_type",
+            "named": true
+          },
+          {
+            "type": "existential_type",
             "named": true
           },
           {
@@ -3435,10 +3463,6 @@
       "required": true,
       "types": [
         {
-          "type": "attribute",
-          "named": true
-        },
-        {
           "type": "capture_list_item",
           "named": true
         }
@@ -3840,6 +3864,10 @@
             "named": true
           },
           {
+            "type": "existential_type",
+            "named": true
+          },
+          {
             "type": "function_type",
             "named": true
           },
@@ -4206,6 +4234,10 @@
             "named": true
           },
           {
+            "type": "existential_type",
+            "named": true
+          },
+          {
             "type": "function_type",
             "named": true
           },
@@ -4322,6 +4354,10 @@
         "multiple": false,
         "required": true,
         "types": [
+          {
+            "type": "actor",
+            "named": false
+          },
           {
             "type": "class",
             "named": false
@@ -7039,6 +7075,10 @@
             "named": true
           },
           {
+            "type": "existential_type",
+            "named": true
+          },
+          {
             "type": "function_type",
             "named": true
           },
@@ -7085,6 +7125,10 @@
             "named": true
           },
           {
+            "type": "existential_type",
+            "named": true
+          },
+          {
             "type": "function_type",
             "named": true
           },
@@ -7124,6 +7168,10 @@
           },
           {
             "type": "dictionary_type",
+            "named": true
+          },
+          {
+            "type": "existential_type",
             "named": true
           },
           {
@@ -8282,6 +8330,10 @@
             "named": true
           },
           {
+            "type": "existential_type",
+            "named": true
+          },
+          {
             "type": "function_type",
             "named": true
           },
@@ -8534,6 +8586,10 @@
             "named": true
           },
           {
+            "type": "existential_type",
+            "named": true
+          },
+          {
             "type": "function_type",
             "named": true
           },
@@ -8577,6 +8633,10 @@
           },
           {
             "type": "dictionary_type",
+            "named": true
+          },
+          {
+            "type": "existential_type",
             "named": true
           },
           {
@@ -9275,6 +9335,21 @@
           }
         ]
       }
+    }
+  },
+  {
+    "type": "existential_type",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "user_type",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -10070,6 +10145,10 @@
             "named": true
           },
           {
+            "type": "existential_type",
+            "named": true
+          },
+          {
             "type": "function_type",
             "named": true
           },
@@ -10129,6 +10208,10 @@
           },
           {
             "type": "dictionary_type",
+            "named": true
+          },
+          {
+            "type": "existential_type",
             "named": true
           },
           {
@@ -10235,6 +10318,10 @@
             "named": true
           },
           {
+            "type": "existential_type",
+            "named": true
+          },
+          {
             "type": "function_type",
             "named": true
           },
@@ -10284,6 +10371,10 @@
           },
           {
             "type": "dictionary_type",
+            "named": true
+          },
+          {
+            "type": "existential_type",
             "named": true
           },
           {
@@ -10594,6 +10685,10 @@
             "named": true
           },
           {
+            "type": "existential_type",
+            "named": true
+          },
+          {
             "type": "fully_open_range",
             "named": true
           },
@@ -10791,6 +10886,10 @@
           },
           {
             "type": "dictionary_type",
+            "named": true
+          },
+          {
+            "type": "existential_type",
             "named": true
           },
           {
@@ -11097,6 +11196,10 @@
             "named": true
           },
           {
+            "type": "existential_type",
+            "named": true
+          },
+          {
             "type": "fully_open_range",
             "named": true
           },
@@ -11294,6 +11397,10 @@
           },
           {
             "type": "dictionary_type",
+            "named": true
+          },
+          {
+            "type": "existential_type",
             "named": true
           },
           {
@@ -12040,6 +12147,10 @@
             "named": true
           },
           {
+            "type": "existential_type",
+            "named": true
+          },
+          {
             "type": "function_type",
             "named": true
           },
@@ -12083,6 +12194,10 @@
           },
           {
             "type": "dictionary_type",
+            "named": true
+          },
+          {
+            "type": "existential_type",
             "named": true
           },
           {
@@ -12749,6 +12864,10 @@
             "named": true
           },
           {
+            "type": "existential_type",
+            "named": true
+          },
+          {
             "type": "function_type",
             "named": true
           },
@@ -12792,6 +12911,10 @@
           },
           {
             "type": "dictionary_type",
+            "named": true
+          },
+          {
+            "type": "existential_type",
             "named": true
           },
           {
@@ -12885,9 +13008,13 @@
       }
     },
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "attribute",
+          "named": true
+        },
         {
           "type": "statements",
           "named": true
@@ -12919,6 +13046,10 @@
           },
           {
             "type": "dictionary_type",
+            "named": true
+          },
+          {
+            "type": "existential_type",
             "named": true
           },
           {
@@ -12972,6 +13103,10 @@
             "named": true
           },
           {
+            "type": "existential_type",
+            "named": true
+          },
+          {
             "type": "function_type",
             "named": true
           },
@@ -13007,13 +13142,9 @@
       }
     },
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": false,
       "types": [
-        {
-          "type": "attribute",
-          "named": true
-        },
         {
           "type": "parameter_modifiers",
           "named": true
@@ -13079,6 +13210,10 @@
         },
         {
           "type": "dictionary_type",
+          "named": true
+        },
+        {
+          "type": "existential_type",
           "named": true
         },
         {
@@ -15604,6 +15739,10 @@
             "named": true
           },
           {
+            "type": "existential_type",
+            "named": true
+          },
+          {
             "type": "function_type",
             "named": true
           },
@@ -15651,6 +15790,10 @@
           },
           {
             "type": "dictionary_type",
+            "named": true
+          },
+          {
+            "type": "existential_type",
             "named": true
           },
           {
@@ -15757,6 +15900,10 @@
           },
           {
             "type": "dictionary_type",
+            "named": true
+          },
+          {
+            "type": "existential_type",
             "named": true
           },
           {
@@ -17202,6 +17349,10 @@
           "named": true
         },
         {
+          "type": "existential_type",
+          "named": true
+        },
+        {
           "type": "function_type",
           "named": true
         },
@@ -17709,6 +17860,10 @@
             "named": true
           },
           {
+            "type": "existential_type",
+            "named": true
+          },
+          {
             "type": "function_type",
             "named": true
           },
@@ -17768,6 +17923,10 @@
           },
           {
             "type": "dictionary_type",
+            "named": true
+          },
+          {
+            "type": "existential_type",
             "named": true
           },
           {
@@ -18858,6 +19017,10 @@
             "named": true
           },
           {
+            "type": "existential_type",
+            "named": true
+          },
+          {
             "type": "fully_open_range",
             "named": true
           },
@@ -19055,6 +19218,10 @@
           },
           {
             "type": "dictionary_type",
+            "named": true
+          },
+          {
+            "type": "existential_type",
             "named": true
           },
           {
@@ -20166,6 +20333,10 @@
             "named": true
           },
           {
+            "type": "existential_type",
+            "named": true
+          },
+          {
             "type": "function_type",
             "named": true
           },
@@ -20209,6 +20380,10 @@
           },
           {
             "type": "dictionary_type",
+            "named": true
+          },
+          {
+            "type": "existential_type",
             "named": true
           },
           {
@@ -22474,6 +22649,10 @@
             "named": true
           },
           {
+            "type": "existential_type",
+            "named": true
+          },
+          {
             "type": "function_type",
             "named": true
           },
@@ -22517,6 +22696,10 @@
           },
           {
             "type": "dictionary_type",
+            "named": true
+          },
+          {
+            "type": "existential_type",
             "named": true
           },
           {
@@ -22586,6 +22769,10 @@
             "named": true
           },
           {
+            "type": "existential_type",
+            "named": true
+          },
+          {
             "type": "function_type",
             "named": true
           },
@@ -22629,6 +22816,10 @@
           },
           {
             "type": "dictionary_type",
+            "named": true
+          },
+          {
+            "type": "existential_type",
             "named": true
           },
           {
@@ -22681,6 +22872,10 @@
           },
           {
             "type": "dictionary_type",
+            "named": true
+          },
+          {
+            "type": "existential_type",
             "named": true
           },
           {
@@ -22800,6 +22995,10 @@
             "named": true
           },
           {
+            "type": "existential_type",
+            "named": true
+          },
+          {
             "type": "function_type",
             "named": true
           },
@@ -22896,6 +23095,10 @@
             "named": true
           },
           {
+            "type": "existential_type",
+            "named": true
+          },
+          {
             "type": "function_type",
             "named": true
           },
@@ -22939,6 +23142,10 @@
           },
           {
             "type": "dictionary_type",
+            "named": true
+          },
+          {
+            "type": "existential_type",
             "named": true
           },
           {
@@ -23834,6 +24041,10 @@
             "named": true
           },
           {
+            "type": "existential_type",
+            "named": true
+          },
+          {
             "type": "fully_open_range",
             "named": true
           },
@@ -24031,6 +24242,10 @@
           },
           {
             "type": "dictionary_type",
+            "named": true
+          },
+          {
+            "type": "existential_type",
             "named": true
           },
           {
@@ -24332,6 +24547,14 @@
     "named": false
   },
   {
+    "type": "actor",
+    "named": false
+  },
+  {
+    "type": "any",
+    "named": false
+  },
+  {
     "type": "as",
     "named": false
   },
@@ -24521,6 +24744,10 @@
   },
   {
     "type": "nil",
+    "named": false
+  },
+  {
+    "type": "nonisolated",
     "named": false
   },
   {
