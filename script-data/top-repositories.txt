@@ -1,7 +1,7 @@
 Alamofire Alamofire/Alamofire 5.6.2
 iina iina/iina v1.3.0-build131
 Charts danielgindi/Charts v4.0.3
-lottie-ios airbnb/lottie-ios 3.4.1
+lottie-ios airbnb/lottie-ios 3.4.2
 vapor vapor/vapor 3.3.3
 SwiftyJSON SwiftyJSON/SwiftyJSON 5.0.1
 RxSwift ReactiveX/RxSwift 6.5.0 0 9
@@ -17,27 +17,27 @@ HeroTransitions HeroTransitions/Hero 1.6.1
 Kingfisher onevcat/Kingfisher 7.3.2
 shadowsocks shadowsocks/ShadowsocksX-NG v1.9.4
 SnapKit SnapKit/SnapKit 5.0.1
-SwiftLint realm/SwiftLint 0.49.0-rc.1 0 2
-SwiftLint realm/SwiftLint 0.49.0-rc.1 1 2
+SwiftLint realm/SwiftLint 0.49.0-rc.2 0 2
+SwiftLint realm/SwiftLint 0.49.0-rc.2 1 2
 ClashX yichengchen/clashX 1.94.0
 Carthage Carthage/Carthage 0.38.0
 Rectangle rxhanson/Rectangle v0.57
-PromiseKit mxcl/PromiseKit 6.18.0
+PromiseKit mxcl/PromiseKit 6.18.1
 Moya Moya/Moya 15.0.3
 MonitorControl MonitorControl/MonitorControl v4.1.0
 ObjectMapper tristanhimmelman/ObjectMapper 4.2.0
-SkeletonView Juanpe/SkeletonView 1.30.0
+SkeletonView Juanpe/SkeletonView 1.30.1
 firefox-ios mozilla-mobile/firefox-ios v39.0 0 6
 firefox-ios mozilla-mobile/firefox-ios v39.0 1 6
 firefox-ios mozilla-mobile/firefox-ios v39.0 2 6
 firefox-ios mozilla-mobile/firefox-ios v39.0 3 6
 firefox-ios mozilla-mobile/firefox-ios v39.0 4 6
 firefox-ios mozilla-mobile/firefox-ios v39.0 5 6
-AudioKit AudioKit/AudioKit 5.4.4
+AudioKit AudioKit/AudioKit 5.5.0
 Starscream daltoniam/Starscream 4.0.4
 MessageKit MessageKit/MessageKit 4.0.0
 KeychainAccess kishikawakatsumi/KeychainAccess v4.2.2
-Nuke kean/Nuke 11.1.0
+Nuke kean/Nuke 11.1.1
 Swinject Swinject/Swinject 2.8.2
 GRDB groue/GRDB.swift v5.26.0 0 2
 GRDB groue/GRDB.swift v5.26.0 1 2
