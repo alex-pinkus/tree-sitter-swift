@@ -177,6 +177,13 @@ module.exports = grammar({
       $._local_function_declaration,
       $._local_class_declaration,
     ],
+
+    // We want `foo() { }` to be treated as one function call, but we _also_ want `if foo() { ... }` to be treated as a
+    // full if-statement. This means we have to treat it as a conflict rather than purely a left or right associative
+    // construct, and let the parser realize that the second expression won't parse properly with the `{ ... }` as a
+    // lambda.
+    [$.constructor_suffix],
+    [$.call_suffix],
   ],
   extras: ($) => [
     $.comment,
@@ -653,25 +660,28 @@ module.exports = grammar({
     call_suffix: ($) =>
       prec(
         PRECS.call_suffix,
-        seq(
-          choice(
-            $.value_arguments,
-            sep1($.lambda_literal, seq(field("name", $.simple_identifier), ":"))
-          )
+        choice(
+          $.value_arguments,
+          prec.dynamic(-1, $._fn_call_lambda_arguments), // Prefer to treat `foo() { }` as one call not two
+          seq($.value_arguments, $._fn_call_lambda_arguments)
         )
       ),
     constructor_suffix: ($) =>
       prec(
         PRECS.call_suffix,
-        seq(
-          choice(
+        choice(
+          alias($._constructor_value_arguments, $.value_arguments),
+          prec.dynamic(-1, $._fn_call_lambda_arguments), // As above
+          seq(
             alias($._constructor_value_arguments, $.value_arguments),
-            $.lambda_literal
+            $._fn_call_lambda_arguments
           )
         )
       ),
     _constructor_value_arguments: ($) =>
       seq("(", optional(sep1($.value_argument, ",")), ")"),
+    _fn_call_lambda_arguments: ($) =>
+      sep1($.lambda_literal, seq(field("name", $.simple_identifier), ":")),
     type_arguments: ($) => prec.left(seq("<", sep1($._type, ","), ">")),
     value_arguments: ($) =>
       seq(

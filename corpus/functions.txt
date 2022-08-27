@@ -514,13 +514,11 @@ test(2) { $0.doSomething() }
 
 (source_file
   (call_expression
-    (call_expression
-      (simple_identifier)
-      (call_suffix
-        (value_arguments
-          (value_argument
-            (integer_literal)))))
+    (simple_identifier)
     (call_suffix
+      (value_arguments
+        (value_argument
+          (integer_literal)))
       (lambda_literal
         (statements
           (call_expression
