@@ -6,7 +6,8 @@ enum TokenType {
     RAW_STR_PART,
     RAW_STR_CONTINUING_INDICATOR,
     RAW_STR_END_PART,
-    SEMI,
+    IMPLICIT_SEMI,
+    EXPLICIT_SEMI,
     ARROW_OPERATOR,
     DOT_OPERATOR,
     THREE_DOT_OPERATOR,
@@ -380,7 +381,7 @@ static enum ParseDirective eat_whitespace(
     enum TokenType *symbol_result
 ) {
     enum ParseDirective ws_directive = CONTINUE_PARSING_NOTHING_FOUND;
-    bool semi_is_valid = valid_symbols[SEMI];
+    bool semi_is_valid = valid_symbols[IMPLICIT_SEMI] && valid_symbols[EXPLICIT_SEMI];
     uint32_t lookahead;
     while (should_treat_as_wspace(lookahead = lexer->lookahead)) {
         if (lookahead == ';') {
@@ -400,7 +401,7 @@ static enum ParseDirective eat_whitespace(
 
     lexer->mark_end(lexer);
 
-    if (true && ws_directive == CONTINUE_PARSING_TOKEN_FOUND && lookahead == '/') {
+    if (ws_directive == CONTINUE_PARSING_TOKEN_FOUND && lookahead == '/') {
         bool has_seen_single_comment = false;
         while (lexer->lookahead == '/') {
             // It's possible that this is a comment - start an exploratory mission to find out, and if it is, look for what
@@ -445,7 +446,7 @@ static enum ParseDirective eat_whitespace(
             return STOP_PARSING_NOTHING_FOUND;
         } else {
             // Promote the implicit newline to an explicit one so we don't check for operators again.
-            *symbol_result = SEMI;
+            *symbol_result = IMPLICIT_SEMI;
             ws_directive = STOP_PARSING_TOKEN_FOUND;
         }
     }
@@ -461,7 +462,7 @@ static enum ParseDirective eat_whitespace(
     }
 
     if (semi_is_valid && ws_directive != CONTINUE_PARSING_NOTHING_FOUND) {
-        *symbol_result = SEMI;
+        *symbol_result = lookahead == ';' ? EXPLICIT_SEMI : IMPLICIT_SEMI;
         return ws_directive;
     }
 

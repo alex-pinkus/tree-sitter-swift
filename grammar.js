@@ -218,7 +218,8 @@ module.exports = grammar({
     // `_semi`, we advance a bit further to see if the next non-whitespace token would be one of these other operators.
     // If so, we ignore the `_semi` and just produce the operator; if not, we produce the `_semi` and let the rest of
     // the grammar sort it out. This isn't perfect, but it works well enough most of the time.
-    $._semi,
+    $._implicit_semi,
+    $._explicit_semi,
     // Every one of the below operators will suppress a `_semi` if we encounter it after a newline.
     $._arrow_operator_custom,
     $._dot_custom,
@@ -259,6 +260,7 @@ module.exports = grammar({
           )
         )
       ),
+    _semi: ($) => choice($._implicit_semi, $._explicit_semi),
     shebang_line: ($) => seq("#!", /[^\r\n]*/),
     ////////////////////////////////
     // Lexical Structure - https://docs.swift.org/swift-book/ReferenceManual/LexicalStructure.html
