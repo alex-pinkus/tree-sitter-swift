@@ -430,14 +430,13 @@ module.exports = grammar({
           repeat1(alias($._immediate_quest, "?"))
         )
       ),
-    metatype: ($) =>
-      prec.left(seq($._unannotated_type, ".", choice("Type", "Protocol"))),
+    metatype: ($) => seq($._unannotated_type, ".", choice("Type", "Protocol")),
     _quest: ($) => "?",
     _immediate_quest: ($) => token.immediate("?"),
-    opaque_type: ($) => seq("some", $.user_type),
-    existential_type: ($) => seq("any", $.user_type),
+    opaque_type: ($) => prec.right(seq("some", $._unannotated_type)),
+    existential_type: ($) => prec.right(seq("any", $._unannotated_type)),
     protocol_composition_type: ($) =>
-      prec.right(
+      prec.left(
         seq(
           $._unannotated_type,
           repeat1(seq("&", prec.right($._unannotated_type)))
