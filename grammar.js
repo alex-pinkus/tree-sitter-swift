@@ -420,7 +420,7 @@ module.exports = grammar({
       ),
     function_type: ($) =>
       seq(
-        field("params", $.tuple_type),
+        field("params", choice($.tuple_type, $._unannotated_type)),
         optional($._async_keyword),
         optional($.throws),
         $._arrow_operator,
@@ -950,7 +950,8 @@ module.exports = grammar({
     _if_let_binding: ($) =>
       seq(
         $._direct_or_indirect_binding,
-        optional(seq($._equal_sign, $._expression))
+        optional(seq($._equal_sign, $._expression)),
+        optional($.where_clause)
       ),
     guard_statement: ($) =>
       prec.right(
@@ -1368,7 +1369,8 @@ module.exports = grammar({
       prec.left(field("inherits_from", choice($.user_type, $.function_type))),
     _annotated_inheritance_specifier: ($) =>
       seq(repeat($.attribute), $.inheritance_specifier),
-    type_parameters: ($) => seq("<", sep1($.type_parameter, ","), ">"),
+    type_parameters: ($) =>
+      seq("<", sep1($.type_parameter, ","), optional($.type_constraints), ">"),
     type_parameter: ($) =>
       seq(
         optional($.type_parameter_modifiers),
@@ -1400,7 +1402,7 @@ module.exports = grammar({
         optional($._class_member_separator)
       ),
     _function_value_parameters: ($) =>
-      seq("(", optional(sep1($._function_value_parameter, ",")), ")"),
+      repeat1(seq("(", optional(sep1($._function_value_parameter, ",")), ")")),
     _function_value_parameter: ($) =>
       seq(
         optional($.attribute),
@@ -1586,8 +1588,12 @@ module.exports = grammar({
         choice("prefix", "infix", "postfix"),
         "operator",
         $.custom_operator,
-        optional(seq(":", $.simple_identifier))
+        optional(seq(":", $.simple_identifier)),
+        optional($.deprecated_operator_declaration_body)
       ),
+    // The Swift compiler no longer accepts these, but some very old code still uses it.
+    deprecated_operator_declaration_body: ($) =>
+      seq("{", repeat(choice($.simple_identifier, $._basic_literal)), "}"),
     precedence_group_declaration: ($) =>
       seq(
         "precedencegroup",
