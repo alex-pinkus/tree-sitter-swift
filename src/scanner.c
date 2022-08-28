@@ -518,9 +518,11 @@ static bool eat_raw_str_part(
         while (lexer->lookahead != '#' && lexer->lookahead != '\0') {
             last_char = lexer->lookahead;
             advance(lexer);
-            if (last_char != '\\') {
+            if (last_char != '\\' || lexer->lookahead == '\\') {
                 // Mark a new end, but only if we didn't just advance past a `\` symbol, since we
-                // don't want to consume that.
+                // don't want to consume that. Exception: if this is a `\` that happens _right
+                // after_ another `\`, we for some reason _do_ want to consume that, because
+                // apparently that is parsed as a literal `\` followed by something escaped.
                 lexer->mark_end(lexer);
             }
         }

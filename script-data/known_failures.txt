@@ -1,2 +1,1 @@
 firefox-ios/Shared/Functions.swift
-SwiftLint/Source/SwiftLintFramework/Rules/Lint/ExpiringTodoRule.swift
