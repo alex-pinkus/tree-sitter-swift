@@ -1055,6 +1055,9 @@ extension SpecialDecorator where Self: Decorator, Self.DecoratedType == SpecialT
 
 public extension Foo where T == (arg1: Arg1, arg2: Arg2) { }
 
+extension [SpecialItem] {
+}
+
 --------------------------------------------------------------------------------
 
 (source_file
@@ -1119,6 +1122,11 @@ public extension Foo where T == (arg1: Arg1, arg2: Arg2) { }
               (simple_identifier)
               (user_type
                 (type_identifier)))))))
+    (class_body))
+  (class_declaration
+    (array_type
+      (user_type
+        (type_identifier)))
     (class_body)))
 
 ================================================================================
@@ -1506,3 +1514,41 @@ private actor CounterActor {
                         (simple_identifier)
                         (call_suffix
                           (value_arguments))))))))))))))
+
+================================================================================
+Lazy is usable as a computed property
+================================================================================
+
+extension Array {
+    var stringified: some RandomAccessCollection {
+        lazy.map { "\($0)" }
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (class_declaration
+    (user_type
+      (type_identifier))
+    (class_body
+      (property_declaration
+        (pattern
+          (simple_identifier))
+        (type_annotation
+          (opaque_type
+            (user_type
+              (type_identifier))))
+        (computed_property
+          (statements
+            (call_expression
+              (navigation_expression
+                (simple_identifier)
+                (navigation_suffix
+                  (simple_identifier)))
+              (call_suffix
+                (lambda_literal
+                  (statements
+                    (line_string_literal
+                      (interpolated_expression
+                        (simple_identifier)))))))))))))

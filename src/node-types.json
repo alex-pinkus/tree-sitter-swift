@@ -4381,6 +4381,42 @@
         "required": true,
         "types": [
           {
+            "type": "array_type",
+            "named": true
+          },
+          {
+            "type": "dictionary_type",
+            "named": true
+          },
+          {
+            "type": "existential_type",
+            "named": true
+          },
+          {
+            "type": "function_type",
+            "named": true
+          },
+          {
+            "type": "metatype",
+            "named": true
+          },
+          {
+            "type": "opaque_type",
+            "named": true
+          },
+          {
+            "type": "optional_type",
+            "named": true
+          },
+          {
+            "type": "protocol_composition_type",
+            "named": true
+          },
+          {
+            "type": "tuple_type",
+            "named": true
+          },
+          {
             "type": "type_identifier",
             "named": true
           },
@@ -4413,10 +4449,6 @@
         },
         {
           "type": "ownership_modifier",
-          "named": true
-        },
-        {
-          "type": "property_behavior_modifier",
           "named": true
         },
         {
@@ -5867,9 +5899,20 @@
   {
     "type": "constructor_suffix",
     "named": true,
-    "fields": {},
+    "fields": {
+      "name": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "simple_identifier",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
@@ -6419,6 +6462,57 @@
       "types": [
         {
           "type": "modifiers",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "deprecated_operator_declaration_body",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "bin_literal",
+          "named": true
+        },
+        {
+          "type": "boolean_literal",
+          "named": true
+        },
+        {
+          "type": "hex_literal",
+          "named": true
+        },
+        {
+          "type": "integer_literal",
+          "named": true
+        },
+        {
+          "type": "line_string_literal",
+          "named": true
+        },
+        {
+          "type": "multi_line_string_literal",
+          "named": true
+        },
+        {
+          "type": "oct_literal",
+          "named": true
+        },
+        {
+          "type": "raw_string_literal",
+          "named": true
+        },
+        {
+          "type": "real_literal",
+          "named": true
+        },
+        {
+          "type": "simple_identifier",
           "named": true
         }
       ]
@@ -9346,6 +9440,42 @@
       "required": true,
       "types": [
         {
+          "type": "array_type",
+          "named": true
+        },
+        {
+          "type": "dictionary_type",
+          "named": true
+        },
+        {
+          "type": "existential_type",
+          "named": true
+        },
+        {
+          "type": "function_type",
+          "named": true
+        },
+        {
+          "type": "metatype",
+          "named": true
+        },
+        {
+          "type": "opaque_type",
+          "named": true
+        },
+        {
+          "type": "optional_type",
+          "named": true
+        },
+        {
+          "type": "protocol_composition_type",
+          "named": true
+        },
+        {
+          "type": "tuple_type",
+          "named": true
+        },
+        {
           "type": "user_type",
           "named": true
         }
@@ -10278,10 +10408,6 @@
           "named": true
         },
         {
-          "type": "property_behavior_modifier",
-          "named": true
-        },
-        {
           "type": "throws",
           "named": true
         },
@@ -10356,7 +10482,43 @@
         "required": true,
         "types": [
           {
+            "type": "array_type",
+            "named": true
+          },
+          {
+            "type": "dictionary_type",
+            "named": true
+          },
+          {
+            "type": "existential_type",
+            "named": true
+          },
+          {
+            "type": "function_type",
+            "named": true
+          },
+          {
+            "type": "metatype",
+            "named": true
+          },
+          {
+            "type": "opaque_type",
+            "named": true
+          },
+          {
+            "type": "optional_type",
+            "named": true
+          },
+          {
+            "type": "protocol_composition_type",
+            "named": true
+          },
+          {
             "type": "tuple_type",
+            "named": true
+          },
+          {
+            "type": "user_type",
             "named": true
           }
         ]
@@ -10851,6 +11013,10 @@
           {
             "type": "var",
             "named": false
+          },
+          {
+            "type": "where_clause",
+            "named": true
           },
           {
             "type": "wildcard_pattern",
@@ -11362,6 +11528,10 @@
           {
             "type": "var",
             "named": false
+          },
+          {
+            "type": "where_clause",
+            "named": true
           },
           {
             "type": "wildcard_pattern",
@@ -15014,6 +15184,42 @@
       "required": true,
       "types": [
         {
+          "type": "array_type",
+          "named": true
+        },
+        {
+          "type": "dictionary_type",
+          "named": true
+        },
+        {
+          "type": "existential_type",
+          "named": true
+        },
+        {
+          "type": "function_type",
+          "named": true
+        },
+        {
+          "type": "metatype",
+          "named": true
+        },
+        {
+          "type": "opaque_type",
+          "named": true
+        },
+        {
+          "type": "optional_type",
+          "named": true
+        },
+        {
+          "type": "protocol_composition_type",
+          "named": true
+        },
+        {
+          "type": "tuple_type",
+          "named": true
+        },
+        {
           "type": "user_type",
           "named": true
         }
@@ -15670,6 +15876,10 @@
       "types": [
         {
           "type": "custom_operator",
+          "named": true
+        },
+        {
+          "type": "deprecated_operator_declaration_body",
           "named": true
         },
         {
@@ -17264,10 +17474,6 @@
         },
         {
           "type": "ownership_modifier",
-          "named": true
-        },
-        {
-          "type": "property_behavior_modifier",
           "named": true
         },
         {
@@ -19183,6 +19389,10 @@
           {
             "type": "var",
             "named": false
+          },
+          {
+            "type": "where_clause",
+            "named": true
           },
           {
             "type": "wildcard_pattern",
@@ -23072,6 +23282,10 @@
       "required": true,
       "types": [
         {
+          "type": "type_constraints",
+          "named": true
+        },
+        {
           "type": "type_parameter",
           "named": true
         }
@@ -23201,10 +23415,6 @@
         },
         {
           "type": "ownership_modifier",
-          "named": true
-        },
-        {
-          "type": "property_behavior_modifier",
           "named": true
         },
         {
@@ -24207,6 +24417,10 @@
           {
             "type": "var",
             "named": false
+          },
+          {
+            "type": "where_clause",
+            "named": true
           },
           {
             "type": "wildcard_pattern",

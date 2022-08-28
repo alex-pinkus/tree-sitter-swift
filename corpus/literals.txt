@@ -327,6 +327,9 @@ print(#"Hello \#(world /* commented out)"#)  */ )"#)
 let _ = ##"Multiple pound signs \##(interpolated): still one part "# not done yet "##
 let _ = ##"Fake \#(interpolation) and unused # pound signs "##
 let _ = ##"\##(a)\#(b)\##(c)\#(d)"# ##"##
+let _ = #"""
+\\#(12)\#
+"""#
 
 --------------------------------------------------------------------------------
 
@@ -373,6 +376,16 @@ let _ = ##"\##(a)\#(b)\##(c)\#(d)"# ##"##
         (raw_str_interpolation_start)
         (interpolated_expression
           (simple_identifier)))
+      (raw_str_end_part)))
+  (property_declaration
+    (pattern
+      (wildcard_pattern))
+    (raw_string_literal
+      (raw_str_part)
+      (raw_str_interpolation
+        (raw_str_interpolation_start)
+        (interpolated_expression
+          (integer_literal)))
       (raw_str_end_part))))
 
 ================================================================================

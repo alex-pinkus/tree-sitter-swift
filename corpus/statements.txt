@@ -730,6 +730,10 @@ guard case .someCase(ident: let foo)? = otherThing() else {
 
 guard case justIdentifier = bound else { }
 
+guard let pattern else {
+    return
+}
+
 --------------------------------------------------------------------------------
 
 (source_file
@@ -769,7 +773,12 @@ guard case justIdentifier = bound else { }
   (guard_statement
     (simple_identifier)
     (simple_identifier)
-    (else)))
+    (else))
+  (guard_statement
+    (simple_identifier)
+    (else)
+    (statements
+      (control_transfer_statement))))
 
 ================================================================================
 Compound guard
@@ -975,3 +984,25 @@ async let bar = 66
     (pattern
       (simple_identifier))
     (integer_literal)))
+
+================================================================================
+Actor is a legal identifier
+================================================================================
+
+let actor = 5
+actor.increment()
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (property_declaration
+    (pattern
+      (simple_identifier))
+    (integer_literal))
+  (call_expression
+    (navigation_expression
+      (simple_identifier)
+      (navigation_suffix
+        (simple_identifier)))
+    (call_suffix
+      (value_arguments))))

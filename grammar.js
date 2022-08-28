@@ -177,6 +177,19 @@ module.exports = grammar({
       $._local_function_declaration,
       $._local_class_declaration,
     ],
+
+    // We want `foo() { }` to be treated as one function call, but we _also_ want `if foo() { ... }` to be treated as a
+    // full if-statement. This means we have to treat it as a conflict rather than purely a left or right associative
+    // construct, and let the parser realize that the second expression won't parse properly with the `{ ... }` as a
+    // lambda.
+    [$.constructor_suffix],
+    [$.call_suffix],
+
+    // `actor` is allowed to be an identifier, even though it is also a locally permitted declaration. If we encounter
+    // it, the only way to know what it's meant to be is to keep going.
+    [$._modifierless_class_declaration, $.property_modifier],
+    [$._modifierless_class_declaration, $.simple_identifier],
+    [$._fn_call_lambda_arguments],
   ],
   extras: ($) => [
     $.comment,
@@ -211,7 +224,8 @@ module.exports = grammar({
     // `_semi`, we advance a bit further to see if the next non-whitespace token would be one of these other operators.
     // If so, we ignore the `_semi` and just produce the operator; if not, we produce the `_semi` and let the rest of
     // the grammar sort it out. This isn't perfect, but it works well enough most of the time.
-    $._semi,
+    $._implicit_semi,
+    $._explicit_semi,
     // Every one of the below operators will suppress a `_semi` if we encounter it after a newline.
     $._arrow_operator_custom,
     $._dot_custom,
@@ -252,6 +266,7 @@ module.exports = grammar({
           )
         )
       ),
+    _semi: ($) => choice($._implicit_semi, $._explicit_semi),
     shebang_line: ($) => seq("#!", /[^\r\n]*/),
     ////////////////////////////////
     // Lexical Structure - https://docs.swift.org/swift-book/ReferenceManual/LexicalStructure.html
@@ -263,7 +278,8 @@ module.exports = grammar({
         LEXICAL_IDENTIFIER,
         /`[^\r\n` ]*`/,
         /\$[0-9]+/,
-        token(seq("$", LEXICAL_IDENTIFIER))
+        token(seq("$", LEXICAL_IDENTIFIER)),
+        "actor"
       ),
     identifier: ($) => sep1($.simple_identifier, $._dot),
     // Literals
@@ -404,7 +420,7 @@ module.exports = grammar({
       ),
     function_type: ($) =>
       seq(
-        field("params", $.tuple_type),
+        field("params", choice($.tuple_type, $._unannotated_type)),
         optional($._async_keyword),
         optional($.throws),
         $._arrow_operator,
@@ -423,14 +439,13 @@ module.exports = grammar({
           repeat1(alias($._immediate_quest, "?"))
         )
       ),
-    metatype: ($) =>
-      prec.left(seq($._unannotated_type, ".", choice("Type", "Protocol"))),
+    metatype: ($) => seq($._unannotated_type, ".", choice("Type", "Protocol")),
     _quest: ($) => "?",
     _immediate_quest: ($) => token.immediate("?"),
-    opaque_type: ($) => seq("some", $.user_type),
-    existential_type: ($) => seq("any", $.user_type),
+    opaque_type: ($) => prec.right(seq("some", $._unannotated_type)),
+    existential_type: ($) => prec.right(seq("any", $._unannotated_type)),
     protocol_composition_type: ($) =>
-      prec.right(
+      prec.left(
         seq(
           $._unannotated_type,
           repeat1(seq("&", prec.right($._unannotated_type)))
@@ -653,25 +668,28 @@ module.exports = grammar({
     call_suffix: ($) =>
       prec(
         PRECS.call_suffix,
-        seq(
-          choice(
-            $.value_arguments,
-            sep1($.lambda_literal, seq(field("name", $.simple_identifier), ":"))
-          )
+        choice(
+          $.value_arguments,
+          prec.dynamic(-1, $._fn_call_lambda_arguments), // Prefer to treat `foo() { }` as one call not two
+          seq($.value_arguments, $._fn_call_lambda_arguments)
         )
       ),
     constructor_suffix: ($) =>
       prec(
         PRECS.call_suffix,
-        seq(
-          choice(
+        choice(
+          alias($._constructor_value_arguments, $.value_arguments),
+          prec.dynamic(-1, $._fn_call_lambda_arguments), // As above
+          seq(
             alias($._constructor_value_arguments, $.value_arguments),
-            $.lambda_literal
+            $._fn_call_lambda_arguments
           )
         )
       ),
     _constructor_value_arguments: ($) =>
       seq("(", optional(sep1($.value_argument, ",")), ")"),
+    _fn_call_lambda_arguments: ($) =>
+      sep1($.lambda_literal, seq(field("name", $.simple_identifier), ":")),
     type_arguments: ($) => prec.left(seq("<", sep1($._type, ","), ">")),
     value_arguments: ($) =>
       seq(
@@ -930,7 +948,11 @@ module.exports = grammar({
     _if_condition_sequence_item: ($) =>
       choice($._if_let_binding, $._expression, $.availability_condition),
     _if_let_binding: ($) =>
-      seq($._direct_or_indirect_binding, $._equal_sign, $._expression),
+      seq(
+        $._direct_or_indirect_binding,
+        optional(seq($._equal_sign, $._expression)),
+        optional($.where_clause)
+      ),
     guard_statement: ($) =>
       prec.right(
         PRECS["if"],
@@ -1323,7 +1345,7 @@ module.exports = grammar({
           ),
           seq(
             field("declaration_kind", "extension"),
-            field("name", $.user_type),
+            field("name", $._unannotated_type),
             optional($.type_parameters),
             optional(seq(":", $._inheritance_specifiers)),
             optional($.type_constraints),
@@ -1347,7 +1369,8 @@ module.exports = grammar({
       prec.left(field("inherits_from", choice($.user_type, $.function_type))),
     _annotated_inheritance_specifier: ($) =>
       seq(repeat($.attribute), $.inheritance_specifier),
-    type_parameters: ($) => seq("<", sep1($.type_parameter, ","), ">"),
+    type_parameters: ($) =>
+      seq("<", sep1($.type_parameter, ","), optional($.type_constraints), ">"),
     type_parameter: ($) =>
       seq(
         optional($.type_parameter_modifiers),
@@ -1379,7 +1402,7 @@ module.exports = grammar({
         optional($._class_member_separator)
       ),
     _function_value_parameters: ($) =>
-      seq("(", optional(sep1($._function_value_parameter, ",")), ")"),
+      repeat1(seq("(", optional(sep1($._function_value_parameter, ",")), ")")),
     _function_value_parameter: ($) =>
       seq(
         optional($.attribute),
@@ -1565,8 +1588,12 @@ module.exports = grammar({
         choice("prefix", "infix", "postfix"),
         "operator",
         $.custom_operator,
-        optional(seq(":", $.simple_identifier))
+        optional(seq(":", $.simple_identifier)),
+        optional($.deprecated_operator_declaration_body)
       ),
+    // The Swift compiler no longer accepts these, but some very old code still uses it.
+    deprecated_operator_declaration_body: ($) =>
+      seq("{", repeat(choice($.simple_identifier, $._basic_literal)), "}"),
     precedence_group_declaration: ($) =>
       seq(
         "precedencegroup",
@@ -1716,14 +1743,11 @@ module.exports = grammar({
         $.function_modifier,
         $.mutation_modifier,
         $.property_modifier,
-        $.parameter_modifier
+        $.parameter_modifier,
+        $.property_behavior_modifier
       ),
     _locally_permitted_modifier: ($) =>
-      choice(
-        $.ownership_modifier,
-        $.property_behavior_modifier,
-        $.inheritance_modifier
-      ),
+      choice($.ownership_modifier, $.inheritance_modifier),
     property_behavior_modifier: ($) => "lazy",
     type_modifiers: ($) => repeat1($.attribute),
     member_modifier: ($) =>
