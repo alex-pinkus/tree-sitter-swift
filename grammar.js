@@ -1730,14 +1730,11 @@ module.exports = grammar({
         $.function_modifier,
         $.mutation_modifier,
         $.property_modifier,
-        $.parameter_modifier
+        $.parameter_modifier,
+        $.property_behavior_modifier
       ),
     _locally_permitted_modifier: ($) =>
-      choice(
-        $.ownership_modifier,
-        $.property_behavior_modifier,
-        $.inheritance_modifier
-      ),
+      choice($.ownership_modifier, $.inheritance_modifier),
     property_behavior_modifier: ($) => "lazy",
     type_modifiers: ($) => repeat1($.attribute),
     member_modifier: ($) =>
