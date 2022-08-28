@@ -1336,7 +1336,7 @@ module.exports = grammar({
           ),
           seq(
             field("declaration_kind", "extension"),
-            field("name", $.user_type),
+            field("name", $._unannotated_type),
             optional($.type_parameters),
             optional(seq(":", $._inheritance_specifiers)),
             optional($.type_constraints),

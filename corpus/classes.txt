@@ -1055,6 +1055,9 @@ extension SpecialDecorator where Self: Decorator, Self.DecoratedType == SpecialT
 
 public extension Foo where T == (arg1: Arg1, arg2: Arg2) { }
 
+extension [SpecialItem] {
+}
+
 --------------------------------------------------------------------------------
 
 (source_file
@@ -1119,6 +1122,11 @@ public extension Foo where T == (arg1: Arg1, arg2: Arg2) { }
               (simple_identifier)
               (user_type
                 (type_identifier)))))))
+    (class_body))
+  (class_declaration
+    (array_type
+      (user_type
+        (type_identifier)))
     (class_body)))
 
 ================================================================================
