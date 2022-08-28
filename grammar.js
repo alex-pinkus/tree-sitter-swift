@@ -184,6 +184,12 @@ module.exports = grammar({
     // lambda.
     [$.constructor_suffix],
     [$.call_suffix],
+
+    // `actor` is allowed to be an identifier, even though it is also a locally permitted declaration. If we encounter
+    // it, the only way to know what it's meant to be is to keep going.
+    [$._modifierless_class_declaration, $.property_modifier],
+    [$._modifierless_class_declaration, $.simple_identifier],
+    [$._fn_call_lambda_arguments],
   ],
   extras: ($) => [
     $.comment,
@@ -272,7 +278,8 @@ module.exports = grammar({
         LEXICAL_IDENTIFIER,
         /`[^\r\n` ]*`/,
         /\$[0-9]+/,
-        token(seq("$", LEXICAL_IDENTIFIER))
+        token(seq("$", LEXICAL_IDENTIFIER)),
+        "actor"
       ),
     identifier: ($) => sep1($.simple_identifier, $._dot),
     // Literals
