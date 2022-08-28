@@ -984,3 +984,25 @@ async let bar = 66
     (pattern
       (simple_identifier))
     (integer_literal)))
+
+================================================================================
+Actor is a legal identifier
+================================================================================
+
+let actor = 5
+actor.increment()
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (property_declaration
+    (pattern
+      (simple_identifier))
+    (integer_literal))
+  (call_expression
+    (navigation_expression
+      (simple_identifier)
+      (navigation_suffix
+        (simple_identifier)))
+    (call_suffix
+      (value_arguments))))
