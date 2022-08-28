@@ -1,3 +1,2 @@
 firefox-ios/Shared/Functions.swift
 SwiftLint/Source/SwiftLintFramework/Rules/Lint/ExpiringTodoRule.swift
-GRDB/GRDB/Core/Row.swift
