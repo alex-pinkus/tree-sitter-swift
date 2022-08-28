@@ -730,6 +730,10 @@ guard case .someCase(ident: let foo)? = otherThing() else {
 
 guard case justIdentifier = bound else { }
 
+guard let pattern else {
+    return
+}
+
 --------------------------------------------------------------------------------
 
 (source_file
@@ -769,7 +773,12 @@ guard case justIdentifier = bound else { }
   (guard_statement
     (simple_identifier)
     (simple_identifier)
-    (else)))
+    (else))
+  (guard_statement
+    (simple_identifier)
+    (else)
+    (statements
+      (control_transfer_statement))))
 
 ================================================================================
 Compound guard

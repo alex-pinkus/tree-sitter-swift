@@ -940,7 +940,10 @@ module.exports = grammar({
     _if_condition_sequence_item: ($) =>
       choice($._if_let_binding, $._expression, $.availability_condition),
     _if_let_binding: ($) =>
-      seq($._direct_or_indirect_binding, $._equal_sign, $._expression),
+      seq(
+        $._direct_or_indirect_binding,
+        optional(seq($._equal_sign, $._expression))
+      ),
     guard_statement: ($) =>
       prec.right(
         PRECS["if"],
