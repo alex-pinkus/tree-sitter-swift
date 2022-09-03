@@ -79,22 +79,6 @@ if (tree_sitter_version_supports_emoji()) {
   LEXICAL_IDENTIFIER = /[_\p{XID_Start}][_\p{XID_Continue}]*/;
 }
 
-const CUSTOM_OPERATORS = token(
-  choice(
-    // https://docs.swift.org/swift-book/ReferenceManual/LexicalStructure.html#ID418
-    // This supports a subset of the operators that Swift does but I'm really not concerned about the esoteric ones.
-    // Someone who wants unicode support can add it. What this does do is:
-    // * Avoid the reserved operators by saying that certain characters are only available if you don't start with them.
-    // * Entirely forbid `<` as the last char because it creates ambiguity with type arguments
-    /[\\<>&?=][\/=\-+!*%<>&|^?~\.]*[\/=\-+!*%>&|^?~]+/,
-    /[\-+!*%|^~]+[\/=\-+!*%<>&|^?~]*[\/=\-+!*%>&|^?~]+/,
-    /[\-+!*%|^~\.]+[\/=\-+!*%<>&|^?~\.]*[\/=\-+!*%>&|^?~\.]+/,
-    /[\/]+[=\-+!*%<>&|^?~]*[=\-+!*%>&|^?~]+/,
-    /[\/]+[=\-+!*%<>&|^?~\.]*[=\-+!*%>&|^?~\.]+/
-  )
-);
-// XXX need custom scanner for:
-// * Custom operators and `<` for type arguments
 module.exports = grammar({
   name: "swift",
   conflicts: ($) => [
@@ -115,12 +99,10 @@ module.exports = grammar({
     // After a `{` in a function or switch context, it's ambigous whether we're starting a set of local statements or
     // applying some modifiers to a capture or pattern.
     [$.modifiers],
-    // Custom operators get weird special handling for `<` characters in silly stuff like `func =<<<<T>(...)`
-    [$.custom_operator],
-    [$._prefix_unary_operator, $._referenceable_operator],
     // `+(...)` is ambigously either "call the function produced by a reference to the operator `+`" or "use the unary
     // operator `+` on the result of the parenthetical expression."
     [$._additive_operator, $._prefix_unary_operator],
+    [$._referenceable_operator, $._prefix_unary_operator],
     // `{ [self, b, c] ...` could be a capture list or an array literal depending on what else happens.
     [$.capture_list_item, $.self_expression],
     [$.capture_list_item, $._expression],
@@ -249,6 +231,7 @@ module.exports = grammar({
     $._as_quest_custom,
     $._as_bang_custom,
     $._async_keyword_custom,
+    $._custom_operator,
   ],
   inline: ($) => [$._locally_permitted_modifiers],
   rules: {
@@ -658,7 +641,7 @@ module.exports = grammar({
           field("rhs", $._expr_hack_at_ternary_binary_suffix)
         )
       ),
-    custom_operator: ($) => seq(CUSTOM_OPERATORS, optional("<")),
+    custom_operator: ($) => choice(token(/[\/]+[*]+/), $._custom_operator),
     // Suffixes
     navigation_suffix: ($) =>
       seq(
@@ -1066,7 +1049,8 @@ module.exports = grammar({
         $.navigation_expression,
         $.call_expression,
         $.tuple_expression,
-        $.self_expression
+        $.self_expression,
+        $.postfix_expression // Since `x[...]! = y` is legal
       ),
     ////////////////////////////////
     // Statements - https://docs.swift.org/swift-book/ReferenceManual/Statements.html
@@ -1423,14 +1407,7 @@ module.exports = grammar({
     _non_constructor_function_decl: ($) =>
       seq(
         "func",
-        field(
-          "name",
-          choice(
-            $.simple_identifier,
-            $._referenceable_operator,
-            $._bitwise_binary_operator
-          )
-        )
+        field("name", choice($.simple_identifier, $._referenceable_operator))
       ),
     _referenceable_operator: ($) =>
       choice(
@@ -1440,10 +1417,15 @@ module.exports = grammar({
         $._multiplicative_operator,
         $._equality_operator,
         $._comparison_operator,
+        $._assignment_and_operator,
         "++",
         "--",
         $.bang,
-        "~"
+        "~",
+        "|",
+        "^",
+        "<<",
+        ">>"
       ),
     // Hide the fact that certain symbols come from the custom scanner by aliasing them to their
     // string variants. This keeps us from having to see them in the syntax tree (which would be
@@ -1587,7 +1569,7 @@ module.exports = grammar({
       seq(
         choice("prefix", "infix", "postfix"),
         "operator",
-        $.custom_operator,
+        $._referenceable_operator,
         optional(seq(":", $.simple_identifier)),
         optional($.deprecated_operator_declaration_body)
       ),

@@ -354,6 +354,8 @@ precedencegroup MyPrecedence {
 
 infix operator -=- : MyPrecedence
 
+infix operator •
+
 --------------------------------------------------------------------------------
 
 (source_file
@@ -371,7 +373,9 @@ infix operator -=- : MyPrecedence
         (simple_identifier))))
   (operator_declaration
     (custom_operator)
-    (simple_identifier)))
+    (simple_identifier))
+  (operator_declaration
+    (custom_operator)))
 
 ================================================================================
 Custom operator with another operator as a prefix
