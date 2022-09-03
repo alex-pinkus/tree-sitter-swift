@@ -29,7 +29,8 @@ enum TokenType {
     AS_KEYWORD,
     AS_QUEST,
     AS_BANG,
-    ASYNC_KEYWORD
+    ASYNC_KEYWORD,
+    CUSTOM_OPERATOR,
 };
 
 #define OPERATOR_COUNT 22
@@ -114,6 +115,39 @@ const enum TokenType OP_SYMBOLS[OPERATOR_COUNT] = {
     AS_QUEST,
     AS_BANG,
     ASYNC_KEYWORD
+};
+
+#define RESERVED_OP_COUNT 28
+
+const char* RESERVED_OPS[RESERVED_OP_COUNT] = {
+    "/",
+    "=",
+    "-",
+    "+",
+    "!",
+    "*",
+    "%",
+    "<",
+    ">",
+    "&",
+    "|",
+    "^",
+    "?",
+    "~",
+    ".",
+    "->",
+    "/*",
+    "*/",
+    "+=",
+    "-=",
+    "*=",
+    "/=",
+    "%=",
+    ">>",
+    "<<",
+    "++",
+    "--",
+    "==="
 };
 
 bool is_cross_semi_token(enum TokenType op) {
@@ -232,6 +266,84 @@ static int32_t encountered_op_count(bool *encountered_operator) {
     return encountered;
 }
 
+static bool any_reserved_ops(int8_t *encountered_reserved_ops) {
+    for (int op_idx = 0; op_idx < RESERVED_OP_COUNT; op_idx++) {
+        if (encountered_reserved_ops[op_idx] == 2) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+static bool is_legal_custom_operator(
+    bool is_first_char,
+    int32_t first_char,
+    int32_t cur_char
+) {
+    switch (cur_char) {
+    case '=':
+    case '-':
+    case '+':
+    case '!':
+    case '%':
+    case '<':
+    case '>':
+    case '&':
+    case '|':
+    case '^':
+    case '?':
+    case '~':
+        return true;
+    case '.':
+        // Grammar allows `.` for any operator that starts with `.`
+        return is_first_char || first_char == '.';
+    case '*':
+    case '/':
+        // Not listed in the grammar, but `/*` and `//` can't be the start of an operator since they start comments
+        return is_first_char || first_char != '/';
+    default:
+        if (
+            (cur_char >= 0x00A1 && cur_char <= 0x00A7) ||
+            (cur_char == 0x00A9) ||
+            (cur_char == 0x00AB) ||
+            (cur_char == 0x00AC) ||
+            (cur_char == 0x00AE) ||
+            (cur_char >= 0x00B0 && cur_char <= 0x00B1) ||
+            (cur_char == 0x00B6) ||
+            (cur_char == 0x00BB) ||
+            (cur_char == 0x00BF) ||
+            (cur_char == 0x00D7) ||
+            (cur_char == 0x00F7) ||
+            (cur_char >= 0x2016 && cur_char <= 0x2017) ||
+            (cur_char >= 0x2020 && cur_char <= 0x2027) ||
+            (cur_char >= 0x2030 && cur_char <= 0x203E) ||
+            (cur_char >= 0x2041 && cur_char <= 0x2053) ||
+            (cur_char >= 0x2055 && cur_char <= 0x205E) ||
+            (cur_char >= 0x2190 && cur_char <= 0x23FF) ||
+            (cur_char >= 0x2500 && cur_char <= 0x2775) ||
+            (cur_char >= 0x2794 && cur_char <= 0x2BFF) ||
+            (cur_char >= 0x2E00 && cur_char <= 0x2E7F) ||
+            (cur_char >= 0x3001 && cur_char <= 0x3003) ||
+            (cur_char >= 0x3008 && cur_char <= 0x3020) ||
+            (cur_char == 0x3030)
+        ) {
+            return true;
+        } else if (
+            (cur_char >= 0x0300 && cur_char <= 0x036f) ||
+            (cur_char >= 0x1DC0 && cur_char <= 0x1DFF) ||
+            (cur_char >= 0x20D0 && cur_char <= 0x20FF) ||
+            (cur_char >= 0xFE00 && cur_char <= 0xFE0F) ||
+            (cur_char >= 0xFE20 && cur_char <= 0xFE2F) ||
+            (cur_char >= 0xE0100 && cur_char <= 0xE01EF)
+        ) {
+            return !is_first_char;
+        } else {
+            return false;
+        }
+    }
+}
+
 static bool eat_operators(
     TSLexer *lexer,
     const bool *valid_symbols,
@@ -239,9 +351,17 @@ static bool eat_operators(
     enum TokenType *symbol_result
 ) {
     bool possible_operators[OPERATOR_COUNT];
+    uint8_t reserved_operators[RESERVED_OP_COUNT];
     for (int op_idx = 0; op_idx < OPERATOR_COUNT; op_idx++) {
         possible_operators[op_idx] = valid_symbols[OP_SYMBOLS[op_idx]];
     }
+    for (int op_idx = 0; op_idx < RESERVED_OP_COUNT; op_idx++) {
+        reserved_operators[op_idx] = 1;
+    }
+
+    bool possible_custom_operator = valid_symbols[CUSTOM_OPERATOR];
+    int32_t first_char = lexer->lookahead;
+    int32_t last_examined_char = first_char;
 
     int32_t str_idx = 0;
     int32_t full_match = -1;
@@ -305,16 +425,65 @@ static bool eat_operators(
             }
         }
 
-        if (encountered_op_count(possible_operators) == 0) {
-            break;
+        for (int op_idx = 0; op_idx < RESERVED_OP_COUNT; op_idx++) {
+            if (!reserved_operators[op_idx]) {
+                continue;
+            }
+
+            if (RESERVED_OPS[op_idx][str_idx] == '\0') {
+                reserved_operators[op_idx] = 0;
+                continue;
+            }
+
+            if (RESERVED_OPS[op_idx][str_idx] != lexer->lookahead) {
+                reserved_operators[op_idx] = 0;
+                continue;
+            }
+
+            if (RESERVED_OPS[op_idx][str_idx + 1] == '\0') {
+                reserved_operators[op_idx] = 2;
+                continue;
+            }
         }
 
+        possible_custom_operator = possible_custom_operator && is_legal_custom_operator(
+                                       str_idx == 0,
+                                       first_char,
+                                       lexer->lookahead
+                                   );
+
+        uint32_t encountered_ops = encountered_op_count(possible_operators);
+        if (encountered_ops == 0) {
+            if (!possible_custom_operator) {
+                break;
+            } else if (mark_end && full_match == -1) {
+                lexer->mark_end(lexer);
+            }
+        }
+
+        last_examined_char = lexer->lookahead;
         lexer->advance(lexer, false);
         str_idx += 1;
+
+        if (encountered_ops == 0 && !is_legal_custom_operator(
+                    str_idx == 0,
+                    first_char,
+                    lexer->lookahead
+                )) {
+            break;
+        }
     }
 
     if (full_match != -1) {
         *symbol_result = OP_SYMBOLS[full_match];
+        return true;
+    }
+
+    if (possible_custom_operator && !any_reserved_ops(reserved_operators)) {
+        if ((last_examined_char != '<' || iswspace(lexer->lookahead)) && mark_end) {
+            lexer->mark_end(lexer);
+        }
+        *symbol_result = CUSTOM_OPERATOR;
         return true;
     }
 
@@ -580,6 +749,15 @@ bool tree_sitter_swift_external_scanner_scan(
 
     bool has_ws_result = (ws_directive != CONTINUE_PARSING_NOTHING_FOUND);
 
+    // Now consume comments (before custom operators so that those aren't treated as comments)
+    enum TokenType comment_result;
+    bool saw_comment = eat_comment(lexer, valid_symbols, /* mark_end */ true, &comment_result);
+    if (saw_comment) {
+        lexer->mark_end(lexer);
+        lexer->result_symbol = comment_result;
+        return true;
+    }
+
     // Now consume any operators that might cause our whitespace to be suppressed.
     enum TokenType operator_result;
     bool saw_operator = eat_operators(
@@ -597,14 +775,6 @@ bool tree_sitter_swift_external_scanner_scan(
     if (has_ws_result) {
         // Don't `mark_end`, since we may have advanced through some operators.
         lexer->result_symbol = ws_result;
-        return true;
-    }
-
-    enum TokenType comment_result;
-    bool saw_comment = eat_comment(lexer, valid_symbols, /* mark_end */ true, &comment_result);
-    if (saw_comment) {
-        lexer->mark_end(lexer);
-        lexer->result_symbol = comment_result;
         return true;
     }
 

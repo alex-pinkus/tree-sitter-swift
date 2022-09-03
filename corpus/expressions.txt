@@ -1142,3 +1142,24 @@ async(async: async, qos: qos, flags: flags) {
             (simple_identifier)
             (call_suffix
               (value_arguments))))))))
+
+================================================================================
+Assigning to the result of a force unwrap
+================================================================================
+
+stat[lang]! += 1
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (assignment
+    (directly_assignable_expression
+      (postfix_expression
+        (call_expression
+          (simple_identifier)
+          (call_suffix
+            (value_arguments
+              (value_argument
+                (simple_identifier)))))
+        (bang)))
+    (integer_literal)))
