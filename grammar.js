@@ -853,7 +853,7 @@ module.exports = grammar({
       prec.left(
         PRECS.lambda,
         seq(
-          "{",
+          choice("{", "^{"),
           optional($._lambda_type_declaration),
           optional($.statements),
           "}"
