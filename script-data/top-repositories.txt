@@ -1,7 +1,7 @@
 Alamofire Alamofire/Alamofire 5.6.2
 iina iina/iina v1.3.0-build131
 Charts danielgindi/Charts v4.0.3
-lottie-ios airbnb/lottie-ios 3.4.2
+lottie-ios airbnb/lottie-ios 3.4.3
 vapor vapor/vapor 3.3.3
 SwiftyJSON SwiftyJSON/SwiftyJSON 5.0.1
 RxSwift ReactiveX/RxSwift 6.5.0 0 9
@@ -13,12 +13,12 @@ RxSwift ReactiveX/RxSwift 6.5.0 5 9
 RxSwift ReactiveX/RxSwift 6.5.0 6 9
 RxSwift ReactiveX/RxSwift 6.5.0 7 9
 RxSwift ReactiveX/RxSwift 6.5.0 8 9
-HeroTransitions HeroTransitions/Hero 1.6.1
+HeroTransitions HeroTransitions/Hero 1.6.2
 Kingfisher onevcat/Kingfisher 7.3.2
 shadowsocks shadowsocks/ShadowsocksX-NG v1.9.4
 SnapKit SnapKit/SnapKit 5.0.1
-SwiftLint realm/SwiftLint 0.49.0 0 2
-SwiftLint realm/SwiftLint 0.49.0 1 2
+SwiftLint realm/SwiftLint 0.49.1 0 2
+SwiftLint realm/SwiftLint 0.49.1 1 2
 ClashX yichengchen/clashX 1.94.0
 Carthage Carthage/Carthage 0.38.0
 Rectangle rxhanson/Rectangle v0.58
@@ -39,8 +39,8 @@ MessageKit MessageKit/MessageKit 4.0.0
 KeychainAccess kishikawakatsumi/KeychainAccess v4.2.2
 Nuke kean/Nuke 11.1.1
 Swinject Swinject/Swinject 2.8.2
-GRDB groue/GRDB.swift v6.0.0-beta.3 0 2
-GRDB groue/GRDB.swift v6.0.0-beta.3 1 2
+GRDB groue/GRDB.swift v6.0.0-beta.4 0 2
+GRDB groue/GRDB.swift v6.0.0-beta.4 1 2
 Dance saoudrizwan/Dance v1.0.7
 StyleKit 146BC/StyleKit 0.7.0
 ReactKit ReactKit/ReactKit 0.12.0
