@@ -266,7 +266,7 @@ static int32_t encountered_op_count(bool *encountered_operator) {
     return encountered;
 }
 
-static bool any_reserved_ops(int8_t *encountered_reserved_ops) {
+static bool any_reserved_ops(uint8_t *encountered_reserved_ops) {
     for (int op_idx = 0; op_idx < RESERVED_OP_COUNT; op_idx++) {
         if (encountered_reserved_ops[op_idx] == 2) {
             return true;
