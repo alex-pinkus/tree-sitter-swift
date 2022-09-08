@@ -173,6 +173,7 @@ bool is_cross_semi_token(enum TokenType op) {
     case AS_QUEST:
     case AS_BANG:
     case ASYNC_KEYWORD:
+    case CUSTOM_OPERATOR:
         return true;
     case BANG:
     default:
@@ -197,8 +198,10 @@ const uint32_t NON_CONSUMING_CROSS_SEMI_CHARS[NON_CONSUMING_CROSS_SEMI_CHAR_COUN
 enum ParseDirective {
     CONTINUE_PARSING_NOTHING_FOUND,
     CONTINUE_PARSING_TOKEN_FOUND,
+    CONTINUE_PARSING_SLASH_CONSUMED,
     STOP_PARSING_NOTHING_FOUND,
-    STOP_PARSING_TOKEN_FOUND
+    STOP_PARSING_TOKEN_FOUND,
+    STOP_PARSING_END_OF_FILE
 };
 
 struct ScannerState {
@@ -277,10 +280,11 @@ static bool any_reserved_ops(uint8_t *encountered_reserved_ops) {
 }
 
 static bool is_legal_custom_operator(
-    bool is_first_char,
+    int32_t char_idx,
     int32_t first_char,
     int32_t cur_char
 ) {
+    bool is_first_char = !char_idx;
     switch (cur_char) {
     case '=':
     case '-':
@@ -301,7 +305,7 @@ static bool is_legal_custom_operator(
     case '*':
     case '/':
         // Not listed in the grammar, but `/*` and `//` can't be the start of an operator since they start comments
-        return is_first_char || first_char != '/';
+        return char_idx != 1 || first_char != '/';
     default:
         if (
             (cur_char >= 0x00A1 && cur_char <= 0x00A7) ||
@@ -348,22 +352,23 @@ static bool eat_operators(
     TSLexer *lexer,
     const bool *valid_symbols,
     bool mark_end,
+    const int32_t prior_char,
     enum TokenType *symbol_result
 ) {
     bool possible_operators[OPERATOR_COUNT];
     uint8_t reserved_operators[RESERVED_OP_COUNT];
     for (int op_idx = 0; op_idx < OPERATOR_COUNT; op_idx++) {
-        possible_operators[op_idx] = valid_symbols[OP_SYMBOLS[op_idx]];
+        possible_operators[op_idx] = valid_symbols[OP_SYMBOLS[op_idx]] && (!prior_char || OPERATORS[op_idx][0] == prior_char);
     }
     for (int op_idx = 0; op_idx < RESERVED_OP_COUNT; op_idx++) {
-        reserved_operators[op_idx] = 1;
+        reserved_operators[op_idx] = !prior_char || RESERVED_OPS[op_idx][0] == prior_char;
     }
 
     bool possible_custom_operator = valid_symbols[CUSTOM_OPERATOR];
-    int32_t first_char = lexer->lookahead;
+    int32_t first_char = prior_char ? prior_char : lexer->lookahead;
     int32_t last_examined_char = first_char;
 
-    int32_t str_idx = 0;
+    int32_t str_idx = prior_char ? 1 : 0;
     int32_t full_match = -1;
     while(true) {
         for (int op_idx = 0; op_idx < OPERATOR_COUNT; op_idx++) {
@@ -447,7 +452,7 @@ static bool eat_operators(
         }
 
         possible_custom_operator = possible_custom_operator && is_legal_custom_operator(
-                                       str_idx == 0,
+                                       str_idx,
                                        first_char,
                                        lexer->lookahead
                                    );
@@ -466,7 +471,7 @@ static bool eat_operators(
         str_idx += 1;
 
         if (encountered_ops == 0 && !is_legal_custom_operator(
-                    str_idx == 0,
+                    str_idx,
                     first_char,
                     lexer->lookahead
                 )) {
@@ -490,58 +495,61 @@ static bool eat_operators(
     return false;
 }
 
-static bool eat_comment(
+static enum ParseDirective eat_comment(
     TSLexer *lexer,
     const bool *valid_symbols,
     bool mark_end,
     enum TokenType *symbol_result
 ) {
-    // This is from https://github.com/tree-sitter/tree-sitter-rust/blob/f1c5c4b1d7b98a0288c1e4e6094cfcc3f6213cc0/src/scanner.c
-    if (lexer->lookahead == '/') {
-        advance(lexer);
-        if (lexer->lookahead != '*') return false;
-        advance(lexer);
-
-        bool after_star = false;
-        unsigned nesting_depth = 1;
-        for (;;) {
-            switch (lexer->lookahead) {
-            case '\0':
-                return false;
-            case '*':
-                advance(lexer);
-                after_star = true;
-                break;
-            case '/':
-                if (after_star) {
-                    advance(lexer);
-                    after_star = false;
-                    nesting_depth--;
-                    if (nesting_depth == 0) {
-                        if (mark_end) {
-                            lexer->mark_end(lexer);
-                        }
-                        *symbol_result = BLOCK_COMMENT;
-                        return true;
-                    }
-                } else {
-                    advance(lexer);
-                    after_star = false;
-                    if (lexer->lookahead == '*') {
-                        nesting_depth++;
-                        advance(lexer);
-                    }
-                }
-                break;
-            default:
-                advance(lexer);
-                after_star = false;
-                break;
-            }
-        }
+    if (lexer->lookahead != '/') {
+        return CONTINUE_PARSING_NOTHING_FOUND;
     }
 
-    return false;
+    advance(lexer);
+
+    if (lexer->lookahead != '*') {
+        return CONTINUE_PARSING_SLASH_CONSUMED;
+    }
+
+    advance(lexer);
+
+    bool after_star = false;
+    unsigned nesting_depth = 1;
+    for (;;) {
+        switch (lexer->lookahead) {
+        case '\0':
+            return STOP_PARSING_END_OF_FILE;
+        case '*':
+            advance(lexer);
+            after_star = true;
+            break;
+        case '/':
+            if (after_star) {
+                advance(lexer);
+                after_star = false;
+                nesting_depth--;
+                if (nesting_depth == 0) {
+                    if (mark_end) {
+                        lexer->mark_end(lexer);
+                    }
+                    *symbol_result = BLOCK_COMMENT;
+                    return STOP_PARSING_TOKEN_FOUND;
+                }
+            } else {
+                advance(lexer);
+                after_star = false;
+                if (lexer->lookahead == '*') {
+                    nesting_depth++;
+                    advance(lexer);
+                }
+            }
+            break;
+        default:
+            advance(lexer);
+            after_star = false;
+            break;
+        }
+    }
 }
 
 static enum ParseDirective eat_whitespace(
@@ -563,13 +571,15 @@ static enum ParseDirective eat_whitespace(
         }
 
         lexer->advance(lexer, true);
+
+        lexer->mark_end(lexer);
+
         if (ws_directive == CONTINUE_PARSING_NOTHING_FOUND && (lookahead == '\n' || lookahead == '\r')) {
             ws_directive = CONTINUE_PARSING_TOKEN_FOUND;
         }
     }
 
-    lexer->mark_end(lexer);
-
+    enum ParseDirective any_comment = CONTINUE_PARSING_NOTHING_FOUND;
     if (ws_directive == CONTINUE_PARSING_TOKEN_FOUND && lookahead == '/') {
         bool has_seen_single_comment = false;
         while (lexer->lookahead == '/') {
@@ -577,8 +587,8 @@ static enum ParseDirective eat_whitespace(
             // comes after it. We care about what comes after it for the purpose of suppressing the newline.
 
             enum TokenType multiline_comment_result;
-            bool saw_multiline_comment = eat_comment(lexer, valid_symbols, /* mark_end */ false, &multiline_comment_result);
-            if (saw_multiline_comment) {
+            any_comment = eat_comment(lexer, valid_symbols, /* mark_end */ false, &multiline_comment_result);
+            if (any_comment == STOP_PARSING_TOKEN_FOUND) {
                 // This is a multiline comment. This scanner should be parsing those, so we might want to bail out and
                 // emit it instead. However, we only want to do that if we haven't advanced through a _single_ line
                 // comment on the way - otherwise that will get lumped into this.
@@ -587,6 +597,12 @@ static enum ParseDirective eat_whitespace(
                     *symbol_result = multiline_comment_result;
                     return STOP_PARSING_TOKEN_FOUND;
                 }
+            } else if (any_comment == STOP_PARSING_END_OF_FILE) {
+                return STOP_PARSING_END_OF_FILE;
+            } else if (any_comment == CONTINUE_PARSING_SLASH_CONSUMED) {
+                // We accidentally ate a slash -- we should actually bail out, say we saw nothing, and let the next pass
+                // take it from after the newline.
+                return CONTINUE_PARSING_SLASH_CONSUMED;
             } else if (lexer->lookahead == '/') {
                 // There wasn't a multiline comment, which we know means that the comment parser ate its `/` and then
                 // bailed out. If it had seen anything comment-like after that first `/` it would have continued going
@@ -604,12 +620,19 @@ static enum ParseDirective eat_whitespace(
 
             // If we skipped through some comment, we're at whitespace now, so advance.
             while(iswspace(lexer->lookahead)) {
+                any_comment = CONTINUE_PARSING_NOTHING_FOUND; // We're advancing, so clear out the comment
                 lexer->advance(lexer, true);
             }
         }
 
         enum TokenType operator_result;
-        bool saw_operator = eat_operators(lexer, valid_symbols, /* mark_end */ false, &operator_result);
+        bool saw_operator = eat_operators(
+                                lexer,
+                                valid_symbols,
+                                /* mark_end */ false,
+                                '\0',
+                                &operator_result
+                            );
         if (saw_operator) {
             // The operator we saw should suppress the newline, so bail out.
             return STOP_PARSING_NOTHING_FOUND;
@@ -743,19 +766,23 @@ bool tree_sitter_swift_external_scanner_scan(
         return true;
     }
 
-    if (ws_directive == STOP_PARSING_NOTHING_FOUND) {
+    if (ws_directive == STOP_PARSING_NOTHING_FOUND || ws_directive == STOP_PARSING_END_OF_FILE) {
         return false;
     }
 
-    bool has_ws_result = (ws_directive != CONTINUE_PARSING_NOTHING_FOUND);
+    bool has_ws_result = (ws_directive == CONTINUE_PARSING_TOKEN_FOUND);
 
     // Now consume comments (before custom operators so that those aren't treated as comments)
     enum TokenType comment_result;
-    bool saw_comment = eat_comment(lexer, valid_symbols, /* mark_end */ true, &comment_result);
-    if (saw_comment) {
+    enum ParseDirective comment = ws_directive == CONTINUE_PARSING_SLASH_CONSUMED ? ws_directive : eat_comment(lexer, valid_symbols, /* mark_end */ true, &comment_result);
+    if (comment == STOP_PARSING_TOKEN_FOUND) {
         lexer->mark_end(lexer);
         lexer->result_symbol = comment_result;
         return true;
+    }
+
+    if (comment == STOP_PARSING_END_OF_FILE) {
+        return false;
     }
 
     // Now consume any operators that might cause our whitespace to be suppressed.
@@ -764,6 +791,7 @@ bool tree_sitter_swift_external_scanner_scan(
                             lexer,
                             valid_symbols,
                             /* mark_end */ true,
+                            comment == CONTINUE_PARSING_SLASH_CONSUMED ? '/' : '\0',
                             &operator_result
                         );
 
