@@ -1,5 +1,8 @@
 #include <tree_sitter/parser.h>
+#include <string.h>
 #include <wctype.h>
+
+#define TOKEN_COUNT 29
 
 enum TokenType {
     BLOCK_COMMENT,
@@ -117,7 +120,7 @@ const enum TokenType OP_SYMBOLS[OPERATOR_COUNT] = {
     ASYNC_KEYWORD
 };
 
-#define RESERVED_OP_COUNT 28
+#define RESERVED_OP_COUNT 30
 
 const char* RESERVED_OPS[RESERVED_OP_COUNT] = {
     "/",
@@ -135,6 +138,7 @@ const char* RESERVED_OPS[RESERVED_OP_COUNT] = {
     "?",
     "~",
     ".",
+    "..",
     "->",
     "/*",
     "*/",
@@ -147,7 +151,8 @@ const char* RESERVED_OPS[RESERVED_OP_COUNT] = {
     "<<",
     "++",
     "--",
-    "==="
+    "===",
+    "..."
 };
 
 bool is_cross_semi_token(enum TokenType op) {
@@ -785,11 +790,16 @@ bool tree_sitter_swift_external_scanner_scan(
         return false;
     }
 
+    bool valid_operators[TOKEN_COUNT];
+    memcpy(valid_operators, valid_symbols, TOKEN_COUNT);
+    if (has_ws_result) {
+        valid_operators[THREE_DOT_OPERATOR] = false;
+    }
     // Now consume any operators that might cause our whitespace to be suppressed.
     enum TokenType operator_result;
     bool saw_operator = eat_operators(
                             lexer,
-                            valid_symbols,
+                            valid_operators,
                             /* mark_end */ true,
                             comment == CONTINUE_PARSING_SLASH_CONSUMED ? '/' : '\0',
                             &operator_result
