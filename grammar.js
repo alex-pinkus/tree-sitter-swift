@@ -211,8 +211,6 @@ module.exports = grammar({
     // Every one of the below operators will suppress a `_semi` if we encounter it after a newline.
     $._arrow_operator_custom,
     $._dot_custom,
-    $._three_dot_operator_custom,
-    $._open_ended_range_operator_custom,
     $._conjunction_operator_custom,
     $._disjunction_operator_custom,
     $._nil_coalescing_operator_custom,
@@ -1017,6 +1015,8 @@ module.exports = grammar({
     _assignment_and_operator: ($) => choice("+=", "-=", "*=", "/=", "%=", "="),
     _equality_operator: ($) => choice("!=", "!==", $._eq_eq, "==="),
     _comparison_operator: ($) => choice("<", ">", "<=", ">="),
+    _three_dot_operator: ($) => alias("...", "..."), // Weird alias to satisfy highlight queries
+    _open_ended_range_operator: ($) => alias("..<", "..<"),
     _is_operator: ($) => "is",
     _additive_operator: ($) =>
       choice(
@@ -1435,9 +1435,6 @@ module.exports = grammar({
     _eq_eq: ($) => alias($._eq_eq_custom, "=="),
     _dot: ($) => alias($._dot_custom, "."),
     _arrow_operator: ($) => alias($._arrow_operator_custom, "->"),
-    _three_dot_operator: ($) => alias($._three_dot_operator_custom, "..."),
-    _open_ended_range_operator: ($) =>
-      alias($._open_ended_range_operator_custom, "..<"),
     _conjunction_operator: ($) => alias($._conjunction_operator_custom, "&&"),
     _disjunction_operator: ($) => alias($._disjunction_operator_custom, "||"),
     _nil_coalescing_operator: ($) =>

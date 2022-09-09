@@ -1111,7 +1111,9 @@ let a = false
     (pattern
       (simple_identifier))
     (boolean_literal))
-  (simple_identifier))
+  (prefix_expression
+    (bang)
+    (simple_identifier)))
 
 ================================================================================
 Calling `async` in positions where it could be a keyword
@@ -1199,3 +1201,19 @@ prefix func /!(x: Int) {
             (value_arguments
               (value_argument
                 (simple_identifier)))))))))
+
+================================================================================
+Three dot operator after newline
+================================================================================
+
+foo()
+...
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (call_expression
+    (simple_identifier)
+    (call_suffix
+      (value_arguments)))
+  (fully_open_range))

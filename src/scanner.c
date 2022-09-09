@@ -2,8 +2,6 @@
 #include <string.h>
 #include <wctype.h>
 
-#define TOKEN_COUNT 29
-
 enum TokenType {
     BLOCK_COMMENT,
     RAW_STR_PART,
@@ -13,8 +11,6 @@ enum TokenType {
     EXPLICIT_SEMI,
     ARROW_OPERATOR,
     DOT_OPERATOR,
-    THREE_DOT_OPERATOR,
-    OPEN_ENDED_RANGE_OPERATOR,
     CONJUNCTION_OPERATOR,
     DISJUNCTION_OPERATOR,
     NIL_COALESCING_OPERATOR,
@@ -36,13 +32,11 @@ enum TokenType {
     CUSTOM_OPERATOR,
 };
 
-#define OPERATOR_COUNT 22
+#define OPERATOR_COUNT 20
 
 const char* OPERATORS[OPERATOR_COUNT] = {
     "->",
     ".",
-    "...",
-    "..<",
     "&&",
     "||",
     "??",
@@ -73,8 +67,6 @@ enum IllegalTerminatorGroup {
 const enum IllegalTerminatorGroup OP_ILLEGAL_TERMINATORS[OPERATOR_COUNT] = {
     OPERATOR_SYMBOLS, // ->
     OPERATOR_OR_DOT,  // .
-    OPERATOR_OR_DOT,  // ...
-    OPERATOR_OR_DOT,  // ..<
     OPERATOR_SYMBOLS, // &&
     OPERATOR_SYMBOLS, // ||
     OPERATOR_SYMBOLS, // ??
@@ -98,8 +90,6 @@ const enum IllegalTerminatorGroup OP_ILLEGAL_TERMINATORS[OPERATOR_COUNT] = {
 const enum TokenType OP_SYMBOLS[OPERATOR_COUNT] = {
     ARROW_OPERATOR,
     DOT_OPERATOR,
-    THREE_DOT_OPERATOR,
-    OPEN_ENDED_RANGE_OPERATOR,
     CONJUNCTION_OPERATOR,
     DISJUNCTION_OPERATOR,
     NIL_COALESCING_OPERATOR,
@@ -120,7 +110,7 @@ const enum TokenType OP_SYMBOLS[OPERATOR_COUNT] = {
     ASYNC_KEYWORD
 };
 
-#define RESERVED_OP_COUNT 30
+#define RESERVED_OP_COUNT 31
 
 const char* RESERVED_OPS[RESERVED_OP_COUNT] = {
     "/",
@@ -152,15 +142,14 @@ const char* RESERVED_OPS[RESERVED_OP_COUNT] = {
     "++",
     "--",
     "===",
-    "..."
+    "...",
+    "..<"
 };
 
 bool is_cross_semi_token(enum TokenType op) {
     switch(op) {
     case ARROW_OPERATOR:
     case DOT_OPERATOR:
-    case THREE_DOT_OPERATOR:
-    case OPEN_ENDED_RANGE_OPERATOR:
     case CONJUNCTION_OPERATOR:
     case DISJUNCTION_OPERATOR:
     case NIL_COALESCING_OPERATOR:
@@ -789,24 +778,19 @@ bool tree_sitter_swift_external_scanner_scan(
     if (comment == STOP_PARSING_END_OF_FILE) {
         return false;
     }
-
-    bool valid_operators[TOKEN_COUNT];
-    memcpy(valid_operators, valid_symbols, TOKEN_COUNT);
-    if (has_ws_result) {
-        valid_operators[THREE_DOT_OPERATOR] = false;
-    }
     // Now consume any operators that might cause our whitespace to be suppressed.
     enum TokenType operator_result;
     bool saw_operator = eat_operators(
                             lexer,
-                            valid_operators,
-                            /* mark_end */ true,
+                            valid_symbols,
+                            /* mark_end */ !has_ws_result,
                             comment == CONTINUE_PARSING_SLASH_CONSUMED ? '/' : '\0',
                             &operator_result
                         );
 
     if (saw_operator && (!has_ws_result || is_cross_semi_token(operator_result))) {
         lexer->result_symbol = operator_result;
+        if (has_ws_result) lexer->mark_end(lexer);
         return true;
     }
 
