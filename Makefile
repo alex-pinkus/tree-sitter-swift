@@ -107,6 +107,10 @@ install: all
 	install -d '$(DESTDIR)$(PCLIBDIR)'
 	install -m644 bindings/c/tree-sitter-$(PARSER_NAME).pc '$(DESTDIR)$(PCLIBDIR)'/
 
+# Regenerate the parser if the grammar file is newer.
+src/parser.c: grammar.js
+	npx tree-sitter generate
+
 clean:
 	rm -f $(OBJ) libtree-sitter-$(PARSER_NAME).a libtree-sitter-$(PARSER_NAME).$(SOEXT) libtree-sitter-$(PARSER_NAME).$(SOEXTVER_MAJOR) libtree-sitter-$(PARSER_NAME).$(SOEXTVER)
 	rm -f bindings/c/$(PARSER_NAME).h bindings/c/tree-sitter-$(PARSER_NAME).pc
