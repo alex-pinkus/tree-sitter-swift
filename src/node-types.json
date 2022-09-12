@@ -60,6 +60,10 @@
             "named": false
           },
           {
+            "type": "%=",
+            "named": false
+          },
+          {
             "type": "(",
             "named": false
           },
@@ -72,11 +76,19 @@
             "named": false
           },
           {
+            "type": "*=",
+            "named": false
+          },
+          {
             "type": "+",
             "named": false
           },
           {
             "type": "++",
+            "named": false
+          },
+          {
+            "type": "+=",
             "named": false
           },
           {
@@ -92,7 +104,15 @@
             "named": false
           },
           {
+            "type": "-=",
+            "named": false
+          },
+          {
             "type": "/",
+            "named": false
+          },
+          {
+            "type": "/=",
             "named": false
           },
           {
@@ -104,7 +124,15 @@
             "named": false
           },
           {
+            "type": "<<",
+            "named": false
+          },
+          {
             "type": "<=",
+            "named": false
+          },
+          {
+            "type": "=",
             "named": false
           },
           {
@@ -124,7 +152,15 @@
             "named": false
           },
           {
+            "type": ">>",
+            "named": false
+          },
+          {
             "type": "?",
+            "named": false
+          },
+          {
+            "type": "^",
             "named": false
           },
           {
@@ -310,6 +346,10 @@
           {
             "type": "tuple_expression",
             "named": true
+          },
+          {
+            "type": "|",
+            "named": false
           },
           {
             "type": "~",
@@ -388,6 +428,10 @@
             "named": false
           },
           {
+            "type": "%=",
+            "named": false
+          },
+          {
             "type": "(",
             "named": false
           },
@@ -400,11 +444,19 @@
             "named": false
           },
           {
+            "type": "*=",
+            "named": false
+          },
+          {
             "type": "+",
             "named": false
           },
           {
             "type": "++",
+            "named": false
+          },
+          {
+            "type": "+=",
             "named": false
           },
           {
@@ -420,7 +472,15 @@
             "named": false
           },
           {
+            "type": "-=",
+            "named": false
+          },
+          {
             "type": "/",
+            "named": false
+          },
+          {
+            "type": "/=",
             "named": false
           },
           {
@@ -432,7 +492,15 @@
             "named": false
           },
           {
+            "type": "<<",
+            "named": false
+          },
+          {
             "type": "<=",
+            "named": false
+          },
+          {
+            "type": "=",
             "named": false
           },
           {
@@ -452,7 +520,15 @@
             "named": false
           },
           {
+            "type": ">>",
+            "named": false
+          },
+          {
             "type": "?",
+            "named": false
+          },
+          {
+            "type": "^",
             "named": false
           },
           {
@@ -638,6 +714,10 @@
           {
             "type": "tuple_expression",
             "named": true
+          },
+          {
+            "type": "|",
+            "named": false
           },
           {
             "type": "~",
@@ -708,6 +788,10 @@
             "named": false
           },
           {
+            "type": "%=",
+            "named": false
+          },
+          {
             "type": "(",
             "named": false
           },
@@ -720,11 +804,19 @@
             "named": false
           },
           {
+            "type": "*=",
+            "named": false
+          },
+          {
             "type": "+",
             "named": false
           },
           {
             "type": "++",
+            "named": false
+          },
+          {
+            "type": "+=",
             "named": false
           },
           {
@@ -740,7 +832,15 @@
             "named": false
           },
           {
+            "type": "-=",
+            "named": false
+          },
+          {
             "type": "/",
+            "named": false
+          },
+          {
+            "type": "/=",
             "named": false
           },
           {
@@ -752,7 +852,15 @@
             "named": false
           },
           {
+            "type": "<<",
+            "named": false
+          },
+          {
             "type": "<=",
+            "named": false
+          },
+          {
+            "type": "=",
             "named": false
           },
           {
@@ -772,7 +880,15 @@
             "named": false
           },
           {
+            "type": ">>",
+            "named": false
+          },
+          {
             "type": "?",
+            "named": false
+          },
+          {
+            "type": "^",
             "named": false
           },
           {
@@ -958,6 +1074,10 @@
           {
             "type": "tuple_expression",
             "named": true
+          },
+          {
+            "type": "|",
+            "named": false
           },
           {
             "type": "~",
@@ -1130,6 +1250,10 @@
             "named": false
           },
           {
+            "type": "%=",
+            "named": false
+          },
+          {
             "type": "(",
             "named": false
           },
@@ -1142,11 +1266,19 @@
             "named": false
           },
           {
+            "type": "*=",
+            "named": false
+          },
+          {
             "type": "+",
             "named": false
           },
           {
             "type": "++",
+            "named": false
+          },
+          {
+            "type": "+=",
             "named": false
           },
           {
@@ -1162,7 +1294,15 @@
             "named": false
           },
           {
+            "type": "-=",
+            "named": false
+          },
+          {
             "type": "/",
+            "named": false
+          },
+          {
+            "type": "/=",
             "named": false
           },
           {
@@ -1174,7 +1314,15 @@
             "named": false
           },
           {
+            "type": "<<",
+            "named": false
+          },
+          {
             "type": "<=",
+            "named": false
+          },
+          {
+            "type": "=",
             "named": false
           },
           {
@@ -1194,7 +1342,15 @@
             "named": false
           },
           {
+            "type": ">>",
+            "named": false
+          },
+          {
             "type": "?",
+            "named": false
+          },
+          {
+            "type": "^",
             "named": false
           },
           {
@@ -1380,6 +1536,10 @@
           {
             "type": "tuple_expression",
             "named": true
+          },
+          {
+            "type": "|",
+            "named": false
           },
           {
             "type": "~",
@@ -1591,6 +1751,10 @@
             "named": false
           },
           {
+            "type": "%=",
+            "named": false
+          },
+          {
             "type": "(",
             "named": false
           },
@@ -1603,11 +1767,19 @@
             "named": false
           },
           {
+            "type": "*=",
+            "named": false
+          },
+          {
             "type": "+",
             "named": false
           },
           {
             "type": "++",
+            "named": false
+          },
+          {
+            "type": "+=",
             "named": false
           },
           {
@@ -1623,7 +1795,15 @@
             "named": false
           },
           {
+            "type": "-=",
+            "named": false
+          },
+          {
             "type": "/",
+            "named": false
+          },
+          {
+            "type": "/=",
             "named": false
           },
           {
@@ -1635,7 +1815,15 @@
             "named": false
           },
           {
+            "type": "<<",
+            "named": false
+          },
+          {
             "type": "<=",
+            "named": false
+          },
+          {
+            "type": "=",
             "named": false
           },
           {
@@ -1655,7 +1843,15 @@
             "named": false
           },
           {
+            "type": ">>",
+            "named": false
+          },
+          {
             "type": "?",
+            "named": false
+          },
+          {
+            "type": "^",
             "named": false
           },
           {
@@ -1841,6 +2037,10 @@
           {
             "type": "tuple_expression",
             "named": true
+          },
+          {
+            "type": "|",
+            "named": false
           },
           {
             "type": "~",
@@ -2305,6 +2505,10 @@
             "named": false
           },
           {
+            "type": "%=",
+            "named": false
+          },
+          {
             "type": "(",
             "named": false
           },
@@ -2317,11 +2521,19 @@
             "named": false
           },
           {
+            "type": "*=",
+            "named": false
+          },
+          {
             "type": "+",
             "named": false
           },
           {
             "type": "++",
+            "named": false
+          },
+          {
+            "type": "+=",
             "named": false
           },
           {
@@ -2337,7 +2549,15 @@
             "named": false
           },
           {
+            "type": "-=",
+            "named": false
+          },
+          {
             "type": "/",
+            "named": false
+          },
+          {
+            "type": "/=",
             "named": false
           },
           {
@@ -2349,7 +2569,15 @@
             "named": false
           },
           {
+            "type": "<<",
+            "named": false
+          },
+          {
             "type": "<=",
+            "named": false
+          },
+          {
+            "type": "=",
             "named": false
           },
           {
@@ -2369,7 +2597,15 @@
             "named": false
           },
           {
+            "type": ">>",
+            "named": false
+          },
+          {
             "type": "?",
+            "named": false
+          },
+          {
+            "type": "^",
             "named": false
           },
           {
@@ -2555,6 +2791,10 @@
           {
             "type": "tuple_expression",
             "named": true
+          },
+          {
+            "type": "|",
+            "named": false
           },
           {
             "type": "~",
@@ -2625,6 +2865,10 @@
             "named": false
           },
           {
+            "type": "%=",
+            "named": false
+          },
+          {
             "type": "(",
             "named": false
           },
@@ -2637,11 +2881,19 @@
             "named": false
           },
           {
+            "type": "*=",
+            "named": false
+          },
+          {
             "type": "+",
             "named": false
           },
           {
             "type": "++",
+            "named": false
+          },
+          {
+            "type": "+=",
             "named": false
           },
           {
@@ -2657,7 +2909,15 @@
             "named": false
           },
           {
+            "type": "-=",
+            "named": false
+          },
+          {
             "type": "/",
+            "named": false
+          },
+          {
+            "type": "/=",
             "named": false
           },
           {
@@ -2669,7 +2929,15 @@
             "named": false
           },
           {
+            "type": "<<",
+            "named": false
+          },
+          {
             "type": "<=",
+            "named": false
+          },
+          {
+            "type": "=",
             "named": false
           },
           {
@@ -2689,7 +2957,15 @@
             "named": false
           },
           {
+            "type": ">>",
+            "named": false
+          },
+          {
             "type": "?",
+            "named": false
+          },
+          {
+            "type": "^",
             "named": false
           },
           {
@@ -2875,6 +3151,10 @@
           {
             "type": "tuple_expression",
             "named": true
+          },
+          {
+            "type": "|",
+            "named": false
           },
           {
             "type": "~",
@@ -2965,6 +3245,10 @@
             "named": false
           },
           {
+            "type": "%=",
+            "named": false
+          },
+          {
             "type": "(",
             "named": false
           },
@@ -2977,11 +3261,19 @@
             "named": false
           },
           {
+            "type": "*=",
+            "named": false
+          },
+          {
             "type": "+",
             "named": false
           },
           {
             "type": "++",
+            "named": false
+          },
+          {
+            "type": "+=",
             "named": false
           },
           {
@@ -2997,7 +3289,15 @@
             "named": false
           },
           {
+            "type": "-=",
+            "named": false
+          },
+          {
             "type": "/",
+            "named": false
+          },
+          {
+            "type": "/=",
             "named": false
           },
           {
@@ -3009,7 +3309,15 @@
             "named": false
           },
           {
+            "type": "<<",
+            "named": false
+          },
+          {
             "type": "<=",
+            "named": false
+          },
+          {
+            "type": "=",
             "named": false
           },
           {
@@ -3029,7 +3337,15 @@
             "named": false
           },
           {
+            "type": ">>",
+            "named": false
+          },
+          {
             "type": "?",
+            "named": false
+          },
+          {
+            "type": "^",
             "named": false
           },
           {
@@ -3215,6 +3531,10 @@
           {
             "type": "tuple_expression",
             "named": true
+          },
+          {
+            "type": "|",
+            "named": false
           },
           {
             "type": "~",
@@ -3544,6 +3864,10 @@
             "named": false
           },
           {
+            "type": "%=",
+            "named": false
+          },
+          {
             "type": "(",
             "named": false
           },
@@ -3556,11 +3880,19 @@
             "named": false
           },
           {
+            "type": "*=",
+            "named": false
+          },
+          {
             "type": "+",
             "named": false
           },
           {
             "type": "++",
+            "named": false
+          },
+          {
+            "type": "+=",
             "named": false
           },
           {
@@ -3576,7 +3908,15 @@
             "named": false
           },
           {
+            "type": "-=",
+            "named": false
+          },
+          {
             "type": "/",
+            "named": false
+          },
+          {
+            "type": "/=",
             "named": false
           },
           {
@@ -3588,7 +3928,15 @@
             "named": false
           },
           {
+            "type": "<<",
+            "named": false
+          },
+          {
             "type": "<=",
+            "named": false
+          },
+          {
+            "type": "=",
             "named": false
           },
           {
@@ -3608,7 +3956,15 @@
             "named": false
           },
           {
+            "type": ">>",
+            "named": false
+          },
+          {
             "type": "?",
+            "named": false
+          },
+          {
+            "type": "^",
             "named": false
           },
           {
@@ -3794,6 +4150,10 @@
           {
             "type": "tuple_expression",
             "named": true
+          },
+          {
+            "type": "|",
+            "named": false
           },
           {
             "type": "~",
@@ -3964,6 +4324,10 @@
             "named": false
           },
           {
+            "type": "%=",
+            "named": false
+          },
+          {
             "type": "(",
             "named": false
           },
@@ -3976,11 +4340,19 @@
             "named": false
           },
           {
+            "type": "*=",
+            "named": false
+          },
+          {
             "type": "+",
             "named": false
           },
           {
             "type": "++",
+            "named": false
+          },
+          {
+            "type": "+=",
             "named": false
           },
           {
@@ -3996,7 +4368,15 @@
             "named": false
           },
           {
+            "type": "-=",
+            "named": false
+          },
+          {
             "type": "/",
+            "named": false
+          },
+          {
+            "type": "/=",
             "named": false
           },
           {
@@ -4008,7 +4388,15 @@
             "named": false
           },
           {
+            "type": "<<",
+            "named": false
+          },
+          {
             "type": "<=",
+            "named": false
+          },
+          {
+            "type": "=",
             "named": false
           },
           {
@@ -4028,7 +4416,15 @@
             "named": false
           },
           {
+            "type": ">>",
+            "named": false
+          },
+          {
             "type": "?",
+            "named": false
+          },
+          {
+            "type": "^",
             "named": false
           },
           {
@@ -4214,6 +4610,10 @@
           {
             "type": "tuple_expression",
             "named": true
+          },
+          {
+            "type": "|",
+            "named": false
           },
           {
             "type": "~",
@@ -4523,6 +4923,10 @@
             "named": false
           },
           {
+            "type": "%=",
+            "named": false
+          },
+          {
             "type": "(",
             "named": false
           },
@@ -4535,11 +4939,19 @@
             "named": false
           },
           {
+            "type": "*=",
+            "named": false
+          },
+          {
             "type": "+",
             "named": false
           },
           {
             "type": "++",
+            "named": false
+          },
+          {
+            "type": "+=",
             "named": false
           },
           {
@@ -4555,7 +4967,15 @@
             "named": false
           },
           {
+            "type": "-=",
+            "named": false
+          },
+          {
             "type": "/",
+            "named": false
+          },
+          {
+            "type": "/=",
             "named": false
           },
           {
@@ -4567,7 +4987,15 @@
             "named": false
           },
           {
+            "type": "<<",
+            "named": false
+          },
+          {
             "type": "<=",
+            "named": false
+          },
+          {
+            "type": "=",
             "named": false
           },
           {
@@ -4587,7 +5015,15 @@
             "named": false
           },
           {
+            "type": ">>",
+            "named": false
+          },
+          {
             "type": "?",
+            "named": false
+          },
+          {
+            "type": "^",
             "named": false
           },
           {
@@ -4773,6 +5209,10 @@
           {
             "type": "tuple_expression",
             "named": true
+          },
+          {
+            "type": "|",
+            "named": false
           },
           {
             "type": "~",
@@ -4859,6 +5299,10 @@
             "named": false
           },
           {
+            "type": "%=",
+            "named": false
+          },
+          {
             "type": "(",
             "named": false
           },
@@ -4871,11 +5315,19 @@
             "named": false
           },
           {
+            "type": "*=",
+            "named": false
+          },
+          {
             "type": "+",
             "named": false
           },
           {
             "type": "++",
+            "named": false
+          },
+          {
+            "type": "+=",
             "named": false
           },
           {
@@ -4891,7 +5343,15 @@
             "named": false
           },
           {
+            "type": "-=",
+            "named": false
+          },
+          {
             "type": "/",
+            "named": false
+          },
+          {
+            "type": "/=",
             "named": false
           },
           {
@@ -4903,7 +5363,15 @@
             "named": false
           },
           {
+            "type": "<<",
+            "named": false
+          },
+          {
             "type": "<=",
+            "named": false
+          },
+          {
+            "type": "=",
             "named": false
           },
           {
@@ -4923,7 +5391,15 @@
             "named": false
           },
           {
+            "type": ">>",
+            "named": false
+          },
+          {
             "type": "?",
+            "named": false
+          },
+          {
+            "type": "^",
             "named": false
           },
           {
@@ -5109,6 +5585,10 @@
           {
             "type": "tuple_expression",
             "named": true
+          },
+          {
+            "type": "|",
+            "named": false
           },
           {
             "type": "~",
@@ -5279,6 +5759,10 @@
             "named": false
           },
           {
+            "type": "%=",
+            "named": false
+          },
+          {
             "type": "(",
             "named": false
           },
@@ -5291,11 +5775,19 @@
             "named": false
           },
           {
+            "type": "*=",
+            "named": false
+          },
+          {
             "type": "+",
             "named": false
           },
           {
             "type": "++",
+            "named": false
+          },
+          {
+            "type": "+=",
             "named": false
           },
           {
@@ -5311,7 +5803,15 @@
             "named": false
           },
           {
+            "type": "-=",
+            "named": false
+          },
+          {
             "type": "/",
+            "named": false
+          },
+          {
+            "type": "/=",
             "named": false
           },
           {
@@ -5323,7 +5823,15 @@
             "named": false
           },
           {
+            "type": "<<",
+            "named": false
+          },
+          {
             "type": "<=",
+            "named": false
+          },
+          {
+            "type": "=",
             "named": false
           },
           {
@@ -5343,7 +5851,15 @@
             "named": false
           },
           {
+            "type": ">>",
+            "named": false
+          },
+          {
             "type": "?",
+            "named": false
+          },
+          {
+            "type": "^",
             "named": false
           },
           {
@@ -5529,6 +6045,10 @@
           {
             "type": "tuple_expression",
             "named": true
+          },
+          {
+            "type": "|",
+            "named": false
           },
           {
             "type": "~",
@@ -5603,6 +6123,10 @@
             "named": false
           },
           {
+            "type": "%=",
+            "named": false
+          },
+          {
             "type": "(",
             "named": false
           },
@@ -5615,11 +6139,19 @@
             "named": false
           },
           {
+            "type": "*=",
+            "named": false
+          },
+          {
             "type": "+",
             "named": false
           },
           {
             "type": "++",
+            "named": false
+          },
+          {
+            "type": "+=",
             "named": false
           },
           {
@@ -5635,7 +6167,15 @@
             "named": false
           },
           {
+            "type": "-=",
+            "named": false
+          },
+          {
             "type": "/",
+            "named": false
+          },
+          {
+            "type": "/=",
             "named": false
           },
           {
@@ -5647,7 +6187,15 @@
             "named": false
           },
           {
+            "type": "<<",
+            "named": false
+          },
+          {
             "type": "<=",
+            "named": false
+          },
+          {
+            "type": "=",
             "named": false
           },
           {
@@ -5667,7 +6215,15 @@
             "named": false
           },
           {
+            "type": ">>",
+            "named": false
+          },
+          {
             "type": "?",
+            "named": false
+          },
+          {
+            "type": "^",
             "named": false
           },
           {
@@ -5853,6 +6409,10 @@
           {
             "type": "tuple_expression",
             "named": true
+          },
+          {
+            "type": "|",
+            "named": false
           },
           {
             "type": "~",
@@ -5987,6 +6547,10 @@
             "named": false
           },
           {
+            "type": "%=",
+            "named": false
+          },
+          {
             "type": "(",
             "named": false
           },
@@ -5999,11 +6563,19 @@
             "named": false
           },
           {
+            "type": "*=",
+            "named": false
+          },
+          {
             "type": "+",
             "named": false
           },
           {
             "type": "++",
+            "named": false
+          },
+          {
+            "type": "+=",
             "named": false
           },
           {
@@ -6019,7 +6591,15 @@
             "named": false
           },
           {
+            "type": "-=",
+            "named": false
+          },
+          {
             "type": "/",
+            "named": false
+          },
+          {
+            "type": "/=",
             "named": false
           },
           {
@@ -6031,7 +6611,15 @@
             "named": false
           },
           {
+            "type": "<<",
+            "named": false
+          },
+          {
             "type": "<=",
+            "named": false
+          },
+          {
+            "type": "=",
             "named": false
           },
           {
@@ -6051,7 +6639,15 @@
             "named": false
           },
           {
+            "type": ">>",
+            "named": false
+          },
+          {
             "type": "?",
+            "named": false
+          },
+          {
+            "type": "^",
             "named": false
           },
           {
@@ -6237,6 +6833,10 @@
           {
             "type": "tuple_expression",
             "named": true
+          },
+          {
+            "type": "|",
+            "named": false
           },
           {
             "type": "~",
@@ -6579,6 +7179,10 @@
             "named": false
           },
           {
+            "type": "%=",
+            "named": false
+          },
+          {
             "type": "(",
             "named": false
           },
@@ -6591,11 +7195,19 @@
             "named": false
           },
           {
+            "type": "*=",
+            "named": false
+          },
+          {
             "type": "+",
             "named": false
           },
           {
             "type": "++",
+            "named": false
+          },
+          {
+            "type": "+=",
             "named": false
           },
           {
@@ -6611,7 +7223,15 @@
             "named": false
           },
           {
+            "type": "-=",
+            "named": false
+          },
+          {
             "type": "/",
+            "named": false
+          },
+          {
+            "type": "/=",
             "named": false
           },
           {
@@ -6623,7 +7243,15 @@
             "named": false
           },
           {
+            "type": "<<",
+            "named": false
+          },
+          {
             "type": "<=",
+            "named": false
+          },
+          {
+            "type": "=",
             "named": false
           },
           {
@@ -6643,7 +7271,15 @@
             "named": false
           },
           {
+            "type": ">>",
+            "named": false
+          },
+          {
             "type": "?",
+            "named": false
+          },
+          {
+            "type": "^",
             "named": false
           },
           {
@@ -6829,6 +7465,10 @@
           {
             "type": "tuple_expression",
             "named": true
+          },
+          {
+            "type": "|",
+            "named": false
           },
           {
             "type": "~",
@@ -6893,6 +7533,10 @@
             "named": false
           },
           {
+            "type": "%=",
+            "named": false
+          },
+          {
             "type": "(",
             "named": false
           },
@@ -6905,11 +7549,19 @@
             "named": false
           },
           {
+            "type": "*=",
+            "named": false
+          },
+          {
             "type": "+",
             "named": false
           },
           {
             "type": "++",
+            "named": false
+          },
+          {
+            "type": "+=",
             "named": false
           },
           {
@@ -6925,7 +7577,15 @@
             "named": false
           },
           {
+            "type": "-=",
+            "named": false
+          },
+          {
             "type": "/",
+            "named": false
+          },
+          {
+            "type": "/=",
             "named": false
           },
           {
@@ -6937,7 +7597,15 @@
             "named": false
           },
           {
+            "type": "<<",
+            "named": false
+          },
+          {
             "type": "<=",
+            "named": false
+          },
+          {
+            "type": "=",
             "named": false
           },
           {
@@ -6957,7 +7625,15 @@
             "named": false
           },
           {
+            "type": ">>",
+            "named": false
+          },
+          {
             "type": "?",
+            "named": false
+          },
+          {
+            "type": "^",
             "named": false
           },
           {
@@ -7143,6 +7819,10 @@
           {
             "type": "tuple_expression",
             "named": true
+          },
+          {
+            "type": "|",
+            "named": false
           },
           {
             "type": "~",
@@ -7321,6 +8001,10 @@
           "named": true
         },
         {
+          "type": "postfix_expression",
+          "named": true
+        },
+        {
           "type": "self_expression",
           "named": true
         },
@@ -7396,6 +8080,10 @@
             "named": false
           },
           {
+            "type": "%=",
+            "named": false
+          },
+          {
             "type": "(",
             "named": false
           },
@@ -7408,11 +8096,19 @@
             "named": false
           },
           {
+            "type": "*=",
+            "named": false
+          },
+          {
             "type": "+",
             "named": false
           },
           {
             "type": "++",
+            "named": false
+          },
+          {
+            "type": "+=",
             "named": false
           },
           {
@@ -7428,7 +8124,15 @@
             "named": false
           },
           {
+            "type": "-=",
+            "named": false
+          },
+          {
             "type": "/",
+            "named": false
+          },
+          {
+            "type": "/=",
             "named": false
           },
           {
@@ -7440,7 +8144,15 @@
             "named": false
           },
           {
+            "type": "<<",
+            "named": false
+          },
+          {
             "type": "<=",
+            "named": false
+          },
+          {
+            "type": "=",
             "named": false
           },
           {
@@ -7460,7 +8172,15 @@
             "named": false
           },
           {
+            "type": ">>",
+            "named": false
+          },
+          {
             "type": "?",
+            "named": false
+          },
+          {
+            "type": "^",
             "named": false
           },
           {
@@ -7646,6 +8366,10 @@
           {
             "type": "tuple_expression",
             "named": true
+          },
+          {
+            "type": "|",
+            "named": false
           },
           {
             "type": "~",
@@ -7720,6 +8444,10 @@
             "named": false
           },
           {
+            "type": "%=",
+            "named": false
+          },
+          {
             "type": "(",
             "named": false
           },
@@ -7732,11 +8460,19 @@
             "named": false
           },
           {
+            "type": "*=",
+            "named": false
+          },
+          {
             "type": "+",
             "named": false
           },
           {
             "type": "++",
+            "named": false
+          },
+          {
+            "type": "+=",
             "named": false
           },
           {
@@ -7752,7 +8488,15 @@
             "named": false
           },
           {
+            "type": "-=",
+            "named": false
+          },
+          {
             "type": "/",
+            "named": false
+          },
+          {
+            "type": "/=",
             "named": false
           },
           {
@@ -7764,7 +8508,15 @@
             "named": false
           },
           {
+            "type": "<<",
+            "named": false
+          },
+          {
             "type": "<=",
+            "named": false
+          },
+          {
+            "type": "=",
             "named": false
           },
           {
@@ -7784,7 +8536,15 @@
             "named": false
           },
           {
+            "type": ">>",
+            "named": false
+          },
+          {
             "type": "?",
+            "named": false
+          },
+          {
+            "type": "^",
             "named": false
           },
           {
@@ -7970,6 +8730,10 @@
           {
             "type": "tuple_expression",
             "named": true
+          },
+          {
+            "type": "|",
+            "named": false
           },
           {
             "type": "~",
@@ -8138,6 +8902,10 @@
             "named": false
           },
           {
+            "type": "%=",
+            "named": false
+          },
+          {
             "type": "(",
             "named": false
           },
@@ -8150,11 +8918,19 @@
             "named": false
           },
           {
+            "type": "*=",
+            "named": false
+          },
+          {
             "type": "+",
             "named": false
           },
           {
             "type": "++",
+            "named": false
+          },
+          {
+            "type": "+=",
             "named": false
           },
           {
@@ -8170,7 +8946,15 @@
             "named": false
           },
           {
+            "type": "-=",
+            "named": false
+          },
+          {
             "type": "/",
+            "named": false
+          },
+          {
+            "type": "/=",
             "named": false
           },
           {
@@ -8182,7 +8966,15 @@
             "named": false
           },
           {
+            "type": "<<",
+            "named": false
+          },
+          {
             "type": "<=",
+            "named": false
+          },
+          {
+            "type": "=",
             "named": false
           },
           {
@@ -8202,7 +8994,15 @@
             "named": false
           },
           {
+            "type": ">>",
+            "named": false
+          },
+          {
             "type": "?",
+            "named": false
+          },
+          {
+            "type": "^",
             "named": false
           },
           {
@@ -8388,6 +9188,10 @@
           {
             "type": "tuple_expression",
             "named": true
+          },
+          {
+            "type": "|",
+            "named": false
           },
           {
             "type": "~",
@@ -8836,6 +9640,10 @@
             "named": false
           },
           {
+            "type": "%=",
+            "named": false
+          },
+          {
             "type": "(",
             "named": false
           },
@@ -8848,11 +9656,19 @@
             "named": false
           },
           {
+            "type": "*=",
+            "named": false
+          },
+          {
             "type": "+",
             "named": false
           },
           {
             "type": "++",
+            "named": false
+          },
+          {
+            "type": "+=",
             "named": false
           },
           {
@@ -8868,7 +9684,15 @@
             "named": false
           },
           {
+            "type": "-=",
+            "named": false
+          },
+          {
             "type": "/",
+            "named": false
+          },
+          {
+            "type": "/=",
             "named": false
           },
           {
@@ -8880,7 +9704,15 @@
             "named": false
           },
           {
+            "type": "<<",
+            "named": false
+          },
+          {
             "type": "<=",
+            "named": false
+          },
+          {
+            "type": "=",
             "named": false
           },
           {
@@ -8900,7 +9732,15 @@
             "named": false
           },
           {
+            "type": ">>",
+            "named": false
+          },
+          {
             "type": "?",
+            "named": false
+          },
+          {
+            "type": "^",
             "named": false
           },
           {
@@ -9086,6 +9926,10 @@
           {
             "type": "tuple_expression",
             "named": true
+          },
+          {
+            "type": "|",
+            "named": false
           },
           {
             "type": "~",
@@ -9172,6 +10016,10 @@
             "named": false
           },
           {
+            "type": "%=",
+            "named": false
+          },
+          {
             "type": "(",
             "named": false
           },
@@ -9184,11 +10032,19 @@
             "named": false
           },
           {
+            "type": "*=",
+            "named": false
+          },
+          {
             "type": "+",
             "named": false
           },
           {
             "type": "++",
+            "named": false
+          },
+          {
+            "type": "+=",
             "named": false
           },
           {
@@ -9204,7 +10060,15 @@
             "named": false
           },
           {
+            "type": "-=",
+            "named": false
+          },
+          {
             "type": "/",
+            "named": false
+          },
+          {
+            "type": "/=",
             "named": false
           },
           {
@@ -9216,7 +10080,15 @@
             "named": false
           },
           {
+            "type": "<<",
+            "named": false
+          },
+          {
             "type": "<=",
+            "named": false
+          },
+          {
+            "type": "=",
             "named": false
           },
           {
@@ -9236,7 +10108,15 @@
             "named": false
           },
           {
+            "type": ">>",
+            "named": false
+          },
+          {
             "type": "?",
+            "named": false
+          },
+          {
+            "type": "^",
             "named": false
           },
           {
@@ -9422,6 +10302,10 @@
           {
             "type": "tuple_expression",
             "named": true
+          },
+          {
+            "type": "|",
+            "named": false
           },
           {
             "type": "~",
@@ -9543,6 +10427,10 @@
             "named": false
           },
           {
+            "type": "%=",
+            "named": false
+          },
+          {
             "type": "(",
             "named": false
           },
@@ -9555,11 +10443,19 @@
             "named": false
           },
           {
+            "type": "*=",
+            "named": false
+          },
+          {
             "type": "+",
             "named": false
           },
           {
             "type": "++",
+            "named": false
+          },
+          {
+            "type": "+=",
             "named": false
           },
           {
@@ -9575,7 +10471,15 @@
             "named": false
           },
           {
+            "type": "-=",
+            "named": false
+          },
+          {
             "type": "/",
+            "named": false
+          },
+          {
+            "type": "/=",
             "named": false
           },
           {
@@ -9587,7 +10491,15 @@
             "named": false
           },
           {
+            "type": "<<",
+            "named": false
+          },
+          {
             "type": "<=",
+            "named": false
+          },
+          {
+            "type": "=",
             "named": false
           },
           {
@@ -9607,7 +10519,15 @@
             "named": false
           },
           {
+            "type": ">>",
+            "named": false
+          },
+          {
             "type": "?",
+            "named": false
+          },
+          {
+            "type": "^",
             "named": false
           },
           {
@@ -9793,6 +10713,10 @@
           {
             "type": "tuple_expression",
             "named": true
+          },
+          {
+            "type": "|",
+            "named": false
           },
           {
             "type": "~",
@@ -9921,6 +10845,10 @@
             "named": false
           },
           {
+            "type": "%=",
+            "named": false
+          },
+          {
             "type": "(",
             "named": false
           },
@@ -9933,11 +10861,19 @@
             "named": false
           },
           {
+            "type": "*=",
+            "named": false
+          },
+          {
             "type": "+",
             "named": false
           },
           {
             "type": "++",
+            "named": false
+          },
+          {
+            "type": "+=",
             "named": false
           },
           {
@@ -9953,7 +10889,15 @@
             "named": false
           },
           {
+            "type": "-=",
+            "named": false
+          },
+          {
             "type": "/",
+            "named": false
+          },
+          {
+            "type": "/=",
             "named": false
           },
           {
@@ -9965,7 +10909,15 @@
             "named": false
           },
           {
+            "type": "<<",
+            "named": false
+          },
+          {
             "type": "<=",
+            "named": false
+          },
+          {
+            "type": "=",
             "named": false
           },
           {
@@ -9985,7 +10937,15 @@
             "named": false
           },
           {
+            "type": ">>",
+            "named": false
+          },
+          {
             "type": "?",
+            "named": false
+          },
+          {
+            "type": "^",
             "named": false
           },
           {
@@ -10173,6 +11133,10 @@
             "named": true
           },
           {
+            "type": "|",
+            "named": false
+          },
+          {
             "type": "~",
             "named": false
           }
@@ -10195,11 +11159,15 @@
             "named": false
           },
           {
-            "type": "&",
+            "type": "%=",
             "named": false
           },
           {
             "type": "*",
+            "named": false
+          },
+          {
+            "type": "*=",
             "named": false
           },
           {
@@ -10211,6 +11179,10 @@
             "named": false
           },
           {
+            "type": "+=",
+            "named": false
+          },
+          {
             "type": "-",
             "named": false
           },
@@ -10219,7 +11191,15 @@
             "named": false
           },
           {
+            "type": "-=",
+            "named": false
+          },
+          {
             "type": "/",
+            "named": false
+          },
+          {
+            "type": "/=",
             "named": false
           },
           {
@@ -10232,6 +11212,10 @@
           },
           {
             "type": "<=",
+            "named": false
+          },
+          {
+            "type": "=",
             "named": false
           },
           {
@@ -10675,6 +11659,10 @@
             "named": false
           },
           {
+            "type": "%=",
+            "named": false
+          },
+          {
             "type": "(",
             "named": false
           },
@@ -10687,11 +11675,19 @@
             "named": false
           },
           {
+            "type": "*=",
+            "named": false
+          },
+          {
             "type": "+",
             "named": false
           },
           {
             "type": "++",
+            "named": false
+          },
+          {
+            "type": "+=",
             "named": false
           },
           {
@@ -10707,6 +11703,10 @@
             "named": false
           },
           {
+            "type": "-=",
+            "named": false
+          },
+          {
             "type": ".",
             "named": false
           },
@@ -10715,11 +11715,19 @@
             "named": false
           },
           {
+            "type": "/=",
+            "named": false
+          },
+          {
             "type": ":",
             "named": false
           },
           {
             "type": "<",
+            "named": false
+          },
+          {
+            "type": "<<",
             "named": false
           },
           {
@@ -10747,7 +11755,15 @@
             "named": false
           },
           {
+            "type": ">>",
+            "named": false
+          },
+          {
             "type": "?",
+            "named": false
+          },
+          {
+            "type": "^",
             "named": false
           },
           {
@@ -11021,6 +12037,10 @@
           {
             "type": "wildcard_pattern",
             "named": true
+          },
+          {
+            "type": "|",
+            "named": false
           },
           {
             "type": "~",
@@ -11190,6 +12210,10 @@
             "named": false
           },
           {
+            "type": "%=",
+            "named": false
+          },
+          {
             "type": "(",
             "named": false
           },
@@ -11202,11 +12226,19 @@
             "named": false
           },
           {
+            "type": "*=",
+            "named": false
+          },
+          {
             "type": "+",
             "named": false
           },
           {
             "type": "++",
+            "named": false
+          },
+          {
+            "type": "+=",
             "named": false
           },
           {
@@ -11222,6 +12254,10 @@
             "named": false
           },
           {
+            "type": "-=",
+            "named": false
+          },
+          {
             "type": ".",
             "named": false
           },
@@ -11230,11 +12266,19 @@
             "named": false
           },
           {
+            "type": "/=",
+            "named": false
+          },
+          {
             "type": ":",
             "named": false
           },
           {
             "type": "<",
+            "named": false
+          },
+          {
+            "type": "<<",
             "named": false
           },
           {
@@ -11262,7 +12306,15 @@
             "named": false
           },
           {
+            "type": ">>",
+            "named": false
+          },
+          {
             "type": "?",
+            "named": false
+          },
+          {
+            "type": "^",
             "named": false
           },
           {
@@ -11538,6 +12590,10 @@
             "named": true
           },
           {
+            "type": "|",
+            "named": false
+          },
+          {
             "type": "~",
             "named": false
           }
@@ -11703,6 +12759,10 @@
             "named": false
           },
           {
+            "type": "%=",
+            "named": false
+          },
+          {
             "type": "(",
             "named": false
           },
@@ -11715,11 +12775,19 @@
             "named": false
           },
           {
+            "type": "*=",
+            "named": false
+          },
+          {
             "type": "+",
             "named": false
           },
           {
             "type": "++",
+            "named": false
+          },
+          {
+            "type": "+=",
             "named": false
           },
           {
@@ -11735,7 +12803,15 @@
             "named": false
           },
           {
+            "type": "-=",
+            "named": false
+          },
+          {
             "type": "/",
+            "named": false
+          },
+          {
+            "type": "/=",
             "named": false
           },
           {
@@ -11747,7 +12823,15 @@
             "named": false
           },
           {
+            "type": "<<",
+            "named": false
+          },
+          {
             "type": "<=",
+            "named": false
+          },
+          {
+            "type": "=",
             "named": false
           },
           {
@@ -11767,7 +12851,15 @@
             "named": false
           },
           {
+            "type": ">>",
+            "named": false
+          },
+          {
             "type": "?",
+            "named": false
+          },
+          {
+            "type": "^",
             "named": false
           },
           {
@@ -11953,6 +13045,10 @@
           {
             "type": "tuple_expression",
             "named": true
+          },
+          {
+            "type": "|",
+            "named": false
           },
           {
             "type": "~",
@@ -12027,6 +13123,10 @@
             "named": false
           },
           {
+            "type": "%=",
+            "named": false
+          },
+          {
             "type": "(",
             "named": false
           },
@@ -12039,11 +13139,19 @@
             "named": false
           },
           {
+            "type": "*=",
+            "named": false
+          },
+          {
             "type": "+",
             "named": false
           },
           {
             "type": "++",
+            "named": false
+          },
+          {
+            "type": "+=",
             "named": false
           },
           {
@@ -12059,7 +13167,15 @@
             "named": false
           },
           {
+            "type": "-=",
+            "named": false
+          },
+          {
             "type": "/",
+            "named": false
+          },
+          {
+            "type": "/=",
             "named": false
           },
           {
@@ -12071,7 +13187,15 @@
             "named": false
           },
           {
+            "type": "<<",
+            "named": false
+          },
+          {
             "type": "<=",
+            "named": false
+          },
+          {
+            "type": "=",
             "named": false
           },
           {
@@ -12091,7 +13215,15 @@
             "named": false
           },
           {
+            "type": ">>",
+            "named": false
+          },
+          {
             "type": "?",
+            "named": false
+          },
+          {
+            "type": "^",
             "named": false
           },
           {
@@ -12277,6 +13409,10 @@
           {
             "type": "tuple_expression",
             "named": true
+          },
+          {
+            "type": "|",
+            "named": false
           },
           {
             "type": "~",
@@ -12518,6 +13654,10 @@
             "named": false
           },
           {
+            "type": "%=",
+            "named": false
+          },
+          {
             "type": "(",
             "named": false
           },
@@ -12530,11 +13670,19 @@
             "named": false
           },
           {
+            "type": "*=",
+            "named": false
+          },
+          {
             "type": "+",
             "named": false
           },
           {
             "type": "++",
+            "named": false
+          },
+          {
+            "type": "+=",
             "named": false
           },
           {
@@ -12550,7 +13698,15 @@
             "named": false
           },
           {
+            "type": "-=",
+            "named": false
+          },
+          {
             "type": "/",
+            "named": false
+          },
+          {
+            "type": "/=",
             "named": false
           },
           {
@@ -12562,7 +13718,15 @@
             "named": false
           },
           {
+            "type": "<<",
+            "named": false
+          },
+          {
             "type": "<=",
+            "named": false
+          },
+          {
+            "type": "=",
             "named": false
           },
           {
@@ -12582,7 +13746,15 @@
             "named": false
           },
           {
+            "type": ">>",
+            "named": false
+          },
+          {
             "type": "?",
+            "named": false
+          },
+          {
+            "type": "^",
             "named": false
           },
           {
@@ -12768,6 +13940,10 @@
           {
             "type": "tuple_expression",
             "named": true
+          },
+          {
+            "type": "|",
+            "named": false
           },
           {
             "type": "~",
@@ -13583,6 +14759,10 @@
             "named": false
           },
           {
+            "type": "%=",
+            "named": false
+          },
+          {
             "type": "(",
             "named": false
           },
@@ -13595,11 +14775,19 @@
             "named": false
           },
           {
+            "type": "*=",
+            "named": false
+          },
+          {
             "type": "+",
             "named": false
           },
           {
             "type": "++",
+            "named": false
+          },
+          {
+            "type": "+=",
             "named": false
           },
           {
@@ -13615,7 +14803,15 @@
             "named": false
           },
           {
+            "type": "-=",
+            "named": false
+          },
+          {
             "type": "/",
+            "named": false
+          },
+          {
+            "type": "/=",
             "named": false
           },
           {
@@ -13627,7 +14823,15 @@
             "named": false
           },
           {
+            "type": "<<",
+            "named": false
+          },
+          {
             "type": "<=",
+            "named": false
+          },
+          {
+            "type": "=",
             "named": false
           },
           {
@@ -13647,7 +14851,15 @@
             "named": false
           },
           {
+            "type": ">>",
+            "named": false
+          },
+          {
             "type": "?",
+            "named": false
+          },
+          {
+            "type": "^",
             "named": false
           },
           {
@@ -13833,6 +15045,10 @@
           {
             "type": "tuple_expression",
             "named": true
+          },
+          {
+            "type": "|",
+            "named": false
           },
           {
             "type": "~",
@@ -13915,6 +15131,10 @@
             "named": false
           },
           {
+            "type": "%=",
+            "named": false
+          },
+          {
             "type": "(",
             "named": false
           },
@@ -13927,11 +15147,19 @@
             "named": false
           },
           {
+            "type": "*=",
+            "named": false
+          },
+          {
             "type": "+",
             "named": false
           },
           {
             "type": "++",
+            "named": false
+          },
+          {
+            "type": "+=",
             "named": false
           },
           {
@@ -13947,7 +15175,15 @@
             "named": false
           },
           {
+            "type": "-=",
+            "named": false
+          },
+          {
             "type": "/",
+            "named": false
+          },
+          {
+            "type": "/=",
             "named": false
           },
           {
@@ -13959,7 +15195,15 @@
             "named": false
           },
           {
+            "type": "<<",
+            "named": false
+          },
+          {
             "type": "<=",
+            "named": false
+          },
+          {
+            "type": "=",
             "named": false
           },
           {
@@ -13979,7 +15223,15 @@
             "named": false
           },
           {
+            "type": ">>",
+            "named": false
+          },
+          {
             "type": "?",
+            "named": false
+          },
+          {
+            "type": "^",
             "named": false
           },
           {
@@ -14165,6 +15417,10 @@
           {
             "type": "tuple_expression",
             "named": true
+          },
+          {
+            "type": "|",
+            "named": false
           },
           {
             "type": "~",
@@ -14250,6 +15506,10 @@
             "named": false
           },
           {
+            "type": "%=",
+            "named": false
+          },
+          {
             "type": "(",
             "named": false
           },
@@ -14262,11 +15522,19 @@
             "named": false
           },
           {
+            "type": "*=",
+            "named": false
+          },
+          {
             "type": "+",
             "named": false
           },
           {
             "type": "++",
+            "named": false
+          },
+          {
+            "type": "+=",
             "named": false
           },
           {
@@ -14282,7 +15550,15 @@
             "named": false
           },
           {
+            "type": "-=",
+            "named": false
+          },
+          {
             "type": "/",
+            "named": false
+          },
+          {
+            "type": "/=",
             "named": false
           },
           {
@@ -14294,7 +15570,15 @@
             "named": false
           },
           {
+            "type": "<<",
+            "named": false
+          },
+          {
             "type": "<=",
+            "named": false
+          },
+          {
+            "type": "=",
             "named": false
           },
           {
@@ -14314,7 +15598,15 @@
             "named": false
           },
           {
+            "type": ">>",
+            "named": false
+          },
+          {
             "type": "?",
+            "named": false
+          },
+          {
+            "type": "^",
             "named": false
           },
           {
@@ -14514,6 +15806,10 @@
             "named": true
           },
           {
+            "type": "|",
+            "named": false
+          },
+          {
             "type": "~",
             "named": false
           }
@@ -14602,6 +15898,10 @@
             "named": false
           },
           {
+            "type": "%=",
+            "named": false
+          },
+          {
             "type": "(",
             "named": false
           },
@@ -14614,11 +15914,19 @@
             "named": false
           },
           {
+            "type": "*=",
+            "named": false
+          },
+          {
             "type": "+",
             "named": false
           },
           {
             "type": "++",
+            "named": false
+          },
+          {
+            "type": "+=",
             "named": false
           },
           {
@@ -14634,7 +15942,15 @@
             "named": false
           },
           {
+            "type": "-=",
+            "named": false
+          },
+          {
             "type": "/",
+            "named": false
+          },
+          {
+            "type": "/=",
             "named": false
           },
           {
@@ -14646,7 +15962,15 @@
             "named": false
           },
           {
+            "type": "<<",
+            "named": false
+          },
+          {
             "type": "<=",
+            "named": false
+          },
+          {
+            "type": "=",
             "named": false
           },
           {
@@ -14666,7 +15990,15 @@
             "named": false
           },
           {
+            "type": ">>",
+            "named": false
+          },
+          {
             "type": "?",
+            "named": false
+          },
+          {
+            "type": "^",
             "named": false
           },
           {
@@ -14852,6 +16184,10 @@
           {
             "type": "tuple_expression",
             "named": true
+          },
+          {
+            "type": "|",
+            "named": false
           },
           {
             "type": "~",
@@ -14916,6 +16252,10 @@
             "named": false
           },
           {
+            "type": "%=",
+            "named": false
+          },
+          {
             "type": "(",
             "named": false
           },
@@ -14928,11 +16268,19 @@
             "named": false
           },
           {
+            "type": "*=",
+            "named": false
+          },
+          {
             "type": "+",
             "named": false
           },
           {
             "type": "++",
+            "named": false
+          },
+          {
+            "type": "+=",
             "named": false
           },
           {
@@ -14948,7 +16296,15 @@
             "named": false
           },
           {
+            "type": "-=",
+            "named": false
+          },
+          {
             "type": "/",
+            "named": false
+          },
+          {
+            "type": "/=",
             "named": false
           },
           {
@@ -14960,7 +16316,15 @@
             "named": false
           },
           {
+            "type": "<<",
+            "named": false
+          },
+          {
             "type": "<=",
+            "named": false
+          },
+          {
+            "type": "=",
             "named": false
           },
           {
@@ -14980,7 +16344,15 @@
             "named": false
           },
           {
+            "type": ">>",
+            "named": false
+          },
+          {
             "type": "?",
+            "named": false
+          },
+          {
+            "type": "^",
             "named": false
           },
           {
@@ -15166,6 +16538,10 @@
           {
             "type": "tuple_expression",
             "named": true
+          },
+          {
+            "type": "|",
+            "named": false
           },
           {
             "type": "~",
@@ -15287,6 +16663,10 @@
             "named": false
           },
           {
+            "type": "%=",
+            "named": false
+          },
+          {
             "type": "(",
             "named": false
           },
@@ -15299,11 +16679,19 @@
             "named": false
           },
           {
+            "type": "*=",
+            "named": false
+          },
+          {
             "type": "+",
             "named": false
           },
           {
             "type": "++",
+            "named": false
+          },
+          {
+            "type": "+=",
             "named": false
           },
           {
@@ -15319,7 +16707,15 @@
             "named": false
           },
           {
+            "type": "-=",
+            "named": false
+          },
+          {
             "type": "/",
+            "named": false
+          },
+          {
+            "type": "/=",
             "named": false
           },
           {
@@ -15331,7 +16727,15 @@
             "named": false
           },
           {
+            "type": "<<",
+            "named": false
+          },
+          {
             "type": "<=",
+            "named": false
+          },
+          {
+            "type": "=",
             "named": false
           },
           {
@@ -15351,7 +16755,15 @@
             "named": false
           },
           {
+            "type": ">>",
+            "named": false
+          },
+          {
             "type": "?",
+            "named": false
+          },
+          {
+            "type": "^",
             "named": false
           },
           {
@@ -15537,6 +16949,10 @@
           {
             "type": "tuple_expression",
             "named": true
+          },
+          {
+            "type": "|",
+            "named": false
           },
           {
             "type": "~",
@@ -15607,6 +17023,10 @@
             "named": false
           },
           {
+            "type": "%=",
+            "named": false
+          },
+          {
             "type": "(",
             "named": false
           },
@@ -15619,11 +17039,19 @@
             "named": false
           },
           {
+            "type": "*=",
+            "named": false
+          },
+          {
             "type": "+",
             "named": false
           },
           {
             "type": "++",
+            "named": false
+          },
+          {
+            "type": "+=",
             "named": false
           },
           {
@@ -15639,7 +17067,15 @@
             "named": false
           },
           {
+            "type": "-=",
+            "named": false
+          },
+          {
             "type": "/",
+            "named": false
+          },
+          {
+            "type": "/=",
             "named": false
           },
           {
@@ -15651,7 +17087,15 @@
             "named": false
           },
           {
+            "type": "<<",
+            "named": false
+          },
+          {
             "type": "<=",
+            "named": false
+          },
+          {
+            "type": "=",
             "named": false
           },
           {
@@ -15671,7 +17115,15 @@
             "named": false
           },
           {
+            "type": ">>",
+            "named": false
+          },
+          {
             "type": "?",
+            "named": false
+          },
+          {
+            "type": "^",
             "named": false
           },
           {
@@ -15859,6 +17311,10 @@
             "named": true
           },
           {
+            "type": "|",
+            "named": false
+          },
+          {
             "type": "~",
             "named": false
           }
@@ -15872,8 +17328,12 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
+        {
+          "type": "bang",
+          "named": true
+        },
         {
           "type": "custom_operator",
           "named": true
@@ -16429,6 +17889,10 @@
             "named": false
           },
           {
+            "type": "%=",
+            "named": false
+          },
+          {
             "type": "(",
             "named": false
           },
@@ -16441,11 +17905,19 @@
             "named": false
           },
           {
+            "type": "*=",
+            "named": false
+          },
+          {
             "type": "+",
             "named": false
           },
           {
             "type": "++",
+            "named": false
+          },
+          {
+            "type": "+=",
             "named": false
           },
           {
@@ -16461,7 +17933,15 @@
             "named": false
           },
           {
+            "type": "-=",
+            "named": false
+          },
+          {
             "type": "/",
+            "named": false
+          },
+          {
+            "type": "/=",
             "named": false
           },
           {
@@ -16473,7 +17953,15 @@
             "named": false
           },
           {
+            "type": "<<",
+            "named": false
+          },
+          {
             "type": "<=",
+            "named": false
+          },
+          {
+            "type": "=",
             "named": false
           },
           {
@@ -16493,7 +17981,15 @@
             "named": false
           },
           {
+            "type": ">>",
+            "named": false
+          },
+          {
             "type": "?",
+            "named": false
+          },
+          {
+            "type": "^",
             "named": false
           },
           {
@@ -16679,6 +18175,10 @@
           {
             "type": "tuple_expression",
             "named": true
+          },
+          {
+            "type": "|",
+            "named": false
           },
           {
             "type": "~",
@@ -16844,6 +18344,10 @@
             "named": false
           },
           {
+            "type": "%=",
+            "named": false
+          },
+          {
             "type": "(",
             "named": false
           },
@@ -16856,11 +18360,19 @@
             "named": false
           },
           {
+            "type": "*=",
+            "named": false
+          },
+          {
             "type": "+",
             "named": false
           },
           {
             "type": "++",
+            "named": false
+          },
+          {
+            "type": "+=",
             "named": false
           },
           {
@@ -16876,7 +18388,15 @@
             "named": false
           },
           {
+            "type": "-=",
+            "named": false
+          },
+          {
             "type": "/",
+            "named": false
+          },
+          {
+            "type": "/=",
             "named": false
           },
           {
@@ -16888,7 +18408,15 @@
             "named": false
           },
           {
+            "type": "<<",
+            "named": false
+          },
+          {
             "type": "<=",
+            "named": false
+          },
+          {
+            "type": "=",
             "named": false
           },
           {
@@ -16908,7 +18436,15 @@
             "named": false
           },
           {
+            "type": ">>",
+            "named": false
+          },
+          {
             "type": "?",
+            "named": false
+          },
+          {
+            "type": "^",
             "named": false
           },
           {
@@ -17094,6 +18630,10 @@
           {
             "type": "tuple_expression",
             "named": true
+          },
+          {
+            "type": "|",
+            "named": false
           },
           {
             "type": "~",
@@ -17198,6 +18738,10 @@
             "named": false
           },
           {
+            "type": "%=",
+            "named": false
+          },
+          {
             "type": "(",
             "named": false
           },
@@ -17210,11 +18754,19 @@
             "named": false
           },
           {
+            "type": "*=",
+            "named": false
+          },
+          {
             "type": "+",
             "named": false
           },
           {
             "type": "++",
+            "named": false
+          },
+          {
+            "type": "+=",
             "named": false
           },
           {
@@ -17230,7 +18782,15 @@
             "named": false
           },
           {
+            "type": "-=",
+            "named": false
+          },
+          {
             "type": "/",
+            "named": false
+          },
+          {
+            "type": "/=",
             "named": false
           },
           {
@@ -17242,7 +18802,15 @@
             "named": false
           },
           {
+            "type": "<<",
+            "named": false
+          },
+          {
             "type": "<=",
+            "named": false
+          },
+          {
+            "type": "=",
             "named": false
           },
           {
@@ -17262,7 +18830,15 @@
             "named": false
           },
           {
+            "type": ">>",
+            "named": false
+          },
+          {
             "type": "?",
+            "named": false
+          },
+          {
+            "type": "^",
             "named": false
           },
           {
@@ -17448,6 +19024,10 @@
           {
             "type": "tuple_expression",
             "named": true
+          },
+          {
+            "type": "|",
+            "named": false
           },
           {
             "type": "~",
@@ -17712,6 +19292,10 @@
             "named": false
           },
           {
+            "type": "%=",
+            "named": false
+          },
+          {
             "type": "(",
             "named": false
           },
@@ -17724,11 +19308,19 @@
             "named": false
           },
           {
+            "type": "*=",
+            "named": false
+          },
+          {
             "type": "+",
             "named": false
           },
           {
             "type": "++",
+            "named": false
+          },
+          {
+            "type": "+=",
             "named": false
           },
           {
@@ -17744,7 +19336,15 @@
             "named": false
           },
           {
+            "type": "-=",
+            "named": false
+          },
+          {
             "type": "/",
+            "named": false
+          },
+          {
+            "type": "/=",
             "named": false
           },
           {
@@ -17756,7 +19356,15 @@
             "named": false
           },
           {
+            "type": "<<",
+            "named": false
+          },
+          {
             "type": "<=",
+            "named": false
+          },
+          {
+            "type": "=",
             "named": false
           },
           {
@@ -17776,7 +19384,15 @@
             "named": false
           },
           {
+            "type": ">>",
+            "named": false
+          },
+          {
             "type": "?",
+            "named": false
+          },
+          {
+            "type": "^",
             "named": false
           },
           {
@@ -17964,6 +19580,10 @@
             "named": true
           },
           {
+            "type": "|",
+            "named": false
+          },
+          {
             "type": "~",
             "named": false
           }
@@ -17986,11 +19606,15 @@
             "named": false
           },
           {
-            "type": "&",
+            "type": "%=",
             "named": false
           },
           {
             "type": "*",
+            "named": false
+          },
+          {
+            "type": "*=",
             "named": false
           },
           {
@@ -18002,6 +19626,10 @@
             "named": false
           },
           {
+            "type": "+=",
+            "named": false
+          },
+          {
             "type": "-",
             "named": false
           },
@@ -18010,7 +19638,15 @@
             "named": false
           },
           {
+            "type": "-=",
+            "named": false
+          },
+          {
             "type": "/",
+            "named": false
+          },
+          {
+            "type": "/=",
             "named": false
           },
           {
@@ -18023,6 +19659,10 @@
           },
           {
             "type": "<=",
+            "named": false
+          },
+          {
+            "type": "=",
             "named": false
           },
           {
@@ -18327,6 +19967,10 @@
             "named": false
           },
           {
+            "type": "%=",
+            "named": false
+          },
+          {
             "type": "(",
             "named": false
           },
@@ -18339,11 +19983,19 @@
             "named": false
           },
           {
+            "type": "*=",
+            "named": false
+          },
+          {
             "type": "+",
             "named": false
           },
           {
             "type": "++",
+            "named": false
+          },
+          {
+            "type": "+=",
             "named": false
           },
           {
@@ -18359,7 +20011,15 @@
             "named": false
           },
           {
+            "type": "-=",
+            "named": false
+          },
+          {
             "type": "/",
+            "named": false
+          },
+          {
+            "type": "/=",
             "named": false
           },
           {
@@ -18371,7 +20031,15 @@
             "named": false
           },
           {
+            "type": "<<",
+            "named": false
+          },
+          {
             "type": "<=",
+            "named": false
+          },
+          {
+            "type": "=",
             "named": false
           },
           {
@@ -18391,7 +20059,15 @@
             "named": false
           },
           {
+            "type": ">>",
+            "named": false
+          },
+          {
             "type": "?",
+            "named": false
+          },
+          {
+            "type": "^",
             "named": false
           },
           {
@@ -18577,6 +20253,10 @@
           {
             "type": "tuple_expression",
             "named": true
+          },
+          {
+            "type": "|",
+            "named": false
           },
           {
             "type": "~",
@@ -18655,6 +20335,10 @@
             "named": false
           },
           {
+            "type": "%=",
+            "named": false
+          },
+          {
             "type": "(",
             "named": false
           },
@@ -18667,11 +20351,19 @@
             "named": false
           },
           {
+            "type": "*=",
+            "named": false
+          },
+          {
             "type": "+",
             "named": false
           },
           {
             "type": "++",
+            "named": false
+          },
+          {
+            "type": "+=",
             "named": false
           },
           {
@@ -18687,7 +20379,15 @@
             "named": false
           },
           {
+            "type": "-=",
+            "named": false
+          },
+          {
             "type": "/",
+            "named": false
+          },
+          {
+            "type": "/=",
             "named": false
           },
           {
@@ -18699,7 +20399,15 @@
             "named": false
           },
           {
+            "type": "<<",
+            "named": false
+          },
+          {
             "type": "<=",
+            "named": false
+          },
+          {
+            "type": "=",
             "named": false
           },
           {
@@ -18719,7 +20427,15 @@
             "named": false
           },
           {
+            "type": ">>",
+            "named": false
+          },
+          {
             "type": "?",
+            "named": false
+          },
+          {
+            "type": "^",
             "named": false
           },
           {
@@ -18905,6 +20621,10 @@
           {
             "type": "tuple_expression",
             "named": true
+          },
+          {
+            "type": "|",
+            "named": false
           },
           {
             "type": "~",
@@ -19051,6 +20771,10 @@
             "named": false
           },
           {
+            "type": "%=",
+            "named": false
+          },
+          {
             "type": "(",
             "named": false
           },
@@ -19063,11 +20787,19 @@
             "named": false
           },
           {
+            "type": "*=",
+            "named": false
+          },
+          {
             "type": "+",
             "named": false
           },
           {
             "type": "++",
+            "named": false
+          },
+          {
+            "type": "+=",
             "named": false
           },
           {
@@ -19083,6 +20815,10 @@
             "named": false
           },
           {
+            "type": "-=",
+            "named": false
+          },
+          {
             "type": ".",
             "named": false
           },
@@ -19091,11 +20827,19 @@
             "named": false
           },
           {
+            "type": "/=",
+            "named": false
+          },
+          {
             "type": ":",
             "named": false
           },
           {
             "type": "<",
+            "named": false
+          },
+          {
+            "type": "<<",
             "named": false
           },
           {
@@ -19123,7 +20867,15 @@
             "named": false
           },
           {
+            "type": ">>",
+            "named": false
+          },
+          {
             "type": "?",
+            "named": false
+          },
+          {
+            "type": "^",
             "named": false
           },
           {
@@ -19397,6 +21149,10 @@
           {
             "type": "wildcard_pattern",
             "named": true
+          },
+          {
+            "type": "|",
+            "named": false
           },
           {
             "type": "~",
@@ -20273,6 +22029,10 @@
             "named": false
           },
           {
+            "type": "%=",
+            "named": false
+          },
+          {
             "type": "(",
             "named": false
           },
@@ -20285,11 +22045,19 @@
             "named": false
           },
           {
+            "type": "*=",
+            "named": false
+          },
+          {
             "type": "+",
             "named": false
           },
           {
             "type": "++",
+            "named": false
+          },
+          {
+            "type": "+=",
             "named": false
           },
           {
@@ -20305,7 +22073,15 @@
             "named": false
           },
           {
+            "type": "-=",
+            "named": false
+          },
+          {
             "type": "/",
+            "named": false
+          },
+          {
+            "type": "/=",
             "named": false
           },
           {
@@ -20317,7 +22093,15 @@
             "named": false
           },
           {
+            "type": "<<",
+            "named": false
+          },
+          {
             "type": "<=",
+            "named": false
+          },
+          {
+            "type": "=",
             "named": false
           },
           {
@@ -20337,7 +22121,15 @@
             "named": false
           },
           {
+            "type": ">>",
+            "named": false
+          },
+          {
             "type": "?",
+            "named": false
+          },
+          {
+            "type": "^",
             "named": false
           },
           {
@@ -20523,6 +22315,10 @@
           {
             "type": "tuple_expression",
             "named": true
+          },
+          {
+            "type": "|",
+            "named": false
           },
           {
             "type": "~",
@@ -20954,6 +22750,10 @@
             "named": false
           },
           {
+            "type": "%=",
+            "named": false
+          },
+          {
             "type": "(",
             "named": false
           },
@@ -20966,11 +22766,19 @@
             "named": false
           },
           {
+            "type": "*=",
+            "named": false
+          },
+          {
             "type": "+",
             "named": false
           },
           {
             "type": "++",
+            "named": false
+          },
+          {
+            "type": "+=",
             "named": false
           },
           {
@@ -20986,7 +22794,15 @@
             "named": false
           },
           {
+            "type": "-=",
+            "named": false
+          },
+          {
             "type": "/",
+            "named": false
+          },
+          {
+            "type": "/=",
             "named": false
           },
           {
@@ -20998,7 +22814,15 @@
             "named": false
           },
           {
+            "type": "<<",
+            "named": false
+          },
+          {
             "type": "<=",
+            "named": false
+          },
+          {
+            "type": "=",
             "named": false
           },
           {
@@ -21018,7 +22842,15 @@
             "named": false
           },
           {
+            "type": ">>",
+            "named": false
+          },
+          {
             "type": "?",
+            "named": false
+          },
+          {
+            "type": "^",
             "named": false
           },
           {
@@ -21204,6 +23036,10 @@
           {
             "type": "tuple_expression",
             "named": true
+          },
+          {
+            "type": "|",
+            "named": false
           },
           {
             "type": "~",
@@ -21284,6 +23120,10 @@
             "named": false
           },
           {
+            "type": "%=",
+            "named": false
+          },
+          {
             "type": "(",
             "named": false
           },
@@ -21296,11 +23136,19 @@
             "named": false
           },
           {
+            "type": "*=",
+            "named": false
+          },
+          {
             "type": "+",
             "named": false
           },
           {
             "type": "++",
+            "named": false
+          },
+          {
+            "type": "+=",
             "named": false
           },
           {
@@ -21316,7 +23164,15 @@
             "named": false
           },
           {
+            "type": "-=",
+            "named": false
+          },
+          {
             "type": "/",
+            "named": false
+          },
+          {
+            "type": "/=",
             "named": false
           },
           {
@@ -21328,7 +23184,15 @@
             "named": false
           },
           {
+            "type": "<<",
+            "named": false
+          },
+          {
             "type": "<=",
+            "named": false
+          },
+          {
+            "type": "=",
             "named": false
           },
           {
@@ -21348,7 +23212,15 @@
             "named": false
           },
           {
+            "type": ">>",
+            "named": false
+          },
+          {
             "type": "?",
+            "named": false
+          },
+          {
+            "type": "^",
             "named": false
           },
           {
@@ -21534,6 +23406,10 @@
           {
             "type": "tuple_expression",
             "named": true
+          },
+          {
+            "type": "|",
+            "named": false
           },
           {
             "type": "~",
@@ -21598,6 +23474,10 @@
             "named": false
           },
           {
+            "type": "%=",
+            "named": false
+          },
+          {
             "type": "(",
             "named": false
           },
@@ -21610,11 +23490,19 @@
             "named": false
           },
           {
+            "type": "*=",
+            "named": false
+          },
+          {
             "type": "+",
             "named": false
           },
           {
             "type": "++",
+            "named": false
+          },
+          {
+            "type": "+=",
             "named": false
           },
           {
@@ -21630,7 +23518,15 @@
             "named": false
           },
           {
+            "type": "-=",
+            "named": false
+          },
+          {
             "type": "/",
+            "named": false
+          },
+          {
+            "type": "/=",
             "named": false
           },
           {
@@ -21642,7 +23538,15 @@
             "named": false
           },
           {
+            "type": "<<",
+            "named": false
+          },
+          {
             "type": "<=",
+            "named": false
+          },
+          {
+            "type": "=",
             "named": false
           },
           {
@@ -21662,7 +23566,15 @@
             "named": false
           },
           {
+            "type": ">>",
+            "named": false
+          },
+          {
             "type": "?",
+            "named": false
+          },
+          {
+            "type": "^",
             "named": false
           },
           {
@@ -21848,6 +23760,10 @@
           {
             "type": "tuple_expression",
             "named": true
+          },
+          {
+            "type": "|",
+            "named": false
           },
           {
             "type": "~",
@@ -21912,6 +23828,10 @@
             "named": false
           },
           {
+            "type": "%=",
+            "named": false
+          },
+          {
             "type": "(",
             "named": false
           },
@@ -21924,11 +23844,19 @@
             "named": false
           },
           {
+            "type": "*=",
+            "named": false
+          },
+          {
             "type": "+",
             "named": false
           },
           {
             "type": "++",
+            "named": false
+          },
+          {
+            "type": "+=",
             "named": false
           },
           {
@@ -21944,7 +23872,15 @@
             "named": false
           },
           {
+            "type": "-=",
+            "named": false
+          },
+          {
             "type": "/",
+            "named": false
+          },
+          {
+            "type": "/=",
             "named": false
           },
           {
@@ -21956,7 +23892,15 @@
             "named": false
           },
           {
+            "type": "<<",
+            "named": false
+          },
+          {
             "type": "<=",
+            "named": false
+          },
+          {
+            "type": "=",
             "named": false
           },
           {
@@ -21976,7 +23920,15 @@
             "named": false
           },
           {
+            "type": ">>",
+            "named": false
+          },
+          {
             "type": "?",
+            "named": false
+          },
+          {
+            "type": "^",
             "named": false
           },
           {
@@ -22162,6 +24114,10 @@
           {
             "type": "tuple_expression",
             "named": true
+          },
+          {
+            "type": "|",
+            "named": false
           },
           {
             "type": "~",
@@ -22237,6 +24193,10 @@
             "named": false
           },
           {
+            "type": "%=",
+            "named": false
+          },
+          {
             "type": "(",
             "named": false
           },
@@ -22249,11 +24209,19 @@
             "named": false
           },
           {
+            "type": "*=",
+            "named": false
+          },
+          {
             "type": "+",
             "named": false
           },
           {
             "type": "++",
+            "named": false
+          },
+          {
+            "type": "+=",
             "named": false
           },
           {
@@ -22269,7 +24237,15 @@
             "named": false
           },
           {
+            "type": "-=",
+            "named": false
+          },
+          {
             "type": "/",
+            "named": false
+          },
+          {
+            "type": "/=",
             "named": false
           },
           {
@@ -22281,7 +24257,15 @@
             "named": false
           },
           {
+            "type": "<<",
+            "named": false
+          },
+          {
             "type": "<=",
+            "named": false
+          },
+          {
+            "type": "=",
             "named": false
           },
           {
@@ -22301,7 +24285,15 @@
             "named": false
           },
           {
+            "type": ">>",
+            "named": false
+          },
+          {
             "type": "?",
+            "named": false
+          },
+          {
+            "type": "^",
             "named": false
           },
           {
@@ -22487,6 +24479,10 @@
           {
             "type": "tuple_expression",
             "named": true
+          },
+          {
+            "type": "|",
+            "named": false
           },
           {
             "type": "~",
@@ -22567,6 +24563,10 @@
             "named": false
           },
           {
+            "type": "%=",
+            "named": false
+          },
+          {
             "type": "(",
             "named": false
           },
@@ -22579,11 +24579,19 @@
             "named": false
           },
           {
+            "type": "*=",
+            "named": false
+          },
+          {
             "type": "+",
             "named": false
           },
           {
             "type": "++",
+            "named": false
+          },
+          {
+            "type": "+=",
             "named": false
           },
           {
@@ -22599,7 +24607,15 @@
             "named": false
           },
           {
+            "type": "-=",
+            "named": false
+          },
+          {
             "type": "/",
+            "named": false
+          },
+          {
+            "type": "/=",
             "named": false
           },
           {
@@ -22611,7 +24627,15 @@
             "named": false
           },
           {
+            "type": "<<",
+            "named": false
+          },
+          {
             "type": "<=",
+            "named": false
+          },
+          {
+            "type": "=",
             "named": false
           },
           {
@@ -22631,7 +24655,15 @@
             "named": false
           },
           {
+            "type": ">>",
+            "named": false
+          },
+          {
             "type": "?",
+            "named": false
+          },
+          {
+            "type": "^",
             "named": false
           },
           {
@@ -22817,6 +24849,10 @@
           {
             "type": "tuple_expression",
             "named": true
+          },
+          {
+            "type": "|",
+            "named": false
           },
           {
             "type": "~",
@@ -23524,6 +25560,10 @@
             "named": false
           },
           {
+            "type": "%=",
+            "named": false
+          },
+          {
             "type": "(",
             "named": false
           },
@@ -23536,11 +25576,19 @@
             "named": false
           },
           {
+            "type": "*=",
+            "named": false
+          },
+          {
             "type": "+",
             "named": false
           },
           {
             "type": "++",
+            "named": false
+          },
+          {
+            "type": "+=",
             "named": false
           },
           {
@@ -23556,7 +25604,15 @@
             "named": false
           },
           {
+            "type": "-=",
+            "named": false
+          },
+          {
             "type": "/",
+            "named": false
+          },
+          {
+            "type": "/=",
             "named": false
           },
           {
@@ -23568,7 +25624,15 @@
             "named": false
           },
           {
+            "type": "<<",
+            "named": false
+          },
+          {
             "type": "<=",
+            "named": false
+          },
+          {
+            "type": "=",
             "named": false
           },
           {
@@ -23588,7 +25652,15 @@
             "named": false
           },
           {
+            "type": ">>",
+            "named": false
+          },
+          {
             "type": "?",
+            "named": false
+          },
+          {
+            "type": "^",
             "named": false
           },
           {
@@ -23774,6 +25846,10 @@
           {
             "type": "tuple_expression",
             "named": true
+          },
+          {
+            "type": "|",
+            "named": false
           },
           {
             "type": "~",
@@ -24079,6 +26155,10 @@
             "named": false
           },
           {
+            "type": "%=",
+            "named": false
+          },
+          {
             "type": "(",
             "named": false
           },
@@ -24091,11 +26171,19 @@
             "named": false
           },
           {
+            "type": "*=",
+            "named": false
+          },
+          {
             "type": "+",
             "named": false
           },
           {
             "type": "++",
+            "named": false
+          },
+          {
+            "type": "+=",
             "named": false
           },
           {
@@ -24111,6 +26199,10 @@
             "named": false
           },
           {
+            "type": "-=",
+            "named": false
+          },
+          {
             "type": ".",
             "named": false
           },
@@ -24119,11 +26211,19 @@
             "named": false
           },
           {
+            "type": "/=",
+            "named": false
+          },
+          {
             "type": ":",
             "named": false
           },
           {
             "type": "<",
+            "named": false
+          },
+          {
+            "type": "<<",
             "named": false
           },
           {
@@ -24151,7 +26251,15 @@
             "named": false
           },
           {
+            "type": ">>",
+            "named": false
+          },
+          {
             "type": "?",
+            "named": false
+          },
+          {
+            "type": "^",
             "named": false
           },
           {
@@ -24425,6 +26533,10 @@
           {
             "type": "wildcard_pattern",
             "named": true
+          },
+          {
+            "type": "|",
+            "named": false
           },
           {
             "type": "~",
@@ -24754,6 +26866,10 @@
   },
   {
     "type": "^",
+    "named": false
+  },
+  {
+    "type": "^{",
     "named": false
   },
   {
