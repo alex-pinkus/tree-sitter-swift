@@ -75,18 +75,16 @@ level of support, but having the test case makes it more likely that I want to t
 To use tree-sitter-swift as a language for the web bindings version  tree-sitter, which will likely be a more modern version than the published node
 module. [see](https://github.com/tree-sitter/tree-sitter/blob/master/lib/binding_web/README.md). Follow the instructions below
 
-1. Download tree-sitter.js and tree-sitter.asm from [relases](https://github.com/tree-sitter/tree-sitter/releases).
-2. install the node module `npm install tree-sitter-swift`
-3. Run the tree-sitter cli to create the wasm bundle
+1. Install the node modules `npm install web-tree-sitter tree-sitter-swift`
+2. Run the tree-sitter cli to create the wasm bundle
     ```sh
     $ npx tree-sitter build-asm ./node_modules/tree-sitter 
     ```
-4. Boot tree-sitter wasm like this.
+3. Boot tree-sitter wasm like this.
 
 ```js
 
-const Parser = require("./tree-sitter.js");
-
+const Parser = require("web-tree-sitter");
 async function run(){
     //needs to happen first 
     await Parser.init();
@@ -99,7 +97,7 @@ async function run(){
     //Parse your swift code here.
     const tree = parser.parse('print("Hello, World!")')
 }
-
+//if you want to run this
 run().then(console.log, console.error);
 
 
