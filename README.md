@@ -71,6 +71,40 @@ started this parser to teach myself how `tree-sitter` works, and how to write a 
 you have an issue with the parser, please file a bug and include a test case to put in the `corpus`. I can't promise any
 level of support, but having the test case makes it more likely that I want to tinker with it.
 
+## Using tree-sitter-swift in Web Assembly 
+To use tree-sitter-swift as a language for the web bindings version  tree-sitter, which will likely be a more modern version than the published node
+module. [see](https://github.com/tree-sitter/tree-sitter/blob/master/lib/binding_web/README.md). Follow the instructions below
+
+1. Download tree-sitter.js and tree-sitter.asm from [relases](https://github.com/tree-sitter/tree-sitter/releases).
+2. install the node module `npm install tree-sitter-swift`
+3. Run the tree-sitter cli to create the wasm bundle
+    ```sh
+    $ npx tree-sitter build-asm ./node_modules/tree-sitter 
+    ```
+4. Boot tree-sitter wasm like this.
+
+```js
+
+const Parser = require("./tree-sitter.js");
+
+async function run(){
+    //needs to happen first 
+    await Parser.init();
+    //wait for the load of swift
+    const Swift = await Parser.Language.load('./tree-sitter-swift.wasm');
+
+    const parser = new Parser();
+    parser.setLanguage(Swift);
+
+    //Parse your swift code here.
+    const tree = parser.parse('print("Hello, World!")')
+}
+
+run().then(console.log, console.error);
+
+
+```
+
 ## Frequently asked questions
 
 ### Where is your `parser.c`?
