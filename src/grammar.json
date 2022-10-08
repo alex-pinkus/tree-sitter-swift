@@ -203,6 +203,10 @@
           "name": "_string_literal"
         },
         {
+          "type": "SYMBOL",
+          "name": "regex_literal"
+        },
+        {
           "type": "STRING",
           "value": "nil"
         }
@@ -911,6 +915,70 @@
     "multi_line_str_text": {
       "type": "PATTERN",
       "value": "[^\\\\\"]+"
+    },
+    "regex_literal": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_extended_regex_literal"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_multiline_regex_literal"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_oneline_regex_literal"
+        }
+      ]
+    },
+    "_extended_regex_literal": {
+      "type": "PATTERN",
+      "value": "#\\/((\\/[^#])|[^\\n])+\\/#"
+    },
+    "_multiline_regex_literal": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "PATTERN",
+          "value": "#\\/\\n"
+        },
+        {
+          "type": "PATTERN",
+          "value": "(\\/[^#]|[^/])*?\\n\\/#"
+        }
+      ]
+    },
+    "_oneline_regex_literal": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": -4,
+        "content": {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "/"
+            },
+            {
+              "type": "IMMEDIATE_TOKEN",
+              "content": {
+                "type": "PATTERN",
+                "value": "[^ \\t\\n]?[^/\\n]*[^ \\t\\n/]"
+              }
+            },
+            {
+              "type": "IMMEDIATE_TOKEN",
+              "content": {
+                "type": "STRING",
+                "value": "/"
+              }
+            }
+          ]
+        }
+      }
     },
     "type_annotation": {
       "type": "SEQ",
@@ -4539,7 +4607,19 @@
           "value": "*"
         },
         {
-          "type": "STRING",
+          "type": "ALIAS",
+          "content": {
+            "type": "TOKEN",
+            "content": {
+              "type": "PREC",
+              "value": -4,
+              "content": {
+                "type": "STRING",
+                "value": "/"
+              }
+            }
+          },
+          "named": false,
           "value": "/"
         },
         {

@@ -320,6 +320,10 @@
             "named": true
           },
           {
+            "type": "regex_literal",
+            "named": true
+          },
+          {
             "type": "selector_expression",
             "named": true
           },
@@ -688,6 +692,10 @@
             "named": true
           },
           {
+            "type": "regex_literal",
+            "named": true
+          },
+          {
             "type": "selector_expression",
             "named": true
           },
@@ -1045,6 +1053,10 @@
           },
           {
             "type": "real_literal",
+            "named": true
+          },
+          {
+            "type": "regex_literal",
             "named": true
           },
           {
@@ -1507,6 +1519,10 @@
           },
           {
             "type": "real_literal",
+            "named": true
+          },
+          {
+            "type": "regex_literal",
             "named": true
           },
           {
@@ -2011,6 +2027,10 @@
             "named": true
           },
           {
+            "type": "regex_literal",
+            "named": true
+          },
+          {
             "type": "selector_expression",
             "named": true
           },
@@ -2391,6 +2411,10 @@
           "named": true
         },
         {
+          "type": "regex_literal",
+          "named": true
+        },
+        {
           "type": "selector_expression",
           "named": true
         },
@@ -2765,6 +2789,10 @@
             "named": true
           },
           {
+            "type": "regex_literal",
+            "named": true
+          },
+          {
             "type": "selector_expression",
             "named": true
           },
@@ -3122,6 +3150,10 @@
           },
           {
             "type": "real_literal",
+            "named": true
+          },
+          {
+            "type": "regex_literal",
             "named": true
           },
           {
@@ -3505,6 +3537,10 @@
             "named": true
           },
           {
+            "type": "regex_literal",
+            "named": true
+          },
+          {
             "type": "selector_expression",
             "named": true
           },
@@ -3711,6 +3747,10 @@
         },
         {
           "type": "real_literal",
+          "named": true
+        },
+        {
+          "type": "regex_literal",
           "named": true
         },
         {
@@ -4121,6 +4161,10 @@
           },
           {
             "type": "real_literal",
+            "named": true
+          },
+          {
+            "type": "regex_literal",
             "named": true
           },
           {
@@ -4581,6 +4625,10 @@
           },
           {
             "type": "real_literal",
+            "named": true
+          },
+          {
+            "type": "regex_literal",
             "named": true
           },
           {
@@ -5183,6 +5231,10 @@
             "named": true
           },
           {
+            "type": "regex_literal",
+            "named": true
+          },
+          {
             "type": "selector_expression",
             "named": true
           },
@@ -5556,6 +5608,10 @@
           },
           {
             "type": "real_literal",
+            "named": true
+          },
+          {
+            "type": "regex_literal",
             "named": true
           },
           {
@@ -6019,6 +6075,10 @@
             "named": true
           },
           {
+            "type": "regex_literal",
+            "named": true
+          },
+          {
             "type": "selector_expression",
             "named": true
           },
@@ -6380,6 +6440,10 @@
           },
           {
             "type": "real_literal",
+            "named": true
+          },
+          {
+            "type": "regex_literal",
             "named": true
           },
           {
@@ -6807,6 +6871,10 @@
             "named": true
           },
           {
+            "type": "regex_literal",
+            "named": true
+          },
+          {
             "type": "selector_expression",
             "named": true
           },
@@ -7002,6 +7070,10 @@
           "named": true
         },
         {
+          "type": "regex_literal",
+          "named": true
+        },
+        {
           "type": "selector_expression",
           "named": true
         },
@@ -7109,6 +7181,10 @@
         },
         {
           "type": "real_literal",
+          "named": true
+        },
+        {
+          "type": "regex_literal",
           "named": true
         },
         {
@@ -7436,6 +7512,10 @@
           },
           {
             "type": "real_literal",
+            "named": true
+          },
+          {
+            "type": "regex_literal",
             "named": true
           },
           {
@@ -7790,6 +7870,10 @@
           },
           {
             "type": "real_literal",
+            "named": true
+          },
+          {
+            "type": "regex_literal",
             "named": true
           },
           {
@@ -8340,6 +8424,10 @@
             "named": true
           },
           {
+            "type": "regex_literal",
+            "named": true
+          },
+          {
             "type": "selector_expression",
             "named": true
           },
@@ -8701,6 +8789,10 @@
           },
           {
             "type": "real_literal",
+            "named": true
+          },
+          {
+            "type": "regex_literal",
             "named": true
           },
           {
@@ -9162,6 +9254,10 @@
             "named": true
           },
           {
+            "type": "regex_literal",
+            "named": true
+          },
+          {
             "type": "selector_expression",
             "named": true
           },
@@ -9416,6 +9512,10 @@
         },
         {
           "type": "real_literal",
+          "named": true
+        },
+        {
+          "type": "regex_literal",
           "named": true
         },
         {
@@ -9900,6 +10000,10 @@
             "named": true
           },
           {
+            "type": "regex_literal",
+            "named": true
+          },
+          {
             "type": "selector_expression",
             "named": true
           },
@@ -10273,6 +10377,10 @@
           },
           {
             "type": "real_literal",
+            "named": true
+          },
+          {
+            "type": "regex_literal",
             "named": true
           },
           {
@@ -10684,6 +10792,10 @@
           },
           {
             "type": "real_literal",
+            "named": true
+          },
+          {
+            "type": "regex_literal",
             "named": true
           },
           {
@@ -11102,6 +11214,10 @@
           },
           {
             "type": "real_literal",
+            "named": true
+          },
+          {
+            "type": "regex_literal",
             "named": true
           },
           {
@@ -11983,6 +12099,10 @@
             "named": true
           },
           {
+            "type": "regex_literal",
+            "named": true
+          },
+          {
             "type": "selector_expression",
             "named": true
           },
@@ -12534,6 +12654,10 @@
             "named": true
           },
           {
+            "type": "regex_literal",
+            "named": true
+          },
+          {
             "type": "selector_expression",
             "named": true
           },
@@ -13019,6 +13143,10 @@
             "named": true
           },
           {
+            "type": "regex_literal",
+            "named": true
+          },
+          {
             "type": "selector_expression",
             "named": true
           },
@@ -13380,6 +13508,10 @@
           },
           {
             "type": "real_literal",
+            "named": true
+          },
+          {
+            "type": "regex_literal",
             "named": true
           },
           {
@@ -13914,6 +14046,10 @@
             "named": true
           },
           {
+            "type": "regex_literal",
+            "named": true
+          },
+          {
             "type": "selector_expression",
             "named": true
           },
@@ -14160,6 +14296,10 @@
         },
         {
           "type": "real_literal",
+          "named": true
+        },
+        {
+          "type": "regex_literal",
           "named": true
         },
         {
@@ -15019,6 +15159,10 @@
             "named": true
           },
           {
+            "type": "regex_literal",
+            "named": true
+          },
+          {
             "type": "selector_expression",
             "named": true
           },
@@ -15388,6 +15532,10 @@
           },
           {
             "type": "real_literal",
+            "named": true
+          },
+          {
+            "type": "regex_literal",
             "named": true
           },
           {
@@ -15771,6 +15919,10 @@
           },
           {
             "type": "real_literal",
+            "named": true
+          },
+          {
+            "type": "regex_literal",
             "named": true
           },
           {
@@ -16158,6 +16310,10 @@
             "named": true
           },
           {
+            "type": "regex_literal",
+            "named": true
+          },
+          {
             "type": "selector_expression",
             "named": true
           },
@@ -16509,6 +16665,10 @@
           },
           {
             "type": "real_literal",
+            "named": true
+          },
+          {
+            "type": "regex_literal",
             "named": true
           },
           {
@@ -16923,6 +17083,10 @@
             "named": true
           },
           {
+            "type": "regex_literal",
+            "named": true
+          },
+          {
             "type": "selector_expression",
             "named": true
           },
@@ -17280,6 +17444,10 @@
           },
           {
             "type": "real_literal",
+            "named": true
+          },
+          {
+            "type": "regex_literal",
             "named": true
           },
           {
@@ -17768,6 +17936,10 @@
           "named": true
         },
         {
+          "type": "regex_literal",
+          "named": true
+        },
+        {
           "type": "selector_expression",
           "named": true
         },
@@ -18146,6 +18318,10 @@
           },
           {
             "type": "real_literal",
+            "named": true
+          },
+          {
+            "type": "regex_literal",
             "named": true
           },
           {
@@ -18604,6 +18780,10 @@
             "named": true
           },
           {
+            "type": "regex_literal",
+            "named": true
+          },
+          {
             "type": "selector_expression",
             "named": true
           },
@@ -18995,6 +19175,10 @@
           },
           {
             "type": "real_literal",
+            "named": true
+          },
+          {
+            "type": "regex_literal",
             "named": true
           },
           {
@@ -19549,6 +19733,10 @@
           },
           {
             "type": "real_literal",
+            "named": true
+          },
+          {
+            "type": "regex_literal",
             "named": true
           },
           {
@@ -20227,6 +20415,10 @@
             "named": true
           },
           {
+            "type": "regex_literal",
+            "named": true
+          },
+          {
             "type": "selector_expression",
             "named": true
           },
@@ -20595,6 +20787,10 @@
             "named": true
           },
           {
+            "type": "regex_literal",
+            "named": true
+          },
+          {
             "type": "selector_expression",
             "named": true
           },
@@ -20699,6 +20895,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "regex_literal",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "repeat_while_statement",
@@ -21095,6 +21296,10 @@
             "named": true
           },
           {
+            "type": "regex_literal",
+            "named": true
+          },
+          {
             "type": "selector_expression",
             "named": true
           },
@@ -21393,6 +21598,10 @@
           "named": true
         },
         {
+          "type": "regex_literal",
+          "named": true
+        },
+        {
           "type": "selector_expression",
           "named": true
         },
@@ -21662,6 +21871,10 @@
           "named": true
         },
         {
+          "type": "regex_literal",
+          "named": true
+        },
+        {
           "type": "repeat_while_statement",
           "named": true
         },
@@ -21910,6 +22123,10 @@
         },
         {
           "type": "real_literal",
+          "named": true
+        },
+        {
+          "type": "regex_literal",
           "named": true
         },
         {
@@ -22289,6 +22506,10 @@
             "named": true
           },
           {
+            "type": "regex_literal",
+            "named": true
+          },
+          {
             "type": "selector_expression",
             "named": true
           },
@@ -22629,6 +22850,10 @@
         },
         {
           "type": "real_literal",
+          "named": true
+        },
+        {
+          "type": "regex_literal",
           "named": true
         },
         {
@@ -23010,6 +23235,10 @@
             "named": true
           },
           {
+            "type": "regex_literal",
+            "named": true
+          },
+          {
             "type": "selector_expression",
             "named": true
           },
@@ -23380,6 +23609,10 @@
             "named": true
           },
           {
+            "type": "regex_literal",
+            "named": true
+          },
+          {
             "type": "selector_expression",
             "named": true
           },
@@ -23734,6 +23967,10 @@
             "named": true
           },
           {
+            "type": "regex_literal",
+            "named": true
+          },
+          {
             "type": "selector_expression",
             "named": true
           },
@@ -24085,6 +24322,10 @@
           },
           {
             "type": "real_literal",
+            "named": true
+          },
+          {
+            "type": "regex_literal",
             "named": true
           },
           {
@@ -24450,6 +24691,10 @@
           },
           {
             "type": "real_literal",
+            "named": true
+          },
+          {
+            "type": "regex_literal",
             "named": true
           },
           {
@@ -24820,6 +25065,10 @@
           },
           {
             "type": "real_literal",
+            "named": true
+          },
+          {
+            "type": "regex_literal",
             "named": true
           },
           {
@@ -25820,6 +26069,10 @@
             "named": true
           },
           {
+            "type": "regex_literal",
+            "named": true
+          },
+          {
             "type": "selector_expression",
             "named": true
           },
@@ -26047,6 +26300,10 @@
         },
         {
           "type": "real_literal",
+          "named": true
+        },
+        {
+          "type": "regex_literal",
           "named": true
         },
         {
@@ -26476,6 +26733,10 @@
           },
           {
             "type": "real_literal",
+            "named": true
+          },
+          {
+            "type": "regex_literal",
             "named": true
           },
           {
