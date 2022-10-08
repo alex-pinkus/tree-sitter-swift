@@ -17,7 +17,7 @@ let package = Package(
         "README.md",
       ],
       sources: [
-        "src/parser.c",
+        "src/parser_abi14.c",
         "src/scanner.c",
       ],
       resources: [
