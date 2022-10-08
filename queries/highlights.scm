@@ -122,6 +122,9 @@
 (boolean_literal) @boolean
 "nil" @variable.builtin
 
+; Regex literals
+(regex_literal) @string.regex
+
 ; Operators
 (custom_operator) @operator
 [

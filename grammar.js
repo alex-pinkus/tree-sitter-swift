@@ -58,6 +58,7 @@ const PRECS = {
   assignment: -3,
   comment: -3,
   lambda: -3,
+  regex: -4,
 };
 
 const DYNAMIC_PRECS = {
@@ -273,6 +274,7 @@ module.exports = grammar({
         $.real_literal,
         $.boolean_literal,
         $._string_literal,
+        $.regex_literal,
         "nil"
       ),
     // TODO: Hex exponents
@@ -341,6 +343,30 @@ module.exports = grammar({
       ),
     _escaped_identifier: ($) => /\\[0\\tnr"'\n]/,
     multi_line_str_text: ($) => /[^\\"]+/,
+    // Based on https://gitlab.com/woolsweater/tree-sitter-swifter/-/blob/3d47c85bd47ce54cdf2023a9c0e01eb90adfcc1d/grammar.js#L1019
+    // But required modifications to hit all of the cases in SE-354
+    regex_literal: ($) =>
+      choice(
+        $._extended_regex_literal,
+        $._multiline_regex_literal,
+        $._oneline_regex_literal
+      ),
+
+    _extended_regex_literal: ($) => /#\/((\/[^#])|[^\n])+\/#/,
+
+    _multiline_regex_literal: ($) => seq(/#\/\n/, /(\/[^#]|[^/])*?\n\/#/),
+
+    _oneline_regex_literal: ($) =>
+      token(
+        prec(
+          PRECS.regex,
+          seq(
+            "/",
+            token.immediate(/[^ \t\n]?[^/\n]*[^ \t\n/]/),
+            token.immediate("/")
+          )
+        )
+      ),
     ////////////////////////////////
     // Types - https://docs.swift.org/swift-book/ReferenceManual/Types.html
     ////////////////////////////////
@@ -1025,7 +1051,10 @@ module.exports = grammar({
         "+",
         "-"
       ),
-    _multiplicative_operator: ($) => choice("*", "/", "%"),
+    // The `/` operator conflicts with a regex literal (which itself appears to conflict with a
+    // comment, for some reason), so we must give it equivalent token precedence.
+    _multiplicative_operator: ($) =>
+      choice("*", alias(token(prec(PRECS.regex, "/")), "/"), "%"),
     as_operator: ($) => choice($._as, $._as_quest, $._as_bang),
     _prefix_unary_operator: ($) =>
       prec.right(
