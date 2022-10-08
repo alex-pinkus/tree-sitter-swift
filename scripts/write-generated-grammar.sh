@@ -19,6 +19,13 @@ git reset HEAD@{1}
 npm install
 npm run test-ci
 
+# Now that we know the parser works, build for ABI 14 (but don't use this as the default because
+# it's not compatible everywhere).
+mv src/parser.c src/parser_abi13.c
+npx tree-sitter generate --abi 14
+mv src/parser.c src/parser_abi14.c
+mv src/parser_abi13.c src/parser.c
+
 # Commit specific generated files, attributing the changes to the primary maintainer of this
 # grammar. Notably, we do not commit the `.o` files generated during the build, just the source.
 git config --local user.email alex.pinkus@gmail.com
