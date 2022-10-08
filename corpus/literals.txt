@@ -431,3 +431,306 @@ let playgroundLiteral = #imageLiteral(resourceName: "heart")
     (simple_identifier)
     (line_string_literal
       (line_str_text))))
+
+================================================================================
+Single line regex literals
+================================================================================
+
+let regex1 = /([ab])?/
+let regex2 = /([ab])|\d+/
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (property_declaration
+    (pattern
+      (simple_identifier))
+    (regex_literal))
+  (property_declaration
+    (pattern
+      (simple_identifier))
+    (regex_literal)))
+
+================================================================================
+Multiline regex literals
+================================================================================
+
+let regex = #/
+  # Match a line of the format e.g "DEBIT  03/03/2022  Totally Legit Shell Corp  $2,000,000.00"
+  (?<kind>    \w+)                \s\s+
+  (?<date>    \S+)                \s\s+
+  (?<account> (?: (?!\s\s) . )+)  \s\s+ # Note that account names may contain spaces.
+  (?<amount>  .*)
+/#
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (property_declaration
+    (pattern
+      (simple_identifier))
+    (regex_literal)))
+
+================================================================================
+Parse ambiguity in regex liteal and comment
+================================================================================
+
+/*
+let regex = /[0-9]*/
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (multiline_comment))
+
+================================================================================
+Regex-like custom operator not in expression position
+================================================================================
+
+infix operator /^/
+func /^/ (lhs: Int, rhs: Int) -> Int { 0 }
+let b = 0 /^/ 1
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (operator_declaration
+    (custom_operator))
+  (function_declaration
+    (custom_operator)
+    (parameter
+      (simple_identifier)
+      (user_type
+        (type_identifier)))
+    (parameter
+      (simple_identifier)
+      (user_type
+        (type_identifier)))
+    (user_type
+      (type_identifier))
+    (function_body
+      (statements
+        (integer_literal))))
+  (property_declaration
+    (pattern
+      (simple_identifier))
+    (infix_expression
+      (integer_literal)
+      (custom_operator)
+      (integer_literal))))
+
+================================================================================
+Unapplied `/` that is not a regex literal
+================================================================================
+
+let x = array.reduce(1, /) / 5
+let y = array.reduce(1, /) + otherArray.reduce(1, /)
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (property_declaration
+    (pattern
+      (simple_identifier))
+    (multiplicative_expression
+      (call_expression
+        (navigation_expression
+          (simple_identifier)
+          (navigation_suffix
+            (simple_identifier)))
+        (call_suffix
+          (value_arguments
+            (value_argument
+              (integer_literal))
+            (value_argument))))
+      (integer_literal)))
+  (property_declaration
+    (pattern
+      (simple_identifier))
+    (call_expression
+      (navigation_expression
+        (additive_expression
+          (call_expression
+            (navigation_expression
+              (simple_identifier)
+              (navigation_suffix
+                (simple_identifier)))
+            (call_suffix
+              (value_arguments
+                (value_argument
+                  (integer_literal))
+                (value_argument))))
+          (simple_identifier))
+        (navigation_suffix
+          (simple_identifier)))
+      (call_suffix
+        (value_arguments
+          (value_argument
+            (integer_literal))
+          (value_argument))))))
+
+================================================================================
+Unapplied custom operators
+================================================================================
+
+baz(!/, 1) / 2
+qux(/, /)
+qux(/^, /)
+qux(!/, /)
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (multiplicative_expression
+    (call_expression
+      (simple_identifier)
+      (call_suffix
+        (value_arguments
+          (value_argument
+            (custom_operator))
+          (value_argument
+            (integer_literal)))))
+    (integer_literal))
+  (call_expression
+    (simple_identifier)
+    (call_suffix
+      (value_arguments
+        (value_argument)
+        (value_argument))))
+  (call_expression
+    (simple_identifier)
+    (call_suffix
+      (value_arguments
+        (value_argument
+          (custom_operator))
+        (value_argument))))
+  (call_expression
+    (simple_identifier)
+    (call_suffix
+      (value_arguments
+        (value_argument
+          (custom_operator))
+        (value_argument)))))
+
+================================================================================
+More operator not-regex edge cases
+================================================================================
+
+let d = hasSubscript[/] / 2 // Unapplied infix '/' and infix '/'
+let e = !/y / .foo() // Prefix '!/' with infix '/' and operand '.foo()'
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (property_declaration
+    (pattern
+      (simple_identifier))
+    (multiplicative_expression
+      (call_expression
+        (simple_identifier)
+        (call_suffix
+          (value_arguments
+            (value_argument))))
+      (integer_literal)))
+  (comment)
+  (property_declaration
+    (pattern
+      (simple_identifier))
+    (call_expression
+      (prefix_expression
+        (custom_operator)
+        (multiplicative_expression
+          (simple_identifier)
+          (prefix_expression
+            (simple_identifier))))
+      (call_suffix
+        (value_arguments))))
+  (comment))
+
+================================================================================
+Ambiguous parse cases that now are regexes
+================================================================================
+
+foo(/a, b/) // Will become regex literal '/a, b/'
+qux(/, !/)  // Will become regex literal '/, !/'
+qux(/,/)    // Will become regex literal '/,/'
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (call_expression
+    (simple_identifier)
+    (call_suffix
+      (value_arguments
+        (value_argument
+          (regex_literal)))))
+  (comment)
+  (call_expression
+    (simple_identifier)
+    (call_suffix
+      (value_arguments
+        (value_argument
+          (regex_literal)))))
+  (comment)
+  (call_expression
+    (simple_identifier)
+    (call_suffix
+      (value_arguments
+        (value_argument
+          (regex_literal)))))
+  (comment))
+
+================================================================================
+Unapplied division operator
+================================================================================
+
+class Operator {
+    var perform: (Double, Double) -> Double {
+        return (/)
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (class_declaration
+    (type_identifier)
+    (class_body
+      (property_declaration
+        (pattern
+          (simple_identifier))
+        (type_annotation
+          (function_type
+            (tuple_type
+              (tuple_type_item
+                (user_type
+                  (type_identifier)))
+              (tuple_type_item
+                (user_type
+                  (type_identifier))))
+            (user_type
+              (type_identifier))))
+        (computed_property
+          (statements
+            (control_transfer_statement
+              (tuple_expression))))))))
+
+================================================================================
+Single-line regex on multiple lines
+================================================================================
+
+doOperation(on: a, /)
+/// That was fun! We ran `/`
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (call_expression
+    (simple_identifier)
+    (call_suffix
+      (value_arguments
+        (value_argument
+          (simple_identifier)
+          (simple_identifier))
+        (value_argument))))
+  (comment))
