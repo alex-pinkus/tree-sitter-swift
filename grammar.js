@@ -772,7 +772,7 @@ module.exports = grammar({
           )
         )
       ),
-    _await_operator: ($) => "await",
+    _await_operator: ($) => alias("await", "await"),
     ternary_expression: ($) =>
       prec.right(
         PRECS.ternary,
