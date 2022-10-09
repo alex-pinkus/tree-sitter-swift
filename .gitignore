@@ -3,7 +3,6 @@ node_modules
 !/src/scanner.c
 *.swp
 /build
-/test
 Cargo.lock
 /target/*
 *.a

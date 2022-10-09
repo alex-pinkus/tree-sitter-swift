@@ -35,7 +35,7 @@ git add ./src/tree_sitter/* --force
 git add ./src/*.json --force
 git add grammar.js
 git add package.json
-git add corpus
+git add test
 git add queries
 git add Makefile
 git add bindings/c/*.in
