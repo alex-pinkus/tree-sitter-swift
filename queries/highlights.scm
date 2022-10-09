@@ -21,6 +21,7 @@
 (function_declaration ["init" @constructor])
 (throws) @keyword
 "async" @keyword
+"await" @keyword
 (where_keyword) @keyword
 (parameter external_name: (simple_identifier) @parameter)
 (parameter name: (simple_identifier) @parameter)
