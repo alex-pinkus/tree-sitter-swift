@@ -59,10 +59,10 @@
 (enum_entry ["case" @keyword])
 
 ; Function calls
-(call_expression (simple_identifier) @function) ; foo()
+(call_expression (simple_identifier) @function.call) ; foo()
 (call_expression ; foo.bar.baz(): highlight the baz()
   (navigation_expression
-    (navigation_suffix (simple_identifier) @function)))
+    (navigation_suffix (simple_identifier) @function.call)))
 ((navigation_expression
    (simple_identifier) @type) ; SomeType.method(): highlight SomeType as a type
    (#match? @type "^[A-Z]"))
@@ -96,8 +96,10 @@
 (statement_label) @label
 
 ; Comments
-(comment) @comment
-(multiline_comment) @comment
+[
+ (comment)
+ (multiline_comment)
+] @comment @spell
 
 ; String literals
 (line_str_text) @string
