@@ -28,7 +28,6 @@ const PRECS = {
   infix_operations: 9,
   nil_coalescing: 8,
   check: 7,
-  prefix_operations: 7,
   comparison: 6,
   postfix_operations: 6,
   equality: 5,
@@ -55,6 +54,7 @@ const PRECS = {
   range_suffix: -2,
   ternary_binary_suffix: -2,
   await: -2,
+  prefix_operations: -2,
   assignment: -3,
   comment: -3,
   lambda: -3,
@@ -173,6 +173,9 @@ module.exports = grammar({
     [$._modifierless_class_declaration, $.property_modifier],
     [$._modifierless_class_declaration, $.simple_identifier],
     [$._fn_call_lambda_arguments],
+
+    // `lazy` is also allowed as an identifier...
+    [$.property_behavior_modifier, $.simple_identifier],
   ],
   extras: ($) => [
     $.comment,
@@ -261,7 +264,8 @@ module.exports = grammar({
         /`[^\r\n` ]*`/,
         /\$[0-9]+/,
         token(seq("$", LEXICAL_IDENTIFIER)),
-        "actor"
+        "actor",
+        "lazy"
       ),
     identifier: ($) => sep1($.simple_identifier, $._dot),
     // Literals
@@ -508,7 +512,7 @@ module.exports = grammar({
         )
       ),
     navigation_expression: ($) =>
-      prec.left(
+      prec.right(
         PRECS.navigation,
         seq(
           field("target", choice($._navigable_type_expression, $._expression)),
@@ -772,7 +776,7 @@ module.exports = grammar({
           )
         )
       ),
-    _await_operator: ($) => "await",
+    _await_operator: ($) => alias("await", "await"),
     ternary_expression: ($) =>
       prec.right(
         PRECS.ternary,
@@ -1751,11 +1755,14 @@ module.exports = grammar({
         $.function_modifier,
         $.mutation_modifier,
         $.property_modifier,
-        $.parameter_modifier,
-        $.property_behavior_modifier
+        $.parameter_modifier
       ),
     _locally_permitted_modifier: ($) =>
-      choice($.ownership_modifier, $.inheritance_modifier),
+      choice(
+        $.ownership_modifier,
+        $.inheritance_modifier,
+        $.property_behavior_modifier
+      ),
     property_behavior_modifier: ($) => "lazy",
     type_modifiers: ($) => repeat1($.attribute),
     member_modifier: ($) =>

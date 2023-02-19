@@ -143,6 +143,10 @@
         {
           "type": "STRING",
           "value": "actor"
+        },
+        {
+          "type": "STRING",
+          "value": "lazy"
         }
       ]
     },
@@ -1705,7 +1709,7 @@
       }
     },
     "navigation_expression": {
-      "type": "PREC_LEFT",
+      "type": "PREC_RIGHT",
       "value": -1,
       "content": {
         "type": "SEQ",
@@ -1816,7 +1820,7 @@
     },
     "prefix_expression": {
       "type": "PREC_LEFT",
-      "value": 7,
+      "value": -2,
       "content": {
         "type": "SEQ",
         "members": [
@@ -2873,7 +2877,12 @@
       }
     },
     "_await_operator": {
-      "type": "STRING",
+      "type": "ALIAS",
+      "content": {
+        "type": "STRING",
+        "value": "await"
+      },
+      "named": false,
       "value": "await"
     },
     "ternary_expression": {
@@ -9021,10 +9030,6 @@
         {
           "type": "SYMBOL",
           "name": "parameter_modifier"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "property_behavior_modifier"
         }
       ]
     },
@@ -9038,6 +9043,10 @@
         {
           "type": "SYMBOL",
           "name": "inheritance_modifier"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "property_behavior_modifier"
         }
       ]
     },
@@ -9541,6 +9550,10 @@
     ],
     [
       "_fn_call_lambda_arguments"
+    ],
+    [
+      "property_behavior_modifier",
+      "simple_identifier"
     ]
   ],
   "precedences": [],

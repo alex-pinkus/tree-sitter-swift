@@ -4900,6 +4900,10 @@
           "named": true
         },
         {
+          "type": "property_behavior_modifier",
+          "named": true
+        },
+        {
           "type": "type_constraints",
           "named": true
         },
@@ -11505,6 +11509,10 @@
         },
         {
           "type": "parameter",
+          "named": true
+        },
+        {
+          "type": "property_behavior_modifier",
           "named": true
         },
         {
@@ -18824,6 +18832,11 @@
     }
   },
   {
+    "type": "property_behavior_modifier",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "property_declaration",
     "named": true,
     "fields": {
@@ -19238,6 +19251,10 @@
         },
         {
           "type": "ownership_modifier",
+          "named": true
+        },
+        {
+          "type": "property_behavior_modifier",
           "named": true
         },
         {
@@ -25703,6 +25720,10 @@
           "named": true
         },
         {
+          "type": "property_behavior_modifier",
+          "named": true
+        },
+        {
           "type": "type_parameters",
           "named": true
         }
@@ -27166,6 +27187,10 @@
     "named": false
   },
   {
+    "type": "await",
+    "named": false
+  },
+  {
     "type": "bang",
     "named": true
   },
@@ -27322,6 +27347,10 @@
     "named": false
   },
   {
+    "type": "lazy",
+    "named": false
+  },
+  {
     "type": "let",
     "named": false
   },
@@ -27388,10 +27417,6 @@
   {
     "type": "property",
     "named": false
-  },
-  {
-    "type": "property_behavior_modifier",
-    "named": true
   },
   {
     "type": "protocol",
