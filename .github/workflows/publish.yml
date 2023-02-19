@@ -37,6 +37,7 @@ jobs:
             override: true
       - run: npm install
       - run: npm run test-ci
+      - run: npx tree-sitter generate --abi 14
       - run: cargo test
       - uses: katyo/publish-crates@v1
         with:
