@@ -23,8 +23,6 @@
  * SOFTWARE.
  */
 const PRECS = {
-  multiplication: 11,
-  addition: 10,
   infix_operations: 9,
   nil_coalescing: 8,
   check: 7,
@@ -47,6 +45,7 @@ const PRECS = {
   navigation: -1,
   expr: -1,
   ty: -1,
+  multiplication: -1,
   call: -2,
   ternary: -2,
   try: -2,
@@ -55,7 +54,8 @@ const PRECS = {
   ternary_binary_suffix: -2,
   await: -2,
   prefix_operations: -2,
-  assignment: -3,
+  addition: -3,
+  assignment: -4,
   comment: -3,
   lambda: -3,
   regex: -4,

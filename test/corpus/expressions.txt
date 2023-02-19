@@ -1238,3 +1238,111 @@ let test = !Enum.case.variable
             (simple_identifier)))
         (navigation_suffix
           (simple_identifier))))))
+
+================================================================================
+Precedence with function calls
+================================================================================
+_ = a + b + c()
+
+f() == g()
+
+let a = b() ? c() : d()
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (assignment
+    (directly_assignable_expression
+      (simple_identifier))
+    (additive_expression
+      (additive_expression
+        (simple_identifier)
+        (simple_identifier))
+      (call_expression
+        (simple_identifier)
+        (call_suffix
+          (value_arguments)))))
+  (equality_expression
+    (call_expression
+      (simple_identifier)
+      (call_suffix
+        (value_arguments)))
+    (call_expression
+      (simple_identifier)
+      (call_suffix
+        (value_arguments))))
+  (property_declaration
+    (pattern
+      (simple_identifier))
+    (ternary_expression
+      (call_expression
+        (simple_identifier)
+        (call_suffix
+          (value_arguments)))
+      (call_expression
+        (simple_identifier)
+        (call_suffix
+          (value_arguments)))
+      (call_expression
+        (simple_identifier)
+        (call_suffix
+          (value_arguments))))))
+
+================================================================================
+Longer precedence example
+================================================================================
+
+import Foundation
+
+class SwiftExamples {
+
+    func test() -> Bool {
+      if x && y && z {
+      	return true
+      }
+      
+      if x && y && z.def() {
+      	return true
+      } 
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (import_declaration
+    (identifier
+      (simple_identifier)))
+  (class_declaration
+    (type_identifier)
+    (class_body
+      (function_declaration
+        (simple_identifier)
+        (user_type
+          (type_identifier))
+        (function_body
+          (statements
+            (if_statement
+              (conjunction_expression
+                (simple_identifier)
+                (conjunction_expression
+                  (simple_identifier)
+                  (simple_identifier)))
+              (statements
+                (control_transfer_statement
+                  (boolean_literal))))
+            (if_statement
+              (conjunction_expression
+                (simple_identifier)
+                (conjunction_expression
+                  (simple_identifier)
+                  (call_expression
+                    (navigation_expression
+                      (simple_identifier)
+                      (navigation_suffix
+                        (simple_identifier)))
+                    (call_suffix
+                      (value_arguments)))))
+              (statements
+                (control_transfer_statement
+                  (boolean_literal))))))))))

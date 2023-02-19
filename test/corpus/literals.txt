@@ -547,27 +547,27 @@ let y = array.reduce(1, /) + otherArray.reduce(1, /)
   (property_declaration
     (pattern
       (simple_identifier))
-    (call_expression
-      (navigation_expression
-        (additive_expression
-          (call_expression
-            (navigation_expression
-              (simple_identifier)
-              (navigation_suffix
-                (simple_identifier)))
-            (call_suffix
-              (value_arguments
-                (value_argument
-                  (integer_literal))
-                (value_argument))))
-          (simple_identifier))
-        (navigation_suffix
-          (simple_identifier)))
-      (call_suffix
-        (value_arguments
-          (value_argument
-            (integer_literal))
-          (value_argument))))))
+    (additive_expression
+      (call_expression
+        (navigation_expression
+          (simple_identifier)
+          (navigation_suffix
+            (simple_identifier)))
+        (call_suffix
+          (value_arguments
+            (value_argument
+              (integer_literal))
+            (value_argument))))
+      (call_expression
+        (navigation_expression
+          (simple_identifier)
+          (navigation_suffix
+            (simple_identifier)))
+        (call_suffix
+          (value_arguments
+            (value_argument
+              (integer_literal))
+            (value_argument)))))))
 
 ================================================================================
 Unapplied custom operators
