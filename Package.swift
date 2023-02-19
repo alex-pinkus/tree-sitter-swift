@@ -11,7 +11,7 @@ let package = Package(
       path: ".",
       exclude: [
         "bindings",
-        "corpus",
+        "test",
         "LICENSE",
         "package.json",
         "README.md",
