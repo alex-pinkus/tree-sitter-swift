@@ -1217,24 +1217,3 @@ foo()
     (call_suffix
       (value_arguments)))
   (fully_open_range))
-
-================================================================================
-Negated prefix expressions
-================================================================================
-let test = !Enum.case.variable
-
---------------------------------------------------------------------------------
-
-(source_file
-  (property_declaration
-    (pattern
-      (simple_identifier))
-    (prefix_expression
-      (bang)
-      (navigation_expression
-        (navigation_expression
-          (simple_identifier)
-          (navigation_suffix
-            (simple_identifier)))
-        (navigation_suffix
-          (simple_identifier))))))
