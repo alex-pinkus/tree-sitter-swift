@@ -15,14 +15,14 @@ RxSwift ReactiveX/RxSwift 6.5.0 7 9
 RxSwift ReactiveX/RxSwift 6.5.0 8 9
 HeroTransitions HeroTransitions/Hero 1.6.2
 Kingfisher onevcat/Kingfisher 7.6.2
-shadowsocks shadowsocks/ShadowsocksX-NG v1.10.0
+shadowsocks shadowsocks/ShadowsocksX-NG v1.10.1
 SnapKit SnapKit/SnapKit 5.0.1
 SwiftLint realm/SwiftLint 0.50.3 0 2
 SwiftLint realm/SwiftLint 0.50.3 1 2
 ClashX yichengchen/clashX 1.97.0
 Carthage Carthage/Carthage 0.39.0
-Rectangle rxhanson/Rectangle v0.66
-PromiseKit mxcl/PromiseKit 6.21.0
+Rectangle rxhanson/Rectangle v0.67
+PromiseKit mxcl/PromiseKit 6.22.0
 Moya Moya/Moya 15.0.3
 MonitorControl MonitorControl/MonitorControl v4.1.0
 ObjectMapper tristanhimmelman/ObjectMapper 4.2.0
