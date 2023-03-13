@@ -28,6 +28,7 @@ const PRECS = {
   infix_operations: 9,
   nil_coalescing: 8,
   check: 7,
+  prefix_operations: 7,
   comparison: 6,
   postfix_operations: 6,
   equality: 5,
@@ -54,7 +55,6 @@ const PRECS = {
   range_suffix: -2,
   ternary_binary_suffix: -2,
   await: -2,
-  prefix_operations: -2,
   assignment: -3,
   comment: -3,
   lambda: -3,
@@ -512,7 +512,7 @@ module.exports = grammar({
         )
       ),
     navigation_expression: ($) =>
-      prec.right(
+      prec.left(
         PRECS.navigation,
         seq(
           field("target", choice($._navigable_type_expression, $._expression)),

@@ -1709,7 +1709,7 @@
       }
     },
     "navigation_expression": {
-      "type": "PREC_RIGHT",
+      "type": "PREC_LEFT",
       "value": -1,
       "content": {
         "type": "SEQ",
@@ -1820,7 +1820,7 @@
     },
     "prefix_expression": {
       "type": "PREC_LEFT",
-      "value": -2,
+      "value": 7,
       "content": {
         "type": "SEQ",
         "members": [
