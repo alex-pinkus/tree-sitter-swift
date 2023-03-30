@@ -19,7 +19,7 @@
 ] @keyword
 
 (function_declaration (simple_identifier) @method)
-(function_declaration ["init" @constructor])
+(init_declaration ["init" @constructor])
 (deinit_declaration ["deinit" @constructor])
 (throws) @keyword
 "async" @keyword

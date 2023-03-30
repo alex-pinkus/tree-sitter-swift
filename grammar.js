@@ -143,6 +143,7 @@ module.exports = grammar({
     ],
     // The `class` modifier is legal in many of the same positions that a class declaration itself would be.
     [$._bodyless_function_declaration, $.property_modifier],
+    [$.init_declaration, $.property_modifier],
     [$._local_class_declaration, $.modifiers],
     // Patterns, man
     [$._navigable_type_expression, $._case_pattern],
@@ -1261,6 +1262,7 @@ module.exports = grammar({
         $.property_declaration,
         $.typealias_declaration,
         $.function_declaration,
+        $.init_declaration,
         $.class_declaration,
         $.protocol_declaration,
         $.operator_declaration,
@@ -1274,6 +1276,7 @@ module.exports = grammar({
         $.property_declaration,
         $.typealias_declaration,
         $.function_declaration,
+        $.init_declaration,
         $.class_declaration,
         $.protocol_declaration,
         $.deinit_declaration,
@@ -1424,10 +1427,7 @@ module.exports = grammar({
     _modifierless_function_declaration_no_body: ($) =>
       prec.right(
         seq(
-          choice(
-            $._constructor_function_decl,
-            $._non_constructor_function_decl
-          ),
+          $._non_constructor_function_decl,
           optional($.type_parameters),
           $._function_value_parameters,
           optional($._async_keyword),
@@ -1553,8 +1553,6 @@ module.exports = grammar({
         field("type", $._possibly_implicitly_unwrapped_type),
         optional($._three_dot_operator)
       ),
-    _constructor_function_decl: ($) =>
-      seq(field("name", "init"), optional(choice($._quest, $.bang))),
     _non_constructor_function_decl: ($) =>
       seq(
         "func",
@@ -1661,11 +1659,16 @@ module.exports = grammar({
           ),
           $.protocol_function_declaration
         ),
+        $.init_declaration,
         $.deinit_declaration,
         $.protocol_property_declaration,
         $.typealias_declaration,
         $.associatedtype_declaration,
         $.subscript_declaration
+      ),
+    init_declaration: ($) =>
+      prec.right(
+        seq(optional($.modifiers), optional("class"), field("name", "init"), optional(choice($._quest, $.bang)), $._function_value_parameters, field("body", $.function_body)),
       ),
     deinit_declaration: ($) =>
       prec.right(
