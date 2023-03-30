@@ -915,7 +915,7 @@ public init() {
 --------------------------------------------------------------------------------
 
 (source_file
-  (function_declaration
+  (init_declaration
     (modifiers
       (visibility_modifier))
     (function_body
