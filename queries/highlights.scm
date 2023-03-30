@@ -18,7 +18,7 @@
 ] @keyword
 
 (function_declaration (simple_identifier) @method)
-(function_declaration ["init" @constructor])
+(init_declaration ["init" @constructor])
 (throws) @keyword
 "async" @keyword
 "await" @keyword
