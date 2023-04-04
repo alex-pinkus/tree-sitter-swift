@@ -1668,7 +1668,14 @@ module.exports = grammar({
       ),
     init_declaration: ($) =>
       prec.right(
-        seq(optional($.modifiers), optional("class"), field("name", "init"), optional(choice($._quest, $.bang)), $._function_value_parameters, field("body", $.function_body)),
+        seq(
+          optional($.modifiers),
+          optional("class"),
+          field("name", "init"),
+          optional(choice($._quest, $.bang)),
+          $._function_value_parameters,
+          field("body", $.function_body)
+        )
       ),
     deinit_declaration: ($) =>
       prec.right(

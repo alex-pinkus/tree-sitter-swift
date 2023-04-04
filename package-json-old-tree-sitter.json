@@ -13,16 +13,11 @@
   "tree-sitter": [
     {
       "scope": "source.swift",
-      "file-types": [
-        "swift"
-      ],
+      "file-types": ["swift"],
       "injection-regex": "swift"
     }
   ],
-  "keywords": [
-    "parser",
-    "swift"
-  ],
+  "keywords": ["parser", "swift"],
   "author": "Alex Pinkus <alex.pinkus@gmail.com>",
   "license": "MIT",
   "bugs": {

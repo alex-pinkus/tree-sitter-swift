@@ -3,7 +3,7 @@ name: Check in static grammar files
 on:
   push:
     tags:
-      - '*'
+      - "*"
 
 jobs:
   generate_grammar:
