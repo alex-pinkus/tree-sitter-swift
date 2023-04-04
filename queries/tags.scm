@@ -13,7 +13,7 @@
             (subscript_declaration
                 (parameter (simple_identifier) @name)
             )
-            (function_declaration "init" @name)
+            (init_declaration "init" @name)
             (deinit_declaration "deinit" @name)
         ]
     )
