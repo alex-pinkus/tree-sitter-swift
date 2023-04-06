@@ -28,7 +28,7 @@
             (subscript_declaration
                 (parameter (simple_identifier) @name)
             )
-            (protocol_function_declaration "init" @name)
+            (init_declaration "init" @name)
         ]
     )
 ) @definition.method
