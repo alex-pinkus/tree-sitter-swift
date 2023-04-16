@@ -39,8 +39,8 @@ MessageKit MessageKit/MessageKit 4.1.1
 KeychainAccess kishikawakatsumi/KeychainAccess v4.2.2
 Nuke kean/Nuke 12.1.0
 Swinject Swinject/Swinject 2.8.2
-GRDB groue/GRDB.swift v6.10.1 0 2
-GRDB groue/GRDB.swift v6.10.1 1 2
+GRDB groue/GRDB.swift v6.10.2 0 2
+GRDB groue/GRDB.swift v6.10.2 1 2
 Dance saoudrizwan/Dance v1.0.7
 StyleKit 146BC/StyleKit 0.7.0
 ReactKit ReactKit/ReactKit 0.12.0
