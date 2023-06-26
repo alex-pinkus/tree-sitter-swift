@@ -180,7 +180,6 @@ module.exports = grammar({
   extras: ($) => [
     $.comment,
     $.multiline_comment,
-    $.directive,
     $.diagnostic,
     /\s+/, // Whitespace
   ],
@@ -241,16 +240,7 @@ module.exports = grammar({
     // File Structure
     ////////////////////////////////
     source_file: ($) =>
-      seq(
-        optional($.shebang_line),
-        optional(
-          seq(
-            $._top_level_statement,
-            repeat(seq($._semi, $._top_level_statement)),
-            optional($._semi)
-          )
-        )
-      ),
+      seq(optional($.shebang_line), optional($._top_level_statements)),
     _semi: ($) => choice($._implicit_semi, $._explicit_semi),
     shebang_line: ($) => seq("#!", /[^\r\n]*/),
     ////////////////////////////////
@@ -476,7 +466,8 @@ module.exports = grammar({
           $._primary_expression,
           $.assignment,
           seq($._expression, alias($._immediate_quest, "?")),
-          alias("async", $.simple_identifier)
+          alias("async", $.simple_identifier),
+          alias($._source_location_directive, $.directive)
         )
       ),
     // Unary expressions
@@ -1088,7 +1079,8 @@ module.exports = grammar({
     ////////////////////////////////
     // Statements - https://docs.swift.org/swift-book/ReferenceManual/Statements.html
     ////////////////////////////////
-    statements: ($) =>
+    statements: ($) => $._local_statements,
+    _local_statements: ($) =>
       prec.left(
         // Left precedence is required in switch statements
         seq(
@@ -1102,14 +1094,22 @@ module.exports = grammar({
         $._expression,
         $._local_declaration,
         $._labeled_statement,
-        $.control_transfer_statement
+        $.control_transfer_statement,
+        alias($._local_conditional_compilation_block, $.directive)
+      ),
+    _top_level_statements: ($) =>
+      seq(
+        $._top_level_statement,
+        repeat(seq($._semi, $._top_level_statement)),
+        optional($._semi)
       ),
     _top_level_statement: ($) =>
       choice(
         $._expression,
         $._global_declaration,
         $._labeled_statement,
-        $._throw_statement
+        $._throw_statement,
+        alias($._top_level_conditional_compilation_block, $.directive)
       ),
     _block: ($) => prec(PRECS.block, seq("{", optional($.statements), "}")),
     _labeled_statement: ($) =>
@@ -1793,18 +1793,45 @@ module.exports = grammar({
         ),
         ":"
       ),
-    directive: ($) =>
-      token(
-        prec(
-          PRECS.comment,
-          choice(
-            seq("#if", /.*/),
-            seq("#elseif", /.*/),
-            seq("#else", /.*/),
-            seq("#endif", /.*/),
-            seq(/#sourceLocation([^\r\n]*)/)
-          )
-        )
+    _local_conditional_compilation_block: ($) =>
+      seq(
+        $._local_if_directive_clause,
+        repeat($._local_elseif_directive_clause),
+        optional($._local_else_directive_clause),
+        $._endif_directive
+      ),
+    _top_level_conditional_compilation_block: ($) =>
+      seq(
+        $._local_if_directive_clause,
+        repeat($._local_elseif_directive_clause),
+        optional($._local_else_directive_clause),
+        $._endif_directive
+      ),
+    _source_location_directive: ($) => /#sourceLocation([^\r\n]*)/,
+    _local_if_directive_clause: ($) =>
+      seq("#if", $.compilation_condition, optional($._local_statements)),
+    _local_else_directive_clause: ($) =>
+      seq("#else", optional($._local_statements)),
+    _local_elseif_directive_clause: ($) =>
+      seq("#elseif", $.compilation_condition, optional($._local_statements)),
+    _endif_directive: ($) => "#endif",
+    _top_level_if_directive_clause: ($) =>
+      seq("#if", $.compilation_condition, optional($._local_statements)),
+    _top_level_else_directive_clause: ($) =>
+      seq("#else", optional($._local_statements)),
+    _top_level_elseif_directive_clause: ($) =>
+      seq("#elseif", $.compilation_condition, optional($._local_statements)),
+
+    compilation_condition: ($) =>
+      choice($.platform_condition, $.boolean_literal, $.simple_identifier),
+    platform_condition: ($) =>
+      choice(
+        /os(.*)/,
+        /arch(.*)/,
+        /swift(.*)/,
+        /compiler(.*)/,
+        /canImport(.*)/,
+        /targetEnvironment(.*)/
       ),
     diagnostic: ($) =>
       token(

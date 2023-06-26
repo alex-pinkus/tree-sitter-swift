@@ -958,13 +958,14 @@ Compiler diagnostics
 --------------------------------------------------------------------------------
 
 (source_file
-  (directive)
-  (diagnostic)
-  (directive)
-  (diagnostic)
-  (directive)
-  (directive)
-  (directive))
+  (directive
+    (compilation_condition
+      (simple_identifier))
+    (diagnostic)
+    (compilation_condition
+      (simple_identifier))
+    (diagnostic)
+    (directive)))
 
 ================================================================================
 Async let
