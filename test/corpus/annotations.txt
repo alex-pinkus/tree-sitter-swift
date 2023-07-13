@@ -40,7 +40,7 @@ class X {
             (user_type
               (type_identifier)))
           (member_modifier))
-        (binding_pattern_kind)
+        (value_binding_pattern)
         (pattern
           (simple_identifier))
         (type_annotation

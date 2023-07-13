@@ -242,7 +242,7 @@ let e = array[...]
 
 (source_file
   (property_declaration
-    (binding_pattern_kind)
+    (value_binding_pattern)
     (pattern
       (simple_identifier))
     (call_expression
@@ -261,7 +261,7 @@ let e = array[...]
               (integer_literal))))))
     (simple_identifier))
   (property_declaration
-    (binding_pattern_kind)
+    (value_binding_pattern)
     (pattern
       (simple_identifier))
     (call_expression
@@ -272,7 +272,7 @@ let e = array[...]
             (simple_identifier)
             (simple_identifier))))))
   (property_declaration
-    (binding_pattern_kind)
+    (value_binding_pattern)
     (pattern
       (simple_identifier))
     (call_expression
@@ -285,7 +285,7 @@ let e = array[...]
             (simple_identifier)
             (simple_identifier))))))
   (property_declaration
-    (binding_pattern_kind)
+    (value_binding_pattern)
     (pattern
       (simple_identifier))
     (call_expression
@@ -322,12 +322,12 @@ _ = someCall()
 
 (source_file
   (property_declaration
-    (binding_pattern_kind)
+    (value_binding_pattern)
     (pattern
       (simple_identifier))
     (integer_literal))
   (property_declaration
-    (binding_pattern_kind)
+    (value_binding_pattern)
     (pattern
       (simple_identifier))
     (type_annotation
@@ -368,7 +368,7 @@ let a: SomeClass = .someInstance
 
 (source_file
   (property_declaration
-    (binding_pattern_kind)
+    (value_binding_pattern)
     (pattern
       (simple_identifier))
     (type_annotation
@@ -394,7 +394,7 @@ func math() {
     (function_body
       (statements
         (property_declaration
-          (binding_pattern_kind)
+          (value_binding_pattern)
           (pattern
             (simple_identifier))
           (type_annotation
@@ -463,7 +463,7 @@ var result2 = [String: [Complex<[String: Any]>]]()
 
 (source_file
   (property_declaration
-    (binding_pattern_kind)
+    (value_binding_pattern)
     (pattern
       (simple_identifier))
     (constructor_expression
@@ -475,7 +475,7 @@ var result2 = [String: [Complex<[String: Any]>]]()
       (constructor_suffix
         (value_arguments))))
   (property_declaration
-    (binding_pattern_kind)
+    (value_binding_pattern)
     (pattern
       (simple_identifier))
     (constructor_expression
@@ -521,7 +521,7 @@ modifyThis(&this)
           (type_identifier))))
     (function_body))
   (property_declaration
-    (binding_pattern_kind)
+    (value_binding_pattern)
     (pattern
       (simple_identifier))
     (dictionary_literal))
@@ -545,7 +545,7 @@ let setterSelector = #selector(setter: self.bar)
 
 (source_file
   (property_declaration
-    (binding_pattern_kind)
+    (value_binding_pattern)
     (pattern
       (simple_identifier))
     (selector_expression
@@ -559,7 +559,7 @@ let setterSelector = #selector(setter: self.bar)
             (value_argument
               (simple_identifier)))))))
   (property_declaration
-    (binding_pattern_kind)
+    (value_binding_pattern)
     (pattern
       (simple_identifier))
     (selector_expression
@@ -568,7 +568,7 @@ let setterSelector = #selector(setter: self.bar)
         (navigation_suffix
           (simple_identifier)))))
   (property_declaration
-    (binding_pattern_kind)
+    (value_binding_pattern)
     (pattern
       (simple_identifier))
     (selector_expression
@@ -607,7 +607,7 @@ let result: MyEnumType = condition ? .someEnumCase : .someOtherEnum
 
 (source_file
   (property_declaration
-    (binding_pattern_kind)
+    (value_binding_pattern)
     (pattern
       (simple_identifier))
     (ternary_expression
@@ -619,7 +619,7 @@ let result: MyEnumType = condition ? .someEnumCase : .someOtherEnum
           (simple_identifier)))
       (array_literal)))
   (property_declaration
-    (binding_pattern_kind)
+    (value_binding_pattern)
     (pattern
       (simple_identifier))
     (type_annotation
@@ -781,7 +781,7 @@ let keyPathStringExpression = #keyPath(someProperty)
 
 (source_file
   (property_declaration
-    (binding_pattern_kind)
+    (value_binding_pattern)
     (pattern
       (simple_identifier))
     (navigation_expression
@@ -790,7 +790,7 @@ let keyPathStringExpression = #keyPath(someProperty)
       (navigation_suffix
         (simple_identifier))))
   (property_declaration
-    (binding_pattern_kind)
+    (value_binding_pattern)
     (pattern
       (simple_identifier))
     (call_expression
@@ -838,7 +838,7 @@ let keyPathStringExpression = #keyPath(someProperty)
       (simple_identifier)
       (integer_literal)))
   (property_declaration
-    (binding_pattern_kind)
+    (value_binding_pattern)
     (pattern
       (simple_identifier))
     (navigation_expression
@@ -850,7 +850,7 @@ let keyPathStringExpression = #keyPath(someProperty)
       (navigation_suffix
         (simple_identifier))))
   (property_declaration
-    (binding_pattern_kind)
+    (value_binding_pattern)
     (pattern
       (simple_identifier))
     (key_path_string_expression
@@ -977,7 +977,7 @@ let two = 2
 
 (source_file
   (property_declaration
-    (binding_pattern_kind)
+    (value_binding_pattern)
     (pattern
       (wildcard_pattern))
     (multiplicative_expression
@@ -987,7 +987,7 @@ let two = 2
           (integer_literal)))
       (integer_literal)))
   (property_declaration
-    (binding_pattern_kind)
+    (value_binding_pattern)
     (pattern
       (simple_identifier))
     (equality_expression
@@ -997,7 +997,7 @@ let two = 2
           (integer_literal)))
       (integer_literal)))
   (property_declaration
-    (binding_pattern_kind)
+    (value_binding_pattern)
     (pattern
       (simple_identifier))
     (additive_expression
@@ -1131,7 +1131,7 @@ let a = false
 
 (source_file
   (property_declaration
-    (binding_pattern_kind)
+    (value_binding_pattern)
     (pattern
       (simple_identifier))
     (boolean_literal))

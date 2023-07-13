@@ -1699,9 +1699,9 @@ module.exports = grammar({
         ),
         optional($.type_annotation)
       ),
-    binding_pattern_kind: ($) => field("mutability", choice("var", "let")),
+      value_binding_pattern: ($) => field("mutability", choice("var", "let")),
     _possibly_async_binding_pattern_kind: ($) =>
-      seq(optional($._async_modifier), $.binding_pattern_kind),
+      seq(optional($._async_modifier), $.value_binding_pattern),
     _binding_kind_and_pattern: ($) =>
       seq(
         $._possibly_async_binding_pattern_kind,
@@ -1732,7 +1732,7 @@ module.exports = grammar({
       ),
     _binding_pattern: ($) =>
       seq(
-        seq(optional("case"), $.binding_pattern_kind),
+        seq(optional("case"), $.value_binding_pattern),
         $._no_expr_pattern_already_bound
       ),
 

@@ -202,7 +202,7 @@ let c: (third: C, fourth: D)
       (user_type
         (type_identifier))))
   (property_declaration
-    (binding_pattern_kind)
+    (value_binding_pattern)
     (pattern
       (simple_identifier))
     (type_annotation
@@ -228,7 +228,7 @@ private var dictionary: [String: Any?]?
   (property_declaration
     (modifiers
       (visibility_modifier))
-    (binding_pattern_kind)
+    (value_binding_pattern)
     (pattern
       (simple_identifier))
     (type_annotation
@@ -252,7 +252,7 @@ private var dictionary: [String: Any?]!
   (property_declaration
     (modifiers
       (visibility_modifier))
-    (binding_pattern_kind)
+    (value_binding_pattern)
     (pattern
       (simple_identifier))
     (type_annotation
@@ -342,7 +342,7 @@ func q(using p: any P) { }
 
 (source_file
   (property_declaration
-    (binding_pattern_kind)
+    (value_binding_pattern)
     (pattern
       (simple_identifier))
     (type_annotation
