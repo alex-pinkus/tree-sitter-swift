@@ -10,16 +10,19 @@ let ☁️☀️☁️ = "clouds and sun"
 
 (source_file
   (property_declaration
+    (binding_pattern_kind)
     (pattern
       (simple_identifier))
     (line_string_literal
       (line_str_text)))
   (property_declaration
+    (binding_pattern_kind)
     (pattern
       (simple_identifier))
     (line_string_literal
       (line_str_text)))
   (property_declaration
+    (binding_pattern_kind)
     (pattern
       (simple_identifier))
     (line_string_literal
@@ -84,6 +87,7 @@ let number4️⃣ = nummber2️⃣ + number2️⃣
 
 (source_file
   (property_declaration
+    (binding_pattern_kind)
     (pattern
       (simple_identifier))
     (additive_expression

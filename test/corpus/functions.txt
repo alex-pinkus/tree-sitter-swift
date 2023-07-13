@@ -387,6 +387,7 @@ let messageCoerced = error ??? "nil"
 
 (source_file
   (property_declaration
+    (binding_pattern_kind)
     (pattern
       (simple_identifier))
     (infix_expression
@@ -721,6 +722,7 @@ private lazy var onCatClosure: (_ cat: Cat) throws -> Void = { _ in
     (modifiers
       (visibility_modifier)
       (property_behavior_modifier))
+    (binding_pattern_kind)
     (pattern
       (simple_identifier))
     (type_annotation
@@ -818,6 +820,7 @@ let mainClosure = { @MainActor in print("Running on main") }
             (lambda_parameter
               (simple_identifier)))))))
   (property_declaration
+    (binding_pattern_kind)
     (pattern
       (simple_identifier))
     (lambda_literal
