@@ -10,10 +10,12 @@ let `default` = 0
 
 (source_file
   (property_declaration
+    (value_binding_pattern)
     (pattern
       (simple_identifier))
     (integer_literal))
   (property_declaration
+    (value_binding_pattern)
     (pattern
       (pattern
         (simple_identifier))
@@ -23,6 +25,7 @@ let `default` = 0
       (integer_literal)
       (integer_literal)))
   (property_declaration
+    (value_binding_pattern)
     (pattern
       (simple_identifier))
     (integer_literal)))
@@ -37,6 +40,7 @@ var one = 1, two = 2, four = 4, eight = 8
 
 (source_file
   (property_declaration
+    (value_binding_pattern)
     (pattern
       (simple_identifier))
     (integer_literal)
@@ -104,6 +108,7 @@ for var value in values where value.isExcellent() {
     (simple_identifier))
   (for_statement
     (pattern
+      (value_binding_pattern)
       (simple_identifier))
     (simple_identifier)
     (where_clause
@@ -141,12 +146,14 @@ outerLoop: for outerObject in dataArray {
   (for_statement
     (pattern
       (pattern
+        (value_binding_pattern)
         (simple_identifier))
       (user_type
         (type_identifier)))
     (simple_identifier))
   (for_statement
     (pattern
+      (value_binding_pattern)
       (pattern
         (simple_identifier))
       (pattern
@@ -206,6 +213,7 @@ repeat {
       (integer_literal))
     (comment))
   (while_statement
+    (value_binding_pattern)
     (simple_identifier)
     (pattern
       (simple_identifier))
@@ -294,6 +302,7 @@ case let .isExecutable(path?):
     (switch_entry
       (switch_pattern
         (pattern
+          (value_binding_pattern)
           (simple_identifier)
           (pattern
             (wildcard_pattern))
@@ -329,6 +338,7 @@ case let .isExecutable(path?):
         (pattern
           (simple_identifier)
           (pattern
+            (value_binding_pattern)
             (simple_identifier))))
       (statements
         (control_transfer_statement
@@ -339,6 +349,7 @@ case let .isExecutable(path?):
     (switch_entry
       (switch_pattern
         (pattern
+          (value_binding_pattern)
           (simple_identifier)
           (pattern
             (simple_identifier))))
@@ -366,6 +377,7 @@ case let .success((successfulResult)):
     (switch_entry
       (switch_pattern
         (pattern
+          (value_binding_pattern)
           (simple_identifier)
           (pattern
             (pattern
@@ -426,6 +438,7 @@ do {
   (do_statement
     (statements
       (property_declaration
+        (value_binding_pattern)
         (pattern
           (simple_identifier))
         (integer_literal)))
@@ -433,6 +446,7 @@ do {
       (catch_keyword)
       (pattern
         (pattern
+          (value_binding_pattern)
           (simple_identifier))
         (user_type
           (type_identifier))))
@@ -446,6 +460,7 @@ do {
       (catch_keyword)
       (pattern
         (pattern
+          (value_binding_pattern)
           (simple_identifier))
         (user_type
           (type_identifier)))
@@ -460,6 +475,7 @@ do {
     (catch_block
       (catch_keyword)
       (pattern
+        (value_binding_pattern)
         (user_type
           (type_identifier))
         (simple_identifier)
@@ -473,12 +489,14 @@ do {
         (simple_identifier)
         (simple_identifier)
         (pattern
+          (value_binding_pattern)
           (simple_identifier))))
     (catch_block
       (catch_keyword)))
   (do_statement
     (statements
       (property_declaration
+        (value_binding_pattern)
         (pattern
           (simple_identifier))
         (integer_literal)))))
@@ -504,6 +522,7 @@ someLabel: if a.isEmpty, let b = getB() {
 
 (source_file
   (if_statement
+    (value_binding_pattern)
     (simple_identifier)
     (call_expression
       (simple_identifier)
@@ -523,6 +542,7 @@ someLabel: if a.isEmpty, let b = getB() {
       (call_suffix
         (value_arguments))))
   (if_statement
+    (value_binding_pattern)
     (simple_identifier)
     (type_annotation
       (user_type
@@ -537,6 +557,7 @@ someLabel: if a.isEmpty, let b = getB() {
       (simple_identifier)
       (navigation_suffix
         (simple_identifier)))
+    (value_binding_pattern)
     (simple_identifier)
     (call_expression
       (simple_identifier)
@@ -562,6 +583,7 @@ func doSomething() {
     (function_body
       (statements
         (if_statement
+          (value_binding_pattern)
           (simple_identifier)
           (try_expression
             (call_expression
@@ -596,6 +618,7 @@ if let something = doThing(), let somethingElse = something.somethingElse() {
 
 (source_file
   (if_statement
+    (value_binding_pattern)
     (simple_identifier)
     (call_expression
       (simple_identifier)
@@ -614,11 +637,13 @@ if let something = doThing(), let somethingElse = something.somethingElse() {
         (call_suffix
           (value_arguments)))))
   (if_statement
+    (value_binding_pattern)
     (simple_identifier)
     (call_expression
       (simple_identifier)
       (call_suffix
         (value_arguments)))
+    (value_binding_pattern)
     (simple_identifier)
     (call_expression
       (navigation_expression
@@ -646,10 +671,12 @@ else if let cPrime = c {
 
 (source_file
   (if_statement
+    (value_binding_pattern)
     (simple_identifier)
     (simple_identifier)
     (else)
     (if_statement
+      (value_binding_pattern)
       (simple_identifier)
       (simple_identifier)))
   (if_statement
@@ -658,6 +685,7 @@ else if let cPrime = c {
       (simple_identifier))
     (else)
     (if_statement
+      (value_binding_pattern)
       (simple_identifier)
       (simple_identifier))))
 
@@ -738,6 +766,7 @@ guard let pattern else {
 
 (source_file
   (guard_statement
+    (value_binding_pattern)
     (simple_identifier)
     (call_expression
       (simple_identifier)
@@ -764,6 +793,7 @@ guard let pattern else {
     (simple_identifier)
     (simple_identifier)
     (pattern
+      (value_binding_pattern)
       (simple_identifier))
     (call_expression
       (simple_identifier)
@@ -775,6 +805,7 @@ guard let pattern else {
     (simple_identifier)
     (else))
   (guard_statement
+    (value_binding_pattern)
     (simple_identifier)
     (else)
     (statements
@@ -792,6 +823,7 @@ guard let something = doThing(), something.isSpecial() else {
 
 (source_file
   (guard_statement
+    (value_binding_pattern)
     (simple_identifier)
     (call_expression
       (simple_identifier)
@@ -823,6 +855,7 @@ guard case let size: Int = variable.size else {
 
 (source_file
   (guard_statement
+    (value_binding_pattern)
     (simple_identifier)
     (type_annotation
       (user_type
@@ -888,6 +921,7 @@ let ø = unicode()
 
 (source_file
   (property_declaration
+    (value_binding_pattern)
     (pattern
       (simple_identifier))
     (call_expression
@@ -928,6 +962,7 @@ public init() {
         (comment)
         (property_declaration
           (ownership_modifier)
+          (value_binding_pattern)
           (pattern
             (simple_identifier))
           (simple_identifier))
@@ -977,10 +1012,12 @@ async let bar = 66
 
 (source_file
   (property_declaration
+    (value_binding_pattern)
     (pattern
       (simple_identifier))
     (integer_literal))
   (property_declaration
+    (value_binding_pattern)
     (pattern
       (simple_identifier))
     (integer_literal)))
@@ -996,6 +1033,7 @@ actor.increment()
 
 (source_file
   (property_declaration
+    (value_binding_pattern)
     (pattern
       (simple_identifier))
     (integer_literal))

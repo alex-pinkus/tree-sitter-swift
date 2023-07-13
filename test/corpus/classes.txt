@@ -117,6 +117,7 @@ internal open class Test {
       (property_declaration
         (modifiers
           (visibility_modifier))
+        (value_binding_pattern)
         (pattern
           (simple_identifier))
         (type_annotation
@@ -125,6 +126,7 @@ internal open class Test {
       (property_declaration
         (modifiers
           (visibility_modifier))
+        (value_binding_pattern)
         (pattern
           (simple_identifier))
         (type_annotation
@@ -398,6 +400,7 @@ class SomethingElse: ThingProvider {
     (type_identifier)
     (class_body
       (property_declaration
+        (value_binding_pattern)
         (pattern
           (simple_identifier))
         (type_annotation
@@ -405,6 +408,7 @@ class SomethingElse: ThingProvider {
             (type_identifier)))
         (integer_literal))
       (property_declaration
+        (value_binding_pattern)
         (pattern
           (simple_identifier))
         (type_annotation
@@ -414,6 +418,7 @@ class SomethingElse: ThingProvider {
       (property_declaration
         (modifiers
           (property_behavior_modifier))
+        (value_binding_pattern)
         (pattern
           (simple_identifier))
         (type_annotation
@@ -421,6 +426,7 @@ class SomethingElse: ThingProvider {
             (type_identifier)))
         (simple_identifier))
       (property_declaration
+        (value_binding_pattern)
         (pattern
           (simple_identifier))
         (type_annotation
@@ -430,6 +436,7 @@ class SomethingElse: ThingProvider {
           (statements
             (simple_identifier))))
       (property_declaration
+        (value_binding_pattern)
         (pattern
           (simple_identifier))
         (type_annotation
@@ -444,6 +451,7 @@ class SomethingElse: ThingProvider {
             (setter_specifier)
             (simple_identifier))))
       (property_declaration
+        (value_binding_pattern)
         (pattern
           (simple_identifier))
         (type_annotation
@@ -469,6 +477,7 @@ class SomethingElse: ThingProvider {
         (type_identifier)))
     (class_body
       (property_declaration
+        (value_binding_pattern)
         (pattern
           (simple_identifier))
         (type_annotation
@@ -477,6 +486,7 @@ class SomethingElse: ThingProvider {
         (computed_property
           (statements
             (guard_statement
+              (value_binding_pattern)
               (simple_identifier)
               (simple_identifier)
               (else)
@@ -511,6 +521,7 @@ class Alphabet {
     (type_identifier)
     (class_body
       (property_declaration
+        (value_binding_pattern)
         (pattern
           (simple_identifier))
         (type_annotation
@@ -536,6 +547,7 @@ class Cat { let noise: String = "meow"; let claws: String = "retractable" }
     (type_identifier)
     (class_body
       (property_declaration
+        (value_binding_pattern)
         (pattern
           (simple_identifier))
         (type_annotation
@@ -547,6 +559,7 @@ class Cat { let noise: String = "meow"; let claws: String = "retractable" }
     (type_identifier)
     (class_body
       (property_declaration
+        (value_binding_pattern)
         (pattern
           (simple_identifier))
         (type_annotation
@@ -555,6 +568,7 @@ class Cat { let noise: String = "meow"; let claws: String = "retractable" }
         (line_string_literal
           (line_str_text)))
       (property_declaration
+        (value_binding_pattern)
         (pattern
           (simple_identifier))
         (type_annotation
@@ -575,6 +589,7 @@ var propertyMap: NodePropertyMap & KeypathSearchable {
 
 (source_file
   (property_declaration
+    (value_binding_pattern)
     (pattern
       (simple_identifier))
     (type_annotation
@@ -607,6 +622,7 @@ struct Adder {
     (type_identifier)
     (class_body
       (property_declaration
+        (value_binding_pattern)
         (pattern
           (simple_identifier))
         (type_annotation
@@ -679,6 +695,7 @@ protocol Wrapper {
     (protocol_body
       (protocol_property_declaration
         (pattern
+          (value_binding_pattern)
           (simple_identifier))
         (type_annotation
           (user_type
@@ -789,12 +806,14 @@ class Test {
     (type_identifier)
     (class_body
       (property_declaration
+        (value_binding_pattern)
         (pattern
           (simple_identifier))
         (type_annotation
           (user_type
             (type_identifier))))
       (property_declaration
+        (value_binding_pattern)
         (pattern
           (simple_identifier))
         (type_annotation
@@ -962,6 +981,7 @@ enum CStyle {
       (property_declaration
         (modifiers
           (property_modifier))
+        (value_binding_pattern)
         (pattern
           (simple_identifier))
         (type_annotation
@@ -1069,6 +1089,7 @@ extension [SpecialItem] {
       (property_declaration
         (modifiers
           (property_modifier))
+        (value_binding_pattern)
         (pattern
           (simple_identifier))
         (line_string_literal
@@ -1076,6 +1097,7 @@ extension [SpecialItem] {
       (property_declaration
         (modifiers
           (property_modifier))
+        (value_binding_pattern)
         (pattern
           (simple_identifier))
         (type_annotation
@@ -1180,6 +1202,7 @@ enum ComputeType {
             (simple_identifier)
             (line_string_literal
               (line_str_text))))
+        (value_binding_pattern)
         (pattern
           (simple_identifier))
         (type_annotation
@@ -1231,6 +1254,7 @@ let result: HasGeneric<P1 & P2> = HasGeneric<P1 & P2>(t: "Hello")
 
 (source_file
   (property_declaration
+    (value_binding_pattern)
     (pattern
       (simple_identifier))
     (type_annotation
@@ -1329,6 +1353,7 @@ let result = greet("me") as P1 & P2
 
 (source_file
   (property_declaration
+    (value_binding_pattern)
     (pattern
       (simple_identifier))
     (as_expression
@@ -1374,6 +1399,7 @@ public final class Foo {
       (property_declaration
         (modifiers
           (visibility_modifier))
+        (value_binding_pattern)
         (pattern
           (simple_identifier))
         (type_annotation
@@ -1382,6 +1408,7 @@ public final class Foo {
       (property_declaration
         (modifiers
           (visibility_modifier))
+        (value_binding_pattern)
         (pattern
           (simple_identifier))
         (type_annotation
@@ -1417,6 +1444,7 @@ public var someVar: String {
   (property_declaration
     (modifiers
       (visibility_modifier))
+    (value_binding_pattern)
     (pattern
       (simple_identifier))
     (type_annotation
@@ -1483,6 +1511,7 @@ private actor CounterActor {
       (property_declaration
         (modifiers
           (visibility_modifier))
+        (value_binding_pattern)
         (pattern
           (simple_identifier))
         (integer_literal))
@@ -1533,6 +1562,7 @@ extension Array {
       (type_identifier))
     (class_body
       (property_declaration
+        (value_binding_pattern)
         (pattern
           (simple_identifier))
         (type_annotation

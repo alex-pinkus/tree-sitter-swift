@@ -168,6 +168,7 @@ let numerals = [1: "I", 4: "IV", 5: "V", 10: "X"]
 
 (source_file
   (property_declaration
+    (value_binding_pattern)
     (pattern
       (simple_identifier))
     (array_literal
@@ -175,6 +176,7 @@ let numerals = [1: "I", 4: "IV", 5: "V", 10: "X"]
       (integer_literal)
       (integer_literal)))
   (property_declaration
+    (value_binding_pattern)
     (pattern
       (simple_identifier))
     (dictionary_literal
@@ -235,6 +237,7 @@ let _ = nil
 
 (source_file
   (property_declaration
+    (value_binding_pattern)
     (pattern
       (wildcard_pattern))))
 
@@ -249,11 +252,13 @@ let _ = ##"Hello, so-called "world"!"##
 
 (source_file
   (property_declaration
+    (value_binding_pattern)
     (pattern
       (wildcard_pattern))
     (raw_string_literal
       (raw_str_end_part)))
   (property_declaration
+    (value_binding_pattern)
     (pattern
       (wildcard_pattern))
     (raw_string_literal
@@ -269,6 +274,7 @@ let _ = #"Foo"
 
 (source_file
   (property_declaration
+    (value_binding_pattern)
     (pattern
       (wildcard_pattern))
     (ERROR
@@ -348,6 +354,7 @@ let _ = #"""
               (multiline_comment))
             (raw_str_end_part))))))
   (property_declaration
+    (value_binding_pattern)
     (pattern
       (wildcard_pattern))
     (raw_string_literal
@@ -358,11 +365,13 @@ let _ = #"""
           (simple_identifier)))
       (raw_str_end_part)))
   (property_declaration
+    (value_binding_pattern)
     (pattern
       (wildcard_pattern))
     (raw_string_literal
       (raw_str_end_part)))
   (property_declaration
+    (value_binding_pattern)
     (pattern
       (wildcard_pattern))
     (raw_string_literal
@@ -378,6 +387,7 @@ let _ = #"""
           (simple_identifier)))
       (raw_str_end_part)))
   (property_declaration
+    (value_binding_pattern)
     (pattern
       (wildcard_pattern))
     (raw_string_literal
@@ -400,17 +410,20 @@ let infinity = "\u{221E}"
 
 (source_file
   (property_declaration
+    (value_binding_pattern)
     (pattern
       (simple_identifier))
     (line_string_literal
       (str_escaped_char)))
   (property_declaration
+    (value_binding_pattern)
     (pattern
       (simple_identifier))
     (line_string_literal
       (line_str_text)
       (str_escaped_char)))
   (property_declaration
+    (value_binding_pattern)
     (pattern
       (simple_identifier))
     (line_string_literal
@@ -426,6 +439,7 @@ let playgroundLiteral = #imageLiteral(resourceName: "heart")
 
 (source_file
   (property_declaration
+    (value_binding_pattern)
     (pattern
       (simple_identifier))
     (simple_identifier)
@@ -443,10 +457,12 @@ let regex2 = /([ab])|\d+/
 
 (source_file
   (property_declaration
+    (value_binding_pattern)
     (pattern
       (simple_identifier))
     (regex_literal))
   (property_declaration
+    (value_binding_pattern)
     (pattern
       (simple_identifier))
     (regex_literal)))
@@ -467,6 +483,7 @@ let regex = #/
 
 (source_file
   (property_declaration
+    (value_binding_pattern)
     (pattern
       (simple_identifier))
     (regex_literal)))
@@ -512,6 +529,7 @@ let b = 0 /^/ 1
       (statements
         (integer_literal))))
   (property_declaration
+    (value_binding_pattern)
     (pattern
       (simple_identifier))
     (infix_expression
@@ -530,6 +548,7 @@ let y = array.reduce(1, /) + otherArray.reduce(1, /)
 
 (source_file
   (property_declaration
+    (value_binding_pattern)
     (pattern
       (simple_identifier))
     (multiplicative_expression
@@ -545,6 +564,7 @@ let y = array.reduce(1, /) + otherArray.reduce(1, /)
             (value_argument))))
       (integer_literal)))
   (property_declaration
+    (value_binding_pattern)
     (pattern
       (simple_identifier))
     (call_expression
@@ -623,6 +643,7 @@ let e = !/y / .foo() // Prefix '!/' with infix '/' and operand '.foo()'
 
 (source_file
   (property_declaration
+    (value_binding_pattern)
     (pattern
       (simple_identifier))
     (multiplicative_expression
@@ -634,6 +655,7 @@ let e = !/y / .foo() // Prefix '!/' with infix '/' and operand '.foo()'
       (integer_literal)))
   (comment)
   (property_declaration
+    (value_binding_pattern)
     (pattern
       (simple_identifier))
     (call_expression
@@ -697,6 +719,7 @@ class Operator {
     (type_identifier)
     (class_body
       (property_declaration
+        (value_binding_pattern)
         (pattern
           (simple_identifier))
         (type_annotation
