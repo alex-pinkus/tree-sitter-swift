@@ -1,28 +1,28 @@
-Alamofire Alamofire/Alamofire 5.6.4
-iina iina/iina v1.3.1
-Charts danielgindi/Charts v4.1.0
+Alamofire Alamofire/Alamofire 5.7.1
+iina iina/iina v1.3.2
+Charts danielgindi/Charts 5.0.0
 lottie-ios airbnb/lottie-ios 4.2.0
 vapor vapor/vapor 3.3.3
 SwiftyJSON SwiftyJSON/SwiftyJSON 5.0.1
-RxSwift ReactiveX/RxSwift 6.5.0 0 9
-RxSwift ReactiveX/RxSwift 6.5.0 1 9
-RxSwift ReactiveX/RxSwift 6.5.0 2 9
-RxSwift ReactiveX/RxSwift 6.5.0 3 9
-RxSwift ReactiveX/RxSwift 6.5.0 4 9
-RxSwift ReactiveX/RxSwift 6.5.0 5 9
-RxSwift ReactiveX/RxSwift 6.5.0 6 9
-RxSwift ReactiveX/RxSwift 6.5.0 7 9
-RxSwift ReactiveX/RxSwift 6.5.0 8 9
+RxSwift ReactiveX/RxSwift 6.6.0 0 9
+RxSwift ReactiveX/RxSwift 6.6.0 1 9
+RxSwift ReactiveX/RxSwift 6.6.0 2 9
+RxSwift ReactiveX/RxSwift 6.6.0 3 9
+RxSwift ReactiveX/RxSwift 6.6.0 4 9
+RxSwift ReactiveX/RxSwift 6.6.0 5 9
+RxSwift ReactiveX/RxSwift 6.6.0 6 9
+RxSwift ReactiveX/RxSwift 6.6.0 7 9
+RxSwift ReactiveX/RxSwift 6.6.0 8 9
 HeroTransitions HeroTransitions/Hero 1.6.2
-Kingfisher onevcat/Kingfisher 7.6.2
+Kingfisher onevcat/Kingfisher 7.8.1
 shadowsocks shadowsocks/ShadowsocksX-NG v1.10.2
 SnapKit SnapKit/SnapKit 5.0.1
-SwiftLint realm/SwiftLint 0.51.0 0 2
-SwiftLint realm/SwiftLint 0.51.0 1 2
-ClashX yichengchen/clashX 1.98.0
+SwiftLint realm/SwiftLint 0.52.4 0 2
+SwiftLint realm/SwiftLint 0.52.4 1 2
+ClashX yichengchen/clashX 1.116.3
 Carthage Carthage/Carthage 0.39.0
-Rectangle rxhanson/Rectangle v0.68
-PromiseKit mxcl/PromiseKit 6.22.1
+Rectangle rxhanson/Rectangle v0.69
+PromiseKit mxcl/PromiseKit 8.0.0
 Moya Moya/Moya 15.0.3
 MonitorControl MonitorControl/MonitorControl v4.1.0
 ObjectMapper tristanhimmelman/ObjectMapper 4.2.0
@@ -37,10 +37,10 @@ AudioKit AudioKit/AudioKit 5.6.1
 Starscream daltoniam/Starscream 4.0.4
 MessageKit MessageKit/MessageKit 4.1.1
 KeychainAccess kishikawakatsumi/KeychainAccess v4.2.2
-Nuke kean/Nuke 12.1.0
+Nuke kean/Nuke 12.1.3
 Swinject Swinject/Swinject 2.8.2
-GRDB groue/GRDB.swift v6.12.0 0 2
-GRDB groue/GRDB.swift v6.12.0 1 2
+GRDB groue/GRDB.swift v6.16.0 0 2
+GRDB groue/GRDB.swift v6.16.0 1 2
 Dance saoudrizwan/Dance v1.0.7
 StyleKit 146BC/StyleKit 0.7.0
 ReactKit ReactKit/ReactKit 0.12.0
