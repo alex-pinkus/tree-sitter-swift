@@ -267,7 +267,8 @@ let e = array[...]
       (call_suffix
         (value_arguments
           (value_argument
-            (simple_identifier)
+            (value_argument_label
+              (simple_identifier))
             (simple_identifier))))))
   (property_declaration
     (pattern
@@ -279,7 +280,8 @@ let e = array[...]
           (value_argument
             (simple_identifier))
           (value_argument
-            (simple_identifier)
+            (value_argument_label
+              (simple_identifier))
             (simple_identifier))))))
   (property_declaration
     (pattern
@@ -526,7 +528,7 @@ modifyThis(&this)
 Selectors
 ================================================================================
 
-let selector = #selector(self.foo(parameter:))
+let selector = #selector(self.foo(parameter: param))
 let getterSelector = #selector(getter: self.bar)
 let setterSelector = #selector(setter: self.bar)
 
@@ -545,7 +547,9 @@ let setterSelector = #selector(setter: self.bar)
         (call_suffix
           (value_arguments
             (value_argument
-              (simple_identifier)))))))
+              (value_argument_label
+               (simple_identifier))
+                  (simple_identifier)))))))
   (property_declaration
     (pattern
       (simple_identifier))
@@ -567,7 +571,7 @@ let setterSelector = #selector(setter: self.bar)
 Function references
 ================================================================================
 
-self.foo(parameter:)
+self.foo(parameter: param)
 
 --------------------------------------------------------------------------------
 
@@ -580,7 +584,9 @@ self.foo(parameter:)
     (call_suffix
       (value_arguments
         (value_argument
-          (simple_identifier))))))
+          (value_argument_label
+            (simple_identifier))
+              (simple_identifier))))))
 
 ================================================================================
 Complex ternary expression
@@ -639,7 +645,8 @@ string[..<string.index(before: string.endIndex)]
               (call_suffix
                 (value_arguments
                   (value_argument
-                    (simple_identifier)
+                    (value_argument_label
+                          (simple_identifier))
                     (navigation_expression
                       (simple_identifier)
                       (navigation_suffix
@@ -730,19 +737,20 @@ Image.url(url, isLoaded: $done)
 
 --------------------------------------------------------------------------------
 
-(source_file
-  (call_expression
-    (navigation_expression
-      (simple_identifier)
-      (navigation_suffix
-        (simple_identifier)))
-    (call_suffix
-      (value_arguments
-        (value_argument
-          (simple_identifier))
-        (value_argument
+    (source_file
+      (call_expression
+        (navigation_expression
           (simple_identifier)
-          (simple_identifier))))))
+          (navigation_suffix
+            (simple_identifier)))
+        (call_suffix
+          (value_arguments
+            (value_argument
+              (simple_identifier))
+            (value_argument
+              (value_argument_label
+                (simple_identifier))
+                (simple_identifier))))))
 
 ================================================================================
 Key-path expressions
@@ -780,7 +788,8 @@ let keyPathStringExpression = #keyPath(someProperty)
       (call_suffix
         (value_arguments
           (value_argument
-            (simple_identifier)
+            (value_argument_label
+              (simple_identifier))
             (integer_literal))))))
   (call_expression
     (navigation_expression
@@ -809,7 +818,8 @@ let keyPathStringExpression = #keyPath(someProperty)
         (call_suffix
           (value_arguments
             (value_argument
-              (simple_identifier)
+              (value_argument_label
+                  (simple_identifier))
               (navigation_expression
                 (key_path_expression)
                 (navigation_suffix
@@ -850,7 +860,8 @@ trimPathAtLengths(positions: [(start: start, end: end)])
     (call_suffix
       (value_arguments
         (value_argument
-          (simple_identifier)
+          (value_argument_label
+            (simple_identifier))
           (array_literal
             (tuple_expression
               (simple_identifier)
@@ -1130,13 +1141,16 @@ async(async: async, qos: qos, flags: flags) {
     (call_suffix
       (value_arguments
         (value_argument
-          (simple_identifier)
+          (value_argument_label
+            (simple_identifier))
           (simple_identifier))
         (value_argument
-          (simple_identifier)
+          (value_argument_label
+            (simple_identifier))
           (simple_identifier))
         (value_argument
-          (simple_identifier)
+          (value_argument_label
+            (simple_identifier))
           (simple_identifier)))
       (lambda_literal
         (statements

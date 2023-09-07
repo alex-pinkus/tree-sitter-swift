@@ -68,10 +68,12 @@ func 👨‍❤️‍💋‍👨(🙋🏼‍♂️ 🙋‍♂️: Man, 🙋🏻�
     (call_suffix
       (value_arguments
         (value_argument
-          (simple_identifier)
+          (value_argument_label
+            (simple_identifier))
           (simple_identifier))
         (value_argument
-          (simple_identifier)
+          (value_argument_label
+            (simple_identifier))
           (simple_identifier))))))
 
 ================================================================================
