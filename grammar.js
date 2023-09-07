@@ -719,7 +719,7 @@ module.exports = grammar({
           optional($.type_modifiers),
           choice(
             repeat1(
-              seq(field("reference_specifier", $.simple_identifier), ":")
+              seq(field("reference_specifier", $.value_argument_label), ":")
             ),
             seq(
               optional(seq(field("name", $.value_argument_label), ":")),
