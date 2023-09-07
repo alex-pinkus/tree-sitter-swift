@@ -712,7 +712,7 @@ module.exports = grammar({
     value_argument_label: ($) =>
       prec.left(
         choice($.simple_identifier, alias("async", $.simple_identifier))
-      ), 
+      ),
     value_argument: ($) =>
       prec.left(
         seq(
@@ -722,15 +722,7 @@ module.exports = grammar({
               seq(field("reference_specifier", $.simple_identifier), ":")
             ),
             seq(
-              optional(
-                seq(
-                  field(
-                    "name",
-                    $.value_argument_label
-                  ),
-                  ":"
-                )
-              ),
+              optional(seq(field("name", $.value_argument_label), ":")),
               field("value", $._expression)
             )
           )
