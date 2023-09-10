@@ -93,7 +93,8 @@ Custom interpolation
   (line_string_literal
     (line_str_text)
     (interpolated_expression
-      (simple_identifier)
+      (value_argument_label
+        (simple_identifier))
       (simple_identifier))))
 
 ================================================================================
@@ -753,7 +754,8 @@ doOperation(on: a, /)
     (call_suffix
       (value_arguments
         (value_argument
-          (simple_identifier)
+          (value_argument_label
+            (simple_identifier))
           (simple_identifier))
         (value_argument))))
   (comment))

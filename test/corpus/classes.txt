@@ -1278,7 +1278,8 @@ let result: HasGeneric<P1 & P2> = HasGeneric<P1 & P2>(t: "Hello")
       (constructor_suffix
         (value_arguments
           (value_argument
-            (simple_identifier)
+            (value_argument_label
+              (simple_identifier))
             (line_string_literal
               (line_str_text))))))))
 
