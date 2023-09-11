@@ -158,7 +158,8 @@ sum(1, with: 2)
         (value_argument
           (integer_literal))
         (value_argument
-          (simple_identifier)
+          (value_argument_label
+            (simple_identifier))
           (integer_literal))))))
 
 ================================================================================
@@ -617,7 +618,8 @@ test(block: ===)
     (call_suffix
       (value_arguments
         (value_argument
-          (simple_identifier))))))
+          (value_argument_label
+           (simple_identifier)))))))
 
 ================================================================================
 Higher-order functions - pt 8
