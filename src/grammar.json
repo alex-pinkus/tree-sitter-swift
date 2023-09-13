@@ -2670,6 +2670,28 @@
         }
       ]
     },
+    "value_argument_label": {
+      "type": "PREC_LEFT",
+      "value": 0,
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "simple_identifier"
+          },
+          {
+            "type": "ALIAS",
+            "content": {
+              "type": "STRING",
+              "value": "async"
+            },
+            "named": true,
+            "value": "simple_identifier"
+          }
+        ]
+      }
+    },
     "value_argument": {
       "type": "PREC_LEFT",
       "value": 0,
@@ -2701,7 +2723,7 @@
                       "name": "reference_specifier",
                       "content": {
                         "type": "SYMBOL",
-                        "name": "simple_identifier"
+                        "name": "value_argument_label"
                       }
                     },
                     {
@@ -2724,22 +2746,8 @@
                             "type": "FIELD",
                             "name": "name",
                             "content": {
-                              "type": "CHOICE",
-                              "members": [
-                                {
-                                  "type": "SYMBOL",
-                                  "name": "simple_identifier"
-                                },
-                                {
-                                  "type": "ALIAS",
-                                  "content": {
-                                    "type": "STRING",
-                                    "value": "async"
-                                  },
-                                  "named": true,
-                                  "value": "simple_identifier"
-                                }
-                              ]
+                              "type": "SYMBOL",
+                              "name": "value_argument_label"
                             }
                           },
                           {
@@ -8742,7 +8750,7 @@
         }
       ]
     },
-    "_binding_pattern_kind": {
+    "value_binding_pattern": {
       "type": "FIELD",
       "name": "mutability",
       "content": {
@@ -8776,7 +8784,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_binding_pattern_kind"
+          "name": "value_binding_pattern"
         }
       ]
     },
@@ -8985,7 +8993,7 @@
             },
             {
               "type": "SYMBOL",
-              "name": "_binding_pattern_kind"
+              "name": "value_binding_pattern"
             }
           ]
         },

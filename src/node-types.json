@@ -12027,10 +12027,6 @@
             "named": true
           },
           {
-            "type": "let",
-            "named": false
-          },
-          {
             "type": "line_string_literal",
             "named": true
           },
@@ -12155,8 +12151,8 @@
             "named": true
           },
           {
-            "type": "var",
-            "named": false
+            "type": "value_binding_pattern",
+            "named": true
           },
           {
             "type": "where_clause",
@@ -12172,20 +12168,6 @@
           },
           {
             "type": "~",
-            "named": false
-          }
-        ]
-      },
-      "mutability": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "let",
-            "named": false
-          },
-          {
-            "type": "var",
             "named": false
           }
         ]
@@ -12582,10 +12564,6 @@
             "named": true
           },
           {
-            "type": "let",
-            "named": false
-          },
-          {
             "type": "line_string_literal",
             "named": true
           },
@@ -12710,8 +12688,8 @@
             "named": true
           },
           {
-            "type": "var",
-            "named": false
+            "type": "value_binding_pattern",
+            "named": true
           },
           {
             "type": "where_clause",
@@ -12727,20 +12705,6 @@
           },
           {
             "type": "~",
-            "named": false
-          }
-        ]
-      },
-      "mutability": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "let",
-            "named": false
-          },
-          {
-            "type": "var",
             "named": false
           }
         ]
@@ -14128,7 +14092,7 @@
         "required": false,
         "types": [
           {
-            "type": "simple_identifier",
+            "type": "value_argument_label",
             "named": true
           }
         ]
@@ -14138,7 +14102,7 @@
         "required": false,
         "types": [
           {
-            "type": "simple_identifier",
+            "type": "value_argument_label",
             "named": true
           }
         ]
@@ -18128,20 +18092,6 @@
           }
         ]
       },
-      "mutability": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "let",
-            "named": false
-          },
-          {
-            "type": "var",
-            "named": false
-          }
-        ]
-      },
       "name": {
         "multiple": false,
         "required": false,
@@ -18387,6 +18337,10 @@
         },
         {
           "type": "user_type",
+          "named": true
+        },
+        {
+          "type": "value_binding_pattern",
           "named": true
         },
         {
@@ -19256,20 +19210,6 @@
           }
         ]
       },
-      "mutability": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "let",
-            "named": false
-          },
-          {
-            "type": "var",
-            "named": false
-          }
-        ]
-      },
       "name": {
         "multiple": true,
         "required": true,
@@ -19669,6 +19609,10 @@
         },
         {
           "type": "type_constraints",
+          "named": true
+        },
+        {
+          "type": "value_binding_pattern",
           "named": true
         }
       ]
@@ -21635,10 +21579,6 @@
             "named": true
           },
           {
-            "type": "let",
-            "named": false
-          },
-          {
             "type": "line_string_literal",
             "named": true
           },
@@ -21763,8 +21703,8 @@
             "named": true
           },
           {
-            "type": "var",
-            "named": false
+            "type": "value_binding_pattern",
+            "named": true
           },
           {
             "type": "where_clause",
@@ -21780,20 +21720,6 @@
           },
           {
             "type": "~",
-            "named": false
-          }
-        ]
-      },
-      "mutability": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "let",
-            "named": false
-          },
-          {
-            "type": "var",
             "named": false
           }
         ]
@@ -26164,7 +26090,7 @@
         "required": false,
         "types": [
           {
-            "type": "simple_identifier",
+            "type": "value_argument_label",
             "named": true
           }
         ]
@@ -26174,7 +26100,7 @@
         "required": false,
         "types": [
           {
-            "type": "simple_identifier",
+            "type": "value_argument_label",
             "named": true
           }
         ]
@@ -26550,6 +26476,21 @@
     }
   },
   {
+    "type": "value_argument_label",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "simple_identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "value_arguments",
     "named": true,
     "fields": {},
@@ -26562,6 +26503,26 @@
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "value_binding_pattern",
+    "named": true,
+    "fields": {
+      "mutability": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "let",
+            "named": false
+          },
+          {
+            "type": "var",
+            "named": false
+          }
+        ]
+      }
     }
   },
   {
@@ -27083,10 +27044,6 @@
             "named": true
           },
           {
-            "type": "let",
-            "named": false
-          },
-          {
             "type": "line_string_literal",
             "named": true
           },
@@ -27211,8 +27168,8 @@
             "named": true
           },
           {
-            "type": "var",
-            "named": false
+            "type": "value_binding_pattern",
+            "named": true
           },
           {
             "type": "where_clause",
@@ -27228,20 +27185,6 @@
           },
           {
             "type": "~",
-            "named": false
-          }
-        ]
-      },
-      "mutability": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "let",
-            "named": false
-          },
-          {
-            "type": "var",
             "named": false
           }
         ]
