@@ -1182,7 +1182,12 @@ module.exports = grammar({
         )
       ),
     availability_condition: ($) =>
-      seq("#available", "(", sep1($._availability_argument, ","), ")"),
+      seq(
+        choice("#available", "#unavailable"),
+        "(",
+        sep1($._availability_argument, ","),
+        ")"
+      ),
     _availability_argument: ($) =>
       choice(seq($.identifier, sep1($.integer_literal, ".")), "*"),
     ////////////////////////////////
