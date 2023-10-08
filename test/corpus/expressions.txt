@@ -361,6 +361,23 @@ Destructuring assignment
     (simple_identifier)))
 
 ================================================================================
+Optional assignment
+================================================================================
+
+maybeOne.two? = 1
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (assignment
+    (directly_assignable_expression
+      (navigation_expression
+        (simple_identifier)
+        (navigation_suffix
+          (simple_identifier))))
+    (integer_literal)))
+
+================================================================================
 Implicit member expression
 ================================================================================
 
@@ -560,8 +577,8 @@ let setterSelector = #selector(setter: self.bar)
           (value_arguments
             (value_argument
               (value_argument_label
-               (simple_identifier))
-                  (simple_identifier)))))))
+                (simple_identifier))
+              (simple_identifier)))))))
   (property_declaration
     (value_binding_pattern)
     (pattern
@@ -600,7 +617,7 @@ self.foo(parameter: param)
         (value_argument
           (value_argument_label
             (simple_identifier))
-              (simple_identifier))))))
+          (simple_identifier))))))
 
 ================================================================================
 Complex ternary expression
@@ -662,7 +679,7 @@ string[..<string.index(before: string.endIndex)]
                 (value_arguments
                   (value_argument
                     (value_argument_label
-                          (simple_identifier))
+                      (simple_identifier))
                     (navigation_expression
                       (simple_identifier)
                       (navigation_suffix
@@ -753,20 +770,20 @@ Image.url(url, isLoaded: $done)
 
 --------------------------------------------------------------------------------
 
-    (source_file
-      (call_expression
-        (navigation_expression
-          (simple_identifier)
-          (navigation_suffix
-            (simple_identifier)))
-        (call_suffix
-          (value_arguments
-            (value_argument
-              (simple_identifier))
-            (value_argument
-              (value_argument_label
-                (simple_identifier))
-                (simple_identifier))))))
+(source_file
+  (call_expression
+    (navigation_expression
+      (simple_identifier)
+      (navigation_suffix
+        (simple_identifier)))
+    (call_suffix
+      (value_arguments
+        (value_argument
+          (simple_identifier))
+        (value_argument
+          (value_argument_label
+            (simple_identifier))
+          (simple_identifier))))))
 
 ================================================================================
 Key-path expressions
@@ -837,7 +854,7 @@ let keyPathStringExpression = #keyPath(someProperty)
           (value_arguments
             (value_argument
               (value_argument_label
-                  (simple_identifier))
+                (simple_identifier))
               (navigation_expression
                 (key_path_expression)
                 (navigation_suffix
