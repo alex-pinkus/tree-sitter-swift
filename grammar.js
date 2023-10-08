@@ -1069,15 +1069,8 @@ module.exports = grammar({
       ),
     _bitwise_binary_operator: ($) => choice("&", "|", "^", "<<", ">>"),
     _postfix_unary_operator: ($) => choice("++", "--", $.bang),
-    directly_assignable_expression: ($) =>
-      choice(
-        $.simple_identifier,
-        $.navigation_expression,
-        $.call_expression,
-        $.tuple_expression,
-        $.self_expression,
-        $.postfix_expression // Since `x[...]! = y` is legal
-      ),
+    directly_assignable_expression: ($) => $._expression,
+
     ////////////////////////////////
     // Statements - https://docs.swift.org/swift-book/ReferenceManual/Statements.html
     ////////////////////////////////
