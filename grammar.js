@@ -709,27 +709,20 @@ module.exports = grammar({
           seq("[", optional(sep1($.value_argument, ",")), "]")
         )
       ),
+    value_argument_label: ($) =>
+      prec.left(
+        choice($.simple_identifier, alias("async", $.simple_identifier))
+      ),
     value_argument: ($) =>
       prec.left(
         seq(
           optional($.type_modifiers),
           choice(
             repeat1(
-              seq(field("reference_specifier", $.simple_identifier), ":")
+              seq(field("reference_specifier", $.value_argument_label), ":")
             ),
             seq(
-              optional(
-                seq(
-                  field(
-                    "name",
-                    choice(
-                      $.simple_identifier,
-                      alias("async", $.simple_identifier)
-                    )
-                  ),
-                  ":"
-                )
-              ),
+              optional(seq(field("name", $.value_argument_label), ":")),
               field("value", $._expression)
             )
           )
@@ -1076,15 +1069,8 @@ module.exports = grammar({
       ),
     _bitwise_binary_operator: ($) => choice("&", "|", "^", "<<", ">>"),
     _postfix_unary_operator: ($) => choice("++", "--", $.bang),
-    directly_assignable_expression: ($) =>
-      choice(
-        $.simple_identifier,
-        $.navigation_expression,
-        $.call_expression,
-        $.tuple_expression,
-        $.self_expression,
-        $.postfix_expression // Since `x[...]! = y` is legal
-      ),
+    directly_assignable_expression: ($) => $._expression,
+
     ////////////////////////////////
     // Statements - https://docs.swift.org/swift-book/ReferenceManual/Statements.html
     ////////////////////////////////
@@ -1189,7 +1175,12 @@ module.exports = grammar({
         )
       ),
     availability_condition: ($) =>
-      seq("#available", "(", sep1($._availability_argument, ","), ")"),
+      seq(
+        choice("#available", "#unavailable"),
+        "(",
+        sep1($._availability_argument, ","),
+        ")"
+      ),
     _availability_argument: ($) =>
       choice(seq($.identifier, sep1($.integer_literal, ".")), "*"),
     ////////////////////////////////
@@ -1699,9 +1690,9 @@ module.exports = grammar({
         ),
         optional($.type_annotation)
       ),
-    _binding_pattern_kind: ($) => field("mutability", choice("var", "let")),
+    value_binding_pattern: ($) => field("mutability", choice("var", "let")),
     _possibly_async_binding_pattern_kind: ($) =>
-      seq(optional($._async_modifier), $._binding_pattern_kind),
+      seq(optional($._async_modifier), $.value_binding_pattern),
     _binding_kind_and_pattern: ($) =>
       seq(
         $._possibly_async_binding_pattern_kind,
@@ -1732,7 +1723,7 @@ module.exports = grammar({
       ),
     _binding_pattern: ($) =>
       seq(
-        seq(optional("case"), $._binding_pattern_kind),
+        seq(optional("case"), $.value_binding_pattern),
         $._no_expr_pattern_already_bound
       ),
 

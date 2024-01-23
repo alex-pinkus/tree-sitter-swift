@@ -10,16 +10,19 @@ let ☁️☀️☁️ = "clouds and sun"
 
 (source_file
   (property_declaration
+    (value_binding_pattern)
     (pattern
       (simple_identifier))
     (line_string_literal
       (line_str_text)))
   (property_declaration
+    (value_binding_pattern)
     (pattern
       (simple_identifier))
     (line_string_literal
       (line_str_text)))
   (property_declaration
+    (value_binding_pattern)
     (pattern
       (simple_identifier))
     (line_string_literal
@@ -68,10 +71,12 @@ func 👨‍❤️‍💋‍👨(🙋🏼‍♂️ 🙋‍♂️: Man, 🙋🏻�
     (call_suffix
       (value_arguments
         (value_argument
-          (simple_identifier)
+          (value_argument_label
+            (simple_identifier))
           (simple_identifier))
         (value_argument
-          (simple_identifier)
+          (value_argument_label
+            (simple_identifier))
           (simple_identifier))))))
 
 ================================================================================
@@ -84,6 +89,7 @@ let number4️⃣ = nummber2️⃣ + number2️⃣
 
 (source_file
   (property_declaration
+    (value_binding_pattern)
     (pattern
       (simple_identifier))
     (additive_expression
