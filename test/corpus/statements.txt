@@ -565,6 +565,47 @@ someLabel: if a.isEmpty, let b = getB() {
         (value_arguments)))))
 
 ================================================================================
+If let on multiple lines
+================================================================================
+
+if
+    let foo = getFoo(),
+    let bar = getBar()
+{
+    doSomethingWith(foo: foo, bar: bar)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (if_statement
+    (value_binding_pattern)
+    (simple_identifier)
+    (call_expression
+      (simple_identifier)
+      (call_suffix
+        (value_arguments)))
+    (value_binding_pattern)
+    (simple_identifier)
+    (call_expression
+      (simple_identifier)
+      (call_suffix
+        (value_arguments)))
+    (statements
+      (call_expression
+        (simple_identifier)
+        (call_suffix
+          (value_arguments
+            (value_argument
+              (value_argument_label
+                (simple_identifier))
+              (simple_identifier))
+            (value_argument
+              (value_argument_label
+                (simple_identifier))
+              (simple_identifier))))))))
+
+================================================================================
 If let with function call
 ================================================================================
 
