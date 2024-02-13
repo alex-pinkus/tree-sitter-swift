@@ -1226,7 +1226,8 @@ module.exports = grammar({
         $.protocol_declaration,
         $.operator_declaration,
         $.precedence_group_declaration,
-        $.associatedtype_declaration
+        $.associatedtype_declaration,
+        $.macro_declaration
       ),
     _type_level_declaration: ($) =>
       choice(
@@ -1368,6 +1369,29 @@ module.exports = grammar({
         )
       ),
     function_body: ($) => $._block,
+    macro_declaration: ($) =>
+      seq(
+        $._macro_head,
+        $.simple_identifier,
+        optional($.type_parameters),
+        $._macro_signature,
+        optional(field("definition", $.macro_definition)),
+        optional($.type_constraints)
+      ),
+    _macro_head: ($) => seq(optional($.modifiers), "macro"),
+    _macro_signature: ($) =>
+      seq(
+        $._function_value_parameters,
+        optional(seq($._arrow_operator, $._unannotated_type))
+      ),
+    macro_definition: ($) =>
+      seq(
+        $._equal_sign,
+        field("body", choice($._expression, $.external_macro_definition))
+      ),
+
+    external_macro_definition: ($) => seq("#externalMacro", $.value_arguments),
+
     class_declaration: ($) =>
       seq(optional($.modifiers), $._modifierless_class_declaration),
     _modifierless_class_declaration: ($) =>

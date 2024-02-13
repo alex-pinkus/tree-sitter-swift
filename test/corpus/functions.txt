@@ -884,3 +884,48 @@ public static func & (lhs: Self, rhs: some SQLExpressible) -> SQLExpression {
                     (simple_identifier)
                     (navigation_suffix
                       (simple_identifier))))))))))))
+
+================================================================================
+Macros
+================================================================================
+
+@attached(
+    member,
+    names: named(apply)
+)
+public macro AutoApply() = #externalMacro(
+    module: "SwiftLintCoreMacros",
+    type: "AutoApply"
+)
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (macro_declaration
+    (modifiers
+      (attribute
+        (user_type
+          (type_identifier))
+        (simple_identifier)
+        (simple_identifier)
+        (call_expression
+          (simple_identifier)
+          (call_suffix
+            (value_arguments
+              (value_argument
+                (simple_identifier))))))
+      (visibility_modifier))
+    (simple_identifier)
+    (macro_definition
+      (external_macro_definition
+        (value_arguments
+          (value_argument
+            (value_argument_label
+              (simple_identifier))
+            (line_string_literal
+              (line_str_text)))
+          (value_argument
+            (value_argument_label
+              (simple_identifier))
+            (line_string_literal
+              (line_str_text))))))))
