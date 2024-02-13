@@ -176,6 +176,10 @@ module.exports = grammar({
 
     // `lazy` is also allowed as an identifier...
     [$.property_behavior_modifier, $.simple_identifier],
+
+    // SE-0380: if/switch expressions
+    [$._expression, $.if_statement],
+    [$._expression, $.switch_statement],
   ],
   extras: ($) => [
     $.comment,
@@ -474,6 +478,8 @@ module.exports = grammar({
           $._binary_expression,
           $.ternary_expression,
           $._primary_expression,
+          $.if_statement,
+          $.switch_statement,
           $.assignment,
           seq($._expression, alias($._immediate_quest, "?")),
           alias("async", $.simple_identifier)
@@ -541,7 +547,13 @@ module.exports = grammar({
         PRECS.prefix_operations,
         seq(
           field("operation", $._prefix_unary_operator),
-          field("target", $._expression)
+          field(
+            "target",
+            choice(
+              $._expression,
+              alias(choice("async", "if", "switch"), $._expression)
+            )
+          )
         )
       ),
     as_expression: ($) =>
@@ -711,7 +723,12 @@ module.exports = grammar({
       ),
     value_argument_label: ($) =>
       prec.left(
-        choice($.simple_identifier, alias("async", $.simple_identifier))
+        choice(
+          $.simple_identifier,
+          alias("async", $.simple_identifier),
+          alias("if", $.simple_identifier),
+          alias("switch", $.simple_identifier)
+        )
       ),
     value_argument: ($) =>
       prec.left(
