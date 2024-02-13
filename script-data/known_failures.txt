@@ -1,1 +1,4 @@
 ReactKit/ReactKitTests/OperationTests.swift
+RxSwift/Tests/RxCocoaTests/SharedSequence+ConcurrencyTests.swift
+GRDB/GRDB/Core/Statement.swift
+lottie-ios/Sources/Public/Animation/LottieAnimationLayer.swift
