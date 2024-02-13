@@ -1495,3 +1495,23 @@ parseStatements(.switch)
         (value_argument
           (prefix_expression
             (_expression)))))))
+
+================================================================================
+Navigation expressions can have parenthesized types before them
+================================================================================
+
+let opaqueSelf = (any WithModifiersSyntax).self
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (property_declaration
+    (value_binding_pattern)
+    (pattern
+      (simple_identifier))
+    (navigation_expression
+      (existential_type
+        (user_type
+          (type_identifier)))
+      (navigation_suffix
+        (simple_identifier)))))

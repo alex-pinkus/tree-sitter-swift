@@ -517,11 +517,24 @@ module.exports = grammar({
           $.constructor_suffix
         )
       ),
+    _parenthesized_type: ($) =>
+      seq(
+        "(",
+        choice($.opaque_type, $.existential_type, $.dictionary_type),
+        ")"
+      ),
     navigation_expression: ($) =>
       prec.left(
         PRECS.navigation,
         seq(
-          field("target", choice($._navigable_type_expression, $._expression)),
+          field(
+            "target",
+            choice(
+              $._navigable_type_expression,
+              $._expression,
+              $._parenthesized_type
+            )
+          ),
           field("suffix", $.navigation_suffix)
         )
       ),
