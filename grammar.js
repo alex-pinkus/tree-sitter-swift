@@ -1466,7 +1466,8 @@ module.exports = grammar({
         "|",
         "^",
         "<<",
-        ">>"
+        ">>",
+        "&"
       ),
     // Hide the fact that certain symbols come from the custom scanner by aliasing them to their
     // string variants. This keeps us from having to see them in the syntax tree (which would be
