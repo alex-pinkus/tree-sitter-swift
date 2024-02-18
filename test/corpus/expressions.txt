@@ -1044,6 +1044,7 @@ try foo()
 
 (source_file
   (try_expression
+    (try_operator)
     (call_expression
       (simple_identifier)
       (call_suffix
@@ -1059,6 +1060,7 @@ try foo() ? 1 : 0
 
 (source_file
   (try_expression
+    (try_operator)
     (ternary_expression
       (call_expression
         (simple_identifier)
@@ -1093,6 +1095,7 @@ await try foo()
 
 (source_file
   (try_expression
+    (try_operator)
     (await_expression
       (call_expression
         (simple_identifier)
@@ -1100,6 +1103,7 @@ await try foo()
           (value_arguments)))))
   (await_expression
     (try_expression
+      (try_operator)
       (call_expression
         (simple_identifier)
         (call_suffix
@@ -1135,6 +1139,7 @@ for try await value in values {
 
 (source_file
   (for_statement
+    (try_operator)
     (pattern
       (simple_identifier))
     (simple_identifier)
@@ -1515,3 +1520,33 @@ let opaqueSelf = (any WithModifiersSyntax).self
           (type_identifier)))
       (navigation_suffix
         (simple_identifier)))))
+
+================================================================================
+Try with prefix operation after it
+================================================================================
+
+let result = try !(inner1() || inner2())
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (property_declaration
+    (value_binding_pattern)
+    (pattern
+      (simple_identifier))
+    (try_expression
+      (try_operator)
+      (call_expression
+        (bang)
+        (call_suffix
+          (value_arguments
+            (value_argument
+              (disjunction_expression
+                (call_expression
+                  (simple_identifier)
+                  (call_suffix
+                    (value_arguments)))
+                (call_expression
+                  (simple_identifier)
+                  (call_suffix
+                    (value_arguments)))))))))))

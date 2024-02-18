@@ -627,6 +627,7 @@ func doSomething() {
           (value_binding_pattern)
           (simple_identifier)
           (try_expression
+            (try_operator)
             (call_expression
               (navigation_expression
                 (simple_identifier)
@@ -770,6 +771,7 @@ If try
 (source_file
   (if_statement
     (try_expression
+      (try_operator)
       (equality_expression
         (simple_identifier)
         (conjunction_expression

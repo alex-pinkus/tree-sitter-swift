@@ -70,6 +70,9 @@
    (simple_identifier) @type) ; SomeType.method(): highlight SomeType as a type
    (#match? @type "^[A-Z]"))
 
+(try_operator) @operator
+(try_operator ["try" @keyword])
+
 (directive) @function.macro
 (diagnostic) @function.macro
 
@@ -133,10 +136,8 @@
 ; Operators
 (custom_operator) @operator
 [
- "try"
- "try?"
- "try!"
  "!"
+ "?"
  "+"
  "-"
  "*"

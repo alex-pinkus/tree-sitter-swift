@@ -226,7 +226,7 @@ module.exports = grammar({
     $._eq_eq_custom,
     $._plus_then_ws,
     $._minus_then_ws,
-    $.bang,
+    $._bang_custom,
     $._throws_keyword,
     $._rethrows_keyword,
     $.default_keyword,
@@ -238,6 +238,10 @@ module.exports = grammar({
     $._as_bang_custom,
     $._async_keyword_custom,
     $._custom_operator,
+
+    // Fake operator that will never get triggered, but follows the sequence of characters for `try!`. Tracked by the
+    // custom scanner so that it can avoid triggering `$.bang` for that case.
+    $._fake_try_bang,
   ],
   inline: ($) => [$._locally_permitted_modifiers],
   rules: {
@@ -762,7 +766,7 @@ module.exports = grammar({
       prec.right(
         PRECS["try"],
         seq(
-          $._try_operator,
+          $.try_operator,
           field(
             "expr",
             choice(
@@ -1064,7 +1068,12 @@ module.exports = grammar({
         "self",
         seq("[", optional(sep1($.value_argument, ",")), "]")
       ),
-    _try_operator: ($) => choice("try", "try!", "try?"),
+    try_operator: ($) =>
+      prec.right(
+        seq("try", choice(optional($._try_operator_type), $._fake_try_bang))
+      ),
+    _try_operator_type: ($) =>
+      choice(token.immediate("!"), token.immediate("?")),
     _assignment_and_operator: ($) => choice("+=", "-=", "*=", "/=", "%=", "="),
     _equality_operator: ($) => choice("!=", "!==", $._eq_eq, "==="),
     _comparison_operator: ($) => choice("<", ">", "<=", ">="),
@@ -1147,7 +1156,7 @@ module.exports = grammar({
         PRECS.loop,
         seq(
           "for",
-          optional($._try_operator),
+          optional($.try_operator),
           optional($._await_operator),
           field("item", alias($._binding_pattern_no_expr, $.pattern)),
           optional($.type_annotation),
@@ -1521,6 +1530,7 @@ module.exports = grammar({
     _as: ($) => alias($._as_custom, "as"),
     _as_quest: ($) => alias($._as_quest_custom, "as?"),
     _as_bang: ($) => alias($._as_bang_custom, "as!"),
+    bang: ($) => choice($._bang_custom, "!"),
     _async_keyword: ($) => alias($._async_keyword_custom, "async"),
     _async_modifier: ($) => token("async"),
     throws: ($) => choice($._throws_keyword, $._rethrows_keyword),
@@ -1864,6 +1874,13 @@ module.exports = grammar({
           )
         )
       ),
+    // Dumping ground for any nodes that used to exist in the grammar, but have since been removed for whatever
+    // reason.
+    // Neovim applies updates non-atomically to the parser and the queries. Meanwhile, `tree-sitter` rejects any query
+    // that contains any unrecognized nodes. Putting those two facts together, we see that we must never remove nodes
+    // that once existed.
+    unused_for_backward_compatibility: ($) =>
+      choice(alias("unused1", "try?"), alias("unused2", "try!")),
   },
 });
 function sep1(rule, separator) {
