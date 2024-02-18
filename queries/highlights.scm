@@ -43,8 +43,10 @@
   "override"
   "convenience"
   "required"
-  "some"
 ] @keyword
+
+(opaque_type ["some" @keyword])
+(existential_type ["any" @keyword])
 
 [
   (getter_specifier)
