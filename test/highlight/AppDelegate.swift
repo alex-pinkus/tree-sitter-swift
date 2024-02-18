@@ -18,7 +18,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 //                                       ^ parameter
         _ = try! DatabaseQueue()
 //        ^ operator
-//          ^ operator
+//          ^ keyword
+//             ^ operator
 //               ^ function.call
         _ = FTS5()
         _ = sqlite3_preupdate_new(nil, 0, nil)

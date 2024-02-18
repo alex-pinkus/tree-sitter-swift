@@ -38,7 +38,7 @@ extension String {
     do {
 //  ^ keyword
       let nodes = try parser.parse()
-//                ^ operator
+//                ^ keyword
       var results = [T]()
 //                  ^ punctuation.bracket
       for node in nodes {
