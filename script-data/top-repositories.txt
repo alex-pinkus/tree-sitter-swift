@@ -1,6 +1,6 @@
 Alamofire Alamofire/Alamofire 5.8.1
 iina iina/iina v1.3.4
-Charts danielgindi/Charts 5.0.0
+Charts danielgindi/Charts 5.1.0
 lottie-ios airbnb/lottie-ios 4.4.0
 vapor vapor/vapor 3.3.3
 SwiftyJSON SwiftyJSON/SwiftyJSON 5.0.1
@@ -14,7 +14,7 @@ RxSwift ReactiveX/RxSwift 6.6.0 6 9
 RxSwift ReactiveX/RxSwift 6.6.0 7 9
 RxSwift ReactiveX/RxSwift 6.6.0 8 9
 HeroTransitions HeroTransitions/Hero 1.6.3
-Kingfisher onevcat/Kingfisher 7.10.2
+Kingfisher onevcat/Kingfisher 7.11.0
 shadowsocks shadowsocks/ShadowsocksX-NG v1.10.2
 SnapKit SnapKit/SnapKit 5.7.0
 SwiftLint realm/SwiftLint 0.54.0 0 2
