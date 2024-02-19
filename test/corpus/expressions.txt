@@ -1515,9 +1515,11 @@ let opaqueSelf = (any WithModifiersSyntax).self
     (pattern
       (simple_identifier))
     (navigation_expression
-      (existential_type
-        (user_type
-          (type_identifier)))
+      (tuple_type
+        (tuple_type_item
+          (existential_type
+            (user_type
+              (type_identifier)))))
       (navigation_suffix
         (simple_identifier)))))
 

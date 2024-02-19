@@ -929,3 +929,25 @@ public macro AutoApply() = #externalMacro(
               (simple_identifier))
             (line_string_literal
               (line_str_text))))))))
+
+================================================================================
+Nested type declaration in initializer
+================================================================================
+
+var values = [(any AnyObject)]()
+--------------------------------------------------------------------------------
+
+(source_file
+  (property_declaration
+    (value_binding_pattern)
+    (pattern
+      (simple_identifier))
+    (constructor_expression
+      (array_type
+        (tuple_type
+          (tuple_type_item
+            (existential_type
+              (user_type
+                (type_identifier))))))
+      (constructor_suffix
+        (value_arguments)))))

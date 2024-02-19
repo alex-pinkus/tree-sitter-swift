@@ -180,6 +180,11 @@ module.exports = grammar({
     // SE-0380: if/switch expressions
     [$._expression, $.if_statement],
     [$._expression, $.switch_statement],
+
+    // `(Foo ...` might be the start of a lambda expression, or it might be the type name in a navigation expression
+    [$._simple_user_type, $._expression, $.lambda_parameter],
+    [$._tuple_type_item_identifier, $.tuple_expression, $.lambda_parameter],
+    [$._tuple_type_item_identifier, $.lambda_parameter],
   ],
   extras: ($) => [
     $.comment,
@@ -521,23 +526,13 @@ module.exports = grammar({
           $.constructor_suffix
         )
       ),
-    _parenthesized_type: ($) =>
-      seq(
-        "(",
-        choice($.opaque_type, $.existential_type, $.dictionary_type),
-        ")"
-      ),
     navigation_expression: ($) =>
       prec.left(
         PRECS.navigation,
         seq(
           field(
             "target",
-            choice(
-              $._navigable_type_expression,
-              $._expression,
-              $._parenthesized_type
-            )
+            choice($._navigable_type_expression, $._expression, $.tuple_type)
           ),
           field("suffix", $.navigation_suffix)
         )
