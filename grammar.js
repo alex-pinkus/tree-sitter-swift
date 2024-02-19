@@ -1161,11 +1161,19 @@ module.exports = grammar({
           field("item", alias($._binding_pattern_no_expr, $.pattern)),
           optional($.type_annotation),
           "in",
-          field("collection", $._expression),
+          field("collection", $._for_statement_collection),
           optional($.where_clause),
           $._block
         )
       ),
+    _for_statement_collection: ($) =>
+      // If this expression has "await", this triggers some special-cased logic to prefer function calls. We prefer
+      // the opposite, though, since function calls may contain trailing code blocks, which are undesirable here.
+      //
+      // To fix that, we simply undo the special casing by defining our own `await_expression`.
+      choice($._expression, alias($.for_statement_await, $.await_expression)),
+    for_statement_await: ($) => seq($._await_operator, $._expression),
+
     while_statement: ($) =>
       prec(
         PRECS.loop,

@@ -183,6 +183,27 @@ outerLoop: for outerObject in dataArray {
                 (simple_identifier)))))))))
 
 ================================================================================
+For await in await
+================================================================================
+
+for await _ in await driver.values {
+    //
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (for_statement
+    (pattern
+      (wildcard_pattern))
+    (await_expression
+      (navigation_expression
+        (simple_identifier)
+        (navigation_suffix
+          (simple_identifier))))
+    (comment)))
+
+================================================================================
 While and friends
 ================================================================================
 
