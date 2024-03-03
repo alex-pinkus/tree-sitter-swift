@@ -190,6 +190,10 @@ module.exports = grammar({
     // interpretations to see what it encounters after that.
     [$.willset_didset_block],
     [$._expression_without_willset_didset, $._expression_with_willset_didset],
+
+    // `borrowing` and `consuming` are legal as identifiers, but are also legal modifiers
+    [$.simple_identifier, $.parameter_modifier],
+    [$.parameter_modifiers],
   ],
   extras: ($) => [
     $.comment,
@@ -283,7 +287,8 @@ module.exports = grammar({
         /\$[0-9]+/,
         token(seq("$", LEXICAL_IDENTIFIER)),
         "actor",
-        "lazy"
+        "lazy",
+        $._parameter_ownership_modifier
       ),
     identifier: ($) => sep1($.simple_identifier, $._dot),
     // Literals
@@ -1894,9 +1899,16 @@ module.exports = grammar({
     mutation_modifier: ($) => choice("mutating", "nonmutating"),
     property_modifier: ($) => choice("static", "dynamic", "optional", "class"),
     inheritance_modifier: ($) => choice("final"),
-    parameter_modifier: ($) => choice("inout", "@escaping", "@autoclosure"),
+    parameter_modifier: ($) =>
+      choice(
+        "inout",
+        "@escaping",
+        "@autoclosure",
+        $._parameter_ownership_modifier
+      ),
     ownership_modifier: ($) =>
       choice("weak", "unowned", "unowned(safe)", "unowned(unsafe)"),
+    _parameter_ownership_modifier: ($) => choice("borrowing", "consuming"),
     use_site_target: ($) =>
       seq(
         choice(
