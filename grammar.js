@@ -1084,7 +1084,8 @@ module.exports = grammar({
       ),
     _try_operator_type: ($) =>
       choice(token.immediate("!"), token.immediate("?")),
-    _assignment_and_operator: ($) => choice("+=", "-=", "*=", "/=", "%=", "="),
+    _assignment_and_operator: ($) =>
+      choice("+=", "-=", "*=", "/=", "%=", $._equal_sign),
     _equality_operator: ($) => choice("!=", "!==", $._eq_eq, "==="),
     _comparison_operator: ($) => choice("<", ">", "<=", ">="),
     _three_dot_operator: ($) => alias("...", "..."), // Weird alias to satisfy highlight queries

@@ -1550,3 +1550,17 @@ let result = try !(inner1() || inner2())
                   (simple_identifier)
                   (call_suffix
                     (value_arguments)))))))))))
+
+================================================================================
+Assignment split over multiple lines
+================================================================================
+savedValue
+  = 0
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (assignment
+    (directly_assignable_expression
+      (simple_identifier))
+    (integer_literal)))
