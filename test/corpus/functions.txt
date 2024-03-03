@@ -929,3 +929,242 @@ public macro AutoApply() = #externalMacro(
               (simple_identifier))
             (line_string_literal
               (line_str_text))))))))
+
+================================================================================
+Parameter ownership modifiers in `func`
+================================================================================
+
+func foo(_: borrowing Foo) {}
+func foo(_: consuming Foo) {}
+func foo(_: inout Foo) {}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (simple_identifier)
+    (parameter
+      (simple_identifier)
+      (parameter_modifiers
+        (parameter_modifier))
+      (user_type
+        (type_identifier)))
+    (function_body))
+  (function_declaration
+    (simple_identifier)
+    (parameter
+      (simple_identifier)
+      (parameter_modifiers
+        (parameter_modifier))
+      (user_type
+        (type_identifier)))
+    (function_body))
+  (function_declaration
+    (simple_identifier)
+    (parameter
+      (simple_identifier)
+      (parameter_modifiers
+        (parameter_modifier))
+      (user_type
+        (type_identifier)))
+    (function_body)))
+
+================================================================================
+Parameter ownership modifiers in a closure
+================================================================================
+
+bar { (a: borrowing Foo) in a.foo() }
+bar { (a: consuming Foo) in a.foo() }
+bar { (a: inout Foo) in a.foo() }
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (call_expression
+    (simple_identifier)
+    (call_suffix
+      (lambda_literal
+        (lambda_function_type
+          (lambda_function_type_parameters
+            (lambda_parameter
+              (simple_identifier)
+              (parameter_modifiers
+                (parameter_modifier))
+              (user_type
+                (type_identifier)))))
+        (statements
+          (call_expression
+            (navigation_expression
+              (simple_identifier)
+              (navigation_suffix
+                (simple_identifier)))
+            (call_suffix
+              (value_arguments)))))))
+  (call_expression
+    (simple_identifier)
+    (call_suffix
+      (lambda_literal
+        (lambda_function_type
+          (lambda_function_type_parameters
+            (lambda_parameter
+              (simple_identifier)
+              (parameter_modifiers
+                (parameter_modifier))
+              (user_type
+                (type_identifier)))))
+        (statements
+          (call_expression
+            (navigation_expression
+              (simple_identifier)
+              (navigation_suffix
+                (simple_identifier)))
+            (call_suffix
+              (value_arguments)))))))
+  (call_expression
+    (simple_identifier)
+    (call_suffix
+      (lambda_literal
+        (lambda_function_type
+          (lambda_function_type_parameters
+            (lambda_parameter
+              (simple_identifier)
+              (parameter_modifiers
+                (parameter_modifier))
+              (user_type
+                (type_identifier)))))
+        (statements
+          (call_expression
+            (navigation_expression
+              (simple_identifier)
+              (navigation_suffix
+                (simple_identifier)))
+            (call_suffix
+              (value_arguments))))))))
+
+================================================================================
+Parameter ownership modifiers in a function type
+================================================================================
+
+let f: (borrowing Foo) -> Void = { a in a.foo() }
+let f: (consuming Foo) -> Void = { a in a.foo() }
+let f: (inout Foo) -> Void = { a in a.foo() }
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (property_declaration
+    (value_binding_pattern)
+    (pattern
+      (simple_identifier))
+    (type_annotation
+      (function_type
+        (tuple_type
+          (tuple_type_item
+            (parameter_modifiers
+              (parameter_modifier))
+            (user_type
+              (type_identifier))))
+        (user_type
+          (type_identifier))))
+    (lambda_literal
+      (lambda_function_type
+        (lambda_function_type_parameters
+          (lambda_parameter
+            (simple_identifier))))
+      (statements
+        (call_expression
+          (navigation_expression
+            (simple_identifier)
+            (navigation_suffix
+              (simple_identifier)))
+          (call_suffix
+            (value_arguments))))))
+  (property_declaration
+    (value_binding_pattern)
+    (pattern
+      (simple_identifier))
+    (type_annotation
+      (function_type
+        (tuple_type
+          (tuple_type_item
+            (parameter_modifiers
+              (parameter_modifier))
+            (user_type
+              (type_identifier))))
+        (user_type
+          (type_identifier))))
+    (lambda_literal
+      (lambda_function_type
+        (lambda_function_type_parameters
+          (lambda_parameter
+            (simple_identifier))))
+      (statements
+        (call_expression
+          (navigation_expression
+            (simple_identifier)
+            (navigation_suffix
+              (simple_identifier)))
+          (call_suffix
+            (value_arguments))))))
+  (property_declaration
+    (value_binding_pattern)
+    (pattern
+      (simple_identifier))
+    (type_annotation
+      (function_type
+        (tuple_type
+          (tuple_type_item
+            (parameter_modifiers
+              (parameter_modifier))
+            (user_type
+              (type_identifier))))
+        (user_type
+          (type_identifier))))
+    (lambda_literal
+      (lambda_function_type
+        (lambda_function_type_parameters
+          (lambda_parameter
+            (simple_identifier))))
+      (statements
+        (call_expression
+          (navigation_expression
+            (simple_identifier)
+            (navigation_suffix
+              (simple_identifier)))
+          (call_suffix
+            (value_arguments)))))))
+
+================================================================================
+Ownership modifiers for `self`
+================================================================================
+
+struct Foo {
+  consuming func foo() {} // `consuming` self
+  borrowing func foo() {} // `borrowing` self
+  mutating func foo() {} // modify self with `inout` semantics
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (class_declaration
+    (type_identifier)
+    (class_body
+      (function_declaration
+        (modifiers
+          (parameter_modifier))
+        (simple_identifier)
+        (function_body))
+      (comment)
+      (function_declaration
+        (modifiers
+          (parameter_modifier))
+        (simple_identifier)
+        (function_body))
+      (comment)
+      (function_declaration
+        (modifiers
+          (mutation_modifier))
+        (simple_identifier)
+        (function_body))
+      (comment))))
