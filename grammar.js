@@ -428,7 +428,10 @@ module.exports = grammar({
         )
       ),
     tuple_type: ($) =>
-      seq("(", optional(sep1(field("element", $.tuple_type_item), ",")), ")"),
+      choice(
+        seq("(", optional(sep1(field("element", $.tuple_type_item), ",")), ")"),
+        alias($._parenthesized_type, $.tuple_type_item)
+      ),
     tuple_type_item: ($) =>
       prec(
         PRECS.expr,
@@ -534,7 +537,10 @@ module.exports = grammar({
     _parenthesized_type: ($) =>
       seq(
         "(",
-        choice($.opaque_type, $.existential_type, $.dictionary_type),
+        field(
+          "element",
+          choice($.opaque_type, $.existential_type, $.dictionary_type)
+        ),
         ")"
       ),
     navigation_expression: ($) =>

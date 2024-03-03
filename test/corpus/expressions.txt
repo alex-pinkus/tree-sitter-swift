@@ -1564,3 +1564,80 @@ savedValue
     (directly_assignable_expression
       (simple_identifier))
     (integer_literal)))
+
+================================================================================
+Optional type in array constructor
+================================================================================
+
+var values = [(any Value)?]()
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (property_declaration
+    (value_binding_pattern)
+    (pattern
+      (simple_identifier))
+    (constructor_expression
+      (array_type
+        (optional_type
+          (tuple_type
+            (tuple_type_item
+              (existential_type
+                (user_type
+                  (type_identifier)))))))
+      (constructor_suffix
+        (value_arguments)))))
+
+================================================================================
+Anonymous lambda parameter
+================================================================================
+completionRegistrar.addCompletion { (_) in
+    print("Completed")
+}
+--------------------------------------------------------------------------------
+
+(source_file
+  (call_expression
+    (navigation_expression
+      (simple_identifier)
+      (navigation_suffix
+        (simple_identifier)))
+    (call_suffix
+      (lambda_literal
+        (lambda_function_type
+          (lambda_function_type_parameters
+            (lambda_parameter
+              (simple_identifier))))
+        (statements
+          (call_expression
+            (simple_identifier)
+            (call_suffix
+              (value_arguments
+                (value_argument
+                  (line_string_literal
+                    (line_str_text)))))))))))
+
+================================================================================
+Wildcard assignment as first line of lambda
+================================================================================
+
+doLast {
+    _ = doSomething()
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (call_expression
+    (simple_identifier)
+    (call_suffix
+      (lambda_literal
+        (statements
+          (assignment
+            (directly_assignable_expression
+              (simple_identifier))
+            (call_expression
+              (simple_identifier)
+              (call_suffix
+                (value_arguments)))))))))
