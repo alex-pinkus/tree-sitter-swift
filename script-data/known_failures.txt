@@ -1,3 +1,2 @@
 ReactKit/ReactKitTests/OperationTests.swift
 GRDB/GRDB/Core/Statement.swift
-lottie-ios/Sources/Public/Animation/LottieAnimationLayer.swift
