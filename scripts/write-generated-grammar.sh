@@ -47,4 +47,6 @@ echo "Committing new generated grammar"
 gh auth setup-git
 git remote add dest "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git"
 git push dest HEAD:$branch_name
+git tag $ref-with-generated-files
+git push dest $ref-with-generated-files
 echo "Checkin complete!"
