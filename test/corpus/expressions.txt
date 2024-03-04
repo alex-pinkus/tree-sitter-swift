@@ -1044,6 +1044,7 @@ try foo()
 
 (source_file
   (try_expression
+    (try_operator)
     (call_expression
       (simple_identifier)
       (call_suffix
@@ -1059,6 +1060,7 @@ try foo() ? 1 : 0
 
 (source_file
   (try_expression
+    (try_operator)
     (ternary_expression
       (call_expression
         (simple_identifier)
@@ -1093,6 +1095,7 @@ await try foo()
 
 (source_file
   (try_expression
+    (try_operator)
     (await_expression
       (call_expression
         (simple_identifier)
@@ -1100,6 +1103,7 @@ await try foo()
           (value_arguments)))))
   (await_expression
     (try_expression
+      (try_operator)
       (call_expression
         (simple_identifier)
         (call_suffix
@@ -1135,6 +1139,7 @@ for try await value in values {
 
 (source_file
   (for_statement
+    (try_operator)
     (pattern
       (simple_identifier))
     (simple_identifier)
@@ -1272,3 +1277,367 @@ foo()
     (call_suffix
       (value_arguments)))
   (fully_open_range))
+
+================================================================================
+If/else expression
+================================================================================
+
+let number = if Bool.random() {
+    1.0
+} else {
+    0.0
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (property_declaration
+    (value_binding_pattern)
+    (pattern
+      (simple_identifier))
+    (if_statement
+      (call_expression
+        (navigation_expression
+          (simple_identifier)
+          (navigation_suffix
+            (simple_identifier)))
+        (call_suffix
+          (value_arguments)))
+      (statements
+        (real_literal))
+      (else)
+      (statements
+        (real_literal)))))
+
+================================================================================
+Complex if/else expression
+================================================================================
+
+let bullet =
+    if isRoot && (count == 0 || !willExpand) { "" }
+    else if count == 0 { "- " }
+    else if maxDepth <= 0 { "▹ " }
+    else { "▿ " }
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (property_declaration
+    (value_binding_pattern)
+    (pattern
+      (simple_identifier))
+    (if_statement
+      (conjunction_expression
+        (simple_identifier)
+        (tuple_expression
+          (equality_expression
+            (simple_identifier)
+            (disjunction_expression
+              (integer_literal)
+              (prefix_expression
+                (bang)
+                (simple_identifier))))))
+      (statements
+        (line_string_literal))
+      (else)
+      (if_statement
+        (equality_expression
+          (simple_identifier)
+          (integer_literal))
+        (statements
+          (line_string_literal
+            (line_str_text)))
+        (else)
+        (if_statement
+          (infix_expression
+            (simple_identifier)
+            (custom_operator)
+            (integer_literal))
+          (statements
+            (line_string_literal
+              (line_str_text)))
+          (else)
+          (statements
+            (line_string_literal
+              (line_str_text))))))))
+
+================================================================================
+Switch expression
+================================================================================
+
+let y: Float = switch x.value {
+    case 0..<0x80: 1
+    case 0x80..<0x0800: 2.0
+    case 0x0800..<0x1_0000: 3.0
+    default: 4.5
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (property_declaration
+    (value_binding_pattern)
+    (pattern
+      (simple_identifier))
+    (type_annotation
+      (user_type
+        (type_identifier)))
+    (switch_statement
+      (navigation_expression
+        (simple_identifier)
+        (navigation_suffix
+          (simple_identifier)))
+      (switch_entry
+        (switch_pattern
+          (pattern
+            (range_expression
+              (integer_literal)
+              (hex_literal))))
+        (statements
+          (integer_literal)))
+      (switch_entry
+        (switch_pattern
+          (pattern
+            (range_expression
+              (hex_literal)
+              (hex_literal))))
+        (statements
+          (real_literal)))
+      (switch_entry
+        (switch_pattern
+          (pattern
+            (range_expression
+              (hex_literal)
+              (hex_literal))))
+        (statements
+          (real_literal)))
+      (switch_entry
+        (default_keyword)
+        (statements
+          (real_literal))))))
+
+================================================================================
+If and switch can still be used as a value argument labels
+================================================================================
+
+atomicValue.set(to: "value + 1", if: "value <= 100")
+atomicValue.replace(from: otherValue, switch: true)
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (call_expression
+    (navigation_expression
+      (simple_identifier)
+      (navigation_suffix
+        (simple_identifier)))
+    (call_suffix
+      (value_arguments
+        (value_argument
+          (value_argument_label
+            (simple_identifier))
+          (line_string_literal
+            (line_str_text)))
+        (value_argument
+          (value_argument_label
+            (simple_identifier))
+          (line_string_literal
+            (line_str_text))))))
+  (call_expression
+    (navigation_expression
+      (simple_identifier)
+      (navigation_suffix
+        (simple_identifier)))
+    (call_suffix
+      (value_arguments
+        (value_argument
+          (value_argument_label
+            (simple_identifier))
+          (simple_identifier))
+        (value_argument
+          (value_argument_label
+            (simple_identifier))
+          (boolean_literal))))))
+
+================================================================================
+If and switch can still be used as enum identifiers
+================================================================================
+
+static let statements: Set<StatementKind> = [
+    .if,
+    .switch,
+    .while
+]
+
+parseStatements(.switch)
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (property_declaration
+    (modifiers
+      (property_modifier))
+    (value_binding_pattern)
+    (pattern
+      (simple_identifier))
+    (type_annotation
+      (user_type
+        (type_identifier)
+        (type_arguments
+          (user_type
+            (type_identifier)))))
+    (array_literal
+      (prefix_expression
+        (_expression))
+      (prefix_expression
+        (_expression))
+      (prefix_expression
+        (simple_identifier))))
+  (call_expression
+    (simple_identifier)
+    (call_suffix
+      (value_arguments
+        (value_argument
+          (prefix_expression
+            (_expression)))))))
+
+================================================================================
+Navigation expressions can have parenthesized types before them
+================================================================================
+
+let opaqueSelf = (any WithModifiersSyntax).self
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (property_declaration
+    (value_binding_pattern)
+    (pattern
+      (simple_identifier))
+    (navigation_expression
+      (existential_type
+        (user_type
+          (type_identifier)))
+      (navigation_suffix
+        (simple_identifier)))))
+
+================================================================================
+Try with prefix operation after it
+================================================================================
+
+let result = try !(inner1() || inner2())
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (property_declaration
+    (value_binding_pattern)
+    (pattern
+      (simple_identifier))
+    (try_expression
+      (try_operator)
+      (call_expression
+        (bang)
+        (call_suffix
+          (value_arguments
+            (value_argument
+              (disjunction_expression
+                (call_expression
+                  (simple_identifier)
+                  (call_suffix
+                    (value_arguments)))
+                (call_expression
+                  (simple_identifier)
+                  (call_suffix
+                    (value_arguments)))))))))))
+
+================================================================================
+Assignment split over multiple lines
+================================================================================
+savedValue
+  = 0
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (assignment
+    (directly_assignable_expression
+      (simple_identifier))
+    (integer_literal)))
+
+================================================================================
+Optional type in array constructor
+================================================================================
+
+var values = [(any Value)?]()
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (property_declaration
+    (value_binding_pattern)
+    (pattern
+      (simple_identifier))
+    (constructor_expression
+      (array_type
+        (optional_type
+          (tuple_type
+            (tuple_type_item
+              (existential_type
+                (user_type
+                  (type_identifier)))))))
+      (constructor_suffix
+        (value_arguments)))))
+
+================================================================================
+Anonymous lambda parameter
+================================================================================
+completionRegistrar.addCompletion { (_) in
+    print("Completed")
+}
+--------------------------------------------------------------------------------
+
+(source_file
+  (call_expression
+    (navigation_expression
+      (simple_identifier)
+      (navigation_suffix
+        (simple_identifier)))
+    (call_suffix
+      (lambda_literal
+        (lambda_function_type
+          (lambda_function_type_parameters
+            (lambda_parameter
+              (simple_identifier))))
+        (statements
+          (call_expression
+            (simple_identifier)
+            (call_suffix
+              (value_arguments
+                (value_argument
+                  (line_string_literal
+                    (line_str_text)))))))))))
+
+================================================================================
+Wildcard assignment as first line of lambda
+================================================================================
+
+doLast {
+    _ = doSomething()
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (call_expression
+    (simple_identifier)
+    (call_suffix
+      (lambda_literal
+        (statements
+          (assignment
+            (directly_assignable_expression
+              (simple_identifier))
+            (call_expression
+              (simple_identifier)
+              (call_suffix
+                (value_arguments)))))))))

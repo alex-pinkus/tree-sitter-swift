@@ -5,6 +5,7 @@
 (attribute) @variable
 (type_identifier) @type
 (self_expression) @variable.builtin
+(user_type (type_identifier) @variable.builtin (#eq? @variable.builtin "Self"))
 
 ; Declarations
 "func" @keyword.function
@@ -43,8 +44,10 @@
   "override"
   "convenience"
   "required"
-  "some"
 ] @keyword
+
+(opaque_type ["some" @keyword])
+(existential_type ["any" @keyword])
 
 [
   (getter_specifier)
@@ -67,6 +70,10 @@
 ((navigation_expression
    (simple_identifier) @type) ; SomeType.method(): highlight SomeType as a type
    (#match? @type "^[A-Z]"))
+(call_expression (simple_identifier) @keyword (#eq? @keyword "defer")) ; defer { ... }
+
+(try_operator) @operator
+(try_operator ["try" @keyword])
 
 (directive) @function.macro
 (diagnostic) @function.macro
@@ -131,10 +138,8 @@
 ; Operators
 (custom_operator) @operator
 [
- "try"
- "try?"
- "try!"
  "!"
+ "?"
  "+"
  "-"
  "*"
@@ -165,4 +170,3 @@
  "..<"
  "..."
 ] @operator
-

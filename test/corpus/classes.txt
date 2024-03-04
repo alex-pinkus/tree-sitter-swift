@@ -1583,3 +1583,84 @@ extension Array {
                     (line_string_literal
                       (interpolated_expression
                         (simple_identifier)))))))))))))
+
+================================================================================
+willSet block
+================================================================================
+
+class AnimationLayer {
+  var forceUpdate = false {
+    didSet {
+      print("Forcing updates on each frame.")
+    }
+  }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (class_declaration
+    (type_identifier)
+    (class_body
+      (property_declaration
+        (value_binding_pattern)
+        (pattern
+          (simple_identifier))
+        (boolean_literal)
+        (willset_didset_block
+          (didset_clause
+            (statements
+              (call_expression
+                (simple_identifier)
+                (call_suffix
+                  (value_arguments
+                    (value_argument
+                      (line_string_literal
+                        (line_str_text)))))))))))))
+
+================================================================================
+Both willSet and didSet together
+================================================================================
+
+class ForceUpdateEnacter {
+  var forceUpdate = false {
+    willSet {
+      print("Will force updates on each frame.")
+    }
+
+    didSet {
+      print("Did force updates on each frame.")
+    }
+  }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (class_declaration
+    (type_identifier)
+    (class_body
+      (property_declaration
+        (value_binding_pattern)
+        (pattern
+          (simple_identifier))
+        (boolean_literal)
+        (willset_didset_block
+          (willset_clause
+            (statements
+              (call_expression
+                (simple_identifier)
+                (call_suffix
+                  (value_arguments
+                    (value_argument
+                      (line_string_literal
+                        (line_str_text))))))))
+          (didset_clause
+            (statements
+              (call_expression
+                (simple_identifier)
+                (call_suffix
+                  (value_arguments
+                    (value_argument
+                      (line_string_literal
+                        (line_str_text)))))))))))))

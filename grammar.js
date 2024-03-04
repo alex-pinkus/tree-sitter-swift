@@ -176,6 +176,24 @@ module.exports = grammar({
 
     // `lazy` is also allowed as an identifier...
     [$.property_behavior_modifier, $.simple_identifier],
+
+    // SE-0380: if/switch expressions
+    [$._expression, $.if_statement],
+    [$._expression, $.switch_statement],
+
+    // Intentionally introduce a conflict for willSet/didSet. That's because if the parser sees a property declared as:
+    // ```
+    // let prop = value {
+    // ```
+    // it will interpret that token as a function call with a trailing lambda parameter before it has the chance to look
+    // for a `willSet` or `didSet`. To figure out the actual meaning, it must continue parsing and allowing both
+    // interpretations to see what it encounters after that.
+    [$.willset_didset_block],
+    [$._expression_without_willset_didset, $._expression_with_willset_didset],
+
+    // `borrowing` and `consuming` are legal as identifiers, but are also legal modifiers
+    [$.simple_identifier, $.parameter_modifier],
+    [$.parameter_modifiers],
   ],
   extras: ($) => [
     $.comment,
@@ -222,7 +240,7 @@ module.exports = grammar({
     $._eq_eq_custom,
     $._plus_then_ws,
     $._minus_then_ws,
-    $.bang,
+    $._bang_custom,
     $._throws_keyword,
     $._rethrows_keyword,
     $.default_keyword,
@@ -234,6 +252,10 @@ module.exports = grammar({
     $._as_bang_custom,
     $._async_keyword_custom,
     $._custom_operator,
+
+    // Fake operator that will never get triggered, but follows the sequence of characters for `try!`. Tracked by the
+    // custom scanner so that it can avoid triggering `$.bang` for that case.
+    $._fake_try_bang,
   ],
   inline: ($) => [$._locally_permitted_modifiers],
   rules: {
@@ -265,7 +287,8 @@ module.exports = grammar({
         /\$[0-9]+/,
         token(seq("$", LEXICAL_IDENTIFIER)),
         "actor",
-        "lazy"
+        "lazy",
+        $._parameter_ownership_modifier
       ),
     identifier: ($) => sep1($.simple_identifier, $._dot),
     // Literals
@@ -410,7 +433,10 @@ module.exports = grammar({
         )
       ),
     tuple_type: ($) =>
-      seq("(", optional(sep1(field("element", $.tuple_type_item), ",")), ")"),
+      choice(
+        seq("(", optional(sep1(field("element", $.tuple_type_item), ",")), ")"),
+        alias($._parenthesized_type, $.tuple_type_item)
+      ),
     tuple_type_item: ($) =>
       prec(
         PRECS.expr,
@@ -474,6 +500,8 @@ module.exports = grammar({
           $._binary_expression,
           $.ternary_expression,
           $._primary_expression,
+          $.if_statement,
+          $.switch_statement,
           $.assignment,
           seq($._expression, alias($._immediate_quest, "?")),
           alias("async", $.simple_identifier)
@@ -511,11 +539,27 @@ module.exports = grammar({
           $.constructor_suffix
         )
       ),
+    _parenthesized_type: ($) =>
+      seq(
+        "(",
+        field(
+          "element",
+          choice($.opaque_type, $.existential_type, $.dictionary_type)
+        ),
+        ")"
+      ),
     navigation_expression: ($) =>
       prec.left(
         PRECS.navigation,
         seq(
-          field("target", choice($._navigable_type_expression, $._expression)),
+          field(
+            "target",
+            choice(
+              $._navigable_type_expression,
+              $._expression,
+              $._parenthesized_type
+            )
+          ),
           field("suffix", $.navigation_suffix)
         )
       ),
@@ -541,7 +585,13 @@ module.exports = grammar({
         PRECS.prefix_operations,
         seq(
           field("operation", $._prefix_unary_operator),
-          field("target", $._expression)
+          field(
+            "target",
+            choice(
+              $._expression,
+              alias(choice("async", "if", "switch"), $._expression)
+            )
+          )
         )
       ),
     as_expression: ($) =>
@@ -711,7 +761,12 @@ module.exports = grammar({
       ),
     value_argument_label: ($) =>
       prec.left(
-        choice($.simple_identifier, alias("async", $.simple_identifier))
+        choice(
+          $.simple_identifier,
+          alias("async", $.simple_identifier),
+          alias("if", $.simple_identifier),
+          alias("switch", $.simple_identifier)
+        )
       ),
     value_argument: ($) =>
       prec.left(
@@ -732,7 +787,7 @@ module.exports = grammar({
       prec.right(
         PRECS["try"],
         seq(
-          $._try_operator,
+          $.try_operator,
           field(
             "expr",
             choice(
@@ -1034,8 +1089,14 @@ module.exports = grammar({
         "self",
         seq("[", optional(sep1($.value_argument, ",")), "]")
       ),
-    _try_operator: ($) => choice("try", "try!", "try?"),
-    _assignment_and_operator: ($) => choice("+=", "-=", "*=", "/=", "%=", "="),
+    try_operator: ($) =>
+      prec.right(
+        seq("try", choice(optional($._try_operator_type), $._fake_try_bang))
+      ),
+    _try_operator_type: ($) =>
+      choice(token.immediate("!"), token.immediate("?")),
+    _assignment_and_operator: ($) =>
+      choice("+=", "-=", "*=", "/=", "%=", $._equal_sign),
     _equality_operator: ($) => choice("!=", "!==", $._eq_eq, "==="),
     _comparison_operator: ($) => choice("<", ">", "<=", ">="),
     _three_dot_operator: ($) => alias("...", "..."), // Weird alias to satisfy highlight queries
@@ -1117,16 +1178,24 @@ module.exports = grammar({
         PRECS.loop,
         seq(
           "for",
-          optional($._try_operator),
+          optional($.try_operator),
           optional($._await_operator),
           field("item", alias($._binding_pattern_no_expr, $.pattern)),
           optional($.type_annotation),
           "in",
-          field("collection", $._expression),
+          field("collection", $._for_statement_collection),
           optional($.where_clause),
           $._block
         )
       ),
+    _for_statement_collection: ($) =>
+      // If this expression has "await", this triggers some special-cased logic to prefer function calls. We prefer
+      // the opposite, though, since function calls may contain trailing code blocks, which are undesirable here.
+      //
+      // To fix that, we simply undo the special casing by defining our own `await_expression`.
+      choice($._expression, alias($.for_statement_await, $.await_expression)),
+    for_statement_await: ($) => seq($._await_operator, $._expression),
+
     while_statement: ($) =>
       prec(
         PRECS.loop,
@@ -1196,7 +1265,8 @@ module.exports = grammar({
         $.protocol_declaration,
         $.operator_declaration,
         $.precedence_group_declaration,
-        $.associatedtype_declaration
+        $.associatedtype_declaration,
+        $.macro_declaration
       ),
     _type_level_declaration: ($) =>
       choice(
@@ -1279,16 +1349,50 @@ module.exports = grammar({
         )
       ),
     _single_modifierless_property_declaration: ($) =>
-      seq(
-        field("name", alias($._no_expr_pattern_already_bound, $.pattern)),
-        optional($.type_annotation),
-        optional($.type_constraints),
-        optional(
-          choice(
-            seq($._equal_sign, field("value", $._expression)),
-            field("computed_value", $.computed_property)
+      prec.left(
+        seq(
+          field("name", alias($._no_expr_pattern_already_bound, $.pattern)),
+          optional($.type_annotation),
+          optional($.type_constraints),
+          optional(
+            choice(
+              $._expression_with_willset_didset,
+              $._expression_without_willset_didset,
+              $.willset_didset_block,
+              field("computed_value", $.computed_property)
+            )
           )
         )
+      ),
+    _expression_with_willset_didset: ($) =>
+      prec.dynamic(
+        1,
+        seq(
+          $._equal_sign,
+          field("value", $._expression),
+          $.willset_didset_block
+        )
+      ),
+    _expression_without_willset_didset: ($) =>
+      seq($._equal_sign, field("value", $._expression)),
+    willset_didset_block: ($) =>
+      choice(
+        seq("{", $.willset_clause, optional($.didset_clause), "}"),
+        seq("{", $.didset_clause, optional($.willset_clause), "}")
+      ),
+    willset_clause: ($) =>
+      seq(
+        optional($.modifiers),
+        "willSet",
+        optional(seq("(", $.simple_identifier, ")")),
+        $._block
+      ),
+    didset_clause: ($) =>
+      seq(
+        optional($.modifiers),
+        "didSet",
+        optional(seq("(", $.simple_identifier, ")")),
+        $._block
       ),
     typealias_declaration: ($) =>
       seq(optional($.modifiers), $._modifierless_typealias_declaration),
@@ -1338,6 +1442,29 @@ module.exports = grammar({
         )
       ),
     function_body: ($) => $._block,
+    macro_declaration: ($) =>
+      seq(
+        $._macro_head,
+        $.simple_identifier,
+        optional($.type_parameters),
+        $._macro_signature,
+        optional(field("definition", $.macro_definition)),
+        optional($.type_constraints)
+      ),
+    _macro_head: ($) => seq(optional($.modifiers), "macro"),
+    _macro_signature: ($) =>
+      seq(
+        $._function_value_parameters,
+        optional(seq($._arrow_operator, $._unannotated_type))
+      ),
+    macro_definition: ($) =>
+      seq(
+        $._equal_sign,
+        field("body", choice($._expression, $.external_macro_definition))
+      ),
+
+    external_macro_definition: ($) => seq("#externalMacro", $.value_arguments),
+
     class_declaration: ($) =>
       seq(optional($.modifiers), $._modifierless_class_declaration),
     _modifierless_class_declaration: ($) =>
@@ -1449,7 +1576,8 @@ module.exports = grammar({
         "|",
         "^",
         "<<",
-        ">>"
+        ">>",
+        "&"
       ),
     // Hide the fact that certain symbols come from the custom scanner by aliasing them to their
     // string variants. This keeps us from having to see them in the syntax tree (which would be
@@ -1466,6 +1594,7 @@ module.exports = grammar({
     _as: ($) => alias($._as_custom, "as"),
     _as_quest: ($) => alias($._as_quest_custom, "as?"),
     _as_bang: ($) => alias($._as_bang_custom, "as!"),
+    bang: ($) => choice($._bang_custom, "!"),
     _async_keyword: ($) => alias($._async_keyword_custom, "async"),
     _async_modifier: ($) => token("async"),
     throws: ($) => choice($._throws_keyword, $._rethrows_keyword),
@@ -1732,7 +1861,9 @@ module.exports = grammar({
     // ==========
     modifiers: ($) =>
       repeat1(
-        choice($._non_local_scope_modifier, $._locally_permitted_modifiers)
+        prec.left(
+          choice($._non_local_scope_modifier, $._locally_permitted_modifiers)
+        )
       ),
     _locally_permitted_modifiers: ($) =>
       repeat1(choice($.attribute, $._locally_permitted_modifier)),
@@ -1768,9 +1899,16 @@ module.exports = grammar({
     mutation_modifier: ($) => choice("mutating", "nonmutating"),
     property_modifier: ($) => choice("static", "dynamic", "optional", "class"),
     inheritance_modifier: ($) => choice("final"),
-    parameter_modifier: ($) => choice("inout", "@escaping", "@autoclosure"),
+    parameter_modifier: ($) =>
+      choice(
+        "inout",
+        "@escaping",
+        "@autoclosure",
+        $._parameter_ownership_modifier
+      ),
     ownership_modifier: ($) =>
       choice("weak", "unowned", "unowned(safe)", "unowned(unsafe)"),
+    _parameter_ownership_modifier: ($) => choice("borrowing", "consuming"),
     use_site_target: ($) =>
       seq(
         choice(
@@ -1809,6 +1947,13 @@ module.exports = grammar({
           )
         )
       ),
+    // Dumping ground for any nodes that used to exist in the grammar, but have since been removed for whatever
+    // reason.
+    // Neovim applies updates non-atomically to the parser and the queries. Meanwhile, `tree-sitter` rejects any query
+    // that contains any unrecognized nodes. Putting those two facts together, we see that we must never remove nodes
+    // that once existed.
+    unused_for_backward_compatibility: ($) =>
+      choice(alias("unused1", "try?"), alias("unused2", "try!")),
   },
 });
 function sep1(rule, separator) {
