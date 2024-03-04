@@ -44,6 +44,7 @@
   "override"
   "convenience"
   "required"
+  "mutating" 
 ] @keyword
 
 (opaque_type ["some" @keyword])
