@@ -45,6 +45,7 @@
   "convenience"
   "required"
   "mutating" 
+  "associatedtype"
 ] @keyword
 
 (opaque_type ["some" @keyword])
