@@ -20,7 +20,7 @@
 
 (function_declaration (simple_identifier) @method)
 (function_declaration ["init" @constructor])
-(function_declaration ["deinit" @constructor])
+(deinit_declaration ["deinit" @constructor])
 (throws) @keyword
 "async" @keyword
 "await" @keyword
@@ -45,7 +45,7 @@
   "override"
   "convenience"
   "required"
-  "mutating" 
+  "mutating"
   "associatedtype"
 ] @keyword
 
