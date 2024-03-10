@@ -4,6 +4,8 @@
   (class_body)                  ; class Foo { ... }
   (enum_class_body)             ; enum Foo { ... }
   (function_declaration)        ; func Foo (...) {...}
+  (init_declaration)            ; init(...) {...}
+  (deinit_declaration)          ; deinit {...}
   (computed_property)           ; { ... }
   (subscript_declaration)       ; subscript Foo(...) { ... }
 
