@@ -819,7 +819,7 @@ class Test {
         (type_annotation
           (user_type
             (type_identifier))))
-      (function_declaration
+      (init_declaration
         (parameter
           (simple_identifier)
           (simple_identifier)
@@ -846,7 +846,7 @@ class Test {
                   (navigation_suffix
                     (simple_identifier))))
               (simple_identifier)))))
-      (function_declaration
+      (init_declaration
         (modifiers
           (member_modifier)
           (member_modifier))
@@ -863,7 +863,7 @@ class Test {
                     (integer_literal))
                   (value_argument
                     (integer_literal))))))))
-      (function_declaration
+      (init_declaration
         (modifiers
           (member_modifier))
         (parameter
@@ -883,7 +883,7 @@ class Test {
                     (integer_literal))
                   (value_argument
                     (integer_literal))))))))
-      (function_declaration
+      (init_declaration
         (modifiers
           (member_modifier))
         (bang)
