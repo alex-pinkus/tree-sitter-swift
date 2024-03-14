@@ -52,6 +52,14 @@
 (opaque_type ["some" @keyword])
 (existential_type ["any" @keyword])
 
+(precedence_group_declaration
+ ["precedencegroup" @keyword]
+ (simple_identifier) @type)
+(precedence_group_attribute
+ (simple_identifier) @keyword
+ [(simple_identifier) @type
+  (boolean_literal) @boolean])
+
 [
   (getter_specifier)
   (setter_specifier)
