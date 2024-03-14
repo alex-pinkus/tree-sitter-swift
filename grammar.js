@@ -505,7 +505,8 @@ module.exports = grammar({
           $.switch_statement,
           $.assignment,
           seq($._expression, alias($._immediate_quest, "?")),
-          alias("async", $.simple_identifier)
+          alias("async", $.simple_identifier),
+          alias("package", $.simple_identifier),
         )
       ),
     // Unary expressions
@@ -1911,7 +1912,7 @@ module.exports = grammar({
           "internal",
           "fileprivate",
           "open",
-          "package"
+          "package",
         ),
         optional(seq("(", "set", ")"))
       ),

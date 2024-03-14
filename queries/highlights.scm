@@ -47,6 +47,7 @@
   "required"
   "mutating"
   "associatedtype"
+  "package"
 ] @keyword
 
 (opaque_type ["some" @keyword])
