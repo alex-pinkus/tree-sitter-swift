@@ -36,7 +36,7 @@ pub const NODE_TYPES: &'static str = include_str!("../../src/node-types.json");
 // Uncomment these to include any queries that this grammar contains
 
 pub const HIGHLIGHTS_QUERY: &'static str = include_str!("../../queries/highlights.scm");
-// pub const INJECTIONS_QUERY: &'static str = include_str!("../../queries/injections.scm");
+pub const INJECTIONS_QUERY: &'static str = include_str!("../../queries/injections.scm");
 pub const LOCALS_QUERY: &'static str = include_str!("../../queries/locals.scm");
 pub const TAGS_QUERY: &'static str = include_str!("../../queries/tags.scm");
 
@@ -57,7 +57,8 @@ mod tests {
         let mut parser = tree_sitter::Parser::new();
         parser.set_language(super::language())?;
 
-        let tree = parser.parse("_ = \"Hello!\"\n", None)
+        let tree = parser
+            .parse("_ = \"Hello!\"\n", None)
             .ok_or_else(|| anyhow!("Unable to parse!"))?;
 
         assert_eq!(
