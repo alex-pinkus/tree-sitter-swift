@@ -1911,7 +1911,8 @@ module.exports = grammar({
     type_parameter_modifiers: ($) => repeat1($.attribute),
     function_modifier: ($) => choice("infix", "postfix", "prefix"),
     mutation_modifier: ($) => choice("mutating", "nonmutating"),
-    property_modifier: ($) => choice("static", "dynamic", "optional", "class"),
+    property_modifier: ($) =>
+      choice("static", "dynamic", "optional", "class", "distributed"),
     inheritance_modifier: ($) => choice("final"),
     parameter_modifier: ($) =>
       choice(
