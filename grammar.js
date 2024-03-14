@@ -1954,7 +1954,7 @@ module.exports = grammar({
           "internal",
           "fileprivate",
           "open",
-          "package"
+          "package",
         ),
         optional(seq("(", "set", ")"))
       ),
