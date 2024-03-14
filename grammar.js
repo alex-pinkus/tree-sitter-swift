@@ -1905,7 +1905,14 @@ module.exports = grammar({
       choice("override", "convenience", "required", "nonisolated"),
     visibility_modifier: ($) =>
       seq(
-        choice("public", "private", "internal", "fileprivate", "open", "package"),
+        choice(
+          "public",
+          "private",
+          "internal",
+          "fileprivate",
+          "open",
+          "package",
+        ),
         optional(seq("(", "set", ")"))
       ),
     type_parameter_modifiers: ($) => repeat1($.attribute),
