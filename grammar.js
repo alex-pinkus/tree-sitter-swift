@@ -37,6 +37,7 @@ const PRECS = {
   block: 2,
   loop: 1,
   keypath: 1,
+  parameter_pack: 1,
   control_transfer: 0,
   as: -1,
   tuple: -1,
@@ -195,6 +196,13 @@ module.exports = grammar({
     // `borrowing` and `consuming` are legal as identifiers, but are also legal modifiers
     [$.simple_identifier, $.parameter_modifier],
     [$.parameter_modifiers],
+
+    // These are keywords sometimes, but simple identifiers other times, and it just depends on the rest of their usage.
+    [$._contextual_simple_identifier, $._modifierless_class_declaration],
+    [$._contextual_simple_identifier, $.property_behavior_modifier],
+    [$._contextual_simple_identifier, $.parameter_modifier],
+    [$._contextual_simple_identifier, $.type_parameter_pack],
+    [$._contextual_simple_identifier, $.type_pack_expansion],
   ],
   extras: ($) => [
     $.comment,
@@ -287,8 +295,17 @@ module.exports = grammar({
         /`[^\r\n` ]*`/,
         /\$[0-9]+/,
         token(seq("$", LEXICAL_IDENTIFIER)),
+        $._contextual_simple_identifier
+      ),
+    // Keywords that were added after they were already legal as identifiers. `tree-sitter` will prefer exact matches
+    // when parsing so unless we explicitly say that these are legal, the parser will interpret them as their keyword.
+    _contextual_simple_identifier: ($) =>
+      choice(
         "actor",
+        "async",
+        "each",
         "lazy",
+        "repeat",
         $._parameter_ownership_modifier
       ),
     identifier: ($) => sep1($.simple_identifier, $._dot),
@@ -420,7 +437,9 @@ module.exports = grammar({
           $.metatype,
           $.opaque_type,
           $.existential_type,
-          $.protocol_composition_type
+          $.protocol_composition_type,
+          $.type_parameter_pack,
+          $.type_pack_expansion
         )
       ),
     // The grammar just calls this whole thing a `type-identifier` but that's a bit confusing.
@@ -482,6 +501,8 @@ module.exports = grammar({
     _immediate_quest: ($) => token.immediate("?"),
     opaque_type: ($) => prec.right(seq("some", $._unannotated_type)),
     existential_type: ($) => prec.right(seq("any", $._unannotated_type)),
+    type_parameter_pack: ($) => prec.left(seq("each", $._unannotated_type)),
+    type_pack_expansion: ($) => prec.left(seq("repeat", $._unannotated_type)),
     protocol_composition_type: ($) =>
       prec.left(
         seq(
@@ -504,8 +525,9 @@ module.exports = grammar({
           $.if_statement,
           $.switch_statement,
           $.assignment,
-          seq($._expression, alias($._immediate_quest, "?")),
-          alias("async", $.simple_identifier)
+          $.value_parameter_pack,
+          $.value_pack_expansion,
+          seq($._expression, alias($._immediate_quest, "?"))
         )
       ),
     // Unary expressions
@@ -764,7 +786,8 @@ module.exports = grammar({
       prec.left(
         choice(
           $.simple_identifier,
-          alias("async", $.simple_identifier),
+          // We don't rely on $._contextual_simple_identifier here because
+          // these don't usually fall into that category.
           alias("if", $.simple_identifier),
           alias("switch", $.simple_identifier)
         )
@@ -1216,6 +1239,8 @@ module.exports = grammar({
           "{",
           optional($.statements),
           "}",
+          // Make sure we make it to the `while` before assuming this is a parameter pack.
+          repeat($._implicit_semi),
           "while",
           sep1(field("condition", $._if_condition_sequence_item), ",")
         )
@@ -1244,6 +1269,10 @@ module.exports = grammar({
           field("result", $._expression)
         )
       ),
+    value_parameter_pack: ($) =>
+      prec.left(PRECS.parameter_pack, seq("each", $._expression)),
+    value_pack_expansion: ($) =>
+      prec.left(PRECS.parameter_pack, seq("repeat", $._expression)),
     availability_condition: ($) =>
       seq(
         choice("#available", "#unavailable"),
@@ -1509,9 +1538,15 @@ module.exports = grammar({
     type_parameter: ($) =>
       seq(
         optional($.type_parameter_modifiers),
-        alias($.simple_identifier, $.type_identifier),
+        $._type_parameter_possibly_packed,
         optional(seq(":", $._type))
       ),
+    _type_parameter_possibly_packed: ($) =>
+      choice(
+        alias($.simple_identifier, $.type_identifier),
+        $.type_parameter_pack
+      ),
+
     type_constraints: ($) =>
       prec.right(seq($.where_keyword, sep1($.type_constraint, ","))),
     type_constraint: ($) =>
@@ -1519,16 +1554,24 @@ module.exports = grammar({
     inheritance_constraint: ($) =>
       seq(
         repeat($.attribute),
-        field("constrained_type", $.identifier),
+        field("constrained_type", $._constrained_type),
         ":",
         field("inherits_from", $._possibly_implicitly_unwrapped_type)
       ),
     equality_constraint: ($) =>
       seq(
         repeat($.attribute),
-        field("constrained_type", $.identifier),
+        field("constrained_type", $._constrained_type),
         choice($._equal_sign, $._eq_eq),
         field("must_equal", $._type)
+      ),
+    _constrained_type: ($) =>
+      choice(
+        $.identifier,
+        seq(
+          $._unannotated_type,
+          optional(seq(".", sep1($.simple_identifier, ".")))
+        )
       ),
     _class_member_separator: ($) => choice($._semi, $.multiline_comment),
     _class_member_declarations: ($) =>

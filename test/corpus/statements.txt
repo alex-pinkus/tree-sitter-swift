@@ -217,7 +217,8 @@ while let .ok(data) = doWork() {
 
 repeat {
     // ...
-} while something()
+}
+while something()
 
 --------------------------------------------------------------------------------
 
@@ -1108,3 +1109,73 @@ actor.increment()
         (simple_identifier)))
     (call_suffix
       (value_arguments))))
+
+================================================================================
+`repeat` as an enum case name
+================================================================================
+
+extension LottieLoopMode: Equatable {
+  public static func == (lhs: LottieLoopMode, rhs: LottieLoopMode) -> Bool {   
+    switch (lhs, rhs) {
+    case (.repeat(let lhsAmount), .repeat(let rhsAmount)):
+      return lhsAmount == rhsAmount
+    default:
+      return false
+    }
+  }
+}
+
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (class_declaration
+    (user_type
+      (type_identifier))
+    (inheritance_specifier
+      (user_type
+        (type_identifier)))
+    (class_body
+      (function_declaration
+        (modifiers
+          (visibility_modifier)
+          (property_modifier))
+        (parameter
+          (simple_identifier)
+          (user_type
+            (type_identifier)))
+        (parameter
+          (simple_identifier)
+          (user_type
+            (type_identifier)))
+        (user_type
+          (type_identifier))
+        (function_body
+          (statements
+            (switch_statement
+              (tuple_expression
+                (simple_identifier)
+                (simple_identifier))
+              (switch_entry
+                (switch_pattern
+                  (pattern
+                    (pattern
+                      (simple_identifier)
+                      (pattern
+                        (value_binding_pattern)
+                        (simple_identifier)))
+                    (pattern
+                      (simple_identifier)
+                      (pattern
+                        (value_binding_pattern)
+                        (simple_identifier)))))
+                (statements
+                  (control_transfer_statement
+                    (equality_expression
+                      (simple_identifier)
+                      (simple_identifier)))))
+              (switch_entry
+                (default_keyword)
+                (statements
+                  (control_transfer_statement
+                    (boolean_literal)))))))))))
