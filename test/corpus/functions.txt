@@ -1168,3 +1168,211 @@ struct Foo {
         (simple_identifier)
         (function_body))
       (comment))))
+
+================================================================================
+Parameter pack in generic parameters
+================================================================================
+
+func < <each Element: Comparable>(lhs: (repeat each Element), rhs: (repeat each Element)) -> Bool { }
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (type_parameters
+      (type_parameter
+        (type_parameter_pack
+          (user_type
+            (type_identifier)))
+        (user_type
+          (type_identifier))))
+    (parameter
+      (simple_identifier)
+      (tuple_type
+        (tuple_type_item
+          (type_pack_expansion
+            (type_parameter_pack
+              (user_type
+                (type_identifier)))))))
+    (parameter
+      (simple_identifier)
+      (tuple_type
+        (tuple_type_item
+          (type_pack_expansion
+            (type_parameter_pack
+              (user_type
+                (type_identifier)))))))
+    (user_type
+      (type_identifier))
+    (function_body)))
+
+================================================================================
+Parameter pack in type constraints
+================================================================================
+
+func zip<each S>(_ sequence: repeat each S) where repeat each S: Sequence { }
+func variadic<each S: Sequence, T>(_: repeat each S) where repeat (each S).Element == T {}
+func variadic<each S: Sequence, each T>(_: repeat each S) where repeat (each S).Element == Array<each T> {}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (simple_identifier)
+    (type_parameters
+      (type_parameter
+        (type_parameter_pack
+          (user_type
+            (type_identifier)))))
+    (parameter
+      (simple_identifier)
+      (simple_identifier)
+      (type_pack_expansion
+        (type_parameter_pack
+          (user_type
+            (type_identifier)))))
+    (type_constraints
+      (where_keyword)
+      (type_constraint
+        (inheritance_constraint
+          (type_pack_expansion
+            (type_parameter_pack
+              (user_type
+                (type_identifier))))
+          (user_type
+            (type_identifier)))))
+    (function_body))
+  (function_declaration
+    (simple_identifier)
+    (type_parameters
+      (type_parameter
+        (type_parameter_pack
+          (user_type
+            (type_identifier)))
+        (user_type
+          (type_identifier)))
+      (type_parameter
+        (type_identifier)))
+    (parameter
+      (simple_identifier)
+      (type_pack_expansion
+        (type_parameter_pack
+          (user_type
+            (type_identifier)))))
+    (type_constraints
+      (where_keyword)
+      (type_constraint
+        (equality_constraint
+          (type_pack_expansion
+            (tuple_type
+              (tuple_type_item
+                (type_parameter_pack
+                  (user_type
+                    (type_identifier))))))
+          (simple_identifier)
+          (user_type
+            (type_identifier)))))
+    (function_body))
+  (function_declaration
+    (simple_identifier)
+    (type_parameters
+      (type_parameter
+        (type_parameter_pack
+          (user_type
+            (type_identifier)))
+        (user_type
+          (type_identifier)))
+      (type_parameter
+        (type_parameter_pack
+          (user_type
+            (type_identifier)))))
+    (parameter
+      (simple_identifier)
+      (type_pack_expansion
+        (type_parameter_pack
+          (user_type
+            (type_identifier)))))
+    (type_constraints
+      (where_keyword)
+      (type_constraint
+        (equality_constraint
+          (type_pack_expansion
+            (tuple_type
+              (tuple_type_item
+                (type_parameter_pack
+                  (user_type
+                    (type_identifier))))))
+          (simple_identifier)
+          (user_type
+            (type_identifier)
+            (type_arguments
+              (type_parameter_pack
+                (user_type
+                  (type_identifier))))))))
+    (function_body)))
+
+================================================================================
+Parameter pack soup
+================================================================================
+
+func makePairs<each First, each Second>(
+  firsts first: repeat each First,
+  seconds second: repeat each Second
+) -> (repeat Pair<each First, each Second>) {
+  return (repeat Pair(each first, each second))
+}
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (simple_identifier)
+    (type_parameters
+      (type_parameter
+        (type_parameter_pack
+          (user_type
+            (type_identifier))))
+      (type_parameter
+        (type_parameter_pack
+          (user_type
+            (type_identifier)))))
+    (parameter
+      (simple_identifier)
+      (simple_identifier)
+      (type_pack_expansion
+        (type_parameter_pack
+          (user_type
+            (type_identifier)))))
+    (parameter
+      (simple_identifier)
+      (simple_identifier)
+      (type_pack_expansion
+        (type_parameter_pack
+          (user_type
+            (type_identifier)))))
+    (tuple_type
+      (tuple_type_item
+        (type_pack_expansion
+          (user_type
+            (type_identifier)
+            (type_arguments
+              (type_parameter_pack
+                (user_type
+                  (type_identifier)))
+              (type_parameter_pack
+                (user_type
+                  (type_identifier))))))))
+    (function_body
+      (statements
+        (control_transfer_statement
+          (tuple_expression
+            (call_expression
+              (value_pack_expansion
+                (simple_identifier))
+              (call_suffix
+                (value_arguments
+                  (value_argument
+                    (value_parameter_pack
+                      (simple_identifier)))
+                  (value_argument
+                    (value_parameter_pack
+                      (simple_identifier))))))))))))
