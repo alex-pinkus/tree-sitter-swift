@@ -39,7 +39,7 @@
     "which": "2.0.2"
   },
   "devDependencies": {
-    "node-gyp": "^8.4.1",
+    "node-gyp": "^10.0.1",
     "prettier": "2.3.2"
   }
 }
