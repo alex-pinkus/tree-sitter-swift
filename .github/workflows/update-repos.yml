@@ -8,7 +8,7 @@ jobs:
   update_repository_versions:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
       - run: ./scripts/update-top-repos.sh
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
