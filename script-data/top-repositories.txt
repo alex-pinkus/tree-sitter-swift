@@ -1,9 +1,37 @@
 Alamofire Alamofire/Alamofire 5.9.0
-iina iina/iina v1.3.4
+AudioKit AudioKit/AudioKit 5.6.2
+C4iOS C4Labs/C4iOS 3.0.1
+Carthage Carthage/Carthage 0.39.1
 Charts danielgindi/Charts 5.1.0
+CodeEdit CodeEditApp/CodeEdit v0.1.0
+CopilotForXcode intitni/CopilotForXcode 0.31.2
+CryptoSwift krzyzanowskim/CryptoSwift 1.8.1
+Dance saoudrizwan/Dance v1.0.7
+facebook-ios-sdk facebook/facebook-ios-sdk v16.3.1
+firefox-ios mozilla-mobile/firefox-ios v123.4 0 6
+firefox-ios mozilla-mobile/firefox-ios v123.4 1 6
+firefox-ios mozilla-mobile/firefox-ios v123.4 2 6
+firefox-ios mozilla-mobile/firefox-ios v123.4 3 6
+firefox-ios mozilla-mobile/firefox-ios v123.4 4 6
+firefox-ios mozilla-mobile/firefox-ios v123.4 5 6
+GRDB groue/GRDB.swift v6.25.0 0 2
+GRDB groue/GRDB.swift v6.25.0 1 2
+HeroTransitions HeroTransitions/Hero 1.6.3
+iina iina/iina v1.3.4
+JASON delba/JASON 3.1.1
+KeychainAccess kishikawakatsumi/KeychainAccess v4.2.2
+Kingfisher onevcat/Kingfisher 7.11.0
 lottie-ios airbnb/lottie-ios 4.4.1
-vapor vapor/vapor 3.3.3
-SwiftyJSON SwiftyJSON/SwiftyJSON 5.0.1
+MessageKit MessageKit/MessageKit 4.2.0
+MonitorControl MonitorControl/MonitorControl v4.2.0
+Moya Moya/Moya 15.0.3
+Nuke kean/Nuke 12.4.0
+ObjectMapper tristanhimmelman/ObjectMapper 4.2.0
+Overdrive saidsikira/Overdrive 0.3
+PromiseKit mxcl/PromiseKit 8.1.1
+ReactKit ReactKit/ReactKit 0.12.0
+Rectangle rxhanson/Rectangle v0.76
+Runes thoughtbot/Runes v5.1.0
 RxSwift ReactiveX/RxSwift 6.6.0 0 9
 RxSwift ReactiveX/RxSwift 6.6.0 1 9
 RxSwift ReactiveX/RxSwift 6.6.0 2 9
@@ -13,40 +41,20 @@ RxSwift ReactiveX/RxSwift 6.6.0 5 9
 RxSwift ReactiveX/RxSwift 6.6.0 6 9
 RxSwift ReactiveX/RxSwift 6.6.0 7 9
 RxSwift ReactiveX/RxSwift 6.6.0 8 9
-HeroTransitions HeroTransitions/Hero 1.6.3
-Kingfisher onevcat/Kingfisher 7.11.0
 shadowsocks shadowsocks/ShadowsocksX-NG v1.10.2
+Side-Menu Yalantis/Side-Menu.iOS 2.0.2
+SkeletonView Juanpe/SkeletonView 1.30.4
 SnapKit SnapKit/SnapKit 5.7.1
+Sourcery  krzysztofzablocki/Sourcery 2.1.7
+Starscream daltoniam/Starscream 4.0.8
+stats exelban/stats v2.10.4
+StyleKit 146BC/StyleKit 0.7.0
+swift-composable-architecture pointfreeco/swift-composable-architecture 1.9.2
 SwiftLint realm/SwiftLint 0.54.0 0 2
 SwiftLint realm/SwiftLint 0.54.0 1 2
-Carthage Carthage/Carthage 0.39.1
-Rectangle rxhanson/Rectangle v0.76
-PromiseKit mxcl/PromiseKit 8.1.1
-Moya Moya/Moya 15.0.3
-MonitorControl MonitorControl/MonitorControl v4.2.0
-ObjectMapper tristanhimmelman/ObjectMapper 4.2.0
-SkeletonView Juanpe/SkeletonView 1.30.4
-firefox-ios mozilla-mobile/firefox-ios v39.0 0 6
-firefox-ios mozilla-mobile/firefox-ios v39.0 1 6
-firefox-ios mozilla-mobile/firefox-ios v39.0 2 6
-firefox-ios mozilla-mobile/firefox-ios v39.0 3 6
-firefox-ios mozilla-mobile/firefox-ios v39.0 4 6
-firefox-ios mozilla-mobile/firefox-ios v39.0 5 6
-AudioKit AudioKit/AudioKit 5.6.2
-Starscream daltoniam/Starscream 4.0.8
-MessageKit MessageKit/MessageKit 4.2.0
-KeychainAccess kishikawakatsumi/KeychainAccess v4.2.2
-Nuke kean/Nuke 12.4.0
+swift-nio apple/swift-nio 2.64.0
+SwiftyJSON SwiftyJSON/SwiftyJSON 5.0.1
 Swinject Swinject/Swinject 2.8.4
-GRDB groue/GRDB.swift v6.25.0 0 2
-GRDB groue/GRDB.swift v6.25.0 1 2
-Dance saoudrizwan/Dance v1.0.7
-StyleKit 146BC/StyleKit 0.7.0
-ReactKit ReactKit/ReactKit 0.12.0
-JASON delba/JASON 3.1.1
-Side-Menu Yalantis/Side-Menu.iOS 2.0.2
-C4iOS C4Labs/C4iOS 3.0.1
-Taylor izqui/Taylor 0.4.5
-Runes thoughtbot/Runes v5.1.0
-Overdrive saidsikira/Overdrive 0.3
 Tactile delba/Tactile 3.0.1
+Taylor izqui/Taylor 0.4.5
+vapor vapor/vapor 3.3.3
