@@ -52,6 +52,14 @@
 (opaque_type ["some" @keyword])
 (existential_type ["any" @keyword])
 
+(precedence_group_declaration
+ ["precedencegroup" @keyword]
+ (simple_identifier) @type)
+(precedence_group_attribute
+ (simple_identifier) @keyword
+ [(simple_identifier) @type
+  (boolean_literal) @boolean])
+
 [
   (getter_specifier)
   (setter_specifier)
@@ -173,3 +181,8 @@
  "..<"
  "..."
 ] @operator
+
+(value_parameter_pack ["each" @keyword])
+(value_pack_expansion ["repeat" @keyword])
+(type_parameter_pack ["each" @keyword])
+(type_pack_expansion ["repeat" @keyword])

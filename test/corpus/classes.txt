@@ -1664,3 +1664,25 @@ class ForceUpdateEnacter {
                     (value_argument
                       (line_string_literal
                         (line_str_text)))))))))))))
+
+================================================================================
+Distributed actors and functions
+================================================================================
+
+distributed actor A {
+  distributed func doit() {}
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (class_declaration
+    (modifiers
+      (property_modifier))
+    (type_identifier)
+    (class_body
+      (function_declaration
+        (modifiers
+          (property_modifier))
+        (simple_identifier)
+        (function_body)))))
