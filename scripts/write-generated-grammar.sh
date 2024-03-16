@@ -6,7 +6,7 @@ ref=$1
 branch_name=with-generated-files
 
 # Load the branch that contains generated grammar files.
-git checkout $branch_name
+git checkout -b $branch_name -t origin/$branch_name
 
 # Update our local directory to match the $ref, but then put the HEAD back at the previous commit.
 # This will blow away the existing generated grammar. That's OK because this branch is only ever
