@@ -181,3 +181,8 @@
  "..<"
  "..."
 ] @operator
+
+(value_parameter_pack ["each" @keyword])
+(value_pack_expansion ["repeat" @keyword])
+(type_parameter_pack ["each" @keyword])
+(type_pack_expansion ["repeat" @keyword])
