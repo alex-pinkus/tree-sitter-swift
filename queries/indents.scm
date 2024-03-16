@@ -4,6 +4,8 @@
   (class_body)                  ; class Foo { ... }
   (enum_class_body)             ; enum Foo { ... }
   (function_declaration)        ; func Foo (...) {...}
+  (init_declaration)            ; init(...) {...}
+  (deinit_declaration)          ; deinit {...}
   (computed_property)           ; { ... }
   (subscript_declaration)       ; subscript Foo(...) { ... }
 
@@ -31,6 +33,9 @@
   (array_literal)               ; [ foo, bar ]
   (dictionary_literal)          ; [ foo: bar, x: y ]
   (lambda_literal) 
+  (willset_didset_block)
+  (willset_clause)
+  (didset_clause)
 ] @indent.begin
 
 ; @something(...)
