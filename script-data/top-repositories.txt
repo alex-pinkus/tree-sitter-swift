@@ -24,7 +24,7 @@ Rectangle rxhanson/Rectangle v0.76
 PromiseKit mxcl/PromiseKit 8.1.1
 Moya Moya/Moya 15.0.3
 MonitorControl MonitorControl/MonitorControl v4.2.0
-ObjectMapper tristanhimmelman/ObjectMapper 4.2.0
+ObjectMapper tristanhimmelman/ObjectMapper 4.3.0
 SkeletonView Juanpe/SkeletonView 1.30.4
 firefox-ios mozilla-mobile/firefox-ios v39.0 0 6
 firefox-ios mozilla-mobile/firefox-ios v39.0 1 6
