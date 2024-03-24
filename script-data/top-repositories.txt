@@ -36,10 +36,10 @@ AudioKit AudioKit/AudioKit 5.6.2
 Starscream daltoniam/Starscream 4.0.8
 MessageKit MessageKit/MessageKit 4.2.0
 KeychainAccess kishikawakatsumi/KeychainAccess v4.2.2
-Nuke kean/Nuke 12.4.0
+Nuke kean/Nuke 12.5.0
 Swinject Swinject/Swinject 2.8.4
-GRDB groue/GRDB.swift v6.25.0 0 2
-GRDB groue/GRDB.swift v6.25.0 1 2
+GRDB groue/GRDB.swift v6.26.0 0 2
+GRDB groue/GRDB.swift v6.26.0 1 2
 Dance saoudrizwan/Dance v1.0.7
 StyleKit 146BC/StyleKit 0.7.0
 ReactKit ReactKit/ReactKit 0.12.0
