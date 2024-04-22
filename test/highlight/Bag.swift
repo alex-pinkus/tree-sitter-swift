@@ -18,7 +18,7 @@ struct BagKey {
     It's underlying type is UInt64. If we assume there in an idealized CPU that works at 4GHz,
      it would take ~150 years of continuous running time for it to overflow.
     */
-//  ^ comment
+//  ^ spell
     fileprivate let rawValue: UInt64
 //  ^ keyword
 //              ^ keyword
@@ -35,9 +35,9 @@ Time and space complexity of insertion and deletion is O(n).
 It is suitable for storing small number of elements.
 */
 struct Bag<T> : CustomDebugStringConvertible {
-//         ^ type
+//         ^ parameter
     /// Type of identifier for inserted elements.
-//  ^ comment
+//  ^ spell
     typealias KeyType = BagKey
     
     typealias Entry = (key: BagKey, value: T)

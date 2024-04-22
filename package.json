@@ -24,7 +24,10 @@
       "file-types": [
         "swift"
       ],
-      "injection-regex": "swift"
+      "injection-regex": "swift",
+      "highlights": "queries/highlights.scm",
+      "locals": "queries/locals.scm",
+      "injections": "queries/injections.scm"
     }
   ],
   "keywords": [
