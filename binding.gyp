@@ -2,17 +2,33 @@
   "targets": [
     {
       "target_name": "tree_sitter_swift_binding",
+      "dependencies": [
+        "<!(node -p \"require('node-addon-api').targets\"):node_addon_api_except",
+      ],
       "include_dirs": [
-        "<!(node -e \"require('nan')\")",
-        "src"
+        "src",
       ],
       "sources": [
         "bindings/node/binding.cc",
         "src/parser.c",
-        "src/scanner.c"
+        # NOTE: if your language has an external scanner, add it here.
+        "src/scanner.c",
       ],
       "cflags_c": [
-        "-std=c99",
+        "-std=c11",
+      ],
+      "actions": [
+          {
+	      "action_name": "generate_header_files",
+	      "inputs": ["grammar.js"],
+	      "outputs": [
+	          "src/grammar.json",
+		  "src/node-types.json",
+		  "src/parser.c",
+		  "src/tree_sitter",
+	      ],
+	      "action": ["tree-sitter", "generate", "--no-bindings"],
+	  }
       ]
     }
   ]

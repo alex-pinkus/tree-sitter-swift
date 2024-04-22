@@ -1,13 +1,15 @@
-//! This crate provides swift language support for the [tree-sitter][] parsing library.
+//! This crate provides Swift language support for the [tree-sitter][] parsing library.
 //!
 //! Typically, you will use the [language][language func] function to add this language to a
 //! tree-sitter [Parser][], and then use the parser to parse some code:
 //!
 //! ```
-//! let code = "";
+//! let code = r#"
+//! "#;
 //! let mut parser = tree_sitter::Parser::new();
-//! parser.set_language(tree_sitter_swift::language()).expect("Error loading swift grammar");
+//! parser.set_language(&tree_sitter_swift::language()).expect("Error loading Swift grammar");
 //! let tree = parser.parse(code, None).unwrap();
+//! assert!(!tree.root_node().has_error());
 //! ```
 //!
 //! [Language]: https://docs.rs/tree-sitter/*/tree_sitter/struct.Language.html
@@ -47,7 +49,7 @@ mod tests {
     #[test]
     fn test_can_load_grammar() -> Result<()> {
         let mut parser = tree_sitter::Parser::new();
-        parser.set_language(super::language())?;
+        parser.set_language(&super::language())?;
 
         Ok(())
     }
@@ -55,7 +57,7 @@ mod tests {
     #[test]
     fn test_can_parse_basic_file() -> Result<()> {
         let mut parser = tree_sitter::Parser::new();
-        parser.set_language(super::language())?;
+        parser.set_language(&super::language())?;
 
         let tree = parser
             .parse("_ = \"Hello!\"\n", None)
