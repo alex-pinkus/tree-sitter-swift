@@ -203,6 +203,7 @@ module.exports = grammar({
     [$._contextual_simple_identifier, $.parameter_modifier],
     [$._contextual_simple_identifier, $.type_parameter_pack],
     [$._contextual_simple_identifier, $.type_pack_expansion],
+    [$._contextual_simple_identifier, $.visibility_modifier],
   ],
   extras: ($) => [
     $.comment,
@@ -306,6 +307,7 @@ module.exports = grammar({
         "each",
         "lazy",
         "repeat",
+        "package",
         $._parameter_ownership_modifier
       ),
     identifier: ($) => sep1($.simple_identifier, $._dot),
