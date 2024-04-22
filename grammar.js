@@ -203,6 +203,7 @@ module.exports = grammar({
     [$._contextual_simple_identifier, $.parameter_modifier],
     [$._contextual_simple_identifier, $.type_parameter_pack],
     [$._contextual_simple_identifier, $.type_pack_expansion],
+    [$._contextual_simple_identifier, $.visibility_modifier],
   ],
   extras: ($) => [
     $.comment,
@@ -306,6 +307,7 @@ module.exports = grammar({
         "each",
         "lazy",
         "repeat",
+        "package",
         $._parameter_ownership_modifier
       ),
     identifier: ($) => sep1($.simple_identifier, $._dot),
@@ -1948,7 +1950,14 @@ module.exports = grammar({
       choice("override", "convenience", "required", "nonisolated"),
     visibility_modifier: ($) =>
       seq(
-        choice("public", "private", "internal", "fileprivate", "open"),
+        choice(
+          "public",
+          "private",
+          "internal",
+          "fileprivate",
+          "open",
+          "package"
+        ),
         optional(seq("(", "set", ")"))
       ),
     type_parameter_modifiers: ($) => repeat1($.attribute),
