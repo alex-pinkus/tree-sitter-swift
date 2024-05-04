@@ -40,6 +40,7 @@
     "prebuilds/**",
     "bindings/node/*",
     "queries/*",
+    "scripts/*",
     "src/**"
   ],
   "author": "Alex Pinkus <alex.pinkus@gmail.com>",
