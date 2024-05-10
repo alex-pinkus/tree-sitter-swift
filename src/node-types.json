@@ -31521,6 +31521,10 @@
     "named": false
   },
   {
+    "type": "package",
+    "named": false
+  },
+  {
     "type": "param",
     "named": false
   },

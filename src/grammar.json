@@ -170,6 +170,10 @@
           "value": "repeat"
         },
         {
+          "type": "STRING",
+          "value": "package"
+        },
+        {
           "type": "SYMBOL",
           "name": "_parameter_ownership_modifier"
         }
@@ -9917,6 +9921,10 @@
             {
               "type": "STRING",
               "value": "open"
+            },
+            {
+              "type": "STRING",
+              "value": "package"
             }
           ]
         },
@@ -10306,10 +10314,6 @@
     ],
     [
       "capture_list_item",
-      "self_expression"
-    ],
-    [
-      "capture_list_item",
       "_expression"
     ],
     [
@@ -10351,13 +10355,6 @@
       "computed_setter"
     ],
     [
-      "capture_list",
-      "_local_property_declaration",
-      "_local_typealias_declaration",
-      "_local_function_declaration",
-      "_local_class_declaration"
-    ],
-    [
       "_bodyless_function_declaration",
       "property_modifier"
     ],
@@ -10366,20 +10363,8 @@
       "property_modifier"
     ],
     [
-      "_local_class_declaration",
-      "modifiers"
-    ],
-    [
       "_navigable_type_expression",
       "_case_pattern"
-    ],
-    [
-      "_no_expr_pattern_already_bound",
-      "_binding_pattern_with_expr"
-    ],
-    [
-      "_no_expr_pattern_already_bound",
-      "_expression"
     ],
     [
       "_no_expr_pattern_already_bound",
@@ -10403,34 +10388,7 @@
       "property_modifier"
     ],
     [
-      "_modifierless_class_declaration",
-      "simple_identifier"
-    ],
-    [
       "_fn_call_lambda_arguments"
-    ],
-    [
-      "property_behavior_modifier",
-      "simple_identifier"
-    ],
-    [
-      "_expression",
-      "if_statement"
-    ],
-    [
-      "_expression",
-      "switch_statement"
-    ],
-    [
-      "willset_didset_block"
-    ],
-    [
-      "_expression_without_willset_didset",
-      "_expression_with_willset_didset"
-    ],
-    [
-      "simple_identifier",
-      "parameter_modifier"
     ],
     [
       "parameter_modifiers"
@@ -10454,6 +10412,10 @@
     [
       "_contextual_simple_identifier",
       "type_pack_expansion"
+    ],
+    [
+      "_contextual_simple_identifier",
+      "visibility_modifier"
     ]
   ],
   "precedences": [],
@@ -10576,4 +10538,3 @@
   ],
   "supertypes": []
 }
-

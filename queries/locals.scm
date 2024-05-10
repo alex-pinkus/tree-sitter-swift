@@ -3,7 +3,6 @@
 
 ; Scopes
 [
- (statements)
  (for_statement)
  (while_statement)
  (repeat_while_statement)
@@ -15,4 +14,5 @@
  (function_declaration)
  (class_declaration)
  (protocol_declaration)
+ (lambda_literal)
 ] @local.scope
