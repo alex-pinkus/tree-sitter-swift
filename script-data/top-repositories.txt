@@ -14,7 +14,7 @@ RxSwift ReactiveX/RxSwift 6.7.1 6 9
 RxSwift ReactiveX/RxSwift 6.7.1 7 9
 RxSwift ReactiveX/RxSwift 6.7.1 8 9
 HeroTransitions HeroTransitions/Hero 1.6.3
-Kingfisher onevcat/Kingfisher 7.11.0
+Kingfisher onevcat/Kingfisher 8.0.0-alpha.1
 shadowsocks shadowsocks/ShadowsocksX-NG v1.10.2
 SnapKit SnapKit/SnapKit 5.7.1
 SwiftLint realm/SwiftLint 0.55.1 0 2
