@@ -1,10 +1,17 @@
 import Foundation
 
-protocol SomeProtocol {}
+protocol SomeProtocol {
+    var someVar: String { get }
+
+    func somess<T, V>(_ sss: T, xxx: V) -> V?
+}
 protocol SomeProtocol<T>: Encodable, Decodable where T == Element {}
 
-public class SomeClass: Codable {
+enum SomeEnum {
+    static var textures: [String: MTLTexture] = [:]
+}
 
+public class SomeClass: Codable {
     var somesss = 0
     let another = 111
     var sieee: Int = 11
@@ -65,9 +72,9 @@ struct SomeAAA {
     enum Some {
         case some
     }
-    var xxxx: String?
+    var xxxx: String?P
 }
 
-//extension SomeAAA.SomeBBBB { // breaks breadcrumbs
-//    var someVariable: String { "" }
-//}
+extension SomeAAA.SomeBBBB { // breaks breadcrumbs
+    var someVariable: String { "" }
+}

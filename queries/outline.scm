@@ -48,3 +48,19 @@
         (type_annotation)? @name
     ) @item
 )
+
+(enum_class_body
+    (property_declaration
+        (value_binding_pattern) @name
+        name: (pattern) @name
+        (type_annotation)? @name
+    ) @item
+)
+
+(
+    (protocol_function_declaration) @name
+) @item
+
+(
+    (protocol_property_declaration) @name
+) @item
