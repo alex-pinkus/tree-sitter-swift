@@ -1,14 +1,14 @@
 {
   "name": "tree-sitter-swift",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "A tree-sitter grammar for the Swift programming language.",
   "main": "bindings/node/index.js",
   "types": "bindings/node",
   "scripts": {
     "install": "node-gyp-build",
     "postinstall": "node-gyp configure && node-gyp build",
-    "build": "tree-sitter generate --no-bindings",
-    "build-wasm": "tree-sitter build --wasm",
+    "build": "npx tree-sitter-cli generate --no-bindings",
+    "build-wasm": "npx tree-sitter-cli build --wasm",
     "ci": "prettier --check grammar.js",
     "test-ci": "./scripts/test-with-memcheck.sh --install-valgrind",
     "test": "./scripts/test-with-memcheck.sh",
@@ -52,11 +52,11 @@
   "dependencies": {
     "node-addon-api": "^8.0.0",
     "node-gyp-build": "^4.8.0",
-    "tree-sitter-cli": "^0.22.5",
+    "tree-sitter-cli": "^0.23",
     "which": "2.0.2"
   },
   "peerDependencies": {
-    "tree-sitter": "^0.21.1"
+    "tree-sitter": "^0.23"
   },
   "peerDependenciesMeta": {
     "tree_sitter": {
