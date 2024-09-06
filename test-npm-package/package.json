@@ -9,7 +9,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "tree-sitter": "^0.21.0",
+    "tree-sitter": "^0.21.1",
     "tree-sitter-swift": "file:../"
   }
 }

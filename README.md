@@ -16,8 +16,8 @@ To use this parser to parse Swift code, you'll want to depend on either the Rust
 To use the Rust crate, you'll add this to your `Cargo.toml`:
 
 ```
-tree-sitter = "0.22.5"
-tree-sitter-swift = "=0.5.0"
+tree-sitter = "0.23.0"
+tree-sitter-swift = "=0.6.0"
 ```
 
 Then you can use a `tree-sitter` parser with the language declared here:
@@ -38,7 +38,7 @@ To use this from NPM, you'll add similar dependencies to `package.json`:
 
 ```
 "dependencies: {
-  "tree-sitter-swift": "0.5.0",
+  "tree-sitter-swift": "0.6.0",
   "tree-sitter": "^0.21.1"
 }
 ```
