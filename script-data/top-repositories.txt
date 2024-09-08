@@ -14,7 +14,7 @@ RxSwift ReactiveX/RxSwift 6.7.1 6 9
 RxSwift ReactiveX/RxSwift 6.7.1 7 9
 RxSwift ReactiveX/RxSwift 6.7.1 8 9
 HeroTransitions HeroTransitions/Hero 1.6.3
-Kingfisher onevcat/Kingfisher 8.0.0-alpha.3
+Kingfisher onevcat/Kingfisher 8.0.0-beta.1
 shadowsocks shadowsocks/ShadowsocksX-NG v1.10.2
 SnapKit SnapKit/SnapKit 5.7.1
 SwiftLint realm/SwiftLint 0.56.2 0 2
@@ -38,8 +38,8 @@ MessageKit MessageKit/MessageKit 4.2.0
 KeychainAccess kishikawakatsumi/KeychainAccess v4.2.2
 Nuke kean/Nuke 12.8.0
 Swinject Swinject/Swinject 2.9.1
-GRDB groue/GRDB.swift v6.29.2 0 2
-GRDB groue/GRDB.swift v6.29.2 1 2
+GRDB groue/GRDB.swift v6.29.3 0 2
+GRDB groue/GRDB.swift v6.29.3 1 2
 Dance saoudrizwan/Dance v1.0.7
 StyleKit 146BC/StyleKit 0.7.0
 ReactKit ReactKit/ReactKit 0.12.0
