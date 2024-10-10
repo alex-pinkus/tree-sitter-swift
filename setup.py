@@ -1,17 +1,35 @@
-from os.path import isdir, join
+import os
+import subprocess
 from platform import system
 
-from setuptools import Extension, find_packages, setup
-from setuptools.command.build import build
+from setuptools import setup, Extension, find_packages
+from setuptools.command.build_ext import build_ext
 from wheel.bdist_wheel import bdist_wheel
 
 
-class Build(build):
+class CustomBuildExt(build_ext):
     def run(self):
-        if isdir("queries"):
-            dest = join(self.build_lib, "tree_sitter_swift", "queries")
-            self.copy_tree("queries", dest)
+        # Ensure directories exist before build
+        if not os.path.exists("tree_sitter_swift"):
+            os.makedirs("tree_sitter_swift")
+
+        check_tree_sitter_cli_installed()
+        run_tree_sitter_generate()
         super().run()
+
+
+def check_tree_sitter_cli_installed():
+    try:
+        subprocess.check_call(["tree-sitter", "--version"])
+    except (subprocess.CalledProcessError, FileNotFoundError):
+        raise RuntimeError(
+            "Tree-sitter CLI is not installed. Please install it using `npm install -g tree-sitter-cli`."
+        )
+
+
+def run_tree_sitter_generate():
+    if not os.path.exists("src/parser.c") and not os.path.exists("src/tree_sitter/"):
+        subprocess.check_call(["tree-sitter", "generate"])
 
 
 class BdistWheel(bdist_wheel):
@@ -36,23 +54,23 @@ setup(
             sources=[
                 "bindings/python/tree_sitter_swift/binding.c",
                 "src/parser.c",
-                # NOTE: if your language uses an external scanner, add it here.
                 "src/scanner.c",
             ],
-            extra_compile_args=(
-                ["-std=c11"] if system() != 'Windows' else []
-            ),
+            extra_compile_args=["-std=c11"] if system() != "Windows" else [],
             define_macros=[
                 ("Py_LIMITED_API", "0x03080000"),
-                ("PY_SSIZE_T_CLEAN", None)
+                ("PY_SSIZE_T_CLEAN", None),
             ],
             include_dirs=["src"],
             py_limited_api=True,
         )
     ],
     cmdclass={
-        "build": Build,
-        "bdist_wheel": BdistWheel
+        "build_ext": CustomBuildExt,
+        "bdist_wheel": BdistWheel,
     },
-    zip_safe=False
+    license="MIT",
+    python_requires=">=3.8",
+    install_requires=["tree-sitter~=0.21"],
+    zip_safe=False,
 )
