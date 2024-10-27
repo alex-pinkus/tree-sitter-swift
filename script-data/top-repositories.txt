@@ -20,7 +20,7 @@ SnapKit SnapKit/SnapKit 5.7.1
 SwiftLint realm/SwiftLint 0.57.0 0 2
 SwiftLint realm/SwiftLint 0.57.0 1 2
 Carthage Carthage/Carthage 0.40.0
-Rectangle rxhanson/Rectangle v0.83
+Rectangle rxhanson/Rectangle v0.84
 PromiseKit mxcl/PromiseKit 8.1.2
 Moya Moya/Moya 15.0.3
 MonitorControl MonitorControl/MonitorControl v4.3.3
