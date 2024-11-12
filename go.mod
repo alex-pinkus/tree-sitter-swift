@@ -1,4 +1,4 @@
-module github.com/tree-sitter/tree-sitter-swift
+module github.com/alex-pinkus/tree-sitter-swift
 
 go 1.23
 
