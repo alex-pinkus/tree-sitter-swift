@@ -1,4 +1,4 @@
-Alamofire Alamofire/Alamofire 5.10.1
+Alamofire Alamofire/Alamofire 5.10.2
 iina iina/iina v1.3.5
 Charts danielgindi/Charts 5.1.0
 lottie-ios airbnb/lottie-ios 4.5.0
@@ -17,8 +17,8 @@ HeroTransitions HeroTransitions/Hero 1.6.3
 Kingfisher onevcat/Kingfisher 8.1.1
 shadowsocks shadowsocks/ShadowsocksX-NG v1.10.3
 SnapKit SnapKit/SnapKit 5.7.1
-SwiftLint realm/SwiftLint 0.57.0 0 2
-SwiftLint realm/SwiftLint 0.57.0 1 2
+SwiftLint realm/SwiftLint 0.57.1 0 2
+SwiftLint realm/SwiftLint 0.57.1 1 2
 Carthage Carthage/Carthage 0.40.0
 Rectangle rxhanson/Rectangle v0.85
 PromiseKit mxcl/PromiseKit 8.1.2
