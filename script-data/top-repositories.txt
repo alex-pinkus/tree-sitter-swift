@@ -14,7 +14,7 @@ RxSwift ReactiveX/RxSwift 6.8.0 6 9
 RxSwift ReactiveX/RxSwift 6.8.0 7 9
 RxSwift ReactiveX/RxSwift 6.8.0 8 9
 HeroTransitions HeroTransitions/Hero 1.6.3
-Kingfisher onevcat/Kingfisher 8.1.1
+Kingfisher onevcat/Kingfisher 8.1.2
 shadowsocks shadowsocks/ShadowsocksX-NG v1.10.3
 SnapKit SnapKit/SnapKit 5.7.1
 SwiftLint realm/SwiftLint 0.57.1 0 2
@@ -34,7 +34,7 @@ firefox-ios mozilla-mobile/firefox-ios v39.0 4 6
 firefox-ios mozilla-mobile/firefox-ios v39.0 5 6
 AudioKit AudioKit/AudioKit 5.6.4
 Starscream daltoniam/Starscream 4.0.8
-MessageKit MessageKit/MessageKit 4.3.0
+MessageKit MessageKit/MessageKit 5.0.0
 KeychainAccess kishikawakatsumi/KeychainAccess v4.2.2
 Nuke kean/Nuke 12.8.0
 Swinject Swinject/Swinject 2.9.1
