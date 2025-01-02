@@ -39,7 +39,7 @@ To use this from NPM, you'll add similar dependencies to `package.json`:
 ```
 "dependencies: {
   "tree-sitter-swift": "0.6.0",
-  "tree-sitter": "^0.21.1"
+  "tree-sitter": "^0.22.1"
 }
 ```
 
