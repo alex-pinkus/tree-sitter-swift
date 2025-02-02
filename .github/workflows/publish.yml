@@ -55,7 +55,7 @@ jobs:
           STATUS: ${{ needs.npm_publish.outputs.package_version }}
           COLOR: green
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  npm_badge_update:
+  crates_io_badge_update:
     runs-on: ubuntu-latest
     needs:
       - crates_io_publish
