@@ -2,7 +2,7 @@ name: Parse top repositories
 
 on:
   push:
-    branches: [main]
+    branches: [main, with-generated-files]
   pull_request:
     branches: [main]
 
