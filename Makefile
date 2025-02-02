@@ -1,4 +1,4 @@
-VERSION := 0.6.0
+VERSION := 0.7.0
 
 # Repository
 SRC_DIR := src
@@ -29,7 +29,7 @@ PCLIBDIR ?= $(LIBDIR)/pkgconfig
 CPPSRC := $(wildcard $(SRC_DIR)/*.cc)
 
 ifeq (, $(CPPSRC))
-	ADDITIONALLIBS := 
+	ADDITIONALLIBS :=
 else
 	ADDITIONALLIBS := -lc++
 endif
@@ -71,7 +71,7 @@ endif
 ifneq (,$(filter $(shell uname),FreeBSD NetBSD DragonFly))
 	PCLIBDIR := $(PREFIX)/libdata/pkgconfig
 endif
-				
+
 all: libtree-sitter-$(PARSER_NAME).a libtree-sitter-$(PARSER_NAME).$(SOEXTVER) bindings/c/$(PARSER_NAME).h bindings/c/tree-sitter-$(PARSER_NAME).pc
 
 libtree-sitter-$(PARSER_NAME).a: $(OBJ)
