@@ -146,6 +146,7 @@ Real literals
 1e-10
 4.3
 +53.9e-3
+0x1.921F_B600p1
 
 --------------------------------------------------------------------------------
 
@@ -156,7 +157,8 @@ Real literals
   (real_literal)
   (real_literal)
   (prefix_expression
-    (real_literal)))
+    (real_literal))
+  (real_literal))
 
 ================================================================================
 Collections

@@ -71,6 +71,7 @@ const HEX_DIGITS = token(sep1(/[0-9a-fA-F]+/, /_+/));
 const OCT_DIGITS = token(sep1(/[0-7]+/, /_+/));
 const BIN_DIGITS = token(sep1(/[01]+/, /_+/));
 const REAL_EXPONENT = token(seq(/[eE]/, optional(/[+-]/), DEC_DIGITS));
+const HEX_REAL_EXPONENT = token(seq(/[pP]/, optional(/[+-]/), DEC_DIGITS));
 
 var LEXICAL_IDENTIFIER;
 
@@ -293,12 +294,17 @@ module.exports = grammar({
         $.regex_literal,
         "nil"
       ),
-    // TODO: Hex exponents
     real_literal: ($) =>
       token(
         choice(
           seq(DEC_DIGITS, REAL_EXPONENT),
-          seq(optional(DEC_DIGITS), ".", DEC_DIGITS, optional(REAL_EXPONENT))
+          seq(optional(DEC_DIGITS), ".", DEC_DIGITS, optional(REAL_EXPONENT)),
+          seq(
+            "0x",
+            HEX_DIGITS,
+            optional(seq(".", HEX_DIGITS)),
+            HEX_REAL_EXPONENT
+          )
         )
       ),
     integer_literal: ($) => token(seq(optional(/[1-9]/), DEC_DIGITS)),

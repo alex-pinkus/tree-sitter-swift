@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-swift",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "A tree-sitter grammar for the Swift programming language.",
   "main": "bindings/node/index.js",
   "types": "bindings/node",
@@ -52,7 +52,7 @@
   "dependencies": {
     "node-addon-api": "^8.0.0",
     "node-gyp-build": "^4.8.0",
-    "tree-sitter-cli": "^0.22.5",
+    "tree-sitter-cli": "^0.23",
     "which": "2.0.2"
   },
   "peerDependencies": {

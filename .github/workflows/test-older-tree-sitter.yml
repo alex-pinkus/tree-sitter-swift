@@ -1,0 +1,24 @@
+name: Check compilation on tree-sitter 0.19
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js 20.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          cache: "npm"
+      - run: cp package-json-old-tree-sitter.json package.json
+      - run: npm install
+      # corpus tests fail and highlight tests are extremely slow; just remove them!
+      - run: rm -r test
+      - run: npx tree-sitter test

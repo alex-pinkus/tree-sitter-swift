@@ -3,7 +3,6 @@ node_modules
 !/src/scanner.c
 *.swp
 /build
-/test
 Cargo.lock
 /target/*
 *.a
@@ -13,5 +12,4 @@ Cargo.lock
 bindings/c/*.h
 bindings/c/tree-sitter-*.pc
 .vscode/
-.build/
-Package.resolved
+/.build
