@@ -489,8 +489,12 @@ module.exports = grammar({
         )
       ),
     suppressed_constraint: ($) =>
-      prec.right(seq("~", field("suppressed", $.suppressed_constraint_type))),
-    suppressed_constraint_type: ($) => "Copyable",
+      prec.right(
+        seq(
+          "~",
+          field("suppressed", alias($.simple_identifier, $.type_identifier))
+        )
+      ),
     ////////////////////////////////
     // Expressions - https://docs.swift.org/swift-book/ReferenceManual/Expressions.html
     ////////////////////////////////

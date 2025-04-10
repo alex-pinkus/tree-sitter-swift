@@ -1704,10 +1704,10 @@ struct Foo<T: ~Copyable>: ~Copyable {
       (type_parameter
         (type_identifier)
         (suppressed_constraint
-          (suppressed_constraint_type))))
+          (type_identifier))))
     (inheritance_specifier
       (suppressed_constraint
-        (suppressed_constraint_type)))
+        (type_identifier)))
     (class_body
       (property_declaration
         (value_binding_pattern)
