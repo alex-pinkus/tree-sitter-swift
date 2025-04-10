@@ -1686,3 +1686,33 @@ distributed actor A {
           (property_modifier))
         (simple_identifier)
         (function_body)))))
+
+================================================================================
+Noncopyable struct
+================================================================================
+
+struct Foo<T: ~Copyable>: ~Copyable {
+    let bar: T
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (class_declaration
+    (type_identifier)
+    (type_parameters
+      (type_parameter
+        (type_identifier)
+        (suppressed_constraint
+          (suppressed_constraint_type))))
+    (inheritance_specifier
+      (suppressed_constraint
+        (suppressed_constraint_type)))
+    (class_body
+      (property_declaration
+        (value_binding_pattern)
+        (pattern
+          (simple_identifier))
+        (type_annotation
+          (user_type
+            (type_identifier)))))))

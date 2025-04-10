@@ -53,6 +53,8 @@
 (opaque_type ["some" @keyword])
 (existential_type ["any" @keyword])
 
+(suppressed_constraint (suppressed_constraint_type) @type)
+
 (precedence_group_declaration
  ["precedencegroup" @keyword]
  (simple_identifier) @type)

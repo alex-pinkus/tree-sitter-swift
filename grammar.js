@@ -416,7 +416,8 @@ module.exports = grammar({
           $.existential_type,
           $.protocol_composition_type,
           $.type_parameter_pack,
-          $.type_pack_expansion
+          $.type_pack_expansion,
+          $.suppressed_constraint
         )
       ),
     // The grammar just calls this whole thing a `type-identifier` but that's a bit confusing.
@@ -487,6 +488,9 @@ module.exports = grammar({
           repeat1(seq("&", prec.right($._unannotated_type)))
         )
       ),
+    suppressed_constraint: ($) =>
+      prec.right(seq("~", field("suppressed", $.suppressed_constraint_type))),
+    suppressed_constraint_type: ($) => "Copyable",
     ////////////////////////////////
     // Expressions - https://docs.swift.org/swift-book/ReferenceManual/Expressions.html
     ////////////////////////////////
@@ -1507,7 +1511,12 @@ module.exports = grammar({
     _inheritance_specifiers: ($) =>
       prec.left(sep1($._annotated_inheritance_specifier, choice(",", "&"))),
     inheritance_specifier: ($) =>
-      prec.left(field("inherits_from", choice($.user_type, $.function_type))),
+      prec.left(
+        field(
+          "inherits_from",
+          choice($.user_type, $.function_type, $.suppressed_constraint)
+        )
+      ),
     _annotated_inheritance_specifier: ($) =>
       seq(repeat($.attribute), $.inheritance_specifier),
     type_parameters: ($) =>
