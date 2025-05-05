@@ -178,8 +178,6 @@ module.exports = grammar({
   extras: ($) => [
     $.comment,
     $.multiline_comment,
-    $.directive,
-    $.diagnostic,
     /\s+/, // Whitespace
   ],
   externals: ($) => [
@@ -232,6 +230,11 @@ module.exports = grammar({
     $._as_bang_custom,
     $._async_keyword_custom,
     $._custom_operator,
+    $._hash_symbol_custom,
+    $._directive_if,
+    $._directive_elseif,
+    $._directive_else,
+    $._directive_endif,
 
     // Fake operator that will never get triggered, but follows the sequence of characters for `try!`. Tracked by the
     // custom scanner so that it can avoid triggering `$.bang` for that case.
@@ -254,7 +257,7 @@ module.exports = grammar({
         )
       ),
     _semi: ($) => choice($._implicit_semi, $._explicit_semi),
-    shebang_line: ($) => seq("#!", /[^\r\n]*/),
+    shebang_line: ($) => seq($._hash_symbol, "!", /[^\r\n]*/),
     ////////////////////////////////
     // Lexical Structure - https://docs.swift.org/swift-book/ReferenceManual/LexicalStructure.html
     ////////////////////////////////
@@ -374,9 +377,11 @@ module.exports = grammar({
         $._oneline_regex_literal
       ),
 
-    _extended_regex_literal: ($) => /#\/((\/[^#])|[^\n])+\/#/,
+    _extended_regex_literal: ($) =>
+      seq($._hash_symbol, /\/((\/[^#])|[^\n])+\/#/),
 
-    _multiline_regex_literal: ($) => seq(/#\/\n/, /(\/[^#]|[^/])*?\n\/#/),
+    _multiline_regex_literal: ($) =>
+      seq($._hash_symbol, /\/\n/, /(\/[^#]|[^/])*?\n\/#/),
 
     _oneline_regex_literal: ($) =>
       token(
@@ -520,13 +525,16 @@ module.exports = grammar({
       choice(
         $.postfix_expression,
         $.call_expression,
+        $.macro_invocation,
         $.constructor_expression,
         $.navigation_expression,
         $.prefix_expression,
         $.as_expression,
         $.selector_expression,
         $.open_start_range_expression,
-        $.open_end_range_expression
+        $.open_end_range_expression,
+        $.directive,
+        $.diagnostic
       ),
     postfix_expression: ($) =>
       prec.left(
@@ -609,7 +617,8 @@ module.exports = grammar({
       ),
     selector_expression: ($) =>
       seq(
-        "#selector",
+        $._hash_symbol,
+        "selector",
         "(",
         optional(choice("getter:", "setter:")),
         $._expression,
@@ -865,6 +874,19 @@ module.exports = grammar({
         PRECS.call,
         prec.dynamic(DYNAMIC_PRECS.call, seq($._expression, $.call_suffix))
       ),
+    macro_invocation: ($) =>
+      prec(
+        PRECS.call,
+        prec.dynamic(
+          DYNAMIC_PRECS.call,
+          seq(
+            $._hash_symbol,
+            $.simple_identifier,
+            optional($.type_parameters),
+            $.call_suffix
+          )
+        )
+      ),
     _primary_expression: ($) =>
       choice(
         $.tuple_expression,
@@ -918,18 +940,22 @@ module.exports = grammar({
     _dictionary_literal_item: ($) =>
       seq(field("key", $._expression), ":", field("value", $._expression)),
     _special_literal: ($) =>
-      choice(
-        "#file",
-        "#fileID",
-        "#filePath",
-        "#line",
-        "#column",
-        "#function",
-        "#dsohandle"
+      seq(
+        $._hash_symbol,
+        choice(
+          "file",
+          "fileID",
+          "filePath",
+          "line",
+          "column",
+          "function",
+          "dsohandle"
+        )
       ),
     _playground_literal: ($) =>
       seq(
-        choice("#colorLiteral", "#fileLiteral", "#imageLiteral"),
+        $._hash_symbol,
+        choice("colorLiteral", "fileLiteral", "imageLiteral"),
         "(",
         sep1(seq($.simple_identifier, ":", $._expression), ","),
         ")"
@@ -1083,7 +1109,7 @@ module.exports = grammar({
         )
       ),
     key_path_string_expression: ($) =>
-      prec.left(seq("#keyPath", "(", $._expression, ")")),
+      prec.left(seq($._hash_symbol, "keyPath", "(", $._expression, ")")),
     _key_path_component: ($) =>
       prec.left(
         choice(
@@ -1260,7 +1286,8 @@ module.exports = grammar({
       prec.left(PRECS.parameter_pack, seq("repeat", $._expression)),
     availability_condition: ($) =>
       seq(
-        choice("#available", "#unavailable"),
+        $._hash_symbol,
+        choice("available", "unavailable"),
         "(",
         sep1($._availability_argument, ","),
         ")"
@@ -1477,7 +1504,8 @@ module.exports = grammar({
         field("body", choice($._expression, $.external_macro_definition))
       ),
 
-    external_macro_definition: ($) => seq("#externalMacro", $.value_arguments),
+    external_macro_definition: ($) =>
+      seq($._hash_symbol, "externalMacro", $.value_arguments),
 
     class_declaration: ($) =>
       seq(optional($.modifiers), $._modifierless_class_declaration),
@@ -1625,6 +1653,7 @@ module.exports = grammar({
     _as: ($) => alias($._as_custom, "as"),
     _as_quest: ($) => alias($._as_quest_custom, "as?"),
     _as_bang: ($) => alias($._as_bang_custom, "as!"),
+    _hash_symbol: ($) => alias($._hash_symbol_custom, "as!"),
     bang: ($) => choice($._bang_custom, "!"),
     _async_keyword: ($) => alias($._async_keyword_custom, "async"),
     _async_modifier: ($) => token("async"),
@@ -1978,27 +2007,63 @@ module.exports = grammar({
         ":"
       ),
     directive: ($) =>
-      token(
-        prec(
-          PRECS.comment,
-          choice(
-            seq("#if", /.*/),
-            seq("#elseif", /.*/),
-            seq("#else", /.*/),
-            seq("#endif", /.*/),
-            seq(/#sourceLocation([^\r\n]*)/)
+      prec.right(
+        PRECS.comment,
+        choice(
+          seq(alias($._directive_if, "#if"), $._compilation_condition),
+          seq(alias($._directive_elseif, "#elseif"), $._compilation_condition),
+          seq(alias($._directive_else, "#else")),
+          seq(alias($._directive_endif, "#endif"))
+        )
+      ),
+    _compilation_condition: ($) =>
+      prec.right(
+        choice(
+          seq("os", "(", $.simple_identifier, ")"),
+          seq("arch", "(", $.simple_identifier, ")"),
+          seq(
+            "swift",
+            "(",
+            $._comparison_operator,
+            sep1($.integer_literal, "."),
+            ")"
+          ),
+          seq(
+            "compiler",
+            "(",
+            $._comparison_operator,
+            sep1($.integer_literal, "."),
+            ")"
+          ),
+          seq("canImport", "(", sep1($.simple_identifier, "."), ")"),
+          seq("targetEnvironment", "(", $.simple_identifier, ")"),
+          $.boolean_literal,
+          $.simple_identifier,
+          seq("(", $._compilation_condition, ")"),
+          seq("!", $._compilation_condition),
+          seq(
+            $._compilation_condition,
+            $._conjunction_operator,
+            $._compilation_condition
+          ),
+          seq(
+            $._compilation_condition,
+            $._disjunction_operator,
+            $._compilation_condition
           )
         )
       ),
     diagnostic: ($) =>
-      token(
-        prec(
-          PRECS.comment,
+      prec(
+        PRECS.comment,
+        seq(
+          $._hash_symbol,
           choice(
             // Using regexes here, rather than actually validating the string literal, because complex string literals
             // cannot be used inside `token()` and we need that to ensure we get the right precedence.
-            seq(/#error([^\r\n]*)/),
-            seq(/#warning([^\r\n]*)/)
+            seq(/error([^\r\n]*)/),
+            seq(/warning([^\r\n]*)/),
+            seq(/sourceLocation([^\r\n]*)/)
           )
         )
       ),

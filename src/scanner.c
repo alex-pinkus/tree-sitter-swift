@@ -2,7 +2,7 @@
 #include <string.h>
 #include <wctype.h>
 
-#define TOKEN_COUNT 28
+#define TOKEN_COUNT 33
 
 enum TokenType {
     BLOCK_COMMENT,
@@ -32,6 +32,11 @@ enum TokenType {
     AS_BANG,
     ASYNC_KEYWORD,
     CUSTOM_OPERATOR,
+    HASH_SYMBOL,
+    DIRECTIVE_IF,
+    DIRECTIVE_ELSEIF,
+    DIRECTIVE_ELSE,
+    DIRECTIVE_ENDIF,
     FAKE_TRY_BANG
 };
 
@@ -172,7 +177,7 @@ const char* RESERVED_OPS[RESERVED_OP_COUNT] = {
     "..<"
 };
 
-bool is_cross_semi_token(enum TokenType op) {
+static bool is_cross_semi_token(enum TokenType op) {
     switch(op) {
     case ARROW_OPERATOR:
     case DOT_OPERATOR:
@@ -697,6 +702,75 @@ static enum ParseDirective eat_whitespace(
     return CONTINUE_PARSING_NOTHING_FOUND;
 }
 
+#define DIRECTIVE_COUNT 4
+const char* DIRECTIVES[OPERATOR_COUNT] = {
+    "if",
+    "elseif",
+    "else",
+    "endif"
+};
+
+const enum TokenType DIRECTIVE_SYMBOLS[DIRECTIVE_COUNT] = {
+    DIRECTIVE_IF,
+    DIRECTIVE_ELSEIF,
+    DIRECTIVE_ELSE,
+    DIRECTIVE_ENDIF
+};
+
+static uint8_t find_possible_compiler_directive(
+    struct ScannerState *state,
+    TSLexer *lexer,
+    const bool *valid_symbols,
+    enum TokenType *symbol_result
+) {
+    bool possible_directives[DIRECTIVE_COUNT];
+    for (int dir_idx = 0; dir_idx < DIRECTIVE_COUNT; dir_idx++) {
+        possible_directives[dir_idx] = true;
+    }
+
+    int32_t str_idx = 0;
+    int32_t full_match = -1;
+    while(true) {
+        for (int dir_idx = 0; dir_idx < DIRECTIVE_COUNT; dir_idx++) {
+            if (!possible_directives[dir_idx]) {
+                continue;
+            }
+
+            uint8_t expected_char = DIRECTIVES[dir_idx][str_idx];
+            if (expected_char == '\0') {
+                full_match = dir_idx;
+                lexer->mark_end(lexer);
+            }
+
+            if (expected_char != lexer->lookahead) {
+                possible_directives[dir_idx] = false;
+                continue;
+            }
+        }
+
+        uint8_t match_count = 0;
+        for (int dir_idx = 0; dir_idx < DIRECTIVE_COUNT; dir_idx += 1) {
+            if (possible_directives[dir_idx]) {
+                match_count += 1;
+            }
+        }
+
+        if (match_count == 0) {
+            break;
+        }
+
+        lexer->advance(lexer, false);
+        str_idx += 1;
+    }
+
+    if (full_match == -1) {
+        // No compiler directive found, so just match the starting symbol
+        return HASH_SYMBOL;
+    }
+
+    return DIRECTIVE_SYMBOLS[full_match];
+}
+
 static bool eat_raw_str_part(
     struct ScannerState *state,
     TSLexer *lexer,
@@ -719,6 +793,12 @@ static bool eat_raw_str_part(
 
         if (lexer->lookahead == '"') {
             advance(lexer);
+        } else if (hash_count == 1) {
+            lexer->mark_end(lexer);
+            *symbol_result = find_possible_compiler_directive(
+                                 state, lexer, valid_symbols, symbol_result
+                             );
+            return true;
         } else {
             return false;
         }

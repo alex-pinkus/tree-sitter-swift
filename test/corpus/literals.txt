@@ -281,7 +281,7 @@ let _ = #"Foo"
     (pattern
       (wildcard_pattern))
     (ERROR
-      (UNEXPECTED '"'))
+      (UNEXPECTED '#'))
     (line_string_literal
       (line_str_text))))
 
