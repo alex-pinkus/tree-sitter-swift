@@ -128,17 +128,17 @@ const uint64_t OP_SYMBOL_SUPPRESSOR[OPERATOR_COUNT] = {
     0, // EQ_EQ,
     0, // PLUS_THEN_WS,
     0, // MINUS_THEN_WS,
-    1 << FAKE_TRY_BANG, // BANG,
-      0, // THROWS_KEYWORD,
-      0, // RETHROWS_KEYWORD,
-      0, // DEFAULT_KEYWORD,
-      0, // WHERE_KEYWORD,
-      0, // ELSE_KEYWORD,
-      0, // CATCH_KEYWORD,
-      0, // AS_KEYWORD,
-      0, // AS_QUEST,
-      0, // AS_BANG,
-      0, // ASYNC_KEYWORD
+    1UL << FAKE_TRY_BANG, // BANG,
+        0, // THROWS_KEYWORD,
+        0, // RETHROWS_KEYWORD,
+        0, // DEFAULT_KEYWORD,
+        0, // WHERE_KEYWORD,
+        0, // ELSE_KEYWORD,
+        0, // CATCH_KEYWORD,
+        0, // AS_KEYWORD,
+        0, // AS_QUEST,
+        0, // AS_BANG,
+        0, // ASYNC_KEYWORD
 };
 
 #define RESERVED_OP_COUNT 31
@@ -717,12 +717,7 @@ const enum TokenType DIRECTIVE_SYMBOLS[DIRECTIVE_COUNT] = {
     DIRECTIVE_ENDIF
 };
 
-static uint8_t find_possible_compiler_directive(
-    struct ScannerState *state,
-    TSLexer *lexer,
-    const bool *valid_symbols,
-    enum TokenType *symbol_result
-) {
+static enum TokenType find_possible_compiler_directive(TSLexer *lexer) {
     bool possible_directives[DIRECTIVE_COUNT];
     for (int dir_idx = 0; dir_idx < DIRECTIVE_COUNT; dir_idx++) {
         possible_directives[dir_idx] = true;
@@ -795,9 +790,7 @@ static bool eat_raw_str_part(
             advance(lexer);
         } else if (hash_count == 1) {
             lexer->mark_end(lexer);
-            *symbol_result = find_possible_compiler_directive(
-                                 state, lexer, valid_symbols, symbol_result
-                             );
+            *symbol_result = find_possible_compiler_directive(lexer);
             return true;
         } else {
             return false;
