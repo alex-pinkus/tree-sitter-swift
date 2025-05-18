@@ -1,5 +1,5 @@
 Alamofire Alamofire/Alamofire 5.10.2
-iina iina/iina v1.3.5
+iina iina/iina v1.4.0-beta1
 Charts danielgindi/Charts 5.1.0
 lottie-ios airbnb/lottie-ios 4.5.1
 vapor vapor/vapor 3.3.3
@@ -38,8 +38,8 @@ MessageKit MessageKit/MessageKit 5.0.0
 KeychainAccess kishikawakatsumi/KeychainAccess v4.2.2
 Nuke kean/Nuke 12.8.0
 Swinject Swinject/Swinject 2.9.1
-GRDB groue/GRDB.swift v7.4.1 0 2
-GRDB groue/GRDB.swift v7.4.1 1 2
+GRDB groue/GRDB.swift v7.5.0 0 2
+GRDB groue/GRDB.swift v7.5.0 1 2
 Dance saoudrizwan/Dance v1.0.7
 StyleKit 146BC/StyleKit 0.7.0
 ReactKit ReactKit/ReactKit 0.12.0
