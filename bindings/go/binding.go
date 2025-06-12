@@ -1,7 +1,6 @@
 package tree_sitter_swift
 
 // #cgo CFLAGS: -std=c11 -fPIC
-// #include "../../src/parser.c"
 // #include "../../src/scanner.c"
 import "C"
 
