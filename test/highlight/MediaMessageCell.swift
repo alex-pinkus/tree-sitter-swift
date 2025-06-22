@@ -26,11 +26,11 @@ import UIKit
 
 /// A subclass of `MessageContentCell` used to display video and audio messages.
 open class MediaMessageCell: MessageContentCell {
-// ^ keyword
+// ^ keyword.modifier
 
     /// The play button view to display on video messages.
     open lazy var playButtonView: PlayButtonView = {
-//  ^ keyword
+//  ^ keyword.modifier
 //                                                 ^ punctuation.bracket
 
         let playButtonView = PlayButtonView()
@@ -61,7 +61,7 @@ open class MediaMessageCell: MessageContentCell {
         messageContainerView.addSubview(playButtonView)
         setupConstraints()
     }
-    
+
     open override func prepareForReuse() {
         super.prepareForReuse()
         self.imageView.image = nil
@@ -71,14 +71,14 @@ open class MediaMessageCell: MessageContentCell {
         super.configure(with: message, at: indexPath, and: messagesCollectionView)
 
         guard let displayDelegate = messagesCollectionView.messagesDisplayDelegate else {
-//      ^ conditional
+//      ^ keyword.conditional
 //            ^ keyword
 //                                                                                 ^ keyword
             fatalError(MessageKitError.nilMessagesDisplayDelegate)
         }
 
         switch message.kind {
-//      ^ conditional
+//      ^ keyword.conditional
         case .photo(let mediaItem):
 //      ^ keyword
 //           ^ punctuation.delimiter
@@ -94,12 +94,12 @@ open class MediaMessageCell: MessageContentCell {
         default:
 //      ^ keyword
             break
-//          ^ repeat
+//          ^ keyword.repeat
         }
 
         displayDelegate.configureMediaMessageImageView(imageView, for: message, at: indexPath, in: messagesCollectionView)
     }
-    
+
     /// Handle tap gesture on contentView and its subviews.
     open override func handleTapGesture(_ gesture: UIGestureRecognizer) {
         let touchLocation = gesture.location(in: imageView)
@@ -110,5 +110,5 @@ open class MediaMessageCell: MessageContentCell {
         }
         delegate?.didTapImage(in: self)
     }
-    
+
 }

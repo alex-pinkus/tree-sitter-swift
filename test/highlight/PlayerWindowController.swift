@@ -11,20 +11,20 @@ import Cocoa
 class PlayerWindowController: NSWindowController, NSWindowDelegate {
 
   unowned var player: PlayerCore
-  
+
   var videoView: VideoView {
     fatalError("Subclass must implement")
   }
 
   var menuActionHandler: MainMenuActionHandler!
-  
+
   var isOntop = false {
     didSet {
       player.mpv.setFlag(MPVOption.Window.ontop, isOntop)
     }
   }
   var loaded = false
-  
+
   init(playerCore: PlayerCore) {
     self.player = playerCore
     super.init(window: nil)
@@ -41,17 +41,17 @@ class PlayerWindowController: NSWindowController, NSWindowDelegate {
 //         ^ constructor
     fatalError("init(coder:) has not been implemented")
   }
-  
+
 
   @IBOutlet weak var volumeSlider: NSSlider!
-// ^ type
+// ^ attribute
 
 
   deinit {
     ObjcUtils.silenced {
       for key in self.observedPrefKeys {
-//    ^ repeat
-//            ^ repeat
+//    ^ keyword.repeat
+//            ^ keyword.repeat
         UserDefaults.standard.removeObserver(self, forKeyPath: key.rawValue)
       }
     }

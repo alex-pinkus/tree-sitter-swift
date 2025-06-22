@@ -11,18 +11,18 @@ import Swift
 let arrayDictionaryMaxSize = 30
 
 struct BagKey {
-// ^ keyword
+// ^ keyword.type
     /**
     Unique identifier for object added to `Bag`.
-     
+
     It's underlying type is UInt64. If we assume there in an idealized CPU that works at 4GHz,
      it would take ~150 years of continuous running time for it to overflow.
     */
 //  ^ spell
     fileprivate let rawValue: UInt64
-//  ^ keyword
+//  ^ keyword.modifier
 //              ^ keyword
-//                  ^ property
+//                  ^ variable.member
 }
 
 /**
@@ -30,22 +30,22 @@ Data structure that represents a bag of elements typed `T`.
 
 Single element can be stored multiple times.
 
-Time and space complexity of insertion and deletion is O(n). 
+Time and space complexity of insertion and deletion is O(n).
 
 It is suitable for storing small number of elements.
 */
 struct Bag<T> : CustomDebugStringConvertible {
-//         ^ parameter
+//         ^ variable.parameter
     /// Type of identifier for inserted elements.
-//  ^ spell
+//  ^ comment.documentation
     typealias KeyType = BagKey
-    
+
     typealias Entry = (key: BagKey, value: T)
- 
+
     private var _nextKey: BagKey = BagKey(rawValue: 0)
-//  ^ keyword
+//  ^ keyword.modifier
 //          ^ keyword
-//              ^ property
+//              ^ variable.member
 
     // data
 
@@ -65,10 +65,10 @@ struct Bag<T> : CustomDebugStringConvertible {
     init() {
 //  ^ constructor
     }
-    
+
     /**
     Inserts `value` into bag.
-    
+
     - parameter element: Element to insert.
     - returns: Key that can be used to remove element from bag.
     */
@@ -80,7 +80,7 @@ struct Bag<T> : CustomDebugStringConvertible {
 //                                                    ^ operator
 
         if _key0 == nil {
-//      ^ conditional
+//      ^ keyword.conditional
             _key0 = key
             _value0 = element
             return key
@@ -98,18 +98,18 @@ struct Bag<T> : CustomDebugStringConvertible {
             _pairs.append((key: key, value: element))
             return key
         }
-        
+
         _dictionary = [key: element]
-        
+
         return key
     }
-    
+
     /// - returns: Number of elements in bag.
     var count: Int {
         let dictionaryCount: Int = _dictionary?.count ?? 0
         return (_value0 != nil ? 1 : 0) + _pairs.count + dictionaryCount
     }
-    
+
     /// Removes all elements from bag and clears capacity.
     mutating func removeAll() {
         _key0 = nil
@@ -118,10 +118,10 @@ struct Bag<T> : CustomDebugStringConvertible {
         _pairs.removeAll(keepingCapacity: false)
         _dictionary?.removeAll(keepingCapacity: false)
     }
-    
+
     /**
     Removes element with a specific `key` from bag.
-    
+
     - parameter key: Key that identifies element to remove from bag.
     - returns: Element that bag contained, or nil in case element was already removed.
     */
@@ -154,7 +154,7 @@ extension Bag {
     var debugDescription : String {
         "\(self.count) elements in Bag"
 //      ^ string
-//       ^ punctuation.bracket
+//       ^ punctuation.special
 //         ^ variable.builtin
     }
 }
