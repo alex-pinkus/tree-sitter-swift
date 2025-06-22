@@ -1,7 +1,7 @@
 public struct OperatorUsageWhitespaceConfiguration: RuleConfiguration, Equatable {
     private(set) var severityConfiguration = SeverityConfiguration(.warning)
-//  ^ keyword
-//          ^ keyword
+//  ^ keyword.modifier
+//          ^ keyword.modifier
     private(set) var linesLookAround = 2
     private(set) var skipAlignedConstants = true
     private(set) var allowedNoSpaceOperators: [String] = ["...", "..<"]
@@ -19,7 +19,7 @@ public struct OperatorUsageWhitespaceConfiguration: RuleConfiguration, Equatable
 //                                              ^ keyword
 //                                                ^ keyword
             throw ConfigurationError.unknownConfiguration
-//          ^ keyword
+//          ^ keyword.exception
         }
 
         linesLookAround = configuration["lines_look_around"] as? Int ?? 2

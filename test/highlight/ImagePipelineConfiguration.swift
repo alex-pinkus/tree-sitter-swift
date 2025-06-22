@@ -3,7 +3,7 @@
 // Copyright (c) 2015-2024 Alexander Grebenyuk (github.com/kean).
 
 import Foundation
-// ^ @include
+// ^ @keyword.import
 
 extension ImagePipeline {
     /// The pipeline configuration.
@@ -34,7 +34,7 @@ extension ImagePipeline {
         /// - parameter dataLoader: `DataLoader()` by default.
         // NOTE: Surgical change on next line: renamed `dataLoader` to `any` to show it is a contextual keyword
         public init(any: any DataLoading = DataLoader()) {
-            //      ^ @parameter
+            //      ^ @variable.parameter
             //           ^ @keyword
             //               ^ @type
             self.dataLoader = any

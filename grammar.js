@@ -892,8 +892,8 @@ module.exports = grammar({
         $.tuple_expression,
         $._basic_literal,
         $.lambda_literal,
-        $._special_literal,
-        $._playground_literal,
+        $.special_literal,
+        $.playground_literal,
         $.array_literal,
         $.dictionary_literal,
         $.self_expression,
@@ -939,7 +939,7 @@ module.exports = grammar({
       ),
     _dictionary_literal_item: ($) =>
       seq(field("key", $._expression), ":", field("value", $._expression)),
-    _special_literal: ($) =>
+    special_literal: ($) =>
       seq(
         $._hash_symbol,
         choice(
@@ -952,7 +952,7 @@ module.exports = grammar({
           "dsohandle"
         )
       ),
-    _playground_literal: ($) =>
+    playground_literal: ($) =>
       seq(
         $._hash_symbol,
         choice("colorLiteral", "fileLiteral", "imageLiteral"),
@@ -1653,7 +1653,7 @@ module.exports = grammar({
     _as: ($) => alias($._as_custom, "as"),
     _as_quest: ($) => alias($._as_quest_custom, "as?"),
     _as_bang: ($) => alias($._as_bang_custom, "as!"),
-    _hash_symbol: ($) => alias($._hash_symbol_custom, "as!"),
+    _hash_symbol: ($) => alias($._hash_symbol_custom, "#"),
     bang: ($) => choice($._bang_custom, "!"),
     _async_keyword: ($) => alias($._async_keyword_custom, "async"),
     _async_modifier: ($) => token("async"),

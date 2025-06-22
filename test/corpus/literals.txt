@@ -445,9 +445,10 @@ let playgroundLiteral = #imageLiteral(resourceName: "heart")
     (value_binding_pattern)
     (pattern
       (simple_identifier))
-    (simple_identifier)
-    (line_string_literal
-      (line_str_text))))
+    (playground_literal
+      (simple_identifier)
+      (line_string_literal
+        (line_str_text)))))
 
 ================================================================================
 Single line regex literals
