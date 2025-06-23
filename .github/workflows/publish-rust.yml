@@ -2,7 +2,6 @@ name: Publish package to crates.io
 
 on:
   push:
-    tags: ["*"]
     tags-ignore: ["*-with-generated-files"]
 
 concurrency:
