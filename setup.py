@@ -54,5 +54,7 @@ setup(
         "build": Build,
         "bdist_wheel": BdistWheel
     },
+    license="MIT",
+    python_requires=">=3.8",
     zip_safe=False
 )
