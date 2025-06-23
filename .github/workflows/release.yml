@@ -2,7 +2,7 @@ name: Create release
 
 on:
   push:
-    tags: ["*"]
+    tags-ignore: ["*-with-generated-files"]
 
 concurrency:
   group: ${{github.workflow}}-${{github.ref}}
@@ -15,6 +15,14 @@ permissions:
 
 jobs:
   release:
-    uses: tree-sitter/workflows/.github/workflows/release.yml@main
-    with:
-      attestations: true
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20.x"
+          cache: "npm"
+      - run: npm install
+      - uses: tree-sitter/workflows/.github/workflows/release.yml@main
+        with:
+          attestations: true
