@@ -15,14 +15,7 @@ permissions:
 
 jobs:
   release:
-    steps:
-      - uses: actions/checkout@v4
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20.x"
-          cache: "npm"
-      - run: npm install
-      - uses: tree-sitter/workflows/.github/workflows/release.yml@main
-        with:
-          attestations: true
+    uses: tree-sitter/workflows/.github/workflows/release.yml@main
+    with:
+      attestations: true
+      generate: true
