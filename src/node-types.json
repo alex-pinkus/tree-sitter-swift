@@ -21,46 +21,6 @@
             "named": false
           },
           {
-            "type": "#colorLiteral",
-            "named": false
-          },
-          {
-            "type": "#column",
-            "named": false
-          },
-          {
-            "type": "#dsohandle",
-            "named": false
-          },
-          {
-            "type": "#file",
-            "named": false
-          },
-          {
-            "type": "#fileID",
-            "named": false
-          },
-          {
-            "type": "#fileLiteral",
-            "named": false
-          },
-          {
-            "type": "#filePath",
-            "named": false
-          },
-          {
-            "type": "#function",
-            "named": false
-          },
-          {
-            "type": "#imageLiteral",
-            "named": false
-          },
-          {
-            "type": "#line",
-            "named": false
-          },
-          {
             "type": "%",
             "named": false
           },
@@ -70,14 +30,6 @@
           },
           {
             "type": "&",
-            "named": false
-          },
-          {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
             "named": false
           },
           {
@@ -101,10 +53,6 @@
             "named": false
           },
           {
-            "type": ",",
-            "named": false
-          },
-          {
             "type": "-",
             "named": false
           },
@@ -122,10 +70,6 @@
           },
           {
             "type": "/=",
-            "named": false
-          },
-          {
-            "type": ":",
             "named": false
           },
           {
@@ -233,7 +177,15 @@
             "named": true
           },
           {
+            "type": "diagnostic",
+            "named": true
+          },
+          {
             "type": "dictionary_literal",
+            "named": true
+          },
+          {
+            "type": "directive",
             "named": true
           },
           {
@@ -281,6 +233,10 @@
             "named": true
           },
           {
+            "type": "macro_invocation",
+            "named": true
+          },
+          {
             "type": "multi_line_string_literal",
             "named": true
           },
@@ -310,6 +266,10 @@
           },
           {
             "type": "open_start_range_expression",
+            "named": true
+          },
+          {
+            "type": "playground_literal",
             "named": true
           },
           {
@@ -346,6 +306,10 @@
           },
           {
             "type": "simple_identifier",
+            "named": true
+          },
+          {
+            "type": "special_literal",
             "named": true
           },
           {
@@ -413,46 +377,6 @@
             "named": false
           },
           {
-            "type": "#colorLiteral",
-            "named": false
-          },
-          {
-            "type": "#column",
-            "named": false
-          },
-          {
-            "type": "#dsohandle",
-            "named": false
-          },
-          {
-            "type": "#file",
-            "named": false
-          },
-          {
-            "type": "#fileID",
-            "named": false
-          },
-          {
-            "type": "#fileLiteral",
-            "named": false
-          },
-          {
-            "type": "#filePath",
-            "named": false
-          },
-          {
-            "type": "#function",
-            "named": false
-          },
-          {
-            "type": "#imageLiteral",
-            "named": false
-          },
-          {
-            "type": "#line",
-            "named": false
-          },
-          {
             "type": "%",
             "named": false
           },
@@ -462,14 +386,6 @@
           },
           {
             "type": "&",
-            "named": false
-          },
-          {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
             "named": false
           },
           {
@@ -493,10 +409,6 @@
             "named": false
           },
           {
-            "type": ",",
-            "named": false
-          },
-          {
             "type": "-",
             "named": false
           },
@@ -514,10 +426,6 @@
           },
           {
             "type": "/=",
-            "named": false
-          },
-          {
-            "type": ":",
             "named": false
           },
           {
@@ -625,7 +533,15 @@
             "named": true
           },
           {
+            "type": "diagnostic",
+            "named": true
+          },
+          {
             "type": "dictionary_literal",
+            "named": true
+          },
+          {
+            "type": "directive",
             "named": true
           },
           {
@@ -673,6 +589,10 @@
             "named": true
           },
           {
+            "type": "macro_invocation",
+            "named": true
+          },
+          {
             "type": "multi_line_string_literal",
             "named": true
           },
@@ -702,6 +622,10 @@
           },
           {
             "type": "open_start_range_expression",
+            "named": true
+          },
+          {
+            "type": "playground_literal",
             "named": true
           },
           {
@@ -738,6 +662,10 @@
           },
           {
             "type": "simple_identifier",
+            "named": true
+          },
+          {
+            "type": "special_literal",
             "named": true
           },
           {
@@ -797,46 +725,6 @@
             "named": false
           },
           {
-            "type": "#colorLiteral",
-            "named": false
-          },
-          {
-            "type": "#column",
-            "named": false
-          },
-          {
-            "type": "#dsohandle",
-            "named": false
-          },
-          {
-            "type": "#file",
-            "named": false
-          },
-          {
-            "type": "#fileID",
-            "named": false
-          },
-          {
-            "type": "#fileLiteral",
-            "named": false
-          },
-          {
-            "type": "#filePath",
-            "named": false
-          },
-          {
-            "type": "#function",
-            "named": false
-          },
-          {
-            "type": "#imageLiteral",
-            "named": false
-          },
-          {
-            "type": "#line",
-            "named": false
-          },
-          {
             "type": "%",
             "named": false
           },
@@ -846,14 +734,6 @@
           },
           {
             "type": "&",
-            "named": false
-          },
-          {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
             "named": false
           },
           {
@@ -877,10 +757,6 @@
             "named": false
           },
           {
-            "type": ",",
-            "named": false
-          },
-          {
             "type": "-",
             "named": false
           },
@@ -898,10 +774,6 @@
           },
           {
             "type": "/=",
-            "named": false
-          },
-          {
-            "type": ":",
             "named": false
           },
           {
@@ -1009,7 +881,15 @@
             "named": true
           },
           {
+            "type": "diagnostic",
+            "named": true
+          },
+          {
             "type": "dictionary_literal",
+            "named": true
+          },
+          {
+            "type": "directive",
             "named": true
           },
           {
@@ -1057,6 +937,10 @@
             "named": true
           },
           {
+            "type": "macro_invocation",
+            "named": true
+          },
+          {
             "type": "multi_line_string_literal",
             "named": true
           },
@@ -1086,6 +970,10 @@
           },
           {
             "type": "open_start_range_expression",
+            "named": true
+          },
+          {
+            "type": "playground_literal",
             "named": true
           },
           {
@@ -1122,6 +1010,10 @@
           },
           {
             "type": "simple_identifier",
+            "named": true
+          },
+          {
+            "type": "special_literal",
             "named": true
           },
           {
@@ -1205,6 +1097,10 @@
             "named": true
           },
           {
+            "type": "suppressed_constraint",
+            "named": true
+          },
+          {
             "type": "tuple_type",
             "named": true
           },
@@ -1263,6 +1159,10 @@
             "named": true
           },
           {
+            "type": "suppressed_constraint",
+            "named": true
+          },
+          {
             "type": "tuple_type",
             "named": true
           },
@@ -1299,46 +1199,6 @@
             "named": false
           },
           {
-            "type": "#colorLiteral",
-            "named": false
-          },
-          {
-            "type": "#column",
-            "named": false
-          },
-          {
-            "type": "#dsohandle",
-            "named": false
-          },
-          {
-            "type": "#file",
-            "named": false
-          },
-          {
-            "type": "#fileID",
-            "named": false
-          },
-          {
-            "type": "#fileLiteral",
-            "named": false
-          },
-          {
-            "type": "#filePath",
-            "named": false
-          },
-          {
-            "type": "#function",
-            "named": false
-          },
-          {
-            "type": "#imageLiteral",
-            "named": false
-          },
-          {
-            "type": "#line",
-            "named": false
-          },
-          {
             "type": "%",
             "named": false
           },
@@ -1348,14 +1208,6 @@
           },
           {
             "type": "&",
-            "named": false
-          },
-          {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
             "named": false
           },
           {
@@ -1379,10 +1231,6 @@
             "named": false
           },
           {
-            "type": ",",
-            "named": false
-          },
-          {
             "type": "-",
             "named": false
           },
@@ -1400,10 +1248,6 @@
           },
           {
             "type": "/=",
-            "named": false
-          },
-          {
-            "type": ":",
             "named": false
           },
           {
@@ -1511,7 +1355,15 @@
             "named": true
           },
           {
+            "type": "diagnostic",
+            "named": true
+          },
+          {
             "type": "dictionary_literal",
+            "named": true
+          },
+          {
+            "type": "directive",
             "named": true
           },
           {
@@ -1559,6 +1411,10 @@
             "named": true
           },
           {
+            "type": "macro_invocation",
+            "named": true
+          },
+          {
             "type": "multi_line_string_literal",
             "named": true
           },
@@ -1588,6 +1444,10 @@
           },
           {
             "type": "open_start_range_expression",
+            "named": true
+          },
+          {
+            "type": "playground_literal",
             "named": true
           },
           {
@@ -1624,6 +1484,10 @@
           },
           {
             "type": "simple_identifier",
+            "named": true
+          },
+          {
+            "type": "special_literal",
             "named": true
           },
           {
@@ -1701,6 +1565,10 @@
             "named": true
           },
           {
+            "type": "suppressed_constraint",
+            "named": true
+          },
+          {
             "type": "tuple_type",
             "named": true
           },
@@ -1752,6 +1620,10 @@
           },
           {
             "type": "protocol_composition_type",
+            "named": true
+          },
+          {
+            "type": "suppressed_constraint",
             "named": true
           },
           {
@@ -1840,46 +1712,6 @@
             "named": false
           },
           {
-            "type": "#colorLiteral",
-            "named": false
-          },
-          {
-            "type": "#column",
-            "named": false
-          },
-          {
-            "type": "#dsohandle",
-            "named": false
-          },
-          {
-            "type": "#file",
-            "named": false
-          },
-          {
-            "type": "#fileID",
-            "named": false
-          },
-          {
-            "type": "#fileLiteral",
-            "named": false
-          },
-          {
-            "type": "#filePath",
-            "named": false
-          },
-          {
-            "type": "#function",
-            "named": false
-          },
-          {
-            "type": "#imageLiteral",
-            "named": false
-          },
-          {
-            "type": "#line",
-            "named": false
-          },
-          {
             "type": "%",
             "named": false
           },
@@ -1889,14 +1721,6 @@
           },
           {
             "type": "&",
-            "named": false
-          },
-          {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
             "named": false
           },
           {
@@ -1920,10 +1744,6 @@
             "named": false
           },
           {
-            "type": ",",
-            "named": false
-          },
-          {
             "type": "-",
             "named": false
           },
@@ -1941,10 +1761,6 @@
           },
           {
             "type": "/=",
-            "named": false
-          },
-          {
-            "type": ":",
             "named": false
           },
           {
@@ -2052,7 +1868,15 @@
             "named": true
           },
           {
+            "type": "diagnostic",
+            "named": true
+          },
+          {
             "type": "dictionary_literal",
+            "named": true
+          },
+          {
+            "type": "directive",
             "named": true
           },
           {
@@ -2100,6 +1924,10 @@
             "named": true
           },
           {
+            "type": "macro_invocation",
+            "named": true
+          },
+          {
             "type": "multi_line_string_literal",
             "named": true
           },
@@ -2129,6 +1957,10 @@
           },
           {
             "type": "open_start_range_expression",
+            "named": true
+          },
+          {
+            "type": "playground_literal",
             "named": true
           },
           {
@@ -2165,6 +1997,10 @@
           },
           {
             "type": "simple_identifier",
+            "named": true
+          },
+          {
+            "type": "special_literal",
             "named": true
           },
           {
@@ -2258,6 +2094,10 @@
             "named": true
           },
           {
+            "type": "suppressed_constraint",
+            "named": true
+          },
+          {
             "type": "tuple_type",
             "named": true
           },
@@ -2316,6 +2156,10 @@
             "named": true
           },
           {
+            "type": "suppressed_constraint",
+            "named": true
+          },
+          {
             "type": "tuple_type",
             "named": true
           },
@@ -2371,6 +2215,10 @@
           },
           {
             "type": "protocol_composition_type",
+            "named": true
+          },
+          {
+            "type": "suppressed_constraint",
             "named": true
           },
           {
@@ -2480,7 +2328,15 @@
           "named": true
         },
         {
+          "type": "diagnostic",
+          "named": true
+        },
+        {
           "type": "dictionary_literal",
+          "named": true
+        },
+        {
+          "type": "directive",
           "named": true
         },
         {
@@ -2528,6 +2384,10 @@
           "named": true
         },
         {
+          "type": "macro_invocation",
+          "named": true
+        },
+        {
           "type": "multi_line_string_literal",
           "named": true
         },
@@ -2553,6 +2413,10 @@
         },
         {
           "type": "open_start_range_expression",
+          "named": true
+        },
+        {
+          "type": "playground_literal",
           "named": true
         },
         {
@@ -2589,6 +2453,10 @@
         },
         {
           "type": "simple_identifier",
+          "named": true
+        },
+        {
+          "type": "special_literal",
           "named": true
         },
         {
@@ -2662,46 +2530,6 @@
             "named": false
           },
           {
-            "type": "#colorLiteral",
-            "named": false
-          },
-          {
-            "type": "#column",
-            "named": false
-          },
-          {
-            "type": "#dsohandle",
-            "named": false
-          },
-          {
-            "type": "#file",
-            "named": false
-          },
-          {
-            "type": "#fileID",
-            "named": false
-          },
-          {
-            "type": "#fileLiteral",
-            "named": false
-          },
-          {
-            "type": "#filePath",
-            "named": false
-          },
-          {
-            "type": "#function",
-            "named": false
-          },
-          {
-            "type": "#imageLiteral",
-            "named": false
-          },
-          {
-            "type": "#line",
-            "named": false
-          },
-          {
             "type": "%",
             "named": false
           },
@@ -2711,14 +2539,6 @@
           },
           {
             "type": "&",
-            "named": false
-          },
-          {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
             "named": false
           },
           {
@@ -2742,10 +2562,6 @@
             "named": false
           },
           {
-            "type": ",",
-            "named": false
-          },
-          {
             "type": "-",
             "named": false
           },
@@ -2763,10 +2579,6 @@
           },
           {
             "type": "/=",
-            "named": false
-          },
-          {
-            "type": ":",
             "named": false
           },
           {
@@ -2874,7 +2686,15 @@
             "named": true
           },
           {
+            "type": "diagnostic",
+            "named": true
+          },
+          {
             "type": "dictionary_literal",
+            "named": true
+          },
+          {
+            "type": "directive",
             "named": true
           },
           {
@@ -2922,6 +2742,10 @@
             "named": true
           },
           {
+            "type": "macro_invocation",
+            "named": true
+          },
+          {
             "type": "multi_line_string_literal",
             "named": true
           },
@@ -2951,6 +2775,10 @@
           },
           {
             "type": "open_start_range_expression",
+            "named": true
+          },
+          {
+            "type": "playground_literal",
             "named": true
           },
           {
@@ -2987,6 +2815,10 @@
           },
           {
             "type": "simple_identifier",
+            "named": true
+          },
+          {
+            "type": "special_literal",
             "named": true
           },
           {
@@ -3029,7 +2861,7 @@
       }
     },
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": false,
       "types": [
         {
@@ -3093,7 +2925,15 @@
           "named": true
         },
         {
+          "type": "diagnostic",
+          "named": true
+        },
+        {
           "type": "dictionary_literal",
+          "named": true
+        },
+        {
+          "type": "directive",
           "named": true
         },
         {
@@ -3141,6 +2981,10 @@
           "named": true
         },
         {
+          "type": "macro_invocation",
+          "named": true
+        },
+        {
           "type": "multi_line_string_literal",
           "named": true
         },
@@ -3166,6 +3010,10 @@
         },
         {
           "type": "open_start_range_expression",
+          "named": true
+        },
+        {
+          "type": "playground_literal",
           "named": true
         },
         {
@@ -3202,6 +3050,10 @@
         },
         {
           "type": "simple_identifier",
+          "named": true
+        },
+        {
+          "type": "special_literal",
           "named": true
         },
         {
@@ -3257,46 +3109,6 @@
             "named": false
           },
           {
-            "type": "#colorLiteral",
-            "named": false
-          },
-          {
-            "type": "#column",
-            "named": false
-          },
-          {
-            "type": "#dsohandle",
-            "named": false
-          },
-          {
-            "type": "#file",
-            "named": false
-          },
-          {
-            "type": "#fileID",
-            "named": false
-          },
-          {
-            "type": "#fileLiteral",
-            "named": false
-          },
-          {
-            "type": "#filePath",
-            "named": false
-          },
-          {
-            "type": "#function",
-            "named": false
-          },
-          {
-            "type": "#imageLiteral",
-            "named": false
-          },
-          {
-            "type": "#line",
-            "named": false
-          },
-          {
             "type": "%",
             "named": false
           },
@@ -3306,14 +3118,6 @@
           },
           {
             "type": "&",
-            "named": false
-          },
-          {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
             "named": false
           },
           {
@@ -3337,10 +3141,6 @@
             "named": false
           },
           {
-            "type": ",",
-            "named": false
-          },
-          {
             "type": "-",
             "named": false
           },
@@ -3358,10 +3158,6 @@
           },
           {
             "type": "/=",
-            "named": false
-          },
-          {
-            "type": ":",
             "named": false
           },
           {
@@ -3469,7 +3265,15 @@
             "named": true
           },
           {
+            "type": "diagnostic",
+            "named": true
+          },
+          {
             "type": "dictionary_literal",
+            "named": true
+          },
+          {
+            "type": "directive",
             "named": true
           },
           {
@@ -3517,6 +3321,10 @@
             "named": true
           },
           {
+            "type": "macro_invocation",
+            "named": true
+          },
+          {
             "type": "multi_line_string_literal",
             "named": true
           },
@@ -3546,6 +3354,10 @@
           },
           {
             "type": "open_start_range_expression",
+            "named": true
+          },
+          {
+            "type": "playground_literal",
             "named": true
           },
           {
@@ -3582,6 +3394,10 @@
           },
           {
             "type": "simple_identifier",
+            "named": true
+          },
+          {
+            "type": "special_literal",
             "named": true
           },
           {
@@ -3661,46 +3477,6 @@
             "named": false
           },
           {
-            "type": "#colorLiteral",
-            "named": false
-          },
-          {
-            "type": "#column",
-            "named": false
-          },
-          {
-            "type": "#dsohandle",
-            "named": false
-          },
-          {
-            "type": "#file",
-            "named": false
-          },
-          {
-            "type": "#fileID",
-            "named": false
-          },
-          {
-            "type": "#fileLiteral",
-            "named": false
-          },
-          {
-            "type": "#filePath",
-            "named": false
-          },
-          {
-            "type": "#function",
-            "named": false
-          },
-          {
-            "type": "#imageLiteral",
-            "named": false
-          },
-          {
-            "type": "#line",
-            "named": false
-          },
-          {
             "type": "%",
             "named": false
           },
@@ -3710,14 +3486,6 @@
           },
           {
             "type": "&",
-            "named": false
-          },
-          {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
             "named": false
           },
           {
@@ -3741,10 +3509,6 @@
             "named": false
           },
           {
-            "type": ",",
-            "named": false
-          },
-          {
             "type": "-",
             "named": false
           },
@@ -3762,10 +3526,6 @@
           },
           {
             "type": "/=",
-            "named": false
-          },
-          {
-            "type": ":",
             "named": false
           },
           {
@@ -3873,7 +3633,15 @@
             "named": true
           },
           {
+            "type": "diagnostic",
+            "named": true
+          },
+          {
             "type": "dictionary_literal",
+            "named": true
+          },
+          {
+            "type": "directive",
             "named": true
           },
           {
@@ -3921,6 +3689,10 @@
             "named": true
           },
           {
+            "type": "macro_invocation",
+            "named": true
+          },
+          {
             "type": "multi_line_string_literal",
             "named": true
           },
@@ -3950,6 +3722,10 @@
           },
           {
             "type": "open_start_range_expression",
+            "named": true
+          },
+          {
+            "type": "playground_literal",
             "named": true
           },
           {
@@ -3986,6 +3762,10 @@
           },
           {
             "type": "simple_identifier",
+            "named": true
+          },
+          {
+            "type": "special_literal",
             "named": true
           },
           {
@@ -4106,7 +3886,15 @@
           "named": true
         },
         {
+          "type": "diagnostic",
+          "named": true
+        },
+        {
           "type": "dictionary_literal",
+          "named": true
+        },
+        {
+          "type": "directive",
           "named": true
         },
         {
@@ -4154,6 +3942,10 @@
           "named": true
         },
         {
+          "type": "macro_invocation",
+          "named": true
+        },
+        {
           "type": "multi_line_string_literal",
           "named": true
         },
@@ -4179,6 +3971,10 @@
         },
         {
           "type": "open_start_range_expression",
+          "named": true
+        },
+        {
+          "type": "playground_literal",
           "named": true
         },
         {
@@ -4215,6 +4011,10 @@
         },
         {
           "type": "simple_identifier",
+          "named": true
+        },
+        {
+          "type": "special_literal",
           "named": true
         },
         {
@@ -4324,46 +4124,6 @@
             "named": false
           },
           {
-            "type": "#colorLiteral",
-            "named": false
-          },
-          {
-            "type": "#column",
-            "named": false
-          },
-          {
-            "type": "#dsohandle",
-            "named": false
-          },
-          {
-            "type": "#file",
-            "named": false
-          },
-          {
-            "type": "#fileID",
-            "named": false
-          },
-          {
-            "type": "#fileLiteral",
-            "named": false
-          },
-          {
-            "type": "#filePath",
-            "named": false
-          },
-          {
-            "type": "#function",
-            "named": false
-          },
-          {
-            "type": "#imageLiteral",
-            "named": false
-          },
-          {
-            "type": "#line",
-            "named": false
-          },
-          {
             "type": "%",
             "named": false
           },
@@ -4373,14 +4133,6 @@
           },
           {
             "type": "&",
-            "named": false
-          },
-          {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
             "named": false
           },
           {
@@ -4404,10 +4156,6 @@
             "named": false
           },
           {
-            "type": ",",
-            "named": false
-          },
-          {
             "type": "-",
             "named": false
           },
@@ -4425,10 +4173,6 @@
           },
           {
             "type": "/=",
-            "named": false
-          },
-          {
-            "type": ":",
             "named": false
           },
           {
@@ -4536,7 +4280,15 @@
             "named": true
           },
           {
+            "type": "diagnostic",
+            "named": true
+          },
+          {
             "type": "dictionary_literal",
+            "named": true
+          },
+          {
+            "type": "directive",
             "named": true
           },
           {
@@ -4584,6 +4336,10 @@
             "named": true
           },
           {
+            "type": "macro_invocation",
+            "named": true
+          },
+          {
             "type": "multi_line_string_literal",
             "named": true
           },
@@ -4613,6 +4369,10 @@
           },
           {
             "type": "open_start_range_expression",
+            "named": true
+          },
+          {
+            "type": "playground_literal",
             "named": true
           },
           {
@@ -4649,6 +4409,10 @@
           },
           {
             "type": "simple_identifier",
+            "named": true
+          },
+          {
+            "type": "special_literal",
             "named": true
           },
           {
@@ -4776,6 +4540,10 @@
             "named": true
           },
           {
+            "type": "suppressed_constraint",
+            "named": true
+          },
+          {
             "type": "tuple_type",
             "named": true
           },
@@ -4816,46 +4584,6 @@
             "named": false
           },
           {
-            "type": "#colorLiteral",
-            "named": false
-          },
-          {
-            "type": "#column",
-            "named": false
-          },
-          {
-            "type": "#dsohandle",
-            "named": false
-          },
-          {
-            "type": "#file",
-            "named": false
-          },
-          {
-            "type": "#fileID",
-            "named": false
-          },
-          {
-            "type": "#fileLiteral",
-            "named": false
-          },
-          {
-            "type": "#filePath",
-            "named": false
-          },
-          {
-            "type": "#function",
-            "named": false
-          },
-          {
-            "type": "#imageLiteral",
-            "named": false
-          },
-          {
-            "type": "#line",
-            "named": false
-          },
-          {
             "type": "%",
             "named": false
           },
@@ -4865,14 +4593,6 @@
           },
           {
             "type": "&",
-            "named": false
-          },
-          {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
             "named": false
           },
           {
@@ -4896,10 +4616,6 @@
             "named": false
           },
           {
-            "type": ",",
-            "named": false
-          },
-          {
             "type": "-",
             "named": false
           },
@@ -4917,10 +4633,6 @@
           },
           {
             "type": "/=",
-            "named": false
-          },
-          {
-            "type": ":",
             "named": false
           },
           {
@@ -5028,7 +4740,15 @@
             "named": true
           },
           {
+            "type": "diagnostic",
+            "named": true
+          },
+          {
             "type": "dictionary_literal",
+            "named": true
+          },
+          {
+            "type": "directive",
             "named": true
           },
           {
@@ -5076,6 +4796,10 @@
             "named": true
           },
           {
+            "type": "macro_invocation",
+            "named": true
+          },
+          {
             "type": "multi_line_string_literal",
             "named": true
           },
@@ -5105,6 +4829,10 @@
           },
           {
             "type": "open_start_range_expression",
+            "named": true
+          },
+          {
+            "type": "playground_literal",
             "named": true
           },
           {
@@ -5141,6 +4869,10 @@
           },
           {
             "type": "simple_identifier",
+            "named": true
+          },
+          {
+            "type": "special_literal",
             "named": true
           },
           {
@@ -5215,6 +4947,10 @@
           },
           {
             "type": "protocol_composition_type",
+            "named": true
+          },
+          {
+            "type": "suppressed_constraint",
             "named": true
           },
           {
@@ -5385,6 +5121,10 @@
             "named": true
           },
           {
+            "type": "suppressed_constraint",
+            "named": true
+          },
+          {
             "type": "tuple_type",
             "named": true
           },
@@ -5463,46 +5203,6 @@
             "named": false
           },
           {
-            "type": "#colorLiteral",
-            "named": false
-          },
-          {
-            "type": "#column",
-            "named": false
-          },
-          {
-            "type": "#dsohandle",
-            "named": false
-          },
-          {
-            "type": "#file",
-            "named": false
-          },
-          {
-            "type": "#fileID",
-            "named": false
-          },
-          {
-            "type": "#fileLiteral",
-            "named": false
-          },
-          {
-            "type": "#filePath",
-            "named": false
-          },
-          {
-            "type": "#function",
-            "named": false
-          },
-          {
-            "type": "#imageLiteral",
-            "named": false
-          },
-          {
-            "type": "#line",
-            "named": false
-          },
-          {
             "type": "%",
             "named": false
           },
@@ -5512,14 +5212,6 @@
           },
           {
             "type": "&",
-            "named": false
-          },
-          {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
             "named": false
           },
           {
@@ -5543,10 +5235,6 @@
             "named": false
           },
           {
-            "type": ",",
-            "named": false
-          },
-          {
             "type": "-",
             "named": false
           },
@@ -5564,10 +5252,6 @@
           },
           {
             "type": "/=",
-            "named": false
-          },
-          {
-            "type": ":",
             "named": false
           },
           {
@@ -5675,7 +5359,15 @@
             "named": true
           },
           {
+            "type": "diagnostic",
+            "named": true
+          },
+          {
             "type": "dictionary_literal",
+            "named": true
+          },
+          {
+            "type": "directive",
             "named": true
           },
           {
@@ -5723,6 +5415,10 @@
             "named": true
           },
           {
+            "type": "macro_invocation",
+            "named": true
+          },
+          {
             "type": "multi_line_string_literal",
             "named": true
           },
@@ -5752,6 +5448,10 @@
           },
           {
             "type": "open_start_range_expression",
+            "named": true
+          },
+          {
+            "type": "playground_literal",
             "named": true
           },
           {
@@ -5788,6 +5488,10 @@
           },
           {
             "type": "simple_identifier",
+            "named": true
+          },
+          {
+            "type": "special_literal",
             "named": true
           },
           {
@@ -5863,46 +5567,6 @@
             "named": false
           },
           {
-            "type": "#colorLiteral",
-            "named": false
-          },
-          {
-            "type": "#column",
-            "named": false
-          },
-          {
-            "type": "#dsohandle",
-            "named": false
-          },
-          {
-            "type": "#file",
-            "named": false
-          },
-          {
-            "type": "#fileID",
-            "named": false
-          },
-          {
-            "type": "#fileLiteral",
-            "named": false
-          },
-          {
-            "type": "#filePath",
-            "named": false
-          },
-          {
-            "type": "#function",
-            "named": false
-          },
-          {
-            "type": "#imageLiteral",
-            "named": false
-          },
-          {
-            "type": "#line",
-            "named": false
-          },
-          {
             "type": "%",
             "named": false
           },
@@ -5912,14 +5576,6 @@
           },
           {
             "type": "&",
-            "named": false
-          },
-          {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
             "named": false
           },
           {
@@ -5943,10 +5599,6 @@
             "named": false
           },
           {
-            "type": ",",
-            "named": false
-          },
-          {
             "type": "-",
             "named": false
           },
@@ -5964,10 +5616,6 @@
           },
           {
             "type": "/=",
-            "named": false
-          },
-          {
-            "type": ":",
             "named": false
           },
           {
@@ -6075,7 +5723,15 @@
             "named": true
           },
           {
+            "type": "diagnostic",
+            "named": true
+          },
+          {
             "type": "dictionary_literal",
+            "named": true
+          },
+          {
+            "type": "directive",
             "named": true
           },
           {
@@ -6123,6 +5779,10 @@
             "named": true
           },
           {
+            "type": "macro_invocation",
+            "named": true
+          },
+          {
             "type": "multi_line_string_literal",
             "named": true
           },
@@ -6152,6 +5812,10 @@
           },
           {
             "type": "open_start_range_expression",
+            "named": true
+          },
+          {
+            "type": "playground_literal",
             "named": true
           },
           {
@@ -6188,6 +5852,10 @@
           },
           {
             "type": "simple_identifier",
+            "named": true
+          },
+          {
+            "type": "special_literal",
             "named": true
           },
           {
@@ -6347,46 +6015,6 @@
             "named": false
           },
           {
-            "type": "#colorLiteral",
-            "named": false
-          },
-          {
-            "type": "#column",
-            "named": false
-          },
-          {
-            "type": "#dsohandle",
-            "named": false
-          },
-          {
-            "type": "#file",
-            "named": false
-          },
-          {
-            "type": "#fileID",
-            "named": false
-          },
-          {
-            "type": "#fileLiteral",
-            "named": false
-          },
-          {
-            "type": "#filePath",
-            "named": false
-          },
-          {
-            "type": "#function",
-            "named": false
-          },
-          {
-            "type": "#imageLiteral",
-            "named": false
-          },
-          {
-            "type": "#line",
-            "named": false
-          },
-          {
             "type": "%",
             "named": false
           },
@@ -6396,14 +6024,6 @@
           },
           {
             "type": "&",
-            "named": false
-          },
-          {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
             "named": false
           },
           {
@@ -6427,10 +6047,6 @@
             "named": false
           },
           {
-            "type": ",",
-            "named": false
-          },
-          {
             "type": "-",
             "named": false
           },
@@ -6448,10 +6064,6 @@
           },
           {
             "type": "/=",
-            "named": false
-          },
-          {
-            "type": ":",
             "named": false
           },
           {
@@ -6559,7 +6171,15 @@
             "named": true
           },
           {
+            "type": "diagnostic",
+            "named": true
+          },
+          {
             "type": "dictionary_literal",
+            "named": true
+          },
+          {
+            "type": "directive",
             "named": true
           },
           {
@@ -6607,6 +6227,10 @@
             "named": true
           },
           {
+            "type": "macro_invocation",
+            "named": true
+          },
+          {
             "type": "multi_line_string_literal",
             "named": true
           },
@@ -6636,6 +6260,10 @@
           },
           {
             "type": "open_start_range_expression",
+            "named": true
+          },
+          {
+            "type": "playground_literal",
             "named": true
           },
           {
@@ -6672,6 +6300,10 @@
           },
           {
             "type": "simple_identifier",
+            "named": true
+          },
+          {
+            "type": "special_literal",
             "named": true
           },
           {
@@ -6735,46 +6367,6 @@
             "named": false
           },
           {
-            "type": "#colorLiteral",
-            "named": false
-          },
-          {
-            "type": "#column",
-            "named": false
-          },
-          {
-            "type": "#dsohandle",
-            "named": false
-          },
-          {
-            "type": "#file",
-            "named": false
-          },
-          {
-            "type": "#fileID",
-            "named": false
-          },
-          {
-            "type": "#fileLiteral",
-            "named": false
-          },
-          {
-            "type": "#filePath",
-            "named": false
-          },
-          {
-            "type": "#function",
-            "named": false
-          },
-          {
-            "type": "#imageLiteral",
-            "named": false
-          },
-          {
-            "type": "#line",
-            "named": false
-          },
-          {
             "type": "%",
             "named": false
           },
@@ -6784,14 +6376,6 @@
           },
           {
             "type": "&",
-            "named": false
-          },
-          {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
             "named": false
           },
           {
@@ -6815,10 +6399,6 @@
             "named": false
           },
           {
-            "type": ",",
-            "named": false
-          },
-          {
             "type": "-",
             "named": false
           },
@@ -6836,10 +6416,6 @@
           },
           {
             "type": "/=",
-            "named": false
-          },
-          {
-            "type": ":",
             "named": false
           },
           {
@@ -6947,7 +6523,15 @@
             "named": true
           },
           {
+            "type": "diagnostic",
+            "named": true
+          },
+          {
             "type": "dictionary_literal",
+            "named": true
+          },
+          {
+            "type": "directive",
             "named": true
           },
           {
@@ -6995,6 +6579,10 @@
             "named": true
           },
           {
+            "type": "macro_invocation",
+            "named": true
+          },
+          {
             "type": "multi_line_string_literal",
             "named": true
           },
@@ -7024,6 +6612,10 @@
           },
           {
             "type": "open_start_range_expression",
+            "named": true
+          },
+          {
+            "type": "playground_literal",
             "named": true
           },
           {
@@ -7060,6 +6652,10 @@
           },
           {
             "type": "simple_identifier",
+            "named": true
+          },
+          {
+            "type": "special_literal",
             "named": true
           },
           {
@@ -7183,46 +6779,6 @@
             "named": false
           },
           {
-            "type": "#colorLiteral",
-            "named": false
-          },
-          {
-            "type": "#column",
-            "named": false
-          },
-          {
-            "type": "#dsohandle",
-            "named": false
-          },
-          {
-            "type": "#file",
-            "named": false
-          },
-          {
-            "type": "#fileID",
-            "named": false
-          },
-          {
-            "type": "#fileLiteral",
-            "named": false
-          },
-          {
-            "type": "#filePath",
-            "named": false
-          },
-          {
-            "type": "#function",
-            "named": false
-          },
-          {
-            "type": "#imageLiteral",
-            "named": false
-          },
-          {
-            "type": "#line",
-            "named": false
-          },
-          {
             "type": "%",
             "named": false
           },
@@ -7232,14 +6788,6 @@
           },
           {
             "type": "&",
-            "named": false
-          },
-          {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
             "named": false
           },
           {
@@ -7263,10 +6811,6 @@
             "named": false
           },
           {
-            "type": ",",
-            "named": false
-          },
-          {
             "type": "-",
             "named": false
           },
@@ -7284,10 +6828,6 @@
           },
           {
             "type": "/=",
-            "named": false
-          },
-          {
-            "type": ":",
             "named": false
           },
           {
@@ -7395,7 +6935,15 @@
             "named": true
           },
           {
+            "type": "diagnostic",
+            "named": true
+          },
+          {
             "type": "dictionary_literal",
+            "named": true
+          },
+          {
+            "type": "directive",
             "named": true
           },
           {
@@ -7443,6 +6991,10 @@
             "named": true
           },
           {
+            "type": "macro_invocation",
+            "named": true
+          },
+          {
             "type": "multi_line_string_literal",
             "named": true
           },
@@ -7472,6 +7024,10 @@
           },
           {
             "type": "open_start_range_expression",
+            "named": true
+          },
+          {
+            "type": "playground_literal",
             "named": true
           },
           {
@@ -7508,6 +7064,10 @@
           },
           {
             "type": "simple_identifier",
+            "named": true
+          },
+          {
+            "type": "special_literal",
             "named": true
           },
           {
@@ -7614,7 +7174,15 @@
           "named": true
         },
         {
+          "type": "diagnostic",
+          "named": true
+        },
+        {
           "type": "dictionary_literal",
+          "named": true
+        },
+        {
+          "type": "directive",
           "named": true
         },
         {
@@ -7662,6 +7230,10 @@
           "named": true
         },
         {
+          "type": "macro_invocation",
+          "named": true
+        },
+        {
           "type": "multi_line_string_literal",
           "named": true
         },
@@ -7687,6 +7259,10 @@
         },
         {
           "type": "open_start_range_expression",
+          "named": true
+        },
+        {
+          "type": "playground_literal",
           "named": true
         },
         {
@@ -7723,6 +7299,10 @@
         },
         {
           "type": "simple_identifier",
+          "named": true
+        },
+        {
+          "type": "special_literal",
           "named": true
         },
         {
@@ -7847,6 +7427,11 @@
     }
   },
   {
+    "type": "diagnostic",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "dictionary_literal",
     "named": true,
     "fields": {
@@ -7863,46 +7448,6 @@
             "named": false
           },
           {
-            "type": "#colorLiteral",
-            "named": false
-          },
-          {
-            "type": "#column",
-            "named": false
-          },
-          {
-            "type": "#dsohandle",
-            "named": false
-          },
-          {
-            "type": "#file",
-            "named": false
-          },
-          {
-            "type": "#fileID",
-            "named": false
-          },
-          {
-            "type": "#fileLiteral",
-            "named": false
-          },
-          {
-            "type": "#filePath",
-            "named": false
-          },
-          {
-            "type": "#function",
-            "named": false
-          },
-          {
-            "type": "#imageLiteral",
-            "named": false
-          },
-          {
-            "type": "#line",
-            "named": false
-          },
-          {
             "type": "%",
             "named": false
           },
@@ -7912,14 +7457,6 @@
           },
           {
             "type": "&",
-            "named": false
-          },
-          {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
             "named": false
           },
           {
@@ -7943,10 +7480,6 @@
             "named": false
           },
           {
-            "type": ",",
-            "named": false
-          },
-          {
             "type": "-",
             "named": false
           },
@@ -7964,10 +7497,6 @@
           },
           {
             "type": "/=",
-            "named": false
-          },
-          {
-            "type": ":",
             "named": false
           },
           {
@@ -8075,7 +7604,15 @@
             "named": true
           },
           {
+            "type": "diagnostic",
+            "named": true
+          },
+          {
             "type": "dictionary_literal",
+            "named": true
+          },
+          {
+            "type": "directive",
             "named": true
           },
           {
@@ -8123,6 +7660,10 @@
             "named": true
           },
           {
+            "type": "macro_invocation",
+            "named": true
+          },
+          {
             "type": "multi_line_string_literal",
             "named": true
           },
@@ -8152,6 +7693,10 @@
           },
           {
             "type": "open_start_range_expression",
+            "named": true
+          },
+          {
+            "type": "playground_literal",
             "named": true
           },
           {
@@ -8188,6 +7733,10 @@
           },
           {
             "type": "simple_identifier",
+            "named": true
+          },
+          {
+            "type": "special_literal",
             "named": true
           },
           {
@@ -8241,46 +7790,6 @@
             "named": false
           },
           {
-            "type": "#colorLiteral",
-            "named": false
-          },
-          {
-            "type": "#column",
-            "named": false
-          },
-          {
-            "type": "#dsohandle",
-            "named": false
-          },
-          {
-            "type": "#file",
-            "named": false
-          },
-          {
-            "type": "#fileID",
-            "named": false
-          },
-          {
-            "type": "#fileLiteral",
-            "named": false
-          },
-          {
-            "type": "#filePath",
-            "named": false
-          },
-          {
-            "type": "#function",
-            "named": false
-          },
-          {
-            "type": "#imageLiteral",
-            "named": false
-          },
-          {
-            "type": "#line",
-            "named": false
-          },
-          {
             "type": "%",
             "named": false
           },
@@ -8290,14 +7799,6 @@
           },
           {
             "type": "&",
-            "named": false
-          },
-          {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
             "named": false
           },
           {
@@ -8321,10 +7822,6 @@
             "named": false
           },
           {
-            "type": ",",
-            "named": false
-          },
-          {
             "type": "-",
             "named": false
           },
@@ -8342,10 +7839,6 @@
           },
           {
             "type": "/=",
-            "named": false
-          },
-          {
-            "type": ":",
             "named": false
           },
           {
@@ -8453,7 +7946,15 @@
             "named": true
           },
           {
+            "type": "diagnostic",
+            "named": true
+          },
+          {
             "type": "dictionary_literal",
+            "named": true
+          },
+          {
+            "type": "directive",
             "named": true
           },
           {
@@ -8501,6 +8002,10 @@
             "named": true
           },
           {
+            "type": "macro_invocation",
+            "named": true
+          },
+          {
             "type": "multi_line_string_literal",
             "named": true
           },
@@ -8530,6 +8035,10 @@
           },
           {
             "type": "open_start_range_expression",
+            "named": true
+          },
+          {
+            "type": "playground_literal",
             "named": true
           },
           {
@@ -8566,6 +8075,10 @@
           },
           {
             "type": "simple_identifier",
+            "named": true
+          },
+          {
+            "type": "special_literal",
             "named": true
           },
           {
@@ -8649,6 +8162,10 @@
             "named": true
           },
           {
+            "type": "suppressed_constraint",
+            "named": true
+          },
+          {
             "type": "tuple_type",
             "named": true
           },
@@ -8707,6 +8224,10 @@
             "named": true
           },
           {
+            "type": "suppressed_constraint",
+            "named": true
+          },
+          {
             "type": "tuple_type",
             "named": true
           },
@@ -8761,6 +8282,10 @@
             "named": true
           },
           {
+            "type": "suppressed_constraint",
+            "named": true
+          },
+          {
             "type": "tuple_type",
             "named": true
           },
@@ -8808,11 +8333,34 @@
     }
   },
   {
-    "type": "directly_assignable_expression",
+    "type": "directive",
     "named": true,
     "fields": {},
     "children": {
       "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "boolean_literal",
+          "named": true
+        },
+        {
+          "type": "integer_literal",
+          "named": true
+        },
+        {
+          "type": "simple_identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "directly_assignable_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
       "required": false,
       "types": [
         {
@@ -8876,7 +8424,15 @@
           "named": true
         },
         {
+          "type": "diagnostic",
+          "named": true
+        },
+        {
           "type": "dictionary_literal",
+          "named": true
+        },
+        {
+          "type": "directive",
           "named": true
         },
         {
@@ -8924,6 +8480,10 @@
           "named": true
         },
         {
+          "type": "macro_invocation",
+          "named": true
+        },
+        {
           "type": "multi_line_string_literal",
           "named": true
         },
@@ -8949,6 +8509,10 @@
         },
         {
           "type": "open_start_range_expression",
+          "named": true
+        },
+        {
+          "type": "playground_literal",
           "named": true
         },
         {
@@ -8985,6 +8549,10 @@
         },
         {
           "type": "simple_identifier",
+          "named": true
+        },
+        {
+          "type": "special_literal",
           "named": true
         },
         {
@@ -9035,46 +8603,6 @@
             "named": false
           },
           {
-            "type": "#colorLiteral",
-            "named": false
-          },
-          {
-            "type": "#column",
-            "named": false
-          },
-          {
-            "type": "#dsohandle",
-            "named": false
-          },
-          {
-            "type": "#file",
-            "named": false
-          },
-          {
-            "type": "#fileID",
-            "named": false
-          },
-          {
-            "type": "#fileLiteral",
-            "named": false
-          },
-          {
-            "type": "#filePath",
-            "named": false
-          },
-          {
-            "type": "#function",
-            "named": false
-          },
-          {
-            "type": "#imageLiteral",
-            "named": false
-          },
-          {
-            "type": "#line",
-            "named": false
-          },
-          {
             "type": "%",
             "named": false
           },
@@ -9084,14 +8612,6 @@
           },
           {
             "type": "&",
-            "named": false
-          },
-          {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
             "named": false
           },
           {
@@ -9115,10 +8635,6 @@
             "named": false
           },
           {
-            "type": ",",
-            "named": false
-          },
-          {
             "type": "-",
             "named": false
           },
@@ -9136,10 +8652,6 @@
           },
           {
             "type": "/=",
-            "named": false
-          },
-          {
-            "type": ":",
             "named": false
           },
           {
@@ -9247,7 +8759,15 @@
             "named": true
           },
           {
+            "type": "diagnostic",
+            "named": true
+          },
+          {
             "type": "dictionary_literal",
+            "named": true
+          },
+          {
+            "type": "directive",
             "named": true
           },
           {
@@ -9295,6 +8815,10 @@
             "named": true
           },
           {
+            "type": "macro_invocation",
+            "named": true
+          },
+          {
             "type": "multi_line_string_literal",
             "named": true
           },
@@ -9324,6 +8848,10 @@
           },
           {
             "type": "open_start_range_expression",
+            "named": true
+          },
+          {
+            "type": "playground_literal",
             "named": true
           },
           {
@@ -9360,6 +8888,10 @@
           },
           {
             "type": "simple_identifier",
+            "named": true
+          },
+          {
+            "type": "special_literal",
             "named": true
           },
           {
@@ -9423,46 +8955,6 @@
             "named": false
           },
           {
-            "type": "#colorLiteral",
-            "named": false
-          },
-          {
-            "type": "#column",
-            "named": false
-          },
-          {
-            "type": "#dsohandle",
-            "named": false
-          },
-          {
-            "type": "#file",
-            "named": false
-          },
-          {
-            "type": "#fileID",
-            "named": false
-          },
-          {
-            "type": "#fileLiteral",
-            "named": false
-          },
-          {
-            "type": "#filePath",
-            "named": false
-          },
-          {
-            "type": "#function",
-            "named": false
-          },
-          {
-            "type": "#imageLiteral",
-            "named": false
-          },
-          {
-            "type": "#line",
-            "named": false
-          },
-          {
             "type": "%",
             "named": false
           },
@@ -9472,14 +8964,6 @@
           },
           {
             "type": "&",
-            "named": false
-          },
-          {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
             "named": false
           },
           {
@@ -9503,10 +8987,6 @@
             "named": false
           },
           {
-            "type": ",",
-            "named": false
-          },
-          {
             "type": "-",
             "named": false
           },
@@ -9524,10 +9004,6 @@
           },
           {
             "type": "/=",
-            "named": false
-          },
-          {
-            "type": ":",
             "named": false
           },
           {
@@ -9635,7 +9111,15 @@
             "named": true
           },
           {
+            "type": "diagnostic",
+            "named": true
+          },
+          {
             "type": "dictionary_literal",
+            "named": true
+          },
+          {
+            "type": "directive",
             "named": true
           },
           {
@@ -9683,6 +9167,10 @@
             "named": true
           },
           {
+            "type": "macro_invocation",
+            "named": true
+          },
+          {
             "type": "multi_line_string_literal",
             "named": true
           },
@@ -9712,6 +9200,10 @@
           },
           {
             "type": "open_start_range_expression",
+            "named": true
+          },
+          {
+            "type": "playground_literal",
             "named": true
           },
           {
@@ -9748,6 +9240,10 @@
           },
           {
             "type": "simple_identifier",
+            "named": true
+          },
+          {
+            "type": "special_literal",
             "named": true
           },
           {
@@ -9909,46 +9405,6 @@
             "named": false
           },
           {
-            "type": "#colorLiteral",
-            "named": false
-          },
-          {
-            "type": "#column",
-            "named": false
-          },
-          {
-            "type": "#dsohandle",
-            "named": false
-          },
-          {
-            "type": "#file",
-            "named": false
-          },
-          {
-            "type": "#fileID",
-            "named": false
-          },
-          {
-            "type": "#fileLiteral",
-            "named": false
-          },
-          {
-            "type": "#filePath",
-            "named": false
-          },
-          {
-            "type": "#function",
-            "named": false
-          },
-          {
-            "type": "#imageLiteral",
-            "named": false
-          },
-          {
-            "type": "#line",
-            "named": false
-          },
-          {
             "type": "%",
             "named": false
           },
@@ -9958,14 +9414,6 @@
           },
           {
             "type": "&",
-            "named": false
-          },
-          {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
             "named": false
           },
           {
@@ -9989,10 +9437,6 @@
             "named": false
           },
           {
-            "type": ",",
-            "named": false
-          },
-          {
             "type": "-",
             "named": false
           },
@@ -10010,10 +9454,6 @@
           },
           {
             "type": "/=",
-            "named": false
-          },
-          {
-            "type": ":",
             "named": false
           },
           {
@@ -10121,7 +9561,15 @@
             "named": true
           },
           {
+            "type": "diagnostic",
+            "named": true
+          },
+          {
             "type": "dictionary_literal",
+            "named": true
+          },
+          {
+            "type": "directive",
             "named": true
           },
           {
@@ -10169,6 +9617,10 @@
             "named": true
           },
           {
+            "type": "macro_invocation",
+            "named": true
+          },
+          {
             "type": "multi_line_string_literal",
             "named": true
           },
@@ -10198,6 +9650,10 @@
           },
           {
             "type": "open_start_range_expression",
+            "named": true
+          },
+          {
+            "type": "playground_literal",
             "named": true
           },
           {
@@ -10234,6 +9690,10 @@
           },
           {
             "type": "simple_identifier",
+            "named": true
+          },
+          {
+            "type": "special_literal",
             "named": true
           },
           {
@@ -10327,6 +9787,10 @@
             "named": true
           },
           {
+            "type": "suppressed_constraint",
+            "named": true
+          },
+          {
             "type": "tuple_type",
             "named": true
           },
@@ -10410,7 +9874,15 @@
           "named": true
         },
         {
+          "type": "diagnostic",
+          "named": true
+        },
+        {
           "type": "dictionary_literal",
+          "named": true
+        },
+        {
+          "type": "directive",
           "named": true
         },
         {
@@ -10458,6 +9930,10 @@
           "named": true
         },
         {
+          "type": "macro_invocation",
+          "named": true
+        },
+        {
           "type": "multi_line_string_literal",
           "named": true
         },
@@ -10483,6 +9959,10 @@
         },
         {
           "type": "open_start_range_expression",
+          "named": true
+        },
+        {
+          "type": "playground_literal",
           "named": true
         },
         {
@@ -10519,6 +9999,10 @@
         },
         {
           "type": "simple_identifier",
+          "named": true
+        },
+        {
+          "type": "special_literal",
           "named": true
         },
         {
@@ -10613,6 +10097,10 @@
             "named": true
           },
           {
+            "type": "suppressed_constraint",
+            "named": true
+          },
+          {
             "type": "tuple_type",
             "named": true
           },
@@ -10664,6 +10152,10 @@
           },
           {
             "type": "protocol_composition_type",
+            "named": true
+          },
+          {
+            "type": "suppressed_constraint",
             "named": true
           },
           {
@@ -10725,6 +10217,10 @@
             "named": true
           },
           {
+            "type": "suppressed_constraint",
+            "named": true
+          },
+          {
             "type": "tuple_type",
             "named": true
           },
@@ -10771,46 +10267,6 @@
             "named": false
           },
           {
-            "type": "#colorLiteral",
-            "named": false
-          },
-          {
-            "type": "#column",
-            "named": false
-          },
-          {
-            "type": "#dsohandle",
-            "named": false
-          },
-          {
-            "type": "#file",
-            "named": false
-          },
-          {
-            "type": "#fileID",
-            "named": false
-          },
-          {
-            "type": "#fileLiteral",
-            "named": false
-          },
-          {
-            "type": "#filePath",
-            "named": false
-          },
-          {
-            "type": "#function",
-            "named": false
-          },
-          {
-            "type": "#imageLiteral",
-            "named": false
-          },
-          {
-            "type": "#line",
-            "named": false
-          },
-          {
             "type": "%",
             "named": false
           },
@@ -10820,14 +10276,6 @@
           },
           {
             "type": "&",
-            "named": false
-          },
-          {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
             "named": false
           },
           {
@@ -10851,10 +10299,6 @@
             "named": false
           },
           {
-            "type": ",",
-            "named": false
-          },
-          {
             "type": "-",
             "named": false
           },
@@ -10872,10 +10316,6 @@
           },
           {
             "type": "/=",
-            "named": false
-          },
-          {
-            "type": ":",
             "named": false
           },
           {
@@ -10983,7 +10423,15 @@
             "named": true
           },
           {
+            "type": "diagnostic",
+            "named": true
+          },
+          {
             "type": "dictionary_literal",
+            "named": true
+          },
+          {
+            "type": "directive",
             "named": true
           },
           {
@@ -11031,6 +10479,10 @@
             "named": true
           },
           {
+            "type": "macro_invocation",
+            "named": true
+          },
+          {
             "type": "multi_line_string_literal",
             "named": true
           },
@@ -11060,6 +10512,10 @@
           },
           {
             "type": "open_start_range_expression",
+            "named": true
+          },
+          {
+            "type": "playground_literal",
             "named": true
           },
           {
@@ -11096,6 +10552,10 @@
           },
           {
             "type": "simple_identifier",
+            "named": true
+          },
+          {
+            "type": "special_literal",
             "named": true
           },
           {
@@ -11171,46 +10631,6 @@
             "named": false
           },
           {
-            "type": "#colorLiteral",
-            "named": false
-          },
-          {
-            "type": "#column",
-            "named": false
-          },
-          {
-            "type": "#dsohandle",
-            "named": false
-          },
-          {
-            "type": "#file",
-            "named": false
-          },
-          {
-            "type": "#fileID",
-            "named": false
-          },
-          {
-            "type": "#fileLiteral",
-            "named": false
-          },
-          {
-            "type": "#filePath",
-            "named": false
-          },
-          {
-            "type": "#function",
-            "named": false
-          },
-          {
-            "type": "#imageLiteral",
-            "named": false
-          },
-          {
-            "type": "#line",
-            "named": false
-          },
-          {
             "type": "%",
             "named": false
           },
@@ -11220,14 +10640,6 @@
           },
           {
             "type": "&",
-            "named": false
-          },
-          {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
             "named": false
           },
           {
@@ -11251,10 +10663,6 @@
             "named": false
           },
           {
-            "type": ",",
-            "named": false
-          },
-          {
             "type": "-",
             "named": false
           },
@@ -11272,10 +10680,6 @@
           },
           {
             "type": "/=",
-            "named": false
-          },
-          {
-            "type": ":",
             "named": false
           },
           {
@@ -11383,7 +10787,15 @@
             "named": true
           },
           {
+            "type": "diagnostic",
+            "named": true
+          },
+          {
             "type": "dictionary_literal",
+            "named": true
+          },
+          {
+            "type": "directive",
             "named": true
           },
           {
@@ -11431,6 +10843,10 @@
             "named": true
           },
           {
+            "type": "macro_invocation",
+            "named": true
+          },
+          {
             "type": "multi_line_string_literal",
             "named": true
           },
@@ -11460,6 +10876,10 @@
           },
           {
             "type": "open_start_range_expression",
+            "named": true
+          },
+          {
+            "type": "playground_literal",
             "named": true
           },
           {
@@ -11496,6 +10916,10 @@
           },
           {
             "type": "simple_identifier",
+            "named": true
+          },
+          {
+            "type": "special_literal",
             "named": true
           },
           {
@@ -11579,6 +11003,10 @@
           "named": true
         },
         {
+          "type": "suppressed_constraint",
+          "named": true
+        },
+        {
           "type": "tuple_type",
           "named": true
         },
@@ -11629,46 +11057,6 @@
             "named": false
           },
           {
-            "type": "#colorLiteral",
-            "named": false
-          },
-          {
-            "type": "#column",
-            "named": false
-          },
-          {
-            "type": "#dsohandle",
-            "named": false
-          },
-          {
-            "type": "#file",
-            "named": false
-          },
-          {
-            "type": "#fileID",
-            "named": false
-          },
-          {
-            "type": "#fileLiteral",
-            "named": false
-          },
-          {
-            "type": "#filePath",
-            "named": false
-          },
-          {
-            "type": "#function",
-            "named": false
-          },
-          {
-            "type": "#imageLiteral",
-            "named": false
-          },
-          {
-            "type": "#line",
-            "named": false
-          },
-          {
             "type": "%",
             "named": false
           },
@@ -11678,14 +11066,6 @@
           },
           {
             "type": "&",
-            "named": false
-          },
-          {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
             "named": false
           },
           {
@@ -11709,10 +11089,6 @@
             "named": false
           },
           {
-            "type": ",",
-            "named": false
-          },
-          {
             "type": "-",
             "named": false
           },
@@ -11730,10 +11106,6 @@
           },
           {
             "type": "/=",
-            "named": false
-          },
-          {
-            "type": ":",
             "named": false
           },
           {
@@ -11841,7 +11213,15 @@
             "named": true
           },
           {
+            "type": "diagnostic",
+            "named": true
+          },
+          {
             "type": "dictionary_literal",
+            "named": true
+          },
+          {
+            "type": "directive",
             "named": true
           },
           {
@@ -11889,6 +11269,10 @@
             "named": true
           },
           {
+            "type": "macro_invocation",
+            "named": true
+          },
+          {
             "type": "multi_line_string_literal",
             "named": true
           },
@@ -11918,6 +11302,10 @@
           },
           {
             "type": "open_start_range_expression",
+            "named": true
+          },
+          {
+            "type": "playground_literal",
             "named": true
           },
           {
@@ -11954,6 +11342,10 @@
           },
           {
             "type": "simple_identifier",
+            "named": true
+          },
+          {
+            "type": "special_literal",
             "named": true
           },
           {
@@ -12075,46 +11467,6 @@
             "named": false
           },
           {
-            "type": "#colorLiteral",
-            "named": false
-          },
-          {
-            "type": "#column",
-            "named": false
-          },
-          {
-            "type": "#dsohandle",
-            "named": false
-          },
-          {
-            "type": "#file",
-            "named": false
-          },
-          {
-            "type": "#fileID",
-            "named": false
-          },
-          {
-            "type": "#fileLiteral",
-            "named": false
-          },
-          {
-            "type": "#filePath",
-            "named": false
-          },
-          {
-            "type": "#function",
-            "named": false
-          },
-          {
-            "type": "#imageLiteral",
-            "named": false
-          },
-          {
-            "type": "#line",
-            "named": false
-          },
-          {
             "type": "%",
             "named": false
           },
@@ -12124,14 +11476,6 @@
           },
           {
             "type": "&",
-            "named": false
-          },
-          {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
             "named": false
           },
           {
@@ -12155,10 +11499,6 @@
             "named": false
           },
           {
-            "type": ",",
-            "named": false
-          },
-          {
             "type": "-",
             "named": false
           },
@@ -12176,10 +11516,6 @@
           },
           {
             "type": "/=",
-            "named": false
-          },
-          {
-            "type": ":",
             "named": false
           },
           {
@@ -12287,7 +11623,15 @@
             "named": true
           },
           {
+            "type": "diagnostic",
+            "named": true
+          },
+          {
             "type": "dictionary_literal",
+            "named": true
+          },
+          {
+            "type": "directive",
             "named": true
           },
           {
@@ -12335,6 +11679,10 @@
             "named": true
           },
           {
+            "type": "macro_invocation",
+            "named": true
+          },
+          {
             "type": "multi_line_string_literal",
             "named": true
           },
@@ -12364,6 +11712,10 @@
           },
           {
             "type": "open_start_range_expression",
+            "named": true
+          },
+          {
+            "type": "playground_literal",
             "named": true
           },
           {
@@ -12400,6 +11752,10 @@
           },
           {
             "type": "simple_identifier",
+            "named": true
+          },
+          {
+            "type": "special_literal",
             "named": true
           },
           {
@@ -12589,6 +11945,10 @@
             "named": true
           },
           {
+            "type": "suppressed_constraint",
+            "named": true
+          },
+          {
             "type": "tuple_type",
             "named": true
           },
@@ -12652,6 +12012,10 @@
           },
           {
             "type": "protocol_composition_type",
+            "named": true
+          },
+          {
+            "type": "suppressed_constraint",
             "named": true
           },
           {
@@ -12766,6 +12130,10 @@
             "named": true
           },
           {
+            "type": "suppressed_constraint",
+            "named": true
+          },
+          {
             "type": "tuple_type",
             "named": true
           },
@@ -12820,6 +12188,10 @@
             "named": true
           },
           {
+            "type": "suppressed_constraint",
+            "named": true
+          },
+          {
             "type": "tuple_type",
             "named": true
           },
@@ -12871,6 +12243,10 @@
           },
           {
             "type": "protocol_composition_type",
+            "named": true
+          },
+          {
+            "type": "suppressed_constraint",
             "named": true
           },
           {
@@ -12953,46 +12329,6 @@
             "named": false
           },
           {
-            "type": "#colorLiteral",
-            "named": false
-          },
-          {
-            "type": "#column",
-            "named": false
-          },
-          {
-            "type": "#dsohandle",
-            "named": false
-          },
-          {
-            "type": "#file",
-            "named": false
-          },
-          {
-            "type": "#fileID",
-            "named": false
-          },
-          {
-            "type": "#fileLiteral",
-            "named": false
-          },
-          {
-            "type": "#filePath",
-            "named": false
-          },
-          {
-            "type": "#function",
-            "named": false
-          },
-          {
-            "type": "#imageLiteral",
-            "named": false
-          },
-          {
-            "type": "#line",
-            "named": false
-          },
-          {
             "type": "%",
             "named": false
           },
@@ -13189,11 +12525,19 @@
             "named": true
           },
           {
+            "type": "diagnostic",
+            "named": true
+          },
+          {
             "type": "dictionary_literal",
             "named": true
           },
           {
             "type": "dictionary_type",
+            "named": true
+          },
+          {
+            "type": "directive",
             "named": true
           },
           {
@@ -13253,6 +12597,10 @@
             "named": true
           },
           {
+            "type": "macro_invocation",
+            "named": true
+          },
+          {
             "type": "metatype",
             "named": true
           },
@@ -13301,6 +12649,10 @@
             "named": true
           },
           {
+            "type": "playground_literal",
+            "named": true
+          },
+          {
             "type": "postfix_expression",
             "named": true
           },
@@ -13341,7 +12693,15 @@
             "named": true
           },
           {
+            "type": "special_literal",
+            "named": true
+          },
+          {
             "type": "super_expression",
+            "named": true
+          },
+          {
+            "type": "suppressed_constraint",
             "named": true
           },
           {
@@ -13448,6 +12808,10 @@
           },
           {
             "type": "protocol_composition_type",
+            "named": true
+          },
+          {
+            "type": "suppressed_constraint",
             "named": true
           },
           {
@@ -13526,46 +12890,6 @@
             "named": false
           },
           {
-            "type": "#colorLiteral",
-            "named": false
-          },
-          {
-            "type": "#column",
-            "named": false
-          },
-          {
-            "type": "#dsohandle",
-            "named": false
-          },
-          {
-            "type": "#file",
-            "named": false
-          },
-          {
-            "type": "#fileID",
-            "named": false
-          },
-          {
-            "type": "#fileLiteral",
-            "named": false
-          },
-          {
-            "type": "#filePath",
-            "named": false
-          },
-          {
-            "type": "#function",
-            "named": false
-          },
-          {
-            "type": "#imageLiteral",
-            "named": false
-          },
-          {
-            "type": "#line",
-            "named": false
-          },
-          {
             "type": "%",
             "named": false
           },
@@ -13762,11 +13086,19 @@
             "named": true
           },
           {
+            "type": "diagnostic",
+            "named": true
+          },
+          {
             "type": "dictionary_literal",
             "named": true
           },
           {
             "type": "dictionary_type",
+            "named": true
+          },
+          {
+            "type": "directive",
             "named": true
           },
           {
@@ -13826,6 +13158,10 @@
             "named": true
           },
           {
+            "type": "macro_invocation",
+            "named": true
+          },
+          {
             "type": "metatype",
             "named": true
           },
@@ -13874,6 +13210,10 @@
             "named": true
           },
           {
+            "type": "playground_literal",
+            "named": true
+          },
+          {
             "type": "postfix_expression",
             "named": true
           },
@@ -13914,7 +13254,15 @@
             "named": true
           },
           {
+            "type": "special_literal",
+            "named": true
+          },
+          {
             "type": "super_expression",
+            "named": true
+          },
+          {
+            "type": "suppressed_constraint",
             "named": true
           },
           {
@@ -14024,6 +13372,10 @@
             "named": true
           },
           {
+            "type": "suppressed_constraint",
+            "named": true
+          },
+          {
             "type": "tuple_type",
             "named": true
           },
@@ -14097,46 +13449,6 @@
             "named": false
           },
           {
-            "type": "#colorLiteral",
-            "named": false
-          },
-          {
-            "type": "#column",
-            "named": false
-          },
-          {
-            "type": "#dsohandle",
-            "named": false
-          },
-          {
-            "type": "#file",
-            "named": false
-          },
-          {
-            "type": "#fileID",
-            "named": false
-          },
-          {
-            "type": "#fileLiteral",
-            "named": false
-          },
-          {
-            "type": "#filePath",
-            "named": false
-          },
-          {
-            "type": "#function",
-            "named": false
-          },
-          {
-            "type": "#imageLiteral",
-            "named": false
-          },
-          {
-            "type": "#line",
-            "named": false
-          },
-          {
             "type": "%",
             "named": false
           },
@@ -14146,14 +13458,6 @@
           },
           {
             "type": "&",
-            "named": false
-          },
-          {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
             "named": false
           },
           {
@@ -14177,10 +13481,6 @@
             "named": false
           },
           {
-            "type": ",",
-            "named": false
-          },
-          {
             "type": "-",
             "named": false
           },
@@ -14198,10 +13498,6 @@
           },
           {
             "type": "/=",
-            "named": false
-          },
-          {
-            "type": ":",
             "named": false
           },
           {
@@ -14309,7 +13605,15 @@
             "named": true
           },
           {
+            "type": "diagnostic",
+            "named": true
+          },
+          {
             "type": "dictionary_literal",
+            "named": true
+          },
+          {
+            "type": "directive",
             "named": true
           },
           {
@@ -14357,6 +13661,10 @@
             "named": true
           },
           {
+            "type": "macro_invocation",
+            "named": true
+          },
+          {
             "type": "multi_line_string_literal",
             "named": true
           },
@@ -14386,6 +13694,10 @@
           },
           {
             "type": "open_start_range_expression",
+            "named": true
+          },
+          {
+            "type": "playground_literal",
             "named": true
           },
           {
@@ -14422,6 +13734,10 @@
           },
           {
             "type": "simple_identifier",
+            "named": true
+          },
+          {
+            "type": "special_literal",
             "named": true
           },
           {
@@ -14485,46 +13801,6 @@
             "named": false
           },
           {
-            "type": "#colorLiteral",
-            "named": false
-          },
-          {
-            "type": "#column",
-            "named": false
-          },
-          {
-            "type": "#dsohandle",
-            "named": false
-          },
-          {
-            "type": "#file",
-            "named": false
-          },
-          {
-            "type": "#fileID",
-            "named": false
-          },
-          {
-            "type": "#fileLiteral",
-            "named": false
-          },
-          {
-            "type": "#filePath",
-            "named": false
-          },
-          {
-            "type": "#function",
-            "named": false
-          },
-          {
-            "type": "#imageLiteral",
-            "named": false
-          },
-          {
-            "type": "#line",
-            "named": false
-          },
-          {
             "type": "%",
             "named": false
           },
@@ -14534,14 +13810,6 @@
           },
           {
             "type": "&",
-            "named": false
-          },
-          {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
             "named": false
           },
           {
@@ -14565,10 +13833,6 @@
             "named": false
           },
           {
-            "type": ",",
-            "named": false
-          },
-          {
             "type": "-",
             "named": false
           },
@@ -14586,10 +13850,6 @@
           },
           {
             "type": "/=",
-            "named": false
-          },
-          {
-            "type": ":",
             "named": false
           },
           {
@@ -14697,7 +13957,15 @@
             "named": true
           },
           {
+            "type": "diagnostic",
+            "named": true
+          },
+          {
             "type": "dictionary_literal",
+            "named": true
+          },
+          {
+            "type": "directive",
             "named": true
           },
           {
@@ -14745,6 +14013,10 @@
             "named": true
           },
           {
+            "type": "macro_invocation",
+            "named": true
+          },
+          {
             "type": "multi_line_string_literal",
             "named": true
           },
@@ -14774,6 +14046,10 @@
           },
           {
             "type": "open_start_range_expression",
+            "named": true
+          },
+          {
+            "type": "playground_literal",
             "named": true
           },
           {
@@ -14810,6 +14086,10 @@
           },
           {
             "type": "simple_identifier",
+            "named": true
+          },
+          {
+            "type": "special_literal",
             "named": true
           },
           {
@@ -14905,6 +14185,10 @@
             "named": true
           },
           {
+            "type": "suppressed_constraint",
+            "named": true
+          },
+          {
             "type": "tuple_type",
             "named": true
           },
@@ -14960,6 +14244,10 @@
           },
           {
             "type": "protocol_composition_type",
+            "named": true
+          },
+          {
+            "type": "suppressed_constraint",
             "named": true
           },
           {
@@ -15021,6 +14309,10 @@
             "named": true
           },
           {
+            "type": "suppressed_constraint",
+            "named": true
+          },
+          {
             "type": "tuple_type",
             "named": true
           },
@@ -15068,6 +14360,10 @@
             "named": true
           },
           {
+            "type": "suppressed_constraint",
+            "named": true
+          },
+          {
             "type": "user_type",
             "named": true
           }
@@ -15102,46 +14398,6 @@
             "named": false
           },
           {
-            "type": "#colorLiteral",
-            "named": false
-          },
-          {
-            "type": "#column",
-            "named": false
-          },
-          {
-            "type": "#dsohandle",
-            "named": false
-          },
-          {
-            "type": "#file",
-            "named": false
-          },
-          {
-            "type": "#fileID",
-            "named": false
-          },
-          {
-            "type": "#fileLiteral",
-            "named": false
-          },
-          {
-            "type": "#filePath",
-            "named": false
-          },
-          {
-            "type": "#function",
-            "named": false
-          },
-          {
-            "type": "#imageLiteral",
-            "named": false
-          },
-          {
-            "type": "#line",
-            "named": false
-          },
-          {
             "type": "%",
             "named": false
           },
@@ -15151,14 +14407,6 @@
           },
           {
             "type": "&",
-            "named": false
-          },
-          {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
             "named": false
           },
           {
@@ -15182,10 +14430,6 @@
             "named": false
           },
           {
-            "type": ",",
-            "named": false
-          },
-          {
             "type": "-",
             "named": false
           },
@@ -15203,10 +14447,6 @@
           },
           {
             "type": "/=",
-            "named": false
-          },
-          {
-            "type": ":",
             "named": false
           },
           {
@@ -15314,7 +14554,15 @@
             "named": true
           },
           {
+            "type": "diagnostic",
+            "named": true
+          },
+          {
             "type": "dictionary_literal",
+            "named": true
+          },
+          {
+            "type": "directive",
             "named": true
           },
           {
@@ -15362,6 +14610,10 @@
             "named": true
           },
           {
+            "type": "macro_invocation",
+            "named": true
+          },
+          {
             "type": "multi_line_string_literal",
             "named": true
           },
@@ -15391,6 +14643,10 @@
           },
           {
             "type": "open_start_range_expression",
+            "named": true
+          },
+          {
+            "type": "playground_literal",
             "named": true
           },
           {
@@ -15427,6 +14683,10 @@
           },
           {
             "type": "simple_identifier",
+            "named": true
+          },
+          {
+            "type": "special_literal",
             "named": true
           },
           {
@@ -15550,46 +14810,6 @@
             "named": false
           },
           {
-            "type": "#colorLiteral",
-            "named": false
-          },
-          {
-            "type": "#column",
-            "named": false
-          },
-          {
-            "type": "#dsohandle",
-            "named": false
-          },
-          {
-            "type": "#file",
-            "named": false
-          },
-          {
-            "type": "#fileID",
-            "named": false
-          },
-          {
-            "type": "#fileLiteral",
-            "named": false
-          },
-          {
-            "type": "#filePath",
-            "named": false
-          },
-          {
-            "type": "#function",
-            "named": false
-          },
-          {
-            "type": "#imageLiteral",
-            "named": false
-          },
-          {
-            "type": "#line",
-            "named": false
-          },
-          {
             "type": "%",
             "named": false
           },
@@ -15599,14 +14819,6 @@
           },
           {
             "type": "&",
-            "named": false
-          },
-          {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
             "named": false
           },
           {
@@ -15630,10 +14842,6 @@
             "named": false
           },
           {
-            "type": ",",
-            "named": false
-          },
-          {
             "type": "-",
             "named": false
           },
@@ -15651,10 +14859,6 @@
           },
           {
             "type": "/=",
-            "named": false
-          },
-          {
-            "type": ":",
             "named": false
           },
           {
@@ -15762,7 +14966,15 @@
             "named": true
           },
           {
+            "type": "diagnostic",
+            "named": true
+          },
+          {
             "type": "dictionary_literal",
+            "named": true
+          },
+          {
+            "type": "directive",
             "named": true
           },
           {
@@ -15810,6 +15022,10 @@
             "named": true
           },
           {
+            "type": "macro_invocation",
+            "named": true
+          },
+          {
             "type": "multi_line_string_literal",
             "named": true
           },
@@ -15839,6 +15055,10 @@
           },
           {
             "type": "open_start_range_expression",
+            "named": true
+          },
+          {
+            "type": "playground_literal",
             "named": true
           },
           {
@@ -15875,6 +15095,10 @@
           },
           {
             "type": "simple_identifier",
+            "named": true
+          },
+          {
+            "type": "special_literal",
             "named": true
           },
           {
@@ -15971,7 +15195,7 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": false,
       "types": [
         {
@@ -16035,7 +15259,15 @@
           "named": true
         },
         {
+          "type": "diagnostic",
+          "named": true
+        },
+        {
           "type": "dictionary_literal",
+          "named": true
+        },
+        {
+          "type": "directive",
           "named": true
         },
         {
@@ -16083,6 +15315,10 @@
           "named": true
         },
         {
+          "type": "macro_invocation",
+          "named": true
+        },
+        {
           "type": "multi_line_string_literal",
           "named": true
         },
@@ -16108,6 +15344,10 @@
         },
         {
           "type": "open_start_range_expression",
+          "named": true
+        },
+        {
+          "type": "playground_literal",
           "named": true
         },
         {
@@ -16144,6 +15384,10 @@
         },
         {
           "type": "simple_identifier",
+          "named": true
+        },
+        {
+          "type": "special_literal",
           "named": true
         },
         {
@@ -16218,6 +15462,10 @@
             "named": true
           },
           {
+            "type": "suppressed_constraint",
+            "named": true
+          },
+          {
             "type": "tuple_type",
             "named": true
           },
@@ -16273,6 +15521,10 @@
           },
           {
             "type": "protocol_composition_type",
+            "named": true
+          },
+          {
+            "type": "suppressed_constraint",
             "named": true
           },
           {
@@ -16423,6 +15675,10 @@
             "named": true
           },
           {
+            "type": "suppressed_constraint",
+            "named": true
+          },
+          {
             "type": "tuple_type",
             "named": true
           },
@@ -16478,6 +15734,10 @@
           },
           {
             "type": "protocol_composition_type",
+            "named": true
+          },
+          {
+            "type": "suppressed_constraint",
             "named": true
           },
           {
@@ -16570,46 +15830,6 @@
             "named": false
           },
           {
-            "type": "#colorLiteral",
-            "named": false
-          },
-          {
-            "type": "#column",
-            "named": false
-          },
-          {
-            "type": "#dsohandle",
-            "named": false
-          },
-          {
-            "type": "#file",
-            "named": false
-          },
-          {
-            "type": "#fileID",
-            "named": false
-          },
-          {
-            "type": "#fileLiteral",
-            "named": false
-          },
-          {
-            "type": "#filePath",
-            "named": false
-          },
-          {
-            "type": "#function",
-            "named": false
-          },
-          {
-            "type": "#imageLiteral",
-            "named": false
-          },
-          {
-            "type": "#line",
-            "named": false
-          },
-          {
             "type": "%",
             "named": false
           },
@@ -16619,14 +15839,6 @@
           },
           {
             "type": "&",
-            "named": false
-          },
-          {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
             "named": false
           },
           {
@@ -16650,10 +15862,6 @@
             "named": false
           },
           {
-            "type": ",",
-            "named": false
-          },
-          {
             "type": "-",
             "named": false
           },
@@ -16671,10 +15879,6 @@
           },
           {
             "type": "/=",
-            "named": false
-          },
-          {
-            "type": ":",
             "named": false
           },
           {
@@ -16782,7 +15986,15 @@
             "named": true
           },
           {
+            "type": "diagnostic",
+            "named": true
+          },
+          {
             "type": "dictionary_literal",
+            "named": true
+          },
+          {
+            "type": "directive",
             "named": true
           },
           {
@@ -16830,6 +16042,10 @@
             "named": true
           },
           {
+            "type": "macro_invocation",
+            "named": true
+          },
+          {
             "type": "multi_line_string_literal",
             "named": true
           },
@@ -16859,6 +16075,10 @@
           },
           {
             "type": "open_start_range_expression",
+            "named": true
+          },
+          {
+            "type": "playground_literal",
             "named": true
           },
           {
@@ -16895,6 +16115,10 @@
           },
           {
             "type": "simple_identifier",
+            "named": true
+          },
+          {
+            "type": "special_literal",
             "named": true
           },
           {
@@ -16999,6 +16223,10 @@
           "named": true
         },
         {
+          "type": "suppressed_constraint",
+          "named": true
+        },
+        {
           "type": "tuple_type",
           "named": true
         },
@@ -17042,46 +16270,6 @@
             "named": false
           },
           {
-            "type": "#colorLiteral",
-            "named": false
-          },
-          {
-            "type": "#column",
-            "named": false
-          },
-          {
-            "type": "#dsohandle",
-            "named": false
-          },
-          {
-            "type": "#file",
-            "named": false
-          },
-          {
-            "type": "#fileID",
-            "named": false
-          },
-          {
-            "type": "#fileLiteral",
-            "named": false
-          },
-          {
-            "type": "#filePath",
-            "named": false
-          },
-          {
-            "type": "#function",
-            "named": false
-          },
-          {
-            "type": "#imageLiteral",
-            "named": false
-          },
-          {
-            "type": "#line",
-            "named": false
-          },
-          {
             "type": "%",
             "named": false
           },
@@ -17091,14 +16279,6 @@
           },
           {
             "type": "&",
-            "named": false
-          },
-          {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
             "named": false
           },
           {
@@ -17122,10 +16302,6 @@
             "named": false
           },
           {
-            "type": ",",
-            "named": false
-          },
-          {
             "type": "-",
             "named": false
           },
@@ -17143,10 +16319,6 @@
           },
           {
             "type": "/=",
-            "named": false
-          },
-          {
-            "type": ":",
             "named": false
           },
           {
@@ -17254,7 +16426,15 @@
             "named": true
           },
           {
+            "type": "diagnostic",
+            "named": true
+          },
+          {
             "type": "dictionary_literal",
+            "named": true
+          },
+          {
+            "type": "directive",
             "named": true
           },
           {
@@ -17306,6 +16486,10 @@
             "named": true
           },
           {
+            "type": "macro_invocation",
+            "named": true
+          },
+          {
             "type": "multi_line_string_literal",
             "named": true
           },
@@ -17335,6 +16519,10 @@
           },
           {
             "type": "open_start_range_expression",
+            "named": true
+          },
+          {
+            "type": "playground_literal",
             "named": true
           },
           {
@@ -17371,6 +16559,10 @@
           },
           {
             "type": "simple_identifier",
+            "named": true
+          },
+          {
+            "type": "special_literal",
             "named": true
           },
           {
@@ -17411,6 +16603,29 @@
           }
         ]
       }
+    }
+  },
+  {
+    "type": "macro_invocation",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "call_suffix",
+          "named": true
+        },
+        {
+          "type": "simple_identifier",
+          "named": true
+        },
+        {
+          "type": "type_parameters",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -17456,6 +16671,10 @@
         },
         {
           "type": "protocol_composition_type",
+          "named": true
+        },
+        {
+          "type": "suppressed_constraint",
           "named": true
         },
         {
@@ -17599,46 +16818,6 @@
             "named": false
           },
           {
-            "type": "#colorLiteral",
-            "named": false
-          },
-          {
-            "type": "#column",
-            "named": false
-          },
-          {
-            "type": "#dsohandle",
-            "named": false
-          },
-          {
-            "type": "#file",
-            "named": false
-          },
-          {
-            "type": "#fileID",
-            "named": false
-          },
-          {
-            "type": "#fileLiteral",
-            "named": false
-          },
-          {
-            "type": "#filePath",
-            "named": false
-          },
-          {
-            "type": "#function",
-            "named": false
-          },
-          {
-            "type": "#imageLiteral",
-            "named": false
-          },
-          {
-            "type": "#line",
-            "named": false
-          },
-          {
             "type": "%",
             "named": false
           },
@@ -17648,14 +16827,6 @@
           },
           {
             "type": "&",
-            "named": false
-          },
-          {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
             "named": false
           },
           {
@@ -17679,10 +16850,6 @@
             "named": false
           },
           {
-            "type": ",",
-            "named": false
-          },
-          {
             "type": "-",
             "named": false
           },
@@ -17700,10 +16867,6 @@
           },
           {
             "type": "/=",
-            "named": false
-          },
-          {
-            "type": ":",
             "named": false
           },
           {
@@ -17811,7 +16974,15 @@
             "named": true
           },
           {
+            "type": "diagnostic",
+            "named": true
+          },
+          {
             "type": "dictionary_literal",
+            "named": true
+          },
+          {
+            "type": "directive",
             "named": true
           },
           {
@@ -17859,6 +17030,10 @@
             "named": true
           },
           {
+            "type": "macro_invocation",
+            "named": true
+          },
+          {
             "type": "multi_line_string_literal",
             "named": true
           },
@@ -17888,6 +17063,10 @@
           },
           {
             "type": "open_start_range_expression",
+            "named": true
+          },
+          {
+            "type": "playground_literal",
             "named": true
           },
           {
@@ -17924,6 +17103,10 @@
           },
           {
             "type": "simple_identifier",
+            "named": true
+          },
+          {
+            "type": "special_literal",
             "named": true
           },
           {
@@ -17995,46 +17178,6 @@
             "named": false
           },
           {
-            "type": "#colorLiteral",
-            "named": false
-          },
-          {
-            "type": "#column",
-            "named": false
-          },
-          {
-            "type": "#dsohandle",
-            "named": false
-          },
-          {
-            "type": "#file",
-            "named": false
-          },
-          {
-            "type": "#fileID",
-            "named": false
-          },
-          {
-            "type": "#fileLiteral",
-            "named": false
-          },
-          {
-            "type": "#filePath",
-            "named": false
-          },
-          {
-            "type": "#function",
-            "named": false
-          },
-          {
-            "type": "#imageLiteral",
-            "named": false
-          },
-          {
-            "type": "#line",
-            "named": false
-          },
-          {
             "type": "%",
             "named": false
           },
@@ -18044,14 +17187,6 @@
           },
           {
             "type": "&",
-            "named": false
-          },
-          {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
             "named": false
           },
           {
@@ -18075,10 +17210,6 @@
             "named": false
           },
           {
-            "type": ",",
-            "named": false
-          },
-          {
             "type": "-",
             "named": false
           },
@@ -18096,10 +17227,6 @@
           },
           {
             "type": "/=",
-            "named": false
-          },
-          {
-            "type": ":",
             "named": false
           },
           {
@@ -18207,7 +17334,15 @@
             "named": true
           },
           {
+            "type": "diagnostic",
+            "named": true
+          },
+          {
             "type": "dictionary_literal",
+            "named": true
+          },
+          {
+            "type": "directive",
             "named": true
           },
           {
@@ -18255,6 +17390,10 @@
             "named": true
           },
           {
+            "type": "macro_invocation",
+            "named": true
+          },
+          {
             "type": "multi_line_string_literal",
             "named": true
           },
@@ -18284,6 +17423,10 @@
           },
           {
             "type": "open_start_range_expression",
+            "named": true
+          },
+          {
+            "type": "playground_literal",
             "named": true
           },
           {
@@ -18320,6 +17463,10 @@
           },
           {
             "type": "simple_identifier",
+            "named": true
+          },
+          {
+            "type": "special_literal",
             "named": true
           },
           {
@@ -18412,46 +17559,6 @@
             "named": false
           },
           {
-            "type": "#colorLiteral",
-            "named": false
-          },
-          {
-            "type": "#column",
-            "named": false
-          },
-          {
-            "type": "#dsohandle",
-            "named": false
-          },
-          {
-            "type": "#file",
-            "named": false
-          },
-          {
-            "type": "#fileID",
-            "named": false
-          },
-          {
-            "type": "#fileLiteral",
-            "named": false
-          },
-          {
-            "type": "#filePath",
-            "named": false
-          },
-          {
-            "type": "#function",
-            "named": false
-          },
-          {
-            "type": "#imageLiteral",
-            "named": false
-          },
-          {
-            "type": "#line",
-            "named": false
-          },
-          {
             "type": "%",
             "named": false
           },
@@ -18492,10 +17599,6 @@
             "named": false
           },
           {
-            "type": ",",
-            "named": false
-          },
-          {
             "type": "-",
             "named": false
           },
@@ -18513,10 +17616,6 @@
           },
           {
             "type": "/=",
-            "named": false
-          },
-          {
-            "type": ":",
             "named": false
           },
           {
@@ -18628,11 +17727,19 @@
             "named": true
           },
           {
+            "type": "diagnostic",
+            "named": true
+          },
+          {
             "type": "dictionary_literal",
             "named": true
           },
           {
             "type": "dictionary_type",
+            "named": true
+          },
+          {
+            "type": "directive",
             "named": true
           },
           {
@@ -18684,6 +17791,10 @@
             "named": true
           },
           {
+            "type": "macro_invocation",
+            "named": true
+          },
+          {
             "type": "multi_line_string_literal",
             "named": true
           },
@@ -18720,6 +17831,10 @@
             "named": true
           },
           {
+            "type": "playground_literal",
+            "named": true
+          },
+          {
             "type": "postfix_expression",
             "named": true
           },
@@ -18753,6 +17868,10 @@
           },
           {
             "type": "simple_identifier",
+            "named": true
+          },
+          {
+            "type": "special_literal",
             "named": true
           },
           {
@@ -18836,46 +17955,6 @@
             "named": false
           },
           {
-            "type": "#colorLiteral",
-            "named": false
-          },
-          {
-            "type": "#column",
-            "named": false
-          },
-          {
-            "type": "#dsohandle",
-            "named": false
-          },
-          {
-            "type": "#file",
-            "named": false
-          },
-          {
-            "type": "#fileID",
-            "named": false
-          },
-          {
-            "type": "#fileLiteral",
-            "named": false
-          },
-          {
-            "type": "#filePath",
-            "named": false
-          },
-          {
-            "type": "#function",
-            "named": false
-          },
-          {
-            "type": "#imageLiteral",
-            "named": false
-          },
-          {
-            "type": "#line",
-            "named": false
-          },
-          {
             "type": "%",
             "named": false
           },
@@ -18885,14 +17964,6 @@
           },
           {
             "type": "&",
-            "named": false
-          },
-          {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
             "named": false
           },
           {
@@ -18916,10 +17987,6 @@
             "named": false
           },
           {
-            "type": ",",
-            "named": false
-          },
-          {
             "type": "-",
             "named": false
           },
@@ -18937,10 +18004,6 @@
           },
           {
             "type": "/=",
-            "named": false
-          },
-          {
-            "type": ":",
             "named": false
           },
           {
@@ -19048,7 +18111,15 @@
             "named": true
           },
           {
+            "type": "diagnostic",
+            "named": true
+          },
+          {
             "type": "dictionary_literal",
+            "named": true
+          },
+          {
+            "type": "directive",
             "named": true
           },
           {
@@ -19096,6 +18167,10 @@
             "named": true
           },
           {
+            "type": "macro_invocation",
+            "named": true
+          },
+          {
             "type": "multi_line_string_literal",
             "named": true
           },
@@ -19125,6 +18200,10 @@
           },
           {
             "type": "open_start_range_expression",
+            "named": true
+          },
+          {
+            "type": "playground_literal",
             "named": true
           },
           {
@@ -19161,6 +18240,10 @@
           },
           {
             "type": "simple_identifier",
+            "named": true
+          },
+          {
+            "type": "special_literal",
             "named": true
           },
           {
@@ -19214,46 +18297,6 @@
             "named": false
           },
           {
-            "type": "#colorLiteral",
-            "named": false
-          },
-          {
-            "type": "#column",
-            "named": false
-          },
-          {
-            "type": "#dsohandle",
-            "named": false
-          },
-          {
-            "type": "#file",
-            "named": false
-          },
-          {
-            "type": "#fileID",
-            "named": false
-          },
-          {
-            "type": "#fileLiteral",
-            "named": false
-          },
-          {
-            "type": "#filePath",
-            "named": false
-          },
-          {
-            "type": "#function",
-            "named": false
-          },
-          {
-            "type": "#imageLiteral",
-            "named": false
-          },
-          {
-            "type": "#line",
-            "named": false
-          },
-          {
             "type": "%",
             "named": false
           },
@@ -19263,14 +18306,6 @@
           },
           {
             "type": "&",
-            "named": false
-          },
-          {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
             "named": false
           },
           {
@@ -19294,10 +18329,6 @@
             "named": false
           },
           {
-            "type": ",",
-            "named": false
-          },
-          {
             "type": "-",
             "named": false
           },
@@ -19315,10 +18346,6 @@
           },
           {
             "type": "/=",
-            "named": false
-          },
-          {
-            "type": ":",
             "named": false
           },
           {
@@ -19426,7 +18453,15 @@
             "named": true
           },
           {
+            "type": "diagnostic",
+            "named": true
+          },
+          {
             "type": "dictionary_literal",
+            "named": true
+          },
+          {
+            "type": "directive",
             "named": true
           },
           {
@@ -19474,6 +18509,10 @@
             "named": true
           },
           {
+            "type": "macro_invocation",
+            "named": true
+          },
+          {
             "type": "multi_line_string_literal",
             "named": true
           },
@@ -19503,6 +18542,10 @@
           },
           {
             "type": "open_start_range_expression",
+            "named": true
+          },
+          {
+            "type": "playground_literal",
             "named": true
           },
           {
@@ -19539,6 +18582,10 @@
           },
           {
             "type": "simple_identifier",
+            "named": true
+          },
+          {
+            "type": "special_literal",
             "named": true
           },
           {
@@ -19622,6 +18669,10 @@
           "named": true
         },
         {
+          "type": "suppressed_constraint",
+          "named": true
+        },
+        {
           "type": "tuple_type",
           "named": true
         },
@@ -19657,46 +18708,6 @@
             "named": false
           },
           {
-            "type": "#colorLiteral",
-            "named": false
-          },
-          {
-            "type": "#column",
-            "named": false
-          },
-          {
-            "type": "#dsohandle",
-            "named": false
-          },
-          {
-            "type": "#file",
-            "named": false
-          },
-          {
-            "type": "#fileID",
-            "named": false
-          },
-          {
-            "type": "#fileLiteral",
-            "named": false
-          },
-          {
-            "type": "#filePath",
-            "named": false
-          },
-          {
-            "type": "#function",
-            "named": false
-          },
-          {
-            "type": "#imageLiteral",
-            "named": false
-          },
-          {
-            "type": "#line",
-            "named": false
-          },
-          {
             "type": "%",
             "named": false
           },
@@ -19706,14 +18717,6 @@
           },
           {
             "type": "&",
-            "named": false
-          },
-          {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
             "named": false
           },
           {
@@ -19737,10 +18740,6 @@
             "named": false
           },
           {
-            "type": ",",
-            "named": false
-          },
-          {
             "type": "-",
             "named": false
           },
@@ -19758,10 +18757,6 @@
           },
           {
             "type": "/=",
-            "named": false
-          },
-          {
-            "type": ":",
             "named": false
           },
           {
@@ -19869,7 +18864,15 @@
             "named": true
           },
           {
+            "type": "diagnostic",
+            "named": true
+          },
+          {
             "type": "dictionary_literal",
+            "named": true
+          },
+          {
+            "type": "directive",
             "named": true
           },
           {
@@ -19917,6 +18920,10 @@
             "named": true
           },
           {
+            "type": "macro_invocation",
+            "named": true
+          },
+          {
             "type": "multi_line_string_literal",
             "named": true
           },
@@ -19946,6 +18953,10 @@
           },
           {
             "type": "open_start_range_expression",
+            "named": true
+          },
+          {
+            "type": "playground_literal",
             "named": true
           },
           {
@@ -19982,6 +18993,10 @@
           },
           {
             "type": "simple_identifier",
+            "named": true
+          },
+          {
+            "type": "special_literal",
             "named": true
           },
           {
@@ -20041,46 +19056,6 @@
             "named": false
           },
           {
-            "type": "#colorLiteral",
-            "named": false
-          },
-          {
-            "type": "#column",
-            "named": false
-          },
-          {
-            "type": "#dsohandle",
-            "named": false
-          },
-          {
-            "type": "#file",
-            "named": false
-          },
-          {
-            "type": "#fileID",
-            "named": false
-          },
-          {
-            "type": "#fileLiteral",
-            "named": false
-          },
-          {
-            "type": "#filePath",
-            "named": false
-          },
-          {
-            "type": "#function",
-            "named": false
-          },
-          {
-            "type": "#imageLiteral",
-            "named": false
-          },
-          {
-            "type": "#line",
-            "named": false
-          },
-          {
             "type": "%",
             "named": false
           },
@@ -20090,14 +19065,6 @@
           },
           {
             "type": "&",
-            "named": false
-          },
-          {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
             "named": false
           },
           {
@@ -20121,10 +19088,6 @@
             "named": false
           },
           {
-            "type": ",",
-            "named": false
-          },
-          {
             "type": "-",
             "named": false
           },
@@ -20142,10 +19105,6 @@
           },
           {
             "type": "/=",
-            "named": false
-          },
-          {
-            "type": ":",
             "named": false
           },
           {
@@ -20253,7 +19212,15 @@
             "named": true
           },
           {
+            "type": "diagnostic",
+            "named": true
+          },
+          {
             "type": "dictionary_literal",
+            "named": true
+          },
+          {
+            "type": "directive",
             "named": true
           },
           {
@@ -20301,6 +19268,10 @@
             "named": true
           },
           {
+            "type": "macro_invocation",
+            "named": true
+          },
+          {
             "type": "multi_line_string_literal",
             "named": true
           },
@@ -20330,6 +19301,10 @@
           },
           {
             "type": "open_start_range_expression",
+            "named": true
+          },
+          {
+            "type": "playground_literal",
             "named": true
           },
           {
@@ -20366,6 +19341,10 @@
           },
           {
             "type": "simple_identifier",
+            "named": true
+          },
+          {
+            "type": "special_literal",
             "named": true
           },
           {
@@ -20523,6 +19502,10 @@
             "named": true
           },
           {
+            "type": "suppressed_constraint",
+            "named": true
+          },
+          {
             "type": "tuple_type",
             "named": true
           },
@@ -20578,6 +19561,10 @@
           },
           {
             "type": "protocol_composition_type",
+            "named": true
+          },
+          {
+            "type": "suppressed_constraint",
             "named": true
           },
           {
@@ -20685,6 +19672,10 @@
             "named": true
           },
           {
+            "type": "suppressed_constraint",
+            "named": true
+          },
+          {
             "type": "tuple_type",
             "named": true
           },
@@ -20768,7 +19759,15 @@
           "named": true
         },
         {
+          "type": "diagnostic",
+          "named": true
+        },
+        {
           "type": "dictionary_literal",
+          "named": true
+        },
+        {
+          "type": "directive",
           "named": true
         },
         {
@@ -20816,6 +19815,10 @@
           "named": true
         },
         {
+          "type": "macro_invocation",
+          "named": true
+        },
+        {
           "type": "multi_line_string_literal",
           "named": true
         },
@@ -20845,6 +19848,10 @@
         },
         {
           "type": "pattern",
+          "named": true
+        },
+        {
+          "type": "playground_literal",
           "named": true
         },
         {
@@ -20881,6 +19888,10 @@
         },
         {
           "type": "simple_identifier",
+          "named": true
+        },
+        {
+          "type": "special_literal",
           "named": true
         },
         {
@@ -20931,6 +19942,237 @@
     }
   },
   {
+    "type": "playground_literal",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "additive_expression",
+          "named": true
+        },
+        {
+          "type": "array_literal",
+          "named": true
+        },
+        {
+          "type": "as_expression",
+          "named": true
+        },
+        {
+          "type": "assignment",
+          "named": true
+        },
+        {
+          "type": "await_expression",
+          "named": true
+        },
+        {
+          "type": "bang",
+          "named": true
+        },
+        {
+          "type": "bin_literal",
+          "named": true
+        },
+        {
+          "type": "bitwise_operation",
+          "named": true
+        },
+        {
+          "type": "boolean_literal",
+          "named": true
+        },
+        {
+          "type": "call_expression",
+          "named": true
+        },
+        {
+          "type": "check_expression",
+          "named": true
+        },
+        {
+          "type": "comparison_expression",
+          "named": true
+        },
+        {
+          "type": "conjunction_expression",
+          "named": true
+        },
+        {
+          "type": "constructor_expression",
+          "named": true
+        },
+        {
+          "type": "custom_operator",
+          "named": true
+        },
+        {
+          "type": "diagnostic",
+          "named": true
+        },
+        {
+          "type": "dictionary_literal",
+          "named": true
+        },
+        {
+          "type": "directive",
+          "named": true
+        },
+        {
+          "type": "disjunction_expression",
+          "named": true
+        },
+        {
+          "type": "equality_expression",
+          "named": true
+        },
+        {
+          "type": "fully_open_range",
+          "named": true
+        },
+        {
+          "type": "hex_literal",
+          "named": true
+        },
+        {
+          "type": "if_statement",
+          "named": true
+        },
+        {
+          "type": "infix_expression",
+          "named": true
+        },
+        {
+          "type": "integer_literal",
+          "named": true
+        },
+        {
+          "type": "key_path_expression",
+          "named": true
+        },
+        {
+          "type": "key_path_string_expression",
+          "named": true
+        },
+        {
+          "type": "lambda_literal",
+          "named": true
+        },
+        {
+          "type": "line_string_literal",
+          "named": true
+        },
+        {
+          "type": "macro_invocation",
+          "named": true
+        },
+        {
+          "type": "multi_line_string_literal",
+          "named": true
+        },
+        {
+          "type": "multiplicative_expression",
+          "named": true
+        },
+        {
+          "type": "navigation_expression",
+          "named": true
+        },
+        {
+          "type": "nil_coalescing_expression",
+          "named": true
+        },
+        {
+          "type": "oct_literal",
+          "named": true
+        },
+        {
+          "type": "open_end_range_expression",
+          "named": true
+        },
+        {
+          "type": "open_start_range_expression",
+          "named": true
+        },
+        {
+          "type": "playground_literal",
+          "named": true
+        },
+        {
+          "type": "postfix_expression",
+          "named": true
+        },
+        {
+          "type": "prefix_expression",
+          "named": true
+        },
+        {
+          "type": "range_expression",
+          "named": true
+        },
+        {
+          "type": "raw_string_literal",
+          "named": true
+        },
+        {
+          "type": "real_literal",
+          "named": true
+        },
+        {
+          "type": "regex_literal",
+          "named": true
+        },
+        {
+          "type": "selector_expression",
+          "named": true
+        },
+        {
+          "type": "self_expression",
+          "named": true
+        },
+        {
+          "type": "simple_identifier",
+          "named": true
+        },
+        {
+          "type": "special_literal",
+          "named": true
+        },
+        {
+          "type": "super_expression",
+          "named": true
+        },
+        {
+          "type": "switch_statement",
+          "named": true
+        },
+        {
+          "type": "ternary_expression",
+          "named": true
+        },
+        {
+          "type": "try_expression",
+          "named": true
+        },
+        {
+          "type": "tuple_expression",
+          "named": true
+        },
+        {
+          "type": "value_pack_expansion",
+          "named": true
+        },
+        {
+          "type": "value_parameter_pack",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "postfix_expression",
     "named": true,
     "fields": {
@@ -20965,46 +20207,6 @@
             "named": false
           },
           {
-            "type": "#colorLiteral",
-            "named": false
-          },
-          {
-            "type": "#column",
-            "named": false
-          },
-          {
-            "type": "#dsohandle",
-            "named": false
-          },
-          {
-            "type": "#file",
-            "named": false
-          },
-          {
-            "type": "#fileID",
-            "named": false
-          },
-          {
-            "type": "#fileLiteral",
-            "named": false
-          },
-          {
-            "type": "#filePath",
-            "named": false
-          },
-          {
-            "type": "#function",
-            "named": false
-          },
-          {
-            "type": "#imageLiteral",
-            "named": false
-          },
-          {
-            "type": "#line",
-            "named": false
-          },
-          {
             "type": "%",
             "named": false
           },
@@ -21014,14 +20216,6 @@
           },
           {
             "type": "&",
-            "named": false
-          },
-          {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
             "named": false
           },
           {
@@ -21045,10 +20239,6 @@
             "named": false
           },
           {
-            "type": ",",
-            "named": false
-          },
-          {
             "type": "-",
             "named": false
           },
@@ -21066,10 +20256,6 @@
           },
           {
             "type": "/=",
-            "named": false
-          },
-          {
-            "type": ":",
             "named": false
           },
           {
@@ -21177,7 +20363,15 @@
             "named": true
           },
           {
+            "type": "diagnostic",
+            "named": true
+          },
+          {
             "type": "dictionary_literal",
+            "named": true
+          },
+          {
+            "type": "directive",
             "named": true
           },
           {
@@ -21225,6 +20419,10 @@
             "named": true
           },
           {
+            "type": "macro_invocation",
+            "named": true
+          },
+          {
             "type": "multi_line_string_literal",
             "named": true
           },
@@ -21254,6 +20452,10 @@
           },
           {
             "type": "open_start_range_expression",
+            "named": true
+          },
+          {
+            "type": "playground_literal",
             "named": true
           },
           {
@@ -21290,6 +20492,10 @@
           },
           {
             "type": "simple_identifier",
+            "named": true
+          },
+          {
+            "type": "special_literal",
             "named": true
           },
           {
@@ -21444,46 +20650,6 @@
             "named": false
           },
           {
-            "type": "#colorLiteral",
-            "named": false
-          },
-          {
-            "type": "#column",
-            "named": false
-          },
-          {
-            "type": "#dsohandle",
-            "named": false
-          },
-          {
-            "type": "#file",
-            "named": false
-          },
-          {
-            "type": "#fileID",
-            "named": false
-          },
-          {
-            "type": "#fileLiteral",
-            "named": false
-          },
-          {
-            "type": "#filePath",
-            "named": false
-          },
-          {
-            "type": "#function",
-            "named": false
-          },
-          {
-            "type": "#imageLiteral",
-            "named": false
-          },
-          {
-            "type": "#line",
-            "named": false
-          },
-          {
             "type": "%",
             "named": false
           },
@@ -21493,14 +20659,6 @@
           },
           {
             "type": "&",
-            "named": false
-          },
-          {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
             "named": false
           },
           {
@@ -21524,10 +20682,6 @@
             "named": false
           },
           {
-            "type": ",",
-            "named": false
-          },
-          {
             "type": "-",
             "named": false
           },
@@ -21545,10 +20699,6 @@
           },
           {
             "type": "/=",
-            "named": false
-          },
-          {
-            "type": ":",
             "named": false
           },
           {
@@ -21660,7 +20810,15 @@
             "named": true
           },
           {
+            "type": "diagnostic",
+            "named": true
+          },
+          {
             "type": "dictionary_literal",
+            "named": true
+          },
+          {
+            "type": "directive",
             "named": true
           },
           {
@@ -21708,6 +20866,10 @@
             "named": true
           },
           {
+            "type": "macro_invocation",
+            "named": true
+          },
+          {
             "type": "multi_line_string_literal",
             "named": true
           },
@@ -21737,6 +20899,10 @@
           },
           {
             "type": "open_start_range_expression",
+            "named": true
+          },
+          {
+            "type": "playground_literal",
             "named": true
           },
           {
@@ -21773,6 +20939,10 @@
           },
           {
             "type": "simple_identifier",
+            "named": true
+          },
+          {
+            "type": "special_literal",
             "named": true
           },
           {
@@ -21857,46 +21027,6 @@
             "named": false
           },
           {
-            "type": "#colorLiteral",
-            "named": false
-          },
-          {
-            "type": "#column",
-            "named": false
-          },
-          {
-            "type": "#dsohandle",
-            "named": false
-          },
-          {
-            "type": "#file",
-            "named": false
-          },
-          {
-            "type": "#fileID",
-            "named": false
-          },
-          {
-            "type": "#fileLiteral",
-            "named": false
-          },
-          {
-            "type": "#filePath",
-            "named": false
-          },
-          {
-            "type": "#function",
-            "named": false
-          },
-          {
-            "type": "#imageLiteral",
-            "named": false
-          },
-          {
-            "type": "#line",
-            "named": false
-          },
-          {
             "type": "%",
             "named": false
           },
@@ -21906,14 +21036,6 @@
           },
           {
             "type": "&",
-            "named": false
-          },
-          {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
             "named": false
           },
           {
@@ -21937,10 +21059,6 @@
             "named": false
           },
           {
-            "type": ",",
-            "named": false
-          },
-          {
             "type": "-",
             "named": false
           },
@@ -21958,10 +21076,6 @@
           },
           {
             "type": "/=",
-            "named": false
-          },
-          {
-            "type": ":",
             "named": false
           },
           {
@@ -22069,7 +21183,15 @@
             "named": true
           },
           {
+            "type": "diagnostic",
+            "named": true
+          },
+          {
             "type": "dictionary_literal",
+            "named": true
+          },
+          {
+            "type": "directive",
             "named": true
           },
           {
@@ -22117,6 +21239,10 @@
             "named": true
           },
           {
+            "type": "macro_invocation",
+            "named": true
+          },
+          {
             "type": "multi_line_string_literal",
             "named": true
           },
@@ -22146,6 +21272,10 @@
           },
           {
             "type": "open_start_range_expression",
+            "named": true
+          },
+          {
+            "type": "playground_literal",
             "named": true
           },
           {
@@ -22182,6 +21312,10 @@
           },
           {
             "type": "simple_identifier",
+            "named": true
+          },
+          {
+            "type": "special_literal",
             "named": true
           },
           {
@@ -22362,6 +21496,10 @@
           "named": true
         },
         {
+          "type": "suppressed_constraint",
+          "named": true
+        },
+        {
           "type": "tuple_type",
           "named": true
         },
@@ -22459,46 +21597,6 @@
             "named": false
           },
           {
-            "type": "#colorLiteral",
-            "named": false
-          },
-          {
-            "type": "#column",
-            "named": false
-          },
-          {
-            "type": "#dsohandle",
-            "named": false
-          },
-          {
-            "type": "#file",
-            "named": false
-          },
-          {
-            "type": "#fileID",
-            "named": false
-          },
-          {
-            "type": "#fileLiteral",
-            "named": false
-          },
-          {
-            "type": "#filePath",
-            "named": false
-          },
-          {
-            "type": "#function",
-            "named": false
-          },
-          {
-            "type": "#imageLiteral",
-            "named": false
-          },
-          {
-            "type": "#line",
-            "named": false
-          },
-          {
             "type": "%",
             "named": false
           },
@@ -22508,14 +21606,6 @@
           },
           {
             "type": "&",
-            "named": false
-          },
-          {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
             "named": false
           },
           {
@@ -22539,10 +21629,6 @@
             "named": false
           },
           {
-            "type": ",",
-            "named": false
-          },
-          {
             "type": "-",
             "named": false
           },
@@ -22560,10 +21646,6 @@
           },
           {
             "type": "/=",
-            "named": false
-          },
-          {
-            "type": ":",
             "named": false
           },
           {
@@ -22671,7 +21753,15 @@
             "named": true
           },
           {
+            "type": "diagnostic",
+            "named": true
+          },
+          {
             "type": "dictionary_literal",
+            "named": true
+          },
+          {
+            "type": "directive",
             "named": true
           },
           {
@@ -22719,6 +21809,10 @@
             "named": true
           },
           {
+            "type": "macro_invocation",
+            "named": true
+          },
+          {
             "type": "multi_line_string_literal",
             "named": true
           },
@@ -22748,6 +21842,10 @@
           },
           {
             "type": "open_start_range_expression",
+            "named": true
+          },
+          {
+            "type": "playground_literal",
             "named": true
           },
           {
@@ -22784,6 +21882,10 @@
           },
           {
             "type": "simple_identifier",
+            "named": true
+          },
+          {
+            "type": "special_literal",
             "named": true
           },
           {
@@ -22973,6 +22075,10 @@
             "named": true
           },
           {
+            "type": "suppressed_constraint",
+            "named": true
+          },
+          {
             "type": "tuple_type",
             "named": true
           },
@@ -23036,6 +22142,10 @@
           },
           {
             "type": "protocol_composition_type",
+            "named": true
+          },
+          {
+            "type": "suppressed_constraint",
             "named": true
           },
           {
@@ -23170,46 +22280,6 @@
             "named": false
           },
           {
-            "type": "#colorLiteral",
-            "named": false
-          },
-          {
-            "type": "#column",
-            "named": false
-          },
-          {
-            "type": "#dsohandle",
-            "named": false
-          },
-          {
-            "type": "#file",
-            "named": false
-          },
-          {
-            "type": "#fileID",
-            "named": false
-          },
-          {
-            "type": "#fileLiteral",
-            "named": false
-          },
-          {
-            "type": "#filePath",
-            "named": false
-          },
-          {
-            "type": "#function",
-            "named": false
-          },
-          {
-            "type": "#imageLiteral",
-            "named": false
-          },
-          {
-            "type": "#line",
-            "named": false
-          },
-          {
             "type": "%",
             "named": false
           },
@@ -23219,14 +22289,6 @@
           },
           {
             "type": "&",
-            "named": false
-          },
-          {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
             "named": false
           },
           {
@@ -23250,10 +22312,6 @@
             "named": false
           },
           {
-            "type": ",",
-            "named": false
-          },
-          {
             "type": "-",
             "named": false
           },
@@ -23271,10 +22329,6 @@
           },
           {
             "type": "/=",
-            "named": false
-          },
-          {
-            "type": ":",
             "named": false
           },
           {
@@ -23382,7 +22436,15 @@
             "named": true
           },
           {
+            "type": "diagnostic",
+            "named": true
+          },
+          {
             "type": "dictionary_literal",
+            "named": true
+          },
+          {
+            "type": "directive",
             "named": true
           },
           {
@@ -23430,6 +22492,10 @@
             "named": true
           },
           {
+            "type": "macro_invocation",
+            "named": true
+          },
+          {
             "type": "multi_line_string_literal",
             "named": true
           },
@@ -23459,6 +22525,10 @@
           },
           {
             "type": "open_start_range_expression",
+            "named": true
+          },
+          {
+            "type": "playground_literal",
             "named": true
           },
           {
@@ -23495,6 +22565,10 @@
           },
           {
             "type": "simple_identifier",
+            "named": true
+          },
+          {
+            "type": "special_literal",
             "named": true
           },
           {
@@ -23562,46 +22636,6 @@
             "named": false
           },
           {
-            "type": "#colorLiteral",
-            "named": false
-          },
-          {
-            "type": "#column",
-            "named": false
-          },
-          {
-            "type": "#dsohandle",
-            "named": false
-          },
-          {
-            "type": "#file",
-            "named": false
-          },
-          {
-            "type": "#fileID",
-            "named": false
-          },
-          {
-            "type": "#fileLiteral",
-            "named": false
-          },
-          {
-            "type": "#filePath",
-            "named": false
-          },
-          {
-            "type": "#function",
-            "named": false
-          },
-          {
-            "type": "#imageLiteral",
-            "named": false
-          },
-          {
-            "type": "#line",
-            "named": false
-          },
-          {
             "type": "%",
             "named": false
           },
@@ -23611,14 +22645,6 @@
           },
           {
             "type": "&",
-            "named": false
-          },
-          {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
             "named": false
           },
           {
@@ -23642,10 +22668,6 @@
             "named": false
           },
           {
-            "type": ",",
-            "named": false
-          },
-          {
             "type": "-",
             "named": false
           },
@@ -23663,10 +22685,6 @@
           },
           {
             "type": "/=",
-            "named": false
-          },
-          {
-            "type": ":",
             "named": false
           },
           {
@@ -23774,7 +22792,15 @@
             "named": true
           },
           {
+            "type": "diagnostic",
+            "named": true
+          },
+          {
             "type": "dictionary_literal",
+            "named": true
+          },
+          {
+            "type": "directive",
             "named": true
           },
           {
@@ -23822,6 +22848,10 @@
             "named": true
           },
           {
+            "type": "macro_invocation",
+            "named": true
+          },
+          {
             "type": "multi_line_string_literal",
             "named": true
           },
@@ -23851,6 +22881,10 @@
           },
           {
             "type": "open_start_range_expression",
+            "named": true
+          },
+          {
+            "type": "playground_literal",
             "named": true
           },
           {
@@ -23887,6 +22921,10 @@
           },
           {
             "type": "simple_identifier",
+            "named": true
+          },
+          {
+            "type": "special_literal",
             "named": true
           },
           {
@@ -24027,46 +23065,6 @@
             "named": false
           },
           {
-            "type": "#colorLiteral",
-            "named": false
-          },
-          {
-            "type": "#column",
-            "named": false
-          },
-          {
-            "type": "#dsohandle",
-            "named": false
-          },
-          {
-            "type": "#file",
-            "named": false
-          },
-          {
-            "type": "#fileID",
-            "named": false
-          },
-          {
-            "type": "#fileLiteral",
-            "named": false
-          },
-          {
-            "type": "#filePath",
-            "named": false
-          },
-          {
-            "type": "#function",
-            "named": false
-          },
-          {
-            "type": "#imageLiteral",
-            "named": false
-          },
-          {
-            "type": "#line",
-            "named": false
-          },
-          {
             "type": "%",
             "named": false
           },
@@ -24263,11 +23261,19 @@
             "named": true
           },
           {
+            "type": "diagnostic",
+            "named": true
+          },
+          {
             "type": "dictionary_literal",
             "named": true
           },
           {
             "type": "dictionary_type",
+            "named": true
+          },
+          {
+            "type": "directive",
             "named": true
           },
           {
@@ -24327,6 +23333,10 @@
             "named": true
           },
           {
+            "type": "macro_invocation",
+            "named": true
+          },
+          {
             "type": "metatype",
             "named": true
           },
@@ -24375,6 +23385,10 @@
             "named": true
           },
           {
+            "type": "playground_literal",
+            "named": true
+          },
+          {
             "type": "postfix_expression",
             "named": true
           },
@@ -24415,7 +23429,15 @@
             "named": true
           },
           {
+            "type": "special_literal",
+            "named": true
+          },
+          {
             "type": "super_expression",
+            "named": true
+          },
+          {
+            "type": "suppressed_constraint",
             "named": true
           },
           {
@@ -24525,6 +23547,10 @@
             "named": true
           },
           {
+            "type": "suppressed_constraint",
+            "named": true
+          },
+          {
             "type": "tuple_type",
             "named": true
           },
@@ -24559,7 +23585,7 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": false,
       "types": [
         {
@@ -24623,7 +23649,15 @@
           "named": true
         },
         {
+          "type": "diagnostic",
+          "named": true
+        },
+        {
           "type": "dictionary_literal",
+          "named": true
+        },
+        {
+          "type": "directive",
           "named": true
         },
         {
@@ -24671,6 +23705,10 @@
           "named": true
         },
         {
+          "type": "macro_invocation",
+          "named": true
+        },
+        {
           "type": "multi_line_string_literal",
           "named": true
         },
@@ -24696,6 +23734,10 @@
         },
         {
           "type": "open_start_range_expression",
+          "named": true
+        },
+        {
+          "type": "playground_literal",
           "named": true
         },
         {
@@ -24732,6 +23774,10 @@
         },
         {
           "type": "simple_identifier",
+          "named": true
+        },
+        {
+          "type": "special_literal",
           "named": true
         },
         {
@@ -24872,7 +23918,15 @@
           "named": true
         },
         {
+          "type": "diagnostic",
+          "named": true
+        },
+        {
           "type": "dictionary_literal",
+          "named": true
+        },
+        {
+          "type": "directive",
           "named": true
         },
         {
@@ -24948,6 +24002,10 @@
           "named": true
         },
         {
+          "type": "macro_invocation",
+          "named": true
+        },
+        {
           "type": "multi_line_string_literal",
           "named": true
         },
@@ -24977,6 +24035,10 @@
         },
         {
           "type": "operator_declaration",
+          "named": true
+        },
+        {
+          "type": "playground_literal",
           "named": true
         },
         {
@@ -25036,6 +24098,10 @@
           "named": true
         },
         {
+          "type": "special_literal",
+          "named": true
+        },
+        {
           "type": "statement_label",
           "named": true
         },
@@ -25081,6 +24147,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "special_literal",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "statements",
@@ -25159,7 +24230,15 @@
           "named": true
         },
         {
+          "type": "diagnostic",
+          "named": true
+        },
+        {
           "type": "dictionary_literal",
+          "named": true
+        },
+        {
+          "type": "directive",
           "named": true
         },
         {
@@ -25223,6 +24302,10 @@
           "named": true
         },
         {
+          "type": "macro_invocation",
+          "named": true
+        },
+        {
           "type": "multi_line_string_literal",
           "named": true
         },
@@ -25248,6 +24331,10 @@
         },
         {
           "type": "open_start_range_expression",
+          "named": true
+        },
+        {
+          "type": "playground_literal",
           "named": true
         },
         {
@@ -25292,6 +24379,10 @@
         },
         {
           "type": "simple_identifier",
+          "named": true
+        },
+        {
+          "type": "special_literal",
           "named": true
         },
         {
@@ -25359,46 +24450,6 @@
             "named": false
           },
           {
-            "type": "#colorLiteral",
-            "named": false
-          },
-          {
-            "type": "#column",
-            "named": false
-          },
-          {
-            "type": "#dsohandle",
-            "named": false
-          },
-          {
-            "type": "#file",
-            "named": false
-          },
-          {
-            "type": "#fileID",
-            "named": false
-          },
-          {
-            "type": "#fileLiteral",
-            "named": false
-          },
-          {
-            "type": "#filePath",
-            "named": false
-          },
-          {
-            "type": "#function",
-            "named": false
-          },
-          {
-            "type": "#imageLiteral",
-            "named": false
-          },
-          {
-            "type": "#line",
-            "named": false
-          },
-          {
             "type": "%",
             "named": false
           },
@@ -25408,14 +24459,6 @@
           },
           {
             "type": "&",
-            "named": false
-          },
-          {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
             "named": false
           },
           {
@@ -25439,10 +24482,6 @@
             "named": false
           },
           {
-            "type": ",",
-            "named": false
-          },
-          {
             "type": "-",
             "named": false
           },
@@ -25460,10 +24499,6 @@
           },
           {
             "type": "/=",
-            "named": false
-          },
-          {
-            "type": ":",
             "named": false
           },
           {
@@ -25571,7 +24606,15 @@
             "named": true
           },
           {
+            "type": "diagnostic",
+            "named": true
+          },
+          {
             "type": "dictionary_literal",
+            "named": true
+          },
+          {
+            "type": "directive",
             "named": true
           },
           {
@@ -25619,6 +24662,10 @@
             "named": true
           },
           {
+            "type": "macro_invocation",
+            "named": true
+          },
+          {
             "type": "multi_line_string_literal",
             "named": true
           },
@@ -25648,6 +24695,10 @@
           },
           {
             "type": "open_start_range_expression",
+            "named": true
+          },
+          {
+            "type": "playground_literal",
             "named": true
           },
           {
@@ -25684,6 +24735,10 @@
           },
           {
             "type": "simple_identifier",
+            "named": true
+          },
+          {
+            "type": "special_literal",
             "named": true
           },
           {
@@ -25761,6 +24816,10 @@
             "named": true
           },
           {
+            "type": "suppressed_constraint",
+            "named": true
+          },
+          {
             "type": "tuple_type",
             "named": true
           },
@@ -25816,6 +24875,10 @@
           },
           {
             "type": "protocol_composition_type",
+            "named": true
+          },
+          {
+            "type": "suppressed_constraint",
             "named": true
           },
           {
@@ -25876,6 +24939,22 @@
     "type": "super_expression",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "suppressed_constraint",
+    "named": true,
+    "fields": {
+      "suppressed": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "type_identifier",
+            "named": true
+          }
+        ]
+      }
+    }
   },
   {
     "type": "switch_entry",
@@ -25950,7 +25029,15 @@
           "named": true
         },
         {
+          "type": "diagnostic",
+          "named": true
+        },
+        {
           "type": "dictionary_literal",
+          "named": true
+        },
+        {
+          "type": "directive",
           "named": true
         },
         {
@@ -25998,6 +25085,10 @@
           "named": true
         },
         {
+          "type": "macro_invocation",
+          "named": true
+        },
+        {
           "type": "modifiers",
           "named": true
         },
@@ -26027,6 +25118,10 @@
         },
         {
           "type": "open_start_range_expression",
+          "named": true
+        },
+        {
+          "type": "playground_literal",
           "named": true
         },
         {
@@ -26063,6 +25158,10 @@
         },
         {
           "type": "simple_identifier",
+          "named": true
+        },
+        {
+          "type": "special_literal",
           "named": true
         },
         {
@@ -26140,46 +25239,6 @@
             "named": false
           },
           {
-            "type": "#colorLiteral",
-            "named": false
-          },
-          {
-            "type": "#column",
-            "named": false
-          },
-          {
-            "type": "#dsohandle",
-            "named": false
-          },
-          {
-            "type": "#file",
-            "named": false
-          },
-          {
-            "type": "#fileID",
-            "named": false
-          },
-          {
-            "type": "#fileLiteral",
-            "named": false
-          },
-          {
-            "type": "#filePath",
-            "named": false
-          },
-          {
-            "type": "#function",
-            "named": false
-          },
-          {
-            "type": "#imageLiteral",
-            "named": false
-          },
-          {
-            "type": "#line",
-            "named": false
-          },
-          {
             "type": "%",
             "named": false
           },
@@ -26189,14 +25248,6 @@
           },
           {
             "type": "&",
-            "named": false
-          },
-          {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
             "named": false
           },
           {
@@ -26220,10 +25271,6 @@
             "named": false
           },
           {
-            "type": ",",
-            "named": false
-          },
-          {
             "type": "-",
             "named": false
           },
@@ -26241,10 +25288,6 @@
           },
           {
             "type": "/=",
-            "named": false
-          },
-          {
-            "type": ":",
             "named": false
           },
           {
@@ -26352,7 +25395,15 @@
             "named": true
           },
           {
+            "type": "diagnostic",
+            "named": true
+          },
+          {
             "type": "dictionary_literal",
+            "named": true
+          },
+          {
+            "type": "directive",
             "named": true
           },
           {
@@ -26400,6 +25451,10 @@
             "named": true
           },
           {
+            "type": "macro_invocation",
+            "named": true
+          },
+          {
             "type": "multi_line_string_literal",
             "named": true
           },
@@ -26429,6 +25484,10 @@
           },
           {
             "type": "open_start_range_expression",
+            "named": true
+          },
+          {
+            "type": "playground_literal",
             "named": true
           },
           {
@@ -26465,6 +25524,10 @@
           },
           {
             "type": "simple_identifier",
+            "named": true
+          },
+          {
+            "type": "special_literal",
             "named": true
           },
           {
@@ -26534,46 +25597,6 @@
             "named": false
           },
           {
-            "type": "#colorLiteral",
-            "named": false
-          },
-          {
-            "type": "#column",
-            "named": false
-          },
-          {
-            "type": "#dsohandle",
-            "named": false
-          },
-          {
-            "type": "#file",
-            "named": false
-          },
-          {
-            "type": "#fileID",
-            "named": false
-          },
-          {
-            "type": "#fileLiteral",
-            "named": false
-          },
-          {
-            "type": "#filePath",
-            "named": false
-          },
-          {
-            "type": "#function",
-            "named": false
-          },
-          {
-            "type": "#imageLiteral",
-            "named": false
-          },
-          {
-            "type": "#line",
-            "named": false
-          },
-          {
             "type": "%",
             "named": false
           },
@@ -26583,14 +25606,6 @@
           },
           {
             "type": "&",
-            "named": false
-          },
-          {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
             "named": false
           },
           {
@@ -26614,10 +25629,6 @@
             "named": false
           },
           {
-            "type": ",",
-            "named": false
-          },
-          {
             "type": "-",
             "named": false
           },
@@ -26635,10 +25646,6 @@
           },
           {
             "type": "/=",
-            "named": false
-          },
-          {
-            "type": ":",
             "named": false
           },
           {
@@ -26746,7 +25753,15 @@
             "named": true
           },
           {
+            "type": "diagnostic",
+            "named": true
+          },
+          {
             "type": "dictionary_literal",
+            "named": true
+          },
+          {
+            "type": "directive",
             "named": true
           },
           {
@@ -26794,6 +25809,10 @@
             "named": true
           },
           {
+            "type": "macro_invocation",
+            "named": true
+          },
+          {
             "type": "multi_line_string_literal",
             "named": true
           },
@@ -26823,6 +25842,10 @@
           },
           {
             "type": "open_start_range_expression",
+            "named": true
+          },
+          {
+            "type": "playground_literal",
             "named": true
           },
           {
@@ -26859,6 +25882,10 @@
           },
           {
             "type": "simple_identifier",
+            "named": true
+          },
+          {
+            "type": "special_literal",
             "named": true
           },
           {
@@ -26912,46 +25939,6 @@
             "named": false
           },
           {
-            "type": "#colorLiteral",
-            "named": false
-          },
-          {
-            "type": "#column",
-            "named": false
-          },
-          {
-            "type": "#dsohandle",
-            "named": false
-          },
-          {
-            "type": "#file",
-            "named": false
-          },
-          {
-            "type": "#fileID",
-            "named": false
-          },
-          {
-            "type": "#fileLiteral",
-            "named": false
-          },
-          {
-            "type": "#filePath",
-            "named": false
-          },
-          {
-            "type": "#function",
-            "named": false
-          },
-          {
-            "type": "#imageLiteral",
-            "named": false
-          },
-          {
-            "type": "#line",
-            "named": false
-          },
-          {
             "type": "%",
             "named": false
           },
@@ -26961,14 +25948,6 @@
           },
           {
             "type": "&",
-            "named": false
-          },
-          {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
             "named": false
           },
           {
@@ -26992,10 +25971,6 @@
             "named": false
           },
           {
-            "type": ",",
-            "named": false
-          },
-          {
             "type": "-",
             "named": false
           },
@@ -27013,10 +25988,6 @@
           },
           {
             "type": "/=",
-            "named": false
-          },
-          {
-            "type": ":",
             "named": false
           },
           {
@@ -27124,7 +26095,15 @@
             "named": true
           },
           {
+            "type": "diagnostic",
+            "named": true
+          },
+          {
             "type": "dictionary_literal",
+            "named": true
+          },
+          {
+            "type": "directive",
             "named": true
           },
           {
@@ -27172,6 +26151,10 @@
             "named": true
           },
           {
+            "type": "macro_invocation",
+            "named": true
+          },
+          {
             "type": "multi_line_string_literal",
             "named": true
           },
@@ -27201,6 +26184,10 @@
           },
           {
             "type": "open_start_range_expression",
+            "named": true
+          },
+          {
+            "type": "playground_literal",
             "named": true
           },
           {
@@ -27237,6 +26224,10 @@
           },
           {
             "type": "simple_identifier",
+            "named": true
+          },
+          {
+            "type": "special_literal",
             "named": true
           },
           {
@@ -27290,46 +26281,6 @@
             "named": false
           },
           {
-            "type": "#colorLiteral",
-            "named": false
-          },
-          {
-            "type": "#column",
-            "named": false
-          },
-          {
-            "type": "#dsohandle",
-            "named": false
-          },
-          {
-            "type": "#file",
-            "named": false
-          },
-          {
-            "type": "#fileID",
-            "named": false
-          },
-          {
-            "type": "#fileLiteral",
-            "named": false
-          },
-          {
-            "type": "#filePath",
-            "named": false
-          },
-          {
-            "type": "#function",
-            "named": false
-          },
-          {
-            "type": "#imageLiteral",
-            "named": false
-          },
-          {
-            "type": "#line",
-            "named": false
-          },
-          {
             "type": "%",
             "named": false
           },
@@ -27339,14 +26290,6 @@
           },
           {
             "type": "&",
-            "named": false
-          },
-          {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
             "named": false
           },
           {
@@ -27370,10 +26313,6 @@
             "named": false
           },
           {
-            "type": ",",
-            "named": false
-          },
-          {
             "type": "-",
             "named": false
           },
@@ -27391,10 +26330,6 @@
           },
           {
             "type": "/=",
-            "named": false
-          },
-          {
-            "type": ":",
             "named": false
           },
           {
@@ -27502,7 +26437,15 @@
             "named": true
           },
           {
+            "type": "diagnostic",
+            "named": true
+          },
+          {
             "type": "dictionary_literal",
+            "named": true
+          },
+          {
+            "type": "directive",
             "named": true
           },
           {
@@ -27550,6 +26493,10 @@
             "named": true
           },
           {
+            "type": "macro_invocation",
+            "named": true
+          },
+          {
             "type": "multi_line_string_literal",
             "named": true
           },
@@ -27579,6 +26526,10 @@
           },
           {
             "type": "open_start_range_expression",
+            "named": true
+          },
+          {
+            "type": "playground_literal",
             "named": true
           },
           {
@@ -27615,6 +26566,10 @@
           },
           {
             "type": "simple_identifier",
+            "named": true
+          },
+          {
+            "type": "special_literal",
             "named": true
           },
           {
@@ -27679,46 +26634,6 @@
             "named": false
           },
           {
-            "type": "#colorLiteral",
-            "named": false
-          },
-          {
-            "type": "#column",
-            "named": false
-          },
-          {
-            "type": "#dsohandle",
-            "named": false
-          },
-          {
-            "type": "#file",
-            "named": false
-          },
-          {
-            "type": "#fileID",
-            "named": false
-          },
-          {
-            "type": "#fileLiteral",
-            "named": false
-          },
-          {
-            "type": "#filePath",
-            "named": false
-          },
-          {
-            "type": "#function",
-            "named": false
-          },
-          {
-            "type": "#imageLiteral",
-            "named": false
-          },
-          {
-            "type": "#line",
-            "named": false
-          },
-          {
             "type": "%",
             "named": false
           },
@@ -27728,14 +26643,6 @@
           },
           {
             "type": "&",
-            "named": false
-          },
-          {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
             "named": false
           },
           {
@@ -27759,10 +26666,6 @@
             "named": false
           },
           {
-            "type": ",",
-            "named": false
-          },
-          {
             "type": "-",
             "named": false
           },
@@ -27780,10 +26683,6 @@
           },
           {
             "type": "/=",
-            "named": false
-          },
-          {
-            "type": ":",
             "named": false
           },
           {
@@ -27891,7 +26790,15 @@
             "named": true
           },
           {
+            "type": "diagnostic",
+            "named": true
+          },
+          {
             "type": "dictionary_literal",
+            "named": true
+          },
+          {
+            "type": "directive",
             "named": true
           },
           {
@@ -27939,6 +26846,10 @@
             "named": true
           },
           {
+            "type": "macro_invocation",
+            "named": true
+          },
+          {
             "type": "multi_line_string_literal",
             "named": true
           },
@@ -27968,6 +26879,10 @@
           },
           {
             "type": "open_start_range_expression",
+            "named": true
+          },
+          {
+            "type": "playground_literal",
             "named": true
           },
           {
@@ -28004,6 +26919,10 @@
           },
           {
             "type": "simple_identifier",
+            "named": true
+          },
+          {
+            "type": "special_literal",
             "named": true
           },
           {
@@ -28088,46 +27007,6 @@
             "named": false
           },
           {
-            "type": "#colorLiteral",
-            "named": false
-          },
-          {
-            "type": "#column",
-            "named": false
-          },
-          {
-            "type": "#dsohandle",
-            "named": false
-          },
-          {
-            "type": "#file",
-            "named": false
-          },
-          {
-            "type": "#fileID",
-            "named": false
-          },
-          {
-            "type": "#fileLiteral",
-            "named": false
-          },
-          {
-            "type": "#filePath",
-            "named": false
-          },
-          {
-            "type": "#function",
-            "named": false
-          },
-          {
-            "type": "#imageLiteral",
-            "named": false
-          },
-          {
-            "type": "#line",
-            "named": false
-          },
-          {
             "type": "%",
             "named": false
           },
@@ -28137,14 +27016,6 @@
           },
           {
             "type": "&",
-            "named": false
-          },
-          {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
             "named": false
           },
           {
@@ -28168,10 +27039,6 @@
             "named": false
           },
           {
-            "type": ",",
-            "named": false
-          },
-          {
             "type": "-",
             "named": false
           },
@@ -28189,10 +27056,6 @@
           },
           {
             "type": "/=",
-            "named": false
-          },
-          {
-            "type": ":",
             "named": false
           },
           {
@@ -28300,7 +27163,15 @@
             "named": true
           },
           {
+            "type": "diagnostic",
+            "named": true
+          },
+          {
             "type": "dictionary_literal",
+            "named": true
+          },
+          {
+            "type": "directive",
             "named": true
           },
           {
@@ -28348,6 +27219,10 @@
             "named": true
           },
           {
+            "type": "macro_invocation",
+            "named": true
+          },
+          {
             "type": "multi_line_string_literal",
             "named": true
           },
@@ -28377,6 +27252,10 @@
           },
           {
             "type": "open_start_range_expression",
+            "named": true
+          },
+          {
+            "type": "playground_literal",
             "named": true
           },
           {
@@ -28413,6 +27292,10 @@
           },
           {
             "type": "simple_identifier",
+            "named": true
+          },
+          {
+            "type": "special_literal",
             "named": true
           },
           {
@@ -28544,6 +27427,10 @@
             "named": true
           },
           {
+            "type": "suppressed_constraint",
+            "named": true
+          },
+          {
             "type": "tuple_type",
             "named": true
           },
@@ -28595,6 +27482,10 @@
           },
           {
             "type": "protocol_composition_type",
+            "named": true
+          },
+          {
+            "type": "suppressed_constraint",
             "named": true
           },
           {
@@ -28676,6 +27567,10 @@
             "named": true
           },
           {
+            "type": "suppressed_constraint",
+            "named": true
+          },
+          {
             "type": "tuple_type",
             "named": true
           },
@@ -28731,6 +27626,10 @@
           },
           {
             "type": "protocol_composition_type",
+            "named": true
+          },
+          {
+            "type": "suppressed_constraint",
             "named": true
           },
           {
@@ -28795,6 +27694,10 @@
           },
           {
             "type": "protocol_composition_type",
+            "named": true
+          },
+          {
+            "type": "suppressed_constraint",
             "named": true
           },
           {
@@ -28926,6 +27829,10 @@
           "named": true
         },
         {
+          "type": "suppressed_constraint",
+          "named": true
+        },
+        {
           "type": "tuple_type",
           "named": true
         },
@@ -28982,6 +27889,10 @@
           },
           {
             "type": "protocol_composition_type",
+            "named": true
+          },
+          {
+            "type": "suppressed_constraint",
             "named": true
           },
           {
@@ -29082,6 +27993,10 @@
           "named": true
         },
         {
+          "type": "suppressed_constraint",
+          "named": true
+        },
+        {
           "type": "tuple_type",
           "named": true
         },
@@ -29160,6 +28075,10 @@
             "named": true
           },
           {
+            "type": "suppressed_constraint",
+            "named": true
+          },
+          {
             "type": "tuple_type",
             "named": true
           },
@@ -29215,6 +28134,10 @@
           },
           {
             "type": "protocol_composition_type",
+            "named": true
+          },
+          {
+            "type": "suppressed_constraint",
             "named": true
           },
           {
@@ -29327,46 +28250,6 @@
             "named": false
           },
           {
-            "type": "#colorLiteral",
-            "named": false
-          },
-          {
-            "type": "#column",
-            "named": false
-          },
-          {
-            "type": "#dsohandle",
-            "named": false
-          },
-          {
-            "type": "#file",
-            "named": false
-          },
-          {
-            "type": "#fileID",
-            "named": false
-          },
-          {
-            "type": "#fileLiteral",
-            "named": false
-          },
-          {
-            "type": "#filePath",
-            "named": false
-          },
-          {
-            "type": "#function",
-            "named": false
-          },
-          {
-            "type": "#imageLiteral",
-            "named": false
-          },
-          {
-            "type": "#line",
-            "named": false
-          },
-          {
             "type": "%",
             "named": false
           },
@@ -29376,14 +28259,6 @@
           },
           {
             "type": "&",
-            "named": false
-          },
-          {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
             "named": false
           },
           {
@@ -29407,10 +28282,6 @@
             "named": false
           },
           {
-            "type": ",",
-            "named": false
-          },
-          {
             "type": "-",
             "named": false
           },
@@ -29428,10 +28299,6 @@
           },
           {
             "type": "/=",
-            "named": false
-          },
-          {
-            "type": ":",
             "named": false
           },
           {
@@ -29539,7 +28406,15 @@
             "named": true
           },
           {
+            "type": "diagnostic",
+            "named": true
+          },
+          {
             "type": "dictionary_literal",
+            "named": true
+          },
+          {
+            "type": "directive",
             "named": true
           },
           {
@@ -29587,6 +28462,10 @@
             "named": true
           },
           {
+            "type": "macro_invocation",
+            "named": true
+          },
+          {
             "type": "multi_line_string_literal",
             "named": true
           },
@@ -29616,6 +28495,10 @@
           },
           {
             "type": "open_start_range_expression",
+            "named": true
+          },
+          {
+            "type": "playground_literal",
             "named": true
           },
           {
@@ -29652,6 +28535,10 @@
           },
           {
             "type": "simple_identifier",
+            "named": true
+          },
+          {
+            "type": "special_literal",
             "named": true
           },
           {
@@ -29759,7 +28646,7 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": false,
       "types": [
         {
@@ -29823,7 +28710,15 @@
           "named": true
         },
         {
+          "type": "diagnostic",
+          "named": true
+        },
+        {
           "type": "dictionary_literal",
+          "named": true
+        },
+        {
+          "type": "directive",
           "named": true
         },
         {
@@ -29871,6 +28766,10 @@
           "named": true
         },
         {
+          "type": "macro_invocation",
+          "named": true
+        },
+        {
           "type": "multi_line_string_literal",
           "named": true
         },
@@ -29896,6 +28795,10 @@
         },
         {
           "type": "open_start_range_expression",
+          "named": true
+        },
+        {
+          "type": "playground_literal",
           "named": true
         },
         {
@@ -29932,6 +28835,10 @@
         },
         {
           "type": "simple_identifier",
+          "named": true
+        },
+        {
+          "type": "special_literal",
           "named": true
         },
         {
@@ -29970,7 +28877,7 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": false,
       "types": [
         {
@@ -30034,7 +28941,15 @@
           "named": true
         },
         {
+          "type": "diagnostic",
+          "named": true
+        },
+        {
           "type": "dictionary_literal",
+          "named": true
+        },
+        {
+          "type": "directive",
           "named": true
         },
         {
@@ -30082,6 +28997,10 @@
           "named": true
         },
         {
+          "type": "macro_invocation",
+          "named": true
+        },
+        {
           "type": "multi_line_string_literal",
           "named": true
         },
@@ -30107,6 +29026,10 @@
         },
         {
           "type": "open_start_range_expression",
+          "named": true
+        },
+        {
+          "type": "playground_literal",
           "named": true
         },
         {
@@ -30143,6 +29066,10 @@
         },
         {
           "type": "simple_identifier",
+          "named": true
+        },
+        {
+          "type": "special_literal",
           "named": true
         },
         {
@@ -30250,7 +29177,15 @@
           "named": true
         },
         {
+          "type": "diagnostic",
+          "named": true
+        },
+        {
           "type": "dictionary_literal",
+          "named": true
+        },
+        {
+          "type": "directive",
           "named": true
         },
         {
@@ -30298,6 +29233,10 @@
           "named": true
         },
         {
+          "type": "macro_invocation",
+          "named": true
+        },
+        {
           "type": "multi_line_string_literal",
           "named": true
         },
@@ -30323,6 +29262,10 @@
         },
         {
           "type": "open_start_range_expression",
+          "named": true
+        },
+        {
+          "type": "playground_literal",
           "named": true
         },
         {
@@ -30359,6 +29302,10 @@
         },
         {
           "type": "simple_identifier",
+          "named": true
+        },
+        {
+          "type": "special_literal",
           "named": true
         },
         {
@@ -30420,46 +29367,6 @@
           },
           {
             "type": "!==",
-            "named": false
-          },
-          {
-            "type": "#colorLiteral",
-            "named": false
-          },
-          {
-            "type": "#column",
-            "named": false
-          },
-          {
-            "type": "#dsohandle",
-            "named": false
-          },
-          {
-            "type": "#file",
-            "named": false
-          },
-          {
-            "type": "#fileID",
-            "named": false
-          },
-          {
-            "type": "#fileLiteral",
-            "named": false
-          },
-          {
-            "type": "#filePath",
-            "named": false
-          },
-          {
-            "type": "#function",
-            "named": false
-          },
-          {
-            "type": "#imageLiteral",
-            "named": false
-          },
-          {
-            "type": "#line",
             "named": false
           },
           {
@@ -30659,11 +29566,19 @@
             "named": true
           },
           {
+            "type": "diagnostic",
+            "named": true
+          },
+          {
             "type": "dictionary_literal",
             "named": true
           },
           {
             "type": "dictionary_type",
+            "named": true
+          },
+          {
+            "type": "directive",
             "named": true
           },
           {
@@ -30723,6 +29638,10 @@
             "named": true
           },
           {
+            "type": "macro_invocation",
+            "named": true
+          },
+          {
             "type": "metatype",
             "named": true
           },
@@ -30771,6 +29690,10 @@
             "named": true
           },
           {
+            "type": "playground_literal",
+            "named": true
+          },
+          {
             "type": "postfix_expression",
             "named": true
           },
@@ -30811,7 +29734,15 @@
             "named": true
           },
           {
+            "type": "special_literal",
+            "named": true
+          },
+          {
             "type": "super_expression",
+            "named": true
+          },
+          {
+            "type": "suppressed_constraint",
             "named": true
           },
           {
@@ -30921,6 +29852,10 @@
             "named": true
           },
           {
+            "type": "suppressed_constraint",
+            "named": true
+          },
+          {
             "type": "tuple_type",
             "named": true
           },
@@ -31013,67 +29948,23 @@
     "named": false
   },
   {
-    "type": "#!",
+    "type": "#",
     "named": false
   },
   {
-    "type": "#available",
+    "type": "#else",
     "named": false
   },
   {
-    "type": "#colorLiteral",
+    "type": "#elseif",
     "named": false
   },
   {
-    "type": "#column",
+    "type": "#endif",
     "named": false
   },
   {
-    "type": "#dsohandle",
-    "named": false
-  },
-  {
-    "type": "#externalMacro",
-    "named": false
-  },
-  {
-    "type": "#file",
-    "named": false
-  },
-  {
-    "type": "#fileID",
-    "named": false
-  },
-  {
-    "type": "#fileLiteral",
-    "named": false
-  },
-  {
-    "type": "#filePath",
-    "named": false
-  },
-  {
-    "type": "#function",
-    "named": false
-  },
-  {
-    "type": "#imageLiteral",
-    "named": false
-  },
-  {
-    "type": "#keyPath",
-    "named": false
-  },
-  {
-    "type": "#line",
-    "named": false
-  },
-  {
-    "type": "#selector",
-    "named": false
-  },
-  {
-    "type": "#unavailable",
+    "type": "#if",
     "named": false
   },
   {
@@ -31273,6 +30164,10 @@
     "named": false
   },
   {
+    "type": "arch",
+    "named": false
+  },
+  {
     "type": "as",
     "named": false
   },
@@ -31293,6 +30188,10 @@
     "named": false
   },
   {
+    "type": "available",
+    "named": false
+  },
+  {
     "type": "await",
     "named": false
   },
@@ -31309,6 +30208,10 @@
     "named": false
   },
   {
+    "type": "canImport",
+    "named": false
+  },
+  {
     "type": "case",
     "named": false
   },
@@ -31321,8 +30224,20 @@
     "named": false
   },
   {
+    "type": "colorLiteral",
+    "named": false
+  },
+  {
+    "type": "column",
+    "named": false
+  },
+  {
     "type": "comment",
     "named": true
+  },
+  {
+    "type": "compiler",
+    "named": false
   },
   {
     "type": "consuming",
@@ -31349,16 +30264,8 @@
     "named": false
   },
   {
-    "type": "diagnostic",
-    "named": true
-  },
-  {
     "type": "didSet",
     "named": false
-  },
-  {
-    "type": "directive",
-    "named": true
   },
   {
     "type": "distributed",
@@ -31366,6 +30273,10 @@
   },
   {
     "type": "do",
+    "named": false
+  },
+  {
+    "type": "dsohandle",
     "named": false
   },
   {
@@ -31389,11 +30300,31 @@
     "named": false
   },
   {
+    "type": "externalMacro",
+    "named": false
+  },
+  {
     "type": "fallthrough",
     "named": false
   },
   {
     "type": "false",
+    "named": false
+  },
+  {
+    "type": "file",
+    "named": false
+  },
+  {
+    "type": "fileID",
+    "named": false
+  },
+  {
+    "type": "fileLiteral",
+    "named": false
+  },
+  {
+    "type": "filePath",
     "named": false
   },
   {
@@ -31410,6 +30341,10 @@
   },
   {
     "type": "func",
+    "named": false
+  },
+  {
+    "type": "function",
     "named": false
   },
   {
@@ -31430,6 +30365,10 @@
   },
   {
     "type": "if",
+    "named": false
+  },
+  {
+    "type": "imageLiteral",
     "named": false
   },
   {
@@ -31469,11 +30408,19 @@
     "named": false
   },
   {
+    "type": "keyPath",
+    "named": false
+  },
+  {
     "type": "lazy",
     "named": false
   },
   {
     "type": "let",
+    "named": false
+  },
+  {
+    "type": "line",
     "named": false
   },
   {
@@ -31514,6 +30461,10 @@
   },
   {
     "type": "optional",
+    "named": false
+  },
+  {
+    "type": "os",
     "named": false
   },
   {
@@ -31593,6 +30544,10 @@
     "named": false
   },
   {
+    "type": "selector",
+    "named": false
+  },
+  {
     "type": "self",
     "named": false
   },
@@ -31633,7 +30588,15 @@
     "named": false
   },
   {
+    "type": "swift",
+    "named": false
+  },
+  {
     "type": "switch",
+    "named": false
+  },
+  {
+    "type": "targetEnvironment",
     "named": false
   },
   {
@@ -31662,6 +30625,10 @@
   },
   {
     "type": "u",
+    "named": false
+  },
+  {
+    "type": "unavailable",
     "named": false
   },
   {

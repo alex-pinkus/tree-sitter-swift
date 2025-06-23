@@ -1,11 +1,11 @@
 import Cocoa
-// ^ include
+// ^ keyword.import
 import GRDB
 
 @NSApplicationMain
-// ^ type
+// ^ attribute
 class AppDelegate: NSObject, NSApplicationDelegate {
-// ^ keyword
+// ^ keyword.type
 //    ^ type
 //               ^ punctuation.delimiter
 //                 ^ type
@@ -13,17 +13,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 //                                                 ^ punctuation.bracket
     func applicationDidFinishLaunching(_ aNotification: Notification) {
 //  ^ keyword.function
-//       ^ method
-//                                     ^ parameter
-//                                       ^ parameter
+//       ^ function.method
+//                                     ^ variable.parameter
+//                                       ^ variable.parameter
         _ = try! DatabaseQueue()
 //        ^ operator
-//          ^ keyword
-//             ^ operator
-//               ^ function.call
+//          ^ keyword.exception
         _ = FTS5()
         _ = sqlite3_preupdate_new(nil, 0, nil)
-//                                ^ variable.builtin
+//                                ^ constant.builtin
 //                                     ^ number
     }
 //  ^ punctuation.bracket

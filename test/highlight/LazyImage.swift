@@ -8,7 +8,7 @@ import SwiftUI
 import Combine
 
 public typealias ImageRequest = Nuke.ImageRequest
-// ^ @keyword
+// ^ @keyword.modifier
 //               // ^ @type
 
 /// A view that asynchronously loads and displays an image.
@@ -37,7 +37,7 @@ public struct LazyImage<Content: View>: View {
     /// - Parameters:
     ///   - url: The image URL.
     public init(url: URL?) where Content == Image {
-        //      ^ @parameter
+        //      ^ @variable.parameter
         //           ^ @type
         self.init(request: url.map { ImageRequest(url: $0) })
     }
@@ -156,7 +156,7 @@ public struct LazyImage<Content: View>: View {
     // NOTE: surgical change on next line: renamed `state` to `some` to test that `some` is a contextual keyword.
     @ViewBuilder
     private func makeDefaultContent(for some: LazyImageState) -> some View {
-        //                              ^ @parameter
+        //                              ^ @variable.parameter
         //                                                       ^ @keyword
         //                                                            ^ @type
         if let image = some.image {

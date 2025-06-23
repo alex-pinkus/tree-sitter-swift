@@ -445,8 +445,8 @@ do {
 } catch let error as MyError {
 } catch SomeError.specificError {
 } catch let error as MyOtherError where error.code == 2 {
-} catch let MyEnumError.missingField(fieldName) { 
-} catch MyEnumError.missingField(fieldName: let fieldName) { 
+} catch let MyEnumError.missingField(fieldName) {
+} catch MyEnumError.missingField(fieldName: let fieldName) {
 } catch {
 }
 
@@ -1058,12 +1058,47 @@ Compiler diagnostics
 --------------------------------------------------------------------------------
 
 (source_file
-  (directive)
+  (directive
+    (simple_identifier))
+  (diagnostic)
+  (directive
+    (simple_identifier))
   (diagnostic)
   (directive)
   (diagnostic)
+  (directive))
+
+===
+Platform compilation conditions
+===
+
+#if os(OSX) || os(Linux)
+print("yes")
+#else
+print("no")
+#endif
+
+---
+
+(source_file
+  (directive
+    (simple_identifier)
+    (simple_identifier))
+  (call_expression
+    (simple_identifier)
+    (call_suffix
+      (value_arguments
+        (value_argument
+          (line_string_literal
+            (line_str_text))))))
   (directive)
-  (directive)
+  (call_expression
+    (simple_identifier)
+    (call_suffix
+      (value_arguments
+        (value_argument
+          (line_string_literal
+            (line_str_text))))))
   (directive))
 
 ================================================================================
@@ -1115,7 +1150,7 @@ actor.increment()
 ================================================================================
 
 extension LottieLoopMode: Equatable {
-  public static func == (lhs: LottieLoopMode, rhs: LottieLoopMode) -> Bool {   
+  public static func == (lhs: LottieLoopMode, rhs: LottieLoopMode) -> Bool {
     switch (lhs, rhs) {
     case (.repeat(let lhsAmount), .repeat(let rhsAmount)):
       return lhsAmount == rhsAmount

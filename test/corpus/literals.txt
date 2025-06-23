@@ -281,7 +281,7 @@ let _ = #"Foo"
     (pattern
       (wildcard_pattern))
     (ERROR
-      (UNEXPECTED '"'))
+      (UNEXPECTED '#'))
     (line_string_literal
       (line_str_text))))
 
@@ -445,9 +445,10 @@ let playgroundLiteral = #imageLiteral(resourceName: "heart")
     (value_binding_pattern)
     (pattern
       (simple_identifier))
-    (simple_identifier)
-    (line_string_literal
-      (line_str_text))))
+    (playground_literal
+      (simple_identifier)
+      (line_string_literal
+        (line_str_text)))))
 
 ================================================================================
 Single line regex literals
@@ -761,3 +762,67 @@ doOperation(on: a, /)
           (simple_identifier))
         (value_argument))))
   (comment))
+
+===
+List with trailing comma
+===
+
+[
+  1,
+  2,
+  3,
+]
+
+---
+
+(source_file
+  (array_literal
+    element: (integer_literal)
+    element: (integer_literal)
+    element: (integer_literal)))
+
+===
+Tuples with trailing commas
+===
+
+(
+  1,
+)
+
+(
+  1,
+  2,
+  3,
+)
+
+---
+
+(source_file
+  (tuple_expression
+    (integer_literal))
+  (tuple_expression
+    (integer_literal)
+    (integer_literal)
+    (integer_literal)))
+
+===
+String interpolation with trailing commas
+===
+
+"\(1,)"
+
+"\(1, 2, 3,)"
+
+---
+
+(source_file
+  (line_string_literal
+    (interpolated_expression
+      (integer_literal)))
+  (line_string_literal
+    (interpolated_expression
+      (integer_literal))
+    (interpolated_expression
+      (integer_literal))
+    (interpolated_expression
+      (integer_literal))))
