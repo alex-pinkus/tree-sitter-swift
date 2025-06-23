@@ -1,0 +1,16 @@
+name: Publish package to crates.io
+
+on:
+  push:
+    tags: ["*"]
+    tags-ignore: ["*-with-generated-files"]
+
+concurrency:
+  group: ${{github.workflow}}-${{github.ref}}
+  cancel-in-progress: true
+
+jobs:
+  crates:
+    uses: tree-sitter/workflows/.github/workflows/package-crates.yml@main
+    secrets:
+      CARGO_REGISTRY_TOKEN: ${{secrets.CARGO_TOKEN}}
