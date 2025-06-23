@@ -243,7 +243,7 @@ Operator overrides
 ================================================================================
 
 public static func < (lhs: Wrapped<F>, rhs: Wrapped<F>) -> Bool {
-    return false 
+    return false
 }
 
 public func ??<V : Value>(optional: Expression<V?>, defaultValue: V) -> Expression<V> {
@@ -1376,3 +1376,114 @@ func makePairs<each First, each Second>(
                   (value_argument
                     (value_parameter_pack
                       (simple_identifier))))))))))))
+
+===
+Parameter lists with trailing commas
+===
+
+foo(
+  1,
+)
+
+foo(
+  1,
+  2,
+  3,
+)
+
+---
+
+(source_file
+  (call_expression
+    (simple_identifier)
+    (call_suffix
+      (value_arguments
+        (value_argument
+          (integer_literal)))))
+  (call_expression
+    (simple_identifier)
+    (call_suffix
+      (value_arguments
+        (value_argument
+          (integer_literal))
+        (value_argument
+          (integer_literal))
+        (value_argument
+          (integer_literal))))))
+
+===
+Generic parameter lists with trailing commas
+===
+
+f<
+  X,
+>()
+
+f<
+  X,
+  Y,
+  Z,
+>()
+
+---
+
+(source_file
+  (constructor_expression
+    (user_type
+      (type_identifier)
+      (type_arguments
+        (user_type
+          (type_identifier))))
+    (constructor_suffix
+      (value_arguments)))
+  (constructor_expression
+    (user_type
+      (type_identifier)
+      (type_arguments
+        (user_type
+          (type_identifier))
+        (user_type
+          (type_identifier))
+        (user_type
+          (type_identifier))))
+    (constructor_suffix
+      (value_arguments))))
+
+===
+Closure capture lists with trailing commas
+===
+
+f = { [weak x,] in
+  // body
+}
+
+f = { [weak x, y, z,] in
+  // body
+}
+
+---
+
+(source_file
+  (assignment
+    (directly_assignable_expression
+      (simple_identifier))
+    (lambda_literal
+      (capture_list
+        (capture_list_item
+          (ownership_modifier)
+          (simple_identifier)))
+      (comment)))
+  (assignment
+    (directly_assignable_expression
+      (simple_identifier))
+    (lambda_literal
+      (capture_list
+        (capture_list_item
+          (ownership_modifier)
+          (simple_identifier))
+        (capture_list_item
+          (simple_identifier))
+        (capture_list_item
+          (simple_identifier)))
+      (comment))))
+
