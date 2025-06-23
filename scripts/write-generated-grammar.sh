@@ -40,6 +40,7 @@ git add test
 git add queries
 git add Makefile
 git add bindings/c/*.in
+git add setup.py
 git commit -m "Updating grammar files for version ${ref/refs\/tags\//}"
 echo "Committing new generated grammar"
 
