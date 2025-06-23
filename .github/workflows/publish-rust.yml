@@ -43,4 +43,4 @@ jobs:
       - name: Publish to crates.io
         run: cargo publish --allow-dirty
         env:
-          CARGO_REGISTRY_TOKEN: ${{secrets.CARGO_TOKEN}}
+          CARGO_REGISTRY_TOKEN: ${{secrets.CARGO_REGISTRY_TOKEN}}

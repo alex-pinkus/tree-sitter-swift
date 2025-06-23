@@ -2,7 +2,7 @@ name: Publish package to npm and pypi
 
 on:
   push:
-    tags: ["*-with-generated-files"]
+    tags: ["**-with-generated-files"]
 
 concurrency:
   group: ${{github.workflow}}-${{github.ref}}
