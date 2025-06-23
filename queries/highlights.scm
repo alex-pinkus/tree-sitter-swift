@@ -1,14 +1,33 @@
-[ "." ";" ":" "," ] @punctuation.delimiter
-[ "\\(" "(" ")" "[" "]" "{" "}"] @punctuation.bracket ; TODO: "\\(" ")" in interpolations should be @punctuation.special
+[
+  "."
+  ";"
+  ":"
+  ","
+] @punctuation.delimiter
+
+[
+  "("
+  ")"
+  "["
+  "]"
+  "{"
+  "}"
+] @punctuation.bracket
 
 ; Identifiers
-(attribute) @variable
 (type_identifier) @type
-(self_expression) @variable.builtin
-(user_type (type_identifier) @variable.builtin (#eq? @variable.builtin "Self"))
+
+[
+  (self_expression)
+  (super_expression)
+] @variable.builtin
 
 ; Declarations
-"func" @keyword.function
+[
+  "func"
+  "deinit"
+] @keyword.function
+
 [
   (visibility_modifier)
   (member_modifier)
@@ -16,28 +35,38 @@
   (property_modifier)
   (parameter_modifier)
   (inheritance_modifier)
-] @keyword
+  (mutation_modifier)
+] @keyword.modifier
 
-(function_declaration (simple_identifier) @method)
-(init_declaration ["init" @constructor])
-(deinit_declaration ["deinit" @constructor])
-(throws) @keyword
-"async" @keyword
-"await" @keyword
-(where_keyword) @keyword
-(parameter external_name: (simple_identifier) @parameter)
-(parameter name: (simple_identifier) @parameter)
-(type_parameter (type_identifier) @parameter)
-(inheritance_constraint (identifier (simple_identifier) @parameter))
-(equality_constraint (identifier (simple_identifier) @parameter))
-(pattern bound_identifier: (simple_identifier)) @variable
+(simple_identifier) @variable
+
+(function_declaration
+  (simple_identifier) @function.method)
+
+(protocol_function_declaration
+  name: (simple_identifier) @function.method)
+
+(init_declaration
+  "init" @constructor)
+
+(parameter
+  external_name: (simple_identifier) @variable.parameter)
+
+(parameter
+  name: (simple_identifier) @variable.parameter)
+
+(type_parameter
+  (type_identifier) @variable.parameter)
+
+(inheritance_constraint
+  (identifier
+    (simple_identifier) @variable.parameter))
+
+(equality_constraint
+  (identifier
+    (simple_identifier) @variable.parameter))
 
 [
-  "typealias"
-  "struct"
-  "class"
-  "actor"
-  "enum"
   "protocol"
   "extension"
   "indirect"
@@ -45,145 +74,263 @@
   "override"
   "convenience"
   "required"
-  "mutating"
-  "associatedtype"
-  "package"
-] @keyword
-
-(opaque_type ["some" @keyword])
-(existential_type ["any" @keyword])
-
-(precedence_group_declaration
- ["precedencegroup" @keyword]
- (simple_identifier) @type)
-(precedence_group_attribute
- (simple_identifier) @keyword
- [(simple_identifier) @type
-  (boolean_literal) @boolean])
-
-[
+  "some"
+  "any"
+  "weak"
+  "unowned"
+  "didSet"
+  "willSet"
+  "subscript"
+  "let"
+  "var"
+  (throws)
+  (where_keyword)
   (getter_specifier)
   (setter_specifier)
   (modify_specifier)
+  (else)
+  (as_operator)
 ] @keyword
 
-(class_body (property_declaration (pattern (simple_identifier) @property)))
-(protocol_property_declaration (pattern (simple_identifier) @property))
+[
+  "enum"
+  "struct"
+  "class"
+  "typealias"
+] @keyword.type
 
-(import_declaration ["import" @include])
+[
+  "async"
+  "await"
+] @keyword.coroutine
 
-(enum_entry ["case" @keyword])
+(shebang_line) @keyword.directive
+
+(class_body
+  (property_declaration
+    (pattern
+      (simple_identifier) @variable.member)))
+
+(protocol_property_declaration
+  (pattern
+    (simple_identifier) @variable.member))
+
+(navigation_expression
+  (navigation_suffix
+    (simple_identifier) @variable.member))
+
+(value_argument
+  name: (value_argument_label
+    (simple_identifier) @variable.member))
+
+(import_declaration
+  "import" @keyword.import)
+
+(enum_entry
+  "case" @keyword)
+
+(modifiers
+  (attribute
+    "@" @attribute
+    (user_type
+      (type_identifier) @attribute)))
 
 ; Function calls
-(call_expression (simple_identifier) @function.call) ; foo()
-(call_expression ; foo.bar.baz(): highlight the baz()
+(call_expression
+  (simple_identifier) @function.call) ; foo()
+
+(call_expression
+  ; foo.bar.baz(): highlight the baz()
   (navigation_expression
-    (navigation_suffix (simple_identifier) @function.call)))
+    (navigation_suffix
+      (simple_identifier) @function.call)))
+
+(call_expression
+  (prefix_expression
+    (simple_identifier) @function.call)) ; .foo()
+
 ((navigation_expression
-   (simple_identifier) @type) ; SomeType.method(): highlight SomeType as a type
-   (#match? @type "^[A-Z]"))
-(call_expression (simple_identifier) @keyword (#eq? @keyword "defer")) ; defer { ... }
+  (simple_identifier) @type) ; SomeType.method(): highlight SomeType as a type
+  (#match? @type "^[A-Z]"))
 
-(try_operator) @operator
-(try_operator ["try" @keyword])
+(directive) @keyword.directive
 
-(directive) @function.macro
-(diagnostic) @function.macro
+; See https://docs.swift.org/swift-book/documentation/the-swift-programming-language/lexicalstructure/#Keywords-and-Punctuation
+[
+  (diagnostic)
+  (availability_condition)
+  (playground_literal)
+  (key_path_string_expression)
+  (selector_expression)
+  (external_macro_definition)
+] @function.macro
+
+(special_literal) @constant.macro
 
 ; Statements
-(for_statement ["for" @repeat])
-(for_statement ["in" @repeat])
-(for_statement (pattern) @variable)
-(else) @keyword
-(as_operator) @keyword
+(for_statement
+  "for" @keyword.repeat)
 
-["while" "repeat" "continue" "break"] @repeat
+(for_statement
+  "in" @keyword.repeat)
 
-["let" "var"] @keyword
+[
+  "while"
+  "repeat"
+  "continue"
+  "break"
+] @keyword.repeat
 
-(guard_statement ["guard" @conditional])
-(if_statement ["if" @conditional])
-(switch_statement ["switch" @conditional])
-(switch_entry ["case" @keyword])
-(switch_entry ["fallthrough" @keyword])
-(switch_entry (default_keyword) @keyword)
+(guard_statement
+  "guard" @keyword.conditional)
+
+(if_statement
+  "if" @keyword.conditional)
+
+(switch_statement
+  "switch" @keyword.conditional)
+
+(switch_entry
+  "case" @keyword)
+
+(switch_entry
+  "fallthrough" @keyword)
+
+(switch_entry
+  (default_keyword) @keyword)
+
 "return" @keyword.return
-(ternary_expression
-  ["?" ":"] @conditional)
 
-["do" (throw_keyword) (catch_keyword)] @keyword
+(ternary_expression
+  [
+    "?"
+    ":"
+  ] @keyword.conditional.ternary)
+
+[
+  (try_operator)
+  "do"
+  (throw_keyword)
+  (catch_keyword)
+] @keyword.exception
 
 (statement_label) @label
 
 ; Comments
 [
- (comment)
- (multiline_comment)
+  (comment)
+  (multiline_comment)
 ] @comment @spell
+
+((comment) @comment.documentation
+  (#match? @comment.documentation "^///[^/]"))
+
+((comment) @comment.documentation
+  (#match? @comment.documentation "^///$"))
+
+((multiline_comment) @comment.documentation
+  (#match? @comment.documentation "^/[*][*][^*].*[*]/$"))
 
 ; String literals
 (line_str_text) @string
-(str_escaped_char) @string
+
+(str_escaped_char) @string.escape
+
 (multi_line_str_text) @string
+
 (raw_str_part) @string
+
 (raw_str_end_part) @string
-(raw_str_interpolation_start) @punctuation.special
-["\"" "\"\"\""] @string
+
+(line_string_literal
+  [
+    "\\("
+    ")"
+  ] @punctuation.special)
+
+(multi_line_string_literal
+  [
+    "\\("
+    ")"
+  ] @punctuation.special)
+
+(raw_str_interpolation
+  [
+    (raw_str_interpolation_start)
+    ")"
+  ] @punctuation.special)
+
+[
+  "\""
+  "\"\"\""
+] @string
 
 ; Lambda literals
-(lambda_literal ["in" @keyword.operator])
+(lambda_literal
+  "in" @keyword.operator)
 
 ; Basic literals
 [
- (integer_literal)
- (hex_literal)
- (oct_literal)
- (bin_literal)
+  (integer_literal)
+  (hex_literal)
+  (oct_literal)
+  (bin_literal)
 ] @number
-(real_literal) @float
+
+(real_literal) @number.float
+
 (boolean_literal) @boolean
-"nil" @variable.builtin
+
+"nil" @constant.builtin
+
+(wildcard_pattern) @character.special
 
 ; Regex literals
-(regex_literal) @string.regex
+(regex_literal) @string.regexp
 
 ; Operators
 (custom_operator) @operator
+
 [
- "!"
- "?"
- "+"
- "-"
- "*"
- "/"
- "%"
- "="
- "+="
- "-="
- "*="
- "/="
- "<"
- ">"
- "<="
- ">="
- "++"
- "--"
- "&"
- "~"
- "%="
- "!="
- "!=="
- "=="
- "==="
- "??"
-
- "->"
-
- "..<"
- "..."
+  "+"
+  "-"
+  "*"
+  "/"
+  "%"
+  "="
+  "+="
+  "-="
+  "*="
+  "/="
+  "<"
+  ">"
+  "<<"
+  ">>"
+  "<="
+  ">="
+  "++"
+  "--"
+  "^"
+  "&"
+  "&&"
+  "|"
+  "||"
+  "~"
+  "%="
+  "!="
+  "!=="
+  "=="
+  "==="
+  "?"
+  "??"
+  "->"
+  "..<"
+  "..."
+  (bang)
 ] @operator
 
-(value_parameter_pack ["each" @keyword])
-(value_pack_expansion ["repeat" @keyword])
-(type_parameter_pack ["each" @keyword])
-(type_pack_expansion ["repeat" @keyword])
+(type_arguments
+  [
+    "<"
+    ">"
+  ] @punctuation.bracket)

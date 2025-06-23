@@ -24,7 +24,7 @@ import Foundation
 
 public protocol HeroStringConvertible {
   static func from(node: ExprNode) -> Self?
-// ^ keyword
+// ^ keyword.modifier
 }
 
 extension String {
@@ -36,9 +36,9 @@ extension String {
 //                                   ^ punctuation.delimiter
 //                                    ^ function.call
     do {
-//  ^ keyword
+//  ^ keyword.exception
       let nodes = try parser.parse()
-//                ^ keyword
+//                ^ keyword.exception
       var results = [T]()
 //                  ^ punctuation.bracket
       for node in nodes {
@@ -51,7 +51,7 @@ extension String {
       }
       return results
     } catch let error {
-//    ^ keyword
+//    ^ keyword.exception
 //          ^ keyword
 //              ^ variable
       print("failed to parse \"\(self)\", error: \(error)")

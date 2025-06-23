@@ -1,0 +1,124 @@
+================================================================================
+Basic macro invocation
+================================================================================
+
+#expect(true)
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (macro_invocation
+    (simple_identifier)
+    (call_suffix
+      (value_arguments
+        (value_argument
+          (boolean_literal))))))
+
+===
+SwiftUI Preview
+===
+
+#Preview {
+    VStack {
+        Text("Hello, world!")
+    }
+    .padding()
+}
+
+---
+
+(source_file
+  (macro_invocation
+    (simple_identifier)
+    (call_suffix
+      (lambda_literal
+        (statements
+          (call_expression
+            (navigation_expression
+              (call_expression
+                (simple_identifier)
+                (call_suffix
+                  (lambda_literal
+                    (statements
+                      (call_expression
+                        (simple_identifier)
+                        (call_suffix
+                          (value_arguments
+                            (value_argument
+                              (line_string_literal
+                                (line_str_text))))))))))
+              (navigation_suffix
+                (simple_identifier)))
+            (call_suffix
+              (value_arguments))))))))
+
+===
+Named SwiftUI Preview
+===
+
+#Preview("other") {
+    Text("Hello, world!")
+}
+
+---
+
+(source_file
+  (macro_invocation
+    (simple_identifier)
+    (call_suffix
+      (value_arguments
+        (value_argument
+          (line_string_literal
+            (line_str_text))))
+      (lambda_literal
+        (statements
+          (call_expression
+            (simple_identifier)
+            (call_suffix
+              (value_arguments
+                (value_argument
+                  (line_string_literal
+                    (line_str_text)))))))))))
+
+===
+Predicate macro
+===
+
+let messagePredicate = #Predicate<Message> { message in
+    message.length < 100 && message.sender == "Jeremy"
+}
+
+---
+
+(source_file
+  (property_declaration
+    (value_binding_pattern)
+    (pattern
+      (simple_identifier))
+    (macro_invocation
+      (simple_identifier)
+      (type_parameters
+        (type_parameter
+          (type_identifier)))
+      (call_suffix
+        (lambda_literal
+          (lambda_function_type
+            (lambda_function_type_parameters
+              (lambda_parameter
+                (simple_identifier))))
+          (statements
+            (comparison_expression
+              (navigation_expression
+                (simple_identifier)
+                (navigation_suffix
+                  (simple_identifier)))
+              (conjunction_expression
+                (integer_literal)
+                (equality_expression
+                  (navigation_expression
+                    (simple_identifier)
+                    (navigation_suffix
+                      (simple_identifier)))
+                  (line_string_literal
+                    (line_str_text)))))))))))
+
