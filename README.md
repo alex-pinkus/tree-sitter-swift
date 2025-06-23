@@ -17,7 +17,7 @@ To use the Rust crate, you'll add this to your `Cargo.toml`:
 
 ```
 tree-sitter = "0.23.0"
-tree-sitter-swift = "=0.7.0"
+tree-sitter-swift = "=0.7.1"
 ```
 
 Then you can use a `tree-sitter` parser with the language declared here:
@@ -38,7 +38,7 @@ To use this from NPM, you'll add similar dependencies to `package.json`:
 
 ```
 "dependencies: {
-  "tree-sitter-swift": "0.7.0",
+  "tree-sitter-swift": "0.7.1",
   "tree-sitter": "^0.22.1"
 }
 ```
