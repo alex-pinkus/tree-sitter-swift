@@ -42,6 +42,8 @@ git add queries
 git add Makefile
 git add bindings/c/*.in
 git add setup.py
+git add binding.gyp
+git add tree-sitter.json
 git commit -m "Updating grammar files for version ${ref/refs\/tags\//}"
 echo "Committing new generated grammar"
 
