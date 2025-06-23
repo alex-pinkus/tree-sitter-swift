@@ -24,6 +24,7 @@ jobs:
       - run: npm install
       - run: npm run ci
       - run: npm run test-ci
+      - run: ./scripts/check-dirty.sh
       - run: make install
         env:
           PREFIX: /tmp
