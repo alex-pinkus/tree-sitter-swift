@@ -19,3 +19,4 @@ jobs:
       PYPI_API_TOKEN: ${{secrets.PYPI_TOKEN}}
     with:
       generate: true
+      abi-version: "14"
