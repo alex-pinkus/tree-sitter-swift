@@ -1,4 +1,4 @@
-name: Publish package to npm and pypi
+name: Publish package to pypi
 
 on:
   push:
@@ -9,10 +9,6 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  npm:
-    uses: tree-sitter/workflows/.github/workflows/package-npm.yml@main
-    secrets:
-      NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
   pypi:
     uses: tree-sitter/workflows/.github/workflows/package-pypi.yml@main
     secrets:
