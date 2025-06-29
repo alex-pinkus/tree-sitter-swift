@@ -1,0 +1,18 @@
+name: Publish package to pypi
+
+on:
+  push:
+    tags-ignore: ["*-with-generated-files"]
+
+concurrency:
+  group: ${{github.workflow}}-${{github.ref}}
+  cancel-in-progress: true
+
+jobs:
+  pypi:
+    uses: tree-sitter/workflows/.github/workflows/package-pypi.yml@main
+    secrets:
+      PYPI_API_TOKEN: ${{secrets.PYPI_TOKEN}}
+    with:
+      generate: true
+      abi-version: "14"
