@@ -37,7 +37,7 @@ Starscream daltoniam/Starscream 4.0.8
 MessageKit MessageKit/MessageKit 5.0.0
 KeychainAccess kishikawakatsumi/KeychainAccess v4.2.2
 Nuke kean/Nuke 12.8.0
-Swinject Swinject/Swinject 2.9.1
+Swinject Swinject/Swinject v3.0.0
 GRDB groue/GRDB.swift v7.6.1 0 2
 GRDB groue/GRDB.swift v7.6.1 1 2
 Dance saoudrizwan/Dance v1.0.7
