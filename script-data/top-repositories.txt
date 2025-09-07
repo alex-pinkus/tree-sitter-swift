@@ -17,10 +17,10 @@ HeroTransitions HeroTransitions/Hero 1.6.4
 Kingfisher onevcat/Kingfisher 8.5.0
 shadowsocks shadowsocks/ShadowsocksX-NG v1.10.3
 SnapKit SnapKit/SnapKit 5.7.1
-SwiftLint realm/SwiftLint 0.59.1 0 2
-SwiftLint realm/SwiftLint 0.59.1 1 2
+SwiftLint realm/SwiftLint 0.61.0 0 2
+SwiftLint realm/SwiftLint 0.61.0 1 2
 Carthage Carthage/Carthage 0.40.0
-Rectangle rxhanson/Rectangle v0.89
+Rectangle rxhanson/Rectangle v0.90
 PromiseKit mxcl/PromiseKit 8.2.0
 Moya Moya/Moya 15.0.3
 MonitorControl MonitorControl/MonitorControl v4.3.3
@@ -37,7 +37,7 @@ Starscream daltoniam/Starscream 4.0.8
 MessageKit MessageKit/MessageKit 5.0.0
 KeychainAccess kishikawakatsumi/KeychainAccess v4.2.2
 Nuke kean/Nuke 12.8.0
-Swinject Swinject/Swinject 2.9.1
+Swinject Swinject/Swinject 2.10.0
 GRDB groue/GRDB.swift v7.6.1 0 2
 GRDB groue/GRDB.swift v7.6.1 1 2
 Dance saoudrizwan/Dance v1.0.7
