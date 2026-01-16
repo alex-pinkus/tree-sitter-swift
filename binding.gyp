@@ -36,7 +36,7 @@
 		  "src/parser.c",
 		  "src/tree_sitter",
 	      ],
-	      "action": ["tree-sitter", "generate", "--no-bindings"],
+	      "action": ["tree-sitter", "generate"],
 	  }
       ]
     }
