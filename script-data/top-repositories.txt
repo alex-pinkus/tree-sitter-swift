@@ -32,11 +32,11 @@ firefox-ios mozilla-mobile/firefox-ios v39.0 2 6
 firefox-ios mozilla-mobile/firefox-ios v39.0 3 6
 firefox-ios mozilla-mobile/firefox-ios v39.0 4 6
 firefox-ios mozilla-mobile/firefox-ios v39.0 5 6
-AudioKit AudioKit/AudioKit 5.6.5
+AudioKit AudioKit/AudioKit 5.7.0
 Starscream daltoniam/Starscream 4.0.8
 MessageKit MessageKit/MessageKit 5.0.0
 KeychainAccess kishikawakatsumi/KeychainAccess v4.2.2
-Nuke kean/Nuke 13.0.0-beta.2
+Nuke kean/Nuke 13.0.0
 Swinject Swinject/Swinject 2.10.0
 GRDB groue/GRDB.swift v7.10.0 0 2
 GRDB groue/GRDB.swift v7.10.0 1 2
