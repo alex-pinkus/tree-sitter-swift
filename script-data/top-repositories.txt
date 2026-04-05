@@ -14,13 +14,13 @@ RxSwift ReactiveX/RxSwift 6.10.2 6 9
 RxSwift ReactiveX/RxSwift 6.10.2 7 9
 RxSwift ReactiveX/RxSwift 6.10.2 8 9
 HeroTransitions HeroTransitions/Hero 1.6.4
-Kingfisher onevcat/Kingfisher 8.8.0
+Kingfisher onevcat/Kingfisher 8.8.1
 shadowsocks shadowsocks/ShadowsocksX-NG v1.10.3
 SnapKit SnapKit/SnapKit 5.7.1
 SwiftLint realm/SwiftLint 0.63.2 0 2
 SwiftLint realm/SwiftLint 0.63.2 1 2
 Carthage Carthage/Carthage 0.40.0
-Rectangle rxhanson/Rectangle v0.94
+Rectangle rxhanson/Rectangle v0.95
 PromiseKit mxcl/PromiseKit 8.2.0
 Moya Moya/Moya 15.0.3
 MonitorControl MonitorControl/MonitorControl v4.3.3
@@ -32,11 +32,11 @@ firefox-ios mozilla-mobile/firefox-ios v39.0 2 6
 firefox-ios mozilla-mobile/firefox-ios v39.0 3 6
 firefox-ios mozilla-mobile/firefox-ios v39.0 4 6
 firefox-ios mozilla-mobile/firefox-ios v39.0 5 6
-AudioKit AudioKit/AudioKit 5.7.0
+AudioKit AudioKit/AudioKit 5.7.2
 Starscream daltoniam/Starscream 4.0.8
 MessageKit MessageKit/MessageKit 5.0.0
 KeychainAccess kishikawakatsumi/KeychainAccess v4.2.2
-Nuke kean/Nuke 13.0.0
+Nuke kean/Nuke 13.0.1
 Swinject Swinject/Swinject 2.10.0
 GRDB groue/GRDB.swift v7.10.0 0 2
 GRDB groue/GRDB.swift v7.10.0 1 2
