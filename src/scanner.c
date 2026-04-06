@@ -511,7 +511,7 @@ static bool eat_operators(
         uint64_t suppressing_symbols = OP_SYMBOL_SUPPRESSOR[full_match];
         if (suppressing_symbols) {
             for (uint64_t suppressor = 0; suppressor < TOKEN_COUNT; suppressor++) {
-                if (!(suppressing_symbols & 1 << suppressor)) {
+                if (!(suppressing_symbols & 1ULL << suppressor)) {
                     continue;
                 }
 
