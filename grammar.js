@@ -466,7 +466,7 @@ module.exports = grammar({
       seq(
         field("params", choice($.tuple_type, $._unannotated_type)),
         optional($._async_keyword),
-        optional($.throws),
+        optional(choice($.throws_clause, $.throws)),
         $._arrow_operator,
         field("return_type", $._type)
       ),
@@ -998,7 +998,7 @@ module.exports = grammar({
             seq("(", optional($.lambda_function_type_parameters), ")")
           ),
           optional($._async_keyword),
-          optional($.throws),
+          optional(choice($.throws_clause, $.throws)),
           optional(
             seq(
               $._arrow_operator,
@@ -1471,7 +1471,7 @@ module.exports = grammar({
           optional($.type_parameters),
           $._function_value_parameters,
           optional($._async_keyword),
-          optional($.throws),
+          optional(choice($.throws_clause, $.throws)),
           optional(
             seq(
               $._arrow_operator,
@@ -1664,6 +1664,8 @@ module.exports = grammar({
     _async_keyword: ($) => alias($._async_keyword_custom, "async"),
     _async_modifier: ($) => token("async"),
     throws: ($) => choice($._throws_keyword, $._rethrows_keyword),
+    throws_clause: ($) =>
+      seq($._throws_keyword, "(", field("type", $._unannotated_type), ")"),
     enum_class_body: ($) =>
       seq("{", repeat(choice($.enum_entry, $._type_level_declaration)), "}"),
     enum_entry: ($) =>
@@ -1744,7 +1746,7 @@ module.exports = grammar({
           optional($.type_parameters),
           $._function_value_parameters,
           optional($._async_keyword),
-          optional($.throws),
+          optional(choice($.throws_clause, $.throws)),
           optional($.type_constraints),
           optional(field("body", $.function_body))
         )
@@ -1796,7 +1798,8 @@ module.exports = grammar({
       seq(optional($.mutation_modifier), "get", optional($._getter_effects)),
     setter_specifier: ($) => seq(optional($.mutation_modifier), "set"),
     modify_specifier: ($) => seq(optional($.mutation_modifier), "_modify"),
-    _getter_effects: ($) => repeat1(choice($._async_keyword, $.throws)),
+    _getter_effects: ($) =>
+      repeat1(choice($._async_keyword, $.throws_clause, $.throws)),
     operator_declaration: ($) =>
       seq(
         choice("prefix", "infix", "postfix"),

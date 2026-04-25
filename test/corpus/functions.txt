@@ -431,6 +431,49 @@ func iCanDoBetter()
             (integer_literal)))))))
 
 ================================================================================
+Typed throws
+================================================================================
+
+func mayFail() throws(MyError) -> Int { return -1 }
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (simple_identifier)
+    (throws_clause
+      (user_type
+        (type_identifier)))
+    (user_type
+      (type_identifier))
+    (function_body
+      (statements
+        (control_transfer_statement
+          (prefix_expression
+            (integer_literal)))))))
+
+================================================================================
+Typed throws on generic function
+================================================================================
+
+func generic<E: Error>() throws(E) {}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (simple_identifier)
+    (type_parameters
+      (type_parameter
+        (type_identifier)
+        (user_type
+          (type_identifier))))
+    (throws_clause
+      (user_type
+        (type_identifier)))
+    (function_body)))
+
+================================================================================
 Async functions
 ================================================================================
 
