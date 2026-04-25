@@ -1553,8 +1553,17 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "SYMBOL",
-              "name": "throws"
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "throws_clause"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "throws"
+                }
+              ]
             },
             {
               "type": "BLANK"
@@ -4248,8 +4257,17 @@
             "type": "CHOICE",
             "members": [
               {
-                "type": "SYMBOL",
-                "name": "throws"
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "throws_clause"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "throws"
+                  }
+                ]
               },
               {
                 "type": "BLANK"
@@ -6948,8 +6966,17 @@
             "type": "CHOICE",
             "members": [
               {
-                "type": "SYMBOL",
-                "name": "throws"
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "throws_clause"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "throws"
+                  }
+                ]
               },
               {
                 "type": "BLANK"
@@ -8323,6 +8350,31 @@
         }
       ]
     },
+    "throws_clause": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_throws_keyword"
+        },
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "FIELD",
+          "name": "type",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_unannotated_type"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
+    },
     "enum_class_body": {
       "type": "SEQ",
       "members": [
@@ -8970,8 +9022,17 @@
             "type": "CHOICE",
             "members": [
               {
-                "type": "SYMBOL",
-                "name": "throws"
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "throws_clause"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "throws"
+                  }
+                ]
               },
               {
                 "type": "BLANK"
@@ -9366,6 +9427,10 @@
           {
             "type": "SYMBOL",
             "name": "_async_keyword"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "throws_clause"
           },
           {
             "type": "SYMBOL",

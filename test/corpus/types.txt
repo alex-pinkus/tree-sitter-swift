@@ -362,3 +362,26 @@ func q(using p: any P) { }
         (user_type
           (type_identifier))))
     (function_body)))
+
+================================================================================
+Typed throws in function type
+================================================================================
+
+let closure: () throws(MyError) -> Void = {}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (property_declaration
+    (value_binding_pattern)
+    (pattern
+      (simple_identifier))
+    (type_annotation
+      (function_type
+        (tuple_type)
+        (throws_clause
+          (user_type
+            (type_identifier)))
+        (user_type
+          (type_identifier))))
+    (lambda_literal)))
