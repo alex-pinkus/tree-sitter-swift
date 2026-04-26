@@ -1,5 +1,5 @@
 Alamofire Alamofire/Alamofire 5.11.2
-iina iina/iina v1.4.1
+iina iina/iina v1.4.2-build164
 Charts danielgindi/Charts 5.1.0
 lottie-ios airbnb/lottie-ios 4.6.0
 vapor vapor/vapor 3.3.3
@@ -36,7 +36,7 @@ AudioKit AudioKit/AudioKit 5.7.2
 Starscream daltoniam/Starscream 4.0.8
 MessageKit MessageKit/MessageKit 5.0.0
 KeychainAccess kishikawakatsumi/KeychainAccess v4.2.2
-Nuke kean/Nuke 13.0.1
+Nuke kean/Nuke 13.0.2
 Swinject Swinject/Swinject 2.10.0
 GRDB groue/GRDB.swift v7.10.0 0 2
 GRDB groue/GRDB.swift v7.10.0 1 2
