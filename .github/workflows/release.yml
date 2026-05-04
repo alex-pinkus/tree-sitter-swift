@@ -17,5 +17,4 @@ jobs:
   release:
     uses: tree-sitter/workflows/.github/workflows/release.yml@main
     with:
-      attestations: true
       generate: true
