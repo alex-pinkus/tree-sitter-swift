@@ -164,6 +164,14 @@
         },
         {
           "type": "STRING",
+          "value": "consume"
+        },
+        {
+          "type": "STRING",
+          "value": "discard"
+        },
+        {
+          "type": "STRING",
           "value": "each"
         },
         {
@@ -3329,6 +3337,65 @@
       "named": false,
       "value": "await"
     },
+    "consume_expression": {
+      "type": "PREC_RIGHT",
+      "value": -2,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "_consume_operator"
+          },
+          {
+            "type": "FIELD",
+            "name": "expr",
+            "content": {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "PREC_RIGHT",
+                  "value": -2,
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "_expression"
+                  }
+                },
+                {
+                  "type": "PREC_LEFT",
+                  "value": 0,
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "call_expression"
+                  }
+                },
+                {
+                  "type": "PREC_DYNAMIC",
+                  "value": 1,
+                  "content": {
+                    "type": "PREC_LEFT",
+                    "value": -1,
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "ternary_expression"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "_consume_operator": {
+      "type": "ALIAS",
+      "content": {
+        "type": "STRING",
+        "value": "consume"
+      },
+      "named": false,
+      "value": "consume"
+    },
     "ternary_expression": {
       "type": "PREC_RIGHT",
       "value": -2,
@@ -3522,6 +3589,14 @@
         {
           "type": "SYMBOL",
           "name": "await_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "consume_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "discard_statement"
         },
         {
           "type": "SYMBOL",
@@ -5851,6 +5926,32 @@
           "value": "yield"
         }
       ]
+    },
+    "discard_statement": {
+      "type": "PREC_RIGHT",
+      "value": -2,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "_discard_operator"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "self_expression"
+          }
+        ]
+      }
+    },
+    "_discard_operator": {
+      "type": "ALIAS",
+      "content": {
+        "type": "STRING",
+        "value": "discard"
+      },
+      "named": false,
+      "value": "discard"
     },
     "assignment": {
       "type": "PREC_LEFT",
@@ -11108,6 +11209,14 @@
       "_expression"
     ],
     [
+      "consume_expression",
+      "_unary_expression"
+    ],
+    [
+      "consume_expression",
+      "_expression"
+    ],
+    [
       "_local_property_declaration",
       "_local_typealias_declaration",
       "_local_function_declaration",
@@ -11178,6 +11287,10 @@
     [
       "_contextual_simple_identifier",
       "visibility_modifier"
+    ],
+    [
+      "_contextual_simple_identifier",
+      "_consume_operator"
     ]
   ],
   "precedences": [],

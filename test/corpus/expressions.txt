@@ -1641,3 +1641,88 @@ doLast {
               (simple_identifier)
               (call_suffix
                 (value_arguments)))))))))
+================================================================================
+Consume expression
+================================================================================
+
+let y = consume x
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (property_declaration
+    (value_binding_pattern)
+    (pattern
+      (simple_identifier))
+    (consume_expression
+      (simple_identifier))))
+
+================================================================================
+Consume expression in assignment
+================================================================================
+
+_ = consume someValue
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (assignment
+    (directly_assignable_expression
+      (simple_identifier))
+    (consume_expression
+      (simple_identifier))))
+
+================================================================================
+Consume as identifier
+================================================================================
+
+let consume = 42
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (property_declaration
+    (value_binding_pattern)
+    (pattern
+      (simple_identifier))
+    (integer_literal)))
+
+================================================================================
+Consume call expression
+================================================================================
+
+let y = consume foo()
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (property_declaration
+    (value_binding_pattern)
+    (pattern
+      (simple_identifier))
+    (consume_expression
+      (call_expression
+        (simple_identifier)
+        (call_suffix
+          (value_arguments))))))
+
+================================================================================
+Consume with try and await
+================================================================================
+
+try consume x
+consume await foo()
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (try_expression
+    (try_operator)
+    (consume_expression
+      (simple_identifier)))
+  (consume_expression
+    (await_expression
+      (call_expression
+        (simple_identifier)
+        (call_suffix
+          (value_arguments))))))
