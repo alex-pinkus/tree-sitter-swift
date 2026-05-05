@@ -56,6 +56,7 @@ const PRECS = {
   range_suffix: -2,
   ternary_binary_suffix: -2,
   await: -2,
+  consume: -2,
   assignment: -3,
   comment: -3,
   lambda: -3,
@@ -123,6 +124,9 @@ module.exports = grammar({
     // await {expression} has the same special cases as `try`.
     [$.await_expression, $._unary_expression],
     [$.await_expression, $._expression],
+    // consume {expression} has the same special cases as `try` and `await`.
+    [$.consume_expression, $._unary_expression],
+    [$.consume_expression, $._expression],
     // In a computed property, when you see an @attribute, it's not yet clear if that's going to be for a
     // locally-declared class or a getter / setter specifier.
     [
@@ -174,6 +178,8 @@ module.exports = grammar({
     [$._contextual_simple_identifier, $.type_parameter_pack],
     [$._contextual_simple_identifier, $.type_pack_expansion],
     [$._contextual_simple_identifier, $.visibility_modifier],
+    // `consume` is a contextual keyword: identifier in most positions, operator in `consume x`.
+    [$._contextual_simple_identifier, $._consume_operator],
   ],
   extras: ($) => [
     $.comment,
@@ -277,6 +283,8 @@ module.exports = grammar({
       choice(
         "actor",
         "async",
+        "consume",
+        "discard",
         "each",
         "lazy",
         "repeat",
@@ -847,6 +855,24 @@ module.exports = grammar({
         )
       ),
     _await_operator: ($) => alias("await", "await"),
+    consume_expression: ($) =>
+      prec.right(
+        PRECS.consume,
+        seq(
+          $._consume_operator,
+          field(
+            "expr",
+            choice(
+              // Prefer direct calls over indirect (same as with `try`).
+              prec.right(-2, $._expression),
+              prec.left(0, $.call_expression),
+              // Special case ternary to `consume` the whole thing (same as with `try`).
+              prec.dynamic(1, prec.left(-1, $.ternary_expression))
+            )
+          )
+        )
+      ),
+    _consume_operator: ($) => alias("consume", "consume"),
     ternary_expression: ($) =>
       prec.right(
         PRECS.ternary,
@@ -904,6 +930,8 @@ module.exports = grammar({
         $.super_expression,
         $.try_expression,
         $.await_expression,
+        $.consume_expression,
+        $.discard_statement,
         $._referenceable_operator,
         $.key_path_expression,
         $.key_path_string_expression,
@@ -1270,6 +1298,9 @@ module.exports = grammar({
     throw_keyword: ($) => "throw",
     _optionally_valueful_control_keyword: ($) =>
       choice("return", "continue", "break", "yield"),
+    discard_statement: ($) =>
+      prec.right(PRECS.consume, seq($._discard_operator, $.self_expression)),
+    _discard_operator: ($) => alias("discard", "discard"),
     assignment: ($) =>
       prec.left(
         PRECS.assignment,
