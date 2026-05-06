@@ -573,6 +573,72 @@ let discard = true
     (boolean_literal)))
 
 ================================================================================
+Typed throws on do-catch
+================================================================================
+
+do throws(MyError) {
+    try riskyOp()
+} catch {
+    handle(error)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (do_statement
+    (throws_clause
+      (user_type
+        (type_identifier)))
+    (statements
+      (try_expression
+        (try_operator)
+        (call_expression
+          (simple_identifier)
+          (call_suffix
+            (value_arguments)))))
+    (catch_block
+      (catch_keyword)
+      (statements
+        (call_expression
+          (simple_identifier)
+          (call_suffix
+            (value_arguments
+              (value_argument
+                (simple_identifier)))))))))
+
+================================================================================
+Untyped throws on do-catch
+================================================================================
+
+do throws {
+    try riskyOp()
+} catch {
+    handle(error)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (do_statement
+    (throws)
+    (statements
+      (try_expression
+        (try_operator)
+        (call_expression
+          (simple_identifier)
+          (call_suffix
+            (value_arguments)))))
+    (catch_block
+      (catch_keyword)
+      (statements
+        (call_expression
+          (simple_identifier)
+          (call_suffix
+            (value_arguments
+              (value_argument
+                (simple_identifier)))))))))
+
+================================================================================
 If let statements
 ================================================================================
 
