@@ -1115,7 +1115,15 @@ module.exports = grammar({
       ),
     switch_pattern: ($) => alias($._binding_pattern_with_expr, $.pattern),
     do_statement: ($) =>
-      prec.right(PRECS["do"], seq("do", $._block, repeat($.catch_block))),
+      prec.right(
+        PRECS["do"],
+        seq(
+          "do",
+          optional(choice($.throws_clause, $.throws)),
+          $._block,
+          repeat($.catch_block)
+        )
+      ),
     catch_block: ($) =>
       seq(
         $.catch_keyword,

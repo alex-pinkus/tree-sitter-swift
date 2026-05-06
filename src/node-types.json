@@ -9864,6 +9864,14 @@
         {
           "type": "statements",
           "named": true
+        },
+        {
+          "type": "throws",
+          "named": true
+        },
+        {
+          "type": "throws_clause",
+          "named": true
         }
       ]
     }

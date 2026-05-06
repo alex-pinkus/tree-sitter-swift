@@ -4864,6 +4864,27 @@
             "value": "do"
           },
           {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "throws_clause"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "throws"
+                  }
+                ]
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          },
+          {
             "type": "SYMBOL",
             "name": "_block"
           },
