@@ -488,7 +488,16 @@ module.exports = grammar({
             "wrapped",
             choice($.user_type, $.tuple_type, $.array_type, $.dictionary_type)
           ),
-          repeat1(alias($._immediate_quest, "?"))
+          repeat1(
+            choice(
+              alias($._immediate_quest, "?"),
+              // The external scanner always tokenizes `??` as NIL_COALESCING_OPERATOR.
+              // In type position (e.g. `(v: AnyObject??)`) that single token represents
+              // two consecutive optional markers; accept it here since nil-coalescing is
+              // an expression-only construct and cannot appear in a type.
+              alias($._nil_coalescing_operator, "??")
+            )
+          )
         )
       ),
     metatype: ($) => seq($._unannotated_type, ".", choice("Type", "Protocol")),

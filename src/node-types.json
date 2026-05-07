@@ -5,6 +5,11 @@
     "fields": {}
   },
   {
+    "type": "??",
+    "named": false,
+    "fields": {}
+  },
+  {
     "type": "additive_expression",
     "named": true,
     "fields": {

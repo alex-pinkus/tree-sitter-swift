@@ -70,7 +70,8 @@ function validate() {
 # It's really easy to add a blank line to `known_failures.txt`, which will make everything pass.
 # This echoes some string from random.org to prove that the grp isn't excluding everything. If we
 # added a blank line, this would have zero items, which results in a nonzero exit code from grep.
-if ! echo "vkDSrg8n" | grep -v -f "$known_failures" > /dev/null; then
+# An entirely empty file is legitimate (no tolerated failures) and should not trip this guard.
+if [ -s "$known_failures" ] && ! echo "vkDSrg8n" | grep -v -f "$known_failures" > /dev/null; then
   echo "You added a blank line to known_failures!"
   exit 1
 fi
