@@ -1680,13 +1680,27 @@
           {
             "type": "REPEAT1",
             "content": {
-              "type": "ALIAS",
-              "content": {
-                "type": "SYMBOL",
-                "name": "_immediate_quest"
-              },
-              "named": false,
-              "value": "?"
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "_immediate_quest"
+                  },
+                  "named": false,
+                  "value": "?"
+                },
+                {
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "_nil_coalescing_operator"
+                  },
+                  "named": false,
+                  "value": "??"
+                }
+              ]
             }
           }
         ]

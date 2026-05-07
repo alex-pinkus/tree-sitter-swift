@@ -241,6 +241,64 @@ private var dictionary: [String: Any?]?
               (type_identifier))))))))
 
 ================================================================================
+Double optional in lambda parameter
+================================================================================
+
+let closure = { (v: AnyObject??) -> String? in
+    return nil
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (property_declaration
+    (value_binding_pattern)
+    (pattern
+      (simple_identifier))
+    (lambda_literal
+      (lambda_function_type
+        (lambda_function_type_parameters
+          (lambda_parameter
+            (simple_identifier)
+            (optional_type
+              (user_type
+                (type_identifier)))))
+        (optional_type
+          (user_type
+            (type_identifier))))
+      (statements
+        (control_transfer_statement)))))
+
+================================================================================
+Double optional array element in lambda parameter (ReactKit regression)
+================================================================================
+
+let closure = { (values: [AnyObject??], _) -> String? in nil }
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (property_declaration
+    (value_binding_pattern)
+    (pattern
+      (simple_identifier))
+    (lambda_literal
+      (lambda_function_type
+        (lambda_function_type_parameters
+          (lambda_parameter
+            (simple_identifier)
+            (array_type
+              (optional_type
+                (user_type
+                  (type_identifier)))))
+          (lambda_parameter
+            (simple_identifier)))
+        (optional_type
+          (user_type
+            (type_identifier))))
+      (statements))))
+
+================================================================================
 Implicitly unwrapped optional types
 ================================================================================
 
