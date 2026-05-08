@@ -2021,7 +2021,17 @@ module.exports = grammar({
     property_behavior_modifier: ($) => "lazy",
     type_modifiers: ($) => repeat1($.attribute),
     member_modifier: ($) =>
-      choice("override", "convenience", "required", "nonisolated"),
+      choice(
+        "override",
+        "convenience",
+        "required",
+        // `nonisolated` may optionally take a parenthesized argument: `nonisolated(unsafe)`
+        // (SE-0414-style escape hatch) or `nonisolated(nonsending)` (SE-0461).
+        seq(
+          "nonisolated",
+          optional(seq("(", choice("unsafe", "nonsending"), ")"))
+        )
+      ),
     visibility_modifier: ($) =>
       seq(
         choice(
