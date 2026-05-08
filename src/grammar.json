@@ -10569,8 +10569,47 @@
           "value": "required"
         },
         {
-          "type": "STRING",
-          "value": "nonisolated"
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "nonisolated"
+            },
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SEQ",
+                  "members": [
+                    {
+                      "type": "STRING",
+                      "value": "("
+                    },
+                    {
+                      "type": "CHOICE",
+                      "members": [
+                        {
+                          "type": "STRING",
+                          "value": "unsafe"
+                        },
+                        {
+                          "type": "STRING",
+                          "value": "nonsending"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "STRING",
+                      "value": ")"
+                    }
+                  ]
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
+            }
+          ]
         }
       ]
     },

@@ -31495,6 +31495,10 @@
     "named": false
   },
   {
+    "type": "nonsending",
+    "named": false
+  },
+  {
     "type": "oct_literal",
     "named": true
   },
@@ -31664,6 +31668,10 @@
   },
   {
     "type": "unowned(unsafe)",
+    "named": false
+  },
+  {
+    "type": "unsafe",
     "named": false
   },
   {
