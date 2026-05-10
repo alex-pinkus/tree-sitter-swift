@@ -1,4 +1,4 @@
-Alamofire Alamofire/Alamofire 5.11.2
+Alamofire Alamofire/Alamofire 5.12.0
 iina iina/iina v1.4.2-build164
 Charts danielgindi/Charts 5.1.0
 lottie-ios airbnb/lottie-ios 4.6.0
@@ -14,7 +14,7 @@ RxSwift ReactiveX/RxSwift 6.10.2 6 9
 RxSwift ReactiveX/RxSwift 6.10.2 7 9
 RxSwift ReactiveX/RxSwift 6.10.2 8 9
 HeroTransitions HeroTransitions/Hero 1.6.4
-Kingfisher onevcat/Kingfisher 8.8.1
+Kingfisher onevcat/Kingfisher 8.9.0
 shadowsocks shadowsocks/ShadowsocksX-NG v1.10.3
 SnapKit SnapKit/SnapKit 5.7.1
 SwiftLint realm/SwiftLint 0.63.2 0 2
@@ -36,7 +36,7 @@ AudioKit AudioKit/AudioKit 5.7.2
 Starscream daltoniam/Starscream 4.0.8
 MessageKit MessageKit/MessageKit 5.0.0
 KeychainAccess kishikawakatsumi/KeychainAccess v4.2.2
-Nuke kean/Nuke 13.0.4
+Nuke kean/Nuke 13.0.6
 Swinject Swinject/Swinject 2.10.0
 GRDB groue/GRDB.swift v7.10.0 0 2
 GRDB groue/GRDB.swift v7.10.0 1 2
