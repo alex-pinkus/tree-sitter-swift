@@ -1716,3 +1716,25 @@ struct Foo<T: ~Copyable>: ~Copyable {
         (type_annotation
           (user_type
             (type_identifier)))))))
+
+================================================================================
+Class with nonisolated(unsafe) member
+================================================================================
+
+class Document {
+    nonisolated(unsafe) var flag = false
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (class_declaration
+    name: (type_identifier)
+    body: (class_body
+      (property_declaration
+        (modifiers
+          (member_modifier))
+        (value_binding_pattern)
+        name: (pattern
+          bound_identifier: (simple_identifier))
+        value: (boolean_literal)))))

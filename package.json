@@ -6,13 +6,9 @@
   "types": "bindings/node",
   "scripts": {
     "install": "node-gyp-build",
-    "postinstall": "node-gyp configure && node-gyp build",
-    "build": "tree-sitter generate --no-bindings",
-    "build-wasm": "tree-sitter build --wasm",
-    "ci": "prettier --check grammar.js",
-    "test-ci": "./scripts/test-with-memcheck.sh --install-valgrind",
-    "test": "./scripts/test-with-memcheck.sh",
-    "prebuildify": "prebuildify --napi --strip"
+    "prestart": "tree-sitter build --wasm",
+    "start": "tree-sitter playground",
+    "test": "node --test bindings/node/*_test.js"
   },
   "repository": {
     "type": "git",

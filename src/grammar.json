@@ -1,5 +1,4 @@
 {
-  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/grammar.schema.json",
   "name": "swift",
   "rules": {
     "source_file": {
@@ -10571,6 +10570,10 @@
         {
           "type": "STRING",
           "value": "nonisolated"
+        },
+        {
+          "type": "STRING",
+          "value": "nonisolated(unsafe)"
         }
       ]
     },
@@ -11531,6 +11534,5 @@
   "inline": [
     "_locally_permitted_modifiers"
   ],
-  "supertypes": [],
-  "reserved": {}
+  "supertypes": []
 }
