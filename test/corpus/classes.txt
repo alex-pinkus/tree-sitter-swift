@@ -1738,3 +1738,42 @@ class Document {
         name: (pattern
           bound_identifier: (simple_identifier))
         value: (boolean_literal)))))
+
+================================================================================
+Class with both nonisolated variants
+================================================================================
+
+class Counter {
+    nonisolated var safe = 0
+    nonisolated(unsafe) var unsafe = 0
+    private nonisolated(unsafe) var privateUnsafe = 0
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (class_declaration
+    name: (type_identifier)
+    body: (class_body
+      (property_declaration
+        (modifiers
+          (member_modifier))
+        (value_binding_pattern)
+        name: (pattern
+          bound_identifier: (simple_identifier))
+        value: (integer_literal))
+      (property_declaration
+        (modifiers
+          (member_modifier))
+        (value_binding_pattern)
+        name: (pattern
+          bound_identifier: (simple_identifier))
+        value: (integer_literal))
+      (property_declaration
+        (modifiers
+          (visibility_modifier)
+          (member_modifier))
+        (value_binding_pattern)
+        name: (pattern
+          bound_identifier: (simple_identifier))
+        value: (integer_literal)))))
