@@ -5107,6 +5107,10 @@
           "named": true
         },
         {
+          "type": "directive",
+          "named": true
+        },
+        {
           "type": "function_declaration",
           "named": true
         },
@@ -9899,6 +9903,10 @@
         },
         {
           "type": "deinit_declaration",
+          "named": true
+        },
+        {
+          "type": "directive",
           "named": true
         },
         {
@@ -22242,6 +22250,10 @@
         },
         {
           "type": "deinit_declaration",
+          "named": true
+        },
+        {
+          "type": "directive",
           "named": true
         },
         {
