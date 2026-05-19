@@ -425,6 +425,7 @@ module.exports = grammar({
           $.dictionary_type,
           $.optional_type,
           $.metatype,
+          $.bracket_qualified_type,
           $.opaque_type,
           $.existential_type,
           $.protocol_composition_type,
@@ -501,6 +502,20 @@ module.exports = grammar({
         )
       ),
     metatype: ($) => seq($._unannotated_type, ".", choice("Type", "Protocol")),
+    // `[Element].Index` and `[Key: Value].Index` are equivalent to
+    // `Array<Element>.Index` and `Dictionary<Key, Value>.Index`. The grammar
+    // already models `Array<T>.Index` via `user_type` (nested identifiers via
+    // `_dot`), but the bracket-literal form needs its own rule. Narrow the
+    // left-hand side to just the two bracket forms to avoid conflicts with
+    // tuple types, parameter packs, and other constructs.
+    bracket_qualified_type: ($) =>
+      prec.left(
+        PRECS.ty,
+        seq(
+          choice($.array_type, $.dictionary_type),
+          repeat1(seq(".", alias($.simple_identifier, $.type_identifier)))
+        )
+      ),
     _quest: ($) => "?",
     _immediate_quest: ($) => token.immediate("?"),
     opaque_type: ($) => prec.right(seq("some", $._unannotated_type)),
