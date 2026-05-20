@@ -2021,7 +2021,13 @@ module.exports = grammar({
     property_behavior_modifier: ($) => "lazy",
     type_modifiers: ($) => repeat1($.attribute),
     member_modifier: ($) =>
-      choice("override", "convenience", "required", "nonisolated", "nonisolated(unsafe)"),
+      choice(
+        "override",
+        "convenience",
+        "required",
+        "nonisolated",
+        "nonisolated(unsafe)"
+      ),
     visibility_modifier: ($) =>
       seq(
         choice(
