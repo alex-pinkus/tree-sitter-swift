@@ -1,9 +1,28 @@
-from os.path import isdir, join
+from hashlib import sha256
+from os.path import isdir, isfile, join
 from platform import system
 
 from setuptools import Extension, find_packages, setup
 from setuptools.command.build import build
 from wheel.bdist_wheel import bdist_wheel
+
+
+EXPECTED_HASHES = {
+    "src/parser.c": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+    "src/scanner.c": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+}
+
+
+def _verify_source_integrity():
+    for path, expected in EXPECTED_HASHES.items():
+        if not isfile(path):
+            continue
+        with open(path, "rb") as f:
+            actual = "sha256:" + sha256(f.read()).hexdigest()
+        if actual != expected:
+            raise RuntimeError(
+                f"Integrity check failed for {path}: expected {expected}, got {actual}"
+            )
 
 
 class Build(build):
@@ -20,6 +39,9 @@ class BdistWheel(bdist_wheel):
         if python.startswith("cp"):
             python, abi = "cp38", "abi3"
         return python, abi, platform
+
+
+_verify_source_integrity()
 
 
 setup(
