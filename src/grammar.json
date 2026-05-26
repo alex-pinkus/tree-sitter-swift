@@ -8090,8 +8090,17 @@
           "type": "SEQ",
           "members": [
             {
-              "type": "SYMBOL",
-              "name": "_type_level_declaration"
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "_type_level_declaration"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "directive"
+                }
+              ]
             },
             {
               "type": "REPEAT",
@@ -8103,8 +8112,17 @@
                     "name": "_class_member_separator"
                   },
                   {
-                    "type": "SYMBOL",
-                    "name": "_type_level_declaration"
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "SYMBOL",
+                        "name": "_type_level_declaration"
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "directive"
+                      }
+                    ]
                   }
                 ]
               }
@@ -8577,6 +8595,10 @@
               {
                 "type": "SYMBOL",
                 "name": "_type_level_declaration"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "directive"
               }
             ]
           }
@@ -9020,8 +9042,17 @@
           "type": "SEQ",
           "members": [
             {
-              "type": "SYMBOL",
-              "name": "_protocol_member_declaration"
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "_protocol_member_declaration"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "directive"
+                }
+              ]
             },
             {
               "type": "REPEAT",
@@ -9033,8 +9064,17 @@
                     "name": "_semi"
                   },
                   {
-                    "type": "SYMBOL",
-                    "name": "_protocol_member_declaration"
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "SYMBOL",
+                        "name": "_protocol_member_declaration"
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "directive"
+                      }
+                    ]
                   }
                 ]
               }

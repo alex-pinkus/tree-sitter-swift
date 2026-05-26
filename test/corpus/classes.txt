@@ -1546,6 +1546,72 @@ private actor CounterActor {
                           (value_arguments))))))))))))))
 
 ================================================================================
+#if directive inside enum body
+================================================================================
+
+public enum Shape {
+    case circle
+    #if os(iOS)
+    case square
+    #endif
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (class_declaration
+    (modifiers
+      (visibility_modifier))
+    (type_identifier)
+    (enum_class_body
+      (enum_entry
+        (simple_identifier))
+      (ERROR)
+      (directive
+        (simple_identifier))
+      (enum_entry
+        (simple_identifier))
+      (ERROR)
+      (directive))))
+
+================================================================================
+#if directive inside class body
+================================================================================
+
+class Feature {
+    var a = 0
+    #if os(iOS)
+    var b = 0
+    #endif
+    var c = 0
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (class_declaration
+    (type_identifier)
+    (class_body
+      (property_declaration
+        (value_binding_pattern)
+        (pattern
+          (simple_identifier))
+        (integer_literal))
+      (directive
+        (simple_identifier))
+      (property_declaration
+        (value_binding_pattern)
+        (pattern
+          (simple_identifier))
+        (integer_literal))
+      (directive)
+      (property_declaration
+        (value_binding_pattern)
+        (pattern
+          (simple_identifier))
+        (integer_literal)))))
+
+================================================================================
 nonisolated(unsafe) property
 ================================================================================
 
