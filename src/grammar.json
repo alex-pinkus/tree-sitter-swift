@@ -1291,6 +1291,10 @@
           },
           {
             "type": "SYMBOL",
+            "name": "bracket_qualified_type"
+          },
+          {
+            "type": "SYMBOL",
             "name": "opaque_type"
           },
           {
@@ -1731,6 +1735,49 @@
           ]
         }
       ]
+    },
+    "bracket_qualified_type": {
+      "type": "PREC_LEFT",
+      "value": -1,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "array_type"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "dictionary_type"
+              }
+            ]
+          },
+          {
+            "type": "REPEAT1",
+            "content": {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "."
+                },
+                {
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "simple_identifier"
+                  },
+                  "named": true,
+                  "value": "type_identifier"
+                }
+              ]
+            }
+          }
+        ]
+      }
     },
     "_quest": {
       "type": "STRING",
@@ -10609,8 +10656,47 @@
           "value": "required"
         },
         {
-          "type": "STRING",
-          "value": "nonisolated"
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "nonisolated"
+            },
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SEQ",
+                  "members": [
+                    {
+                      "type": "STRING",
+                      "value": "("
+                    },
+                    {
+                      "type": "CHOICE",
+                      "members": [
+                        {
+                          "type": "STRING",
+                          "value": "unsafe"
+                        },
+                        {
+                          "type": "STRING",
+                          "value": "nonsending"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "STRING",
+                      "value": ")"
+                    }
+                  ]
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
+            }
+          ]
         }
       ]
     },

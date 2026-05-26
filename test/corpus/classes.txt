@@ -1612,6 +1612,52 @@ class Feature {
         (integer_literal)))))
 
 ================================================================================
+nonisolated(unsafe) property
+================================================================================
+
+class Registry {
+    nonisolated(unsafe) static var instance = Registry()
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (class_declaration
+    (type_identifier)
+    (class_body
+      (property_declaration
+        (modifiers
+          (member_modifier)
+          (property_modifier))
+        (value_binding_pattern)
+        (pattern
+          (simple_identifier))
+        (call_expression
+          (simple_identifier)
+          (call_suffix
+            (value_arguments)))))))
+
+================================================================================
+nonisolated(nonsending) function
+================================================================================
+
+actor A {
+    nonisolated(nonsending) func work() async {}
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (class_declaration
+    (type_identifier)
+    (class_body
+      (function_declaration
+        (modifiers
+          (member_modifier))
+        (simple_identifier)
+        (function_body)))))
+
+================================================================================
 Lazy is usable as a computed property
 ================================================================================
 

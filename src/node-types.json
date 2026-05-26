@@ -1098,6 +1098,10 @@
             "named": true
           },
           {
+            "type": "bracket_qualified_type",
+            "named": true
+          },
+          {
             "type": "dictionary_type",
             "named": true
           },
@@ -1157,6 +1161,10 @@
         "types": [
           {
             "type": "array_type",
+            "named": true
+          },
+          {
+            "type": "bracket_qualified_type",
             "named": true
           },
           {
@@ -1574,6 +1582,10 @@
             "named": true
           },
           {
+            "type": "bracket_qualified_type",
+            "named": true
+          },
+          {
             "type": "dictionary_type",
             "named": true
           },
@@ -1629,6 +1641,10 @@
         "types": [
           {
             "type": "array_type",
+            "named": true
+          },
+          {
+            "type": "bracket_qualified_type",
             "named": true
           },
           {
@@ -2111,6 +2127,10 @@
             "named": true
           },
           {
+            "type": "bracket_qualified_type",
+            "named": true
+          },
+          {
             "type": "dictionary_type",
             "named": true
           },
@@ -2173,6 +2193,10 @@
             "named": true
           },
           {
+            "type": "bracket_qualified_type",
+            "named": true
+          },
+          {
             "type": "dictionary_type",
             "named": true
           },
@@ -2232,6 +2256,10 @@
         "types": [
           {
             "type": "array_type",
+            "named": true
+          },
+          {
+            "type": "bracket_qualified_type",
             "named": true
           },
           {
@@ -3899,6 +3927,29 @@
     "fields": {}
   },
   {
+    "type": "bracket_qualified_type",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "array_type",
+          "named": true
+        },
+        {
+          "type": "dictionary_type",
+          "named": true
+        },
+        {
+          "type": "type_identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "call_expression",
     "named": true,
     "fields": {},
@@ -4613,6 +4664,10 @@
             "named": true
           },
           {
+            "type": "bracket_qualified_type",
+            "named": true
+          },
+          {
             "type": "dictionary_type",
             "named": true
           },
@@ -5031,6 +5086,10 @@
             "named": true
           },
           {
+            "type": "bracket_qualified_type",
+            "named": true
+          },
+          {
             "type": "dictionary_type",
             "named": true
           },
@@ -5203,6 +5262,10 @@
         "types": [
           {
             "type": "array_type",
+            "named": true
+          },
+          {
+            "type": "bracket_qualified_type",
             "named": true
           },
           {
@@ -8667,6 +8730,10 @@
             "named": true
           },
           {
+            "type": "bracket_qualified_type",
+            "named": true
+          },
+          {
             "type": "dictionary_type",
             "named": true
           },
@@ -8729,6 +8796,10 @@
             "named": true
           },
           {
+            "type": "bracket_qualified_type",
+            "named": true
+          },
+          {
             "type": "dictionary_type",
             "named": true
           },
@@ -8784,6 +8855,10 @@
         "types": [
           {
             "type": "array_type",
+            "named": true
+          },
+          {
+            "type": "bracket_qualified_type",
             "named": true
           },
           {
@@ -10351,6 +10426,10 @@
             "named": true
           },
           {
+            "type": "bracket_qualified_type",
+            "named": true
+          },
+          {
             "type": "dictionary_type",
             "named": true
           },
@@ -10661,6 +10740,10 @@
             "named": true
           },
           {
+            "type": "bracket_qualified_type",
+            "named": true
+          },
+          {
             "type": "dictionary_type",
             "named": true
           },
@@ -10727,6 +10810,10 @@
             "named": true
           },
           {
+            "type": "bracket_qualified_type",
+            "named": true
+          },
+          {
             "type": "dictionary_type",
             "named": true
           },
@@ -10786,6 +10873,10 @@
         "types": [
           {
             "type": "array_type",
+            "named": true
+          },
+          {
+            "type": "bracket_qualified_type",
             "named": true
           },
           {
@@ -11588,6 +11679,10 @@
       "types": [
         {
           "type": "array_type",
+          "named": true
+        },
+        {
+          "type": "bracket_qualified_type",
           "named": true
         },
         {
@@ -12541,6 +12636,10 @@
             "named": true
           },
           {
+            "type": "bracket_qualified_type",
+            "named": true
+          },
+          {
             "type": "custom_operator",
             "named": true
           },
@@ -12616,6 +12715,10 @@
           },
           {
             "type": "array_type",
+            "named": true
+          },
+          {
+            "type": "bracket_qualified_type",
             "named": true
           },
           {
@@ -12738,6 +12841,10 @@
             "named": true
           },
           {
+            "type": "bracket_qualified_type",
+            "named": true
+          },
+          {
             "type": "dictionary_type",
             "named": true
           },
@@ -12796,6 +12903,10 @@
             "named": true
           },
           {
+            "type": "bracket_qualified_type",
+            "named": true
+          },
+          {
             "type": "dictionary_type",
             "named": true
           },
@@ -12851,6 +12962,10 @@
         "types": [
           {
             "type": "array_type",
+            "named": true
+          },
+          {
+            "type": "bracket_qualified_type",
             "named": true
           },
           {
@@ -13141,6 +13256,10 @@
             "named": true
           },
           {
+            "type": "bracket_qualified_type",
+            "named": true
+          },
+          {
             "type": "call_expression",
             "named": true
           },
@@ -13432,6 +13551,10 @@
         "types": [
           {
             "type": "array_type",
+            "named": true
+          },
+          {
+            "type": "bracket_qualified_type",
             "named": true
           },
           {
@@ -13710,6 +13833,10 @@
             "named": true
           },
           {
+            "type": "bracket_qualified_type",
+            "named": true
+          },
+          {
             "type": "call_expression",
             "named": true
           },
@@ -14001,6 +14128,10 @@
         "types": [
           {
             "type": "array_type",
+            "named": true
+          },
+          {
+            "type": "bracket_qualified_type",
             "named": true
           },
           {
@@ -14825,6 +14956,10 @@
             "named": true
           },
           {
+            "type": "bracket_qualified_type",
+            "named": true
+          },
+          {
             "type": "dictionary_type",
             "named": true
           },
@@ -14895,6 +15030,10 @@
             "named": true
           },
           {
+            "type": "bracket_qualified_type",
+            "named": true
+          },
+          {
             "type": "dictionary_type",
             "named": true
           },
@@ -14954,6 +15093,10 @@
         "types": [
           {
             "type": "array_type",
+            "named": true
+          },
+          {
+            "type": "bracket_qualified_type",
             "named": true
           },
           {
@@ -16138,6 +16281,10 @@
             "named": true
           },
           {
+            "type": "bracket_qualified_type",
+            "named": true
+          },
+          {
             "type": "dictionary_type",
             "named": true
           },
@@ -16197,6 +16344,10 @@
           },
           {
             "type": "array_type",
+            "named": true
+          },
+          {
+            "type": "bracket_qualified_type",
             "named": true
           },
           {
@@ -16351,6 +16502,10 @@
             "named": true
           },
           {
+            "type": "bracket_qualified_type",
+            "named": true
+          },
+          {
             "type": "dictionary_type",
             "named": true
           },
@@ -16414,6 +16569,10 @@
           },
           {
             "type": "array_type",
+            "named": true
+          },
+          {
+            "type": "bracket_qualified_type",
             "named": true
           },
           {
@@ -16899,6 +17058,10 @@
           "named": true
         },
         {
+          "type": "bracket_qualified_type",
+          "named": true
+        },
+        {
           "type": "dictionary_type",
           "named": true
         },
@@ -17367,6 +17530,10 @@
       "types": [
         {
           "type": "array_type",
+          "named": true
+        },
+        {
+          "type": "bracket_qualified_type",
           "named": true
         },
         {
@@ -19405,6 +19572,10 @@
           "named": true
         },
         {
+          "type": "bracket_qualified_type",
+          "named": true
+        },
+        {
           "type": "dictionary_type",
           "named": true
         },
@@ -20250,6 +20421,10 @@
             "named": true
           },
           {
+            "type": "bracket_qualified_type",
+            "named": true
+          },
+          {
             "type": "dictionary_type",
             "named": true
           },
@@ -20313,6 +20488,10 @@
           },
           {
             "type": "array_type",
+            "named": true
+          },
+          {
+            "type": "bracket_qualified_type",
             "named": true
           },
           {
@@ -20421,6 +20600,10 @@
         "types": [
           {
             "type": "array_type",
+            "named": true
+          },
+          {
+            "type": "bracket_qualified_type",
             "named": true
           },
           {
@@ -22292,6 +22475,10 @@
           "named": true
         },
         {
+          "type": "bracket_qualified_type",
+          "named": true
+        },
+        {
           "type": "dictionary_type",
           "named": true
         },
@@ -22871,6 +23058,10 @@
             "named": true
           },
           {
+            "type": "bracket_qualified_type",
+            "named": true
+          },
+          {
             "type": "custom_operator",
             "named": true
           },
@@ -22946,6 +23137,10 @@
           },
           {
             "type": "array_type",
+            "named": true
+          },
+          {
+            "type": "bracket_qualified_type",
             "named": true
           },
           {
@@ -24085,6 +24280,10 @@
             "named": true
           },
           {
+            "type": "bracket_qualified_type",
+            "named": true
+          },
+          {
             "type": "call_expression",
             "named": true
           },
@@ -24376,6 +24575,10 @@
         "types": [
           {
             "type": "array_type",
+            "named": true
+          },
+          {
+            "type": "bracket_qualified_type",
             "named": true
           },
           {
@@ -25681,6 +25884,10 @@
             "named": true
           },
           {
+            "type": "bracket_qualified_type",
+            "named": true
+          },
+          {
             "type": "dictionary_type",
             "named": true
           },
@@ -25740,6 +25947,10 @@
           },
           {
             "type": "array_type",
+            "named": true
+          },
+          {
+            "type": "bracket_qualified_type",
             "named": true
           },
           {
@@ -27563,6 +27774,10 @@
             "named": true
           },
           {
+            "type": "bracket_qualified_type",
+            "named": true
+          },
+          {
             "type": "dictionary_type",
             "named": true
           },
@@ -28408,6 +28623,10 @@
             "named": true
           },
           {
+            "type": "bracket_qualified_type",
+            "named": true
+          },
+          {
             "type": "dictionary_type",
             "named": true
           },
@@ -28467,6 +28686,10 @@
         "types": [
           {
             "type": "array_type",
+            "named": true
+          },
+          {
+            "type": "bracket_qualified_type",
             "named": true
           },
           {
@@ -28552,6 +28775,10 @@
             "named": true
           },
           {
+            "type": "bracket_qualified_type",
+            "named": true
+          },
+          {
             "type": "dictionary_type",
             "named": true
           },
@@ -28611,6 +28838,10 @@
           },
           {
             "type": "array_type",
+            "named": true
+          },
+          {
+            "type": "bracket_qualified_type",
             "named": true
           },
           {
@@ -28679,6 +28910,10 @@
         "types": [
           {
             "type": "array_type",
+            "named": true
+          },
+          {
+            "type": "bracket_qualified_type",
             "named": true
           },
           {
@@ -28814,6 +29049,10 @@
           "named": true
         },
         {
+          "type": "bracket_qualified_type",
+          "named": true
+        },
+        {
           "type": "dictionary_type",
           "named": true
         },
@@ -28874,6 +29113,10 @@
         "types": [
           {
             "type": "array_type",
+            "named": true
+          },
+          {
+            "type": "bracket_qualified_type",
             "named": true
           },
           {
@@ -28978,6 +29221,10 @@
           "named": true
         },
         {
+          "type": "bracket_qualified_type",
+          "named": true
+        },
+        {
           "type": "dictionary_type",
           "named": true
         },
@@ -29060,6 +29307,10 @@
             "named": true
           },
           {
+            "type": "bracket_qualified_type",
+            "named": true
+          },
+          {
             "type": "dictionary_type",
             "named": true
           },
@@ -29119,6 +29370,10 @@
         "types": [
           {
             "type": "array_type",
+            "named": true
+          },
+          {
+            "type": "bracket_qualified_type",
             "named": true
           },
           {
@@ -30583,6 +30838,10 @@
             "named": true
           },
           {
+            "type": "bracket_qualified_type",
+            "named": true
+          },
+          {
             "type": "call_expression",
             "named": true
           },
@@ -30874,6 +31133,10 @@
         "types": [
           {
             "type": "array_type",
+            "named": true
+          },
+          {
+            "type": "bracket_qualified_type",
             "named": true
           },
           {
@@ -31507,6 +31770,10 @@
     "named": false
   },
   {
+    "type": "nonsending",
+    "named": false
+  },
+  {
     "type": "oct_literal",
     "named": true
   },
@@ -31676,6 +31943,10 @@
   },
   {
     "type": "unowned(unsafe)",
+    "named": false
+  },
+  {
+    "type": "unsafe",
     "named": false
   },
   {

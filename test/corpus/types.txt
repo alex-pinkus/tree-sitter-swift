@@ -443,3 +443,26 @@ let closure: () throws(MyError) -> Void = {}
         (user_type
           (type_identifier))))
     (lambda_literal)))
+
+================================================================================
+Bracket-qualified nested type in generic argument
+================================================================================
+
+func f(range: Range<[String].Index>) {}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (simple_identifier)
+    (parameter
+      (simple_identifier)
+      (user_type
+        (type_identifier)
+        (type_arguments
+          (bracket_qualified_type
+            (array_type
+              (user_type
+                (type_identifier)))
+            (type_identifier)))))
+    (function_body)))
