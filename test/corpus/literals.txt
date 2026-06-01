@@ -242,7 +242,8 @@ let _ = nil
   (property_declaration
     (value_binding_pattern)
     (pattern
-      (wildcard_pattern))))
+      (wildcard_pattern))
+    (nil_literal)))
 
 ================================================================================
 Raw strings

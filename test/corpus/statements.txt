@@ -931,6 +931,7 @@ If try
       (equality_expression
         (simple_identifier)
         (conjunction_expression
+          (nil_literal)
           (conjunction_expression
             (simple_identifier)
             (prefix_expression
@@ -1065,7 +1066,8 @@ guard case let size: Int = variable.size else {
         (simple_identifier)))
     (else)
     (statements
-      (control_transfer_statement))))
+      (control_transfer_statement
+        (nil_literal)))))
 
 ================================================================================
 Availability conditions

@@ -267,7 +267,8 @@ let closure = { (v: AnyObject??) -> String? in
           (user_type
             (type_identifier))))
       (statements
-        (control_transfer_statement)))))
+        (control_transfer_statement
+          (nil_literal))))))
 
 ================================================================================
 Double optional array element in lambda parameter (ReactKit regression)
@@ -296,7 +297,8 @@ let closure = { (values: [AnyObject??], _) -> String? in nil }
         (optional_type
           (user_type
             (type_identifier))))
-      (statements))))
+      (statements
+        (nil_literal)))))
 
 ================================================================================
 Implicitly unwrapped optional types

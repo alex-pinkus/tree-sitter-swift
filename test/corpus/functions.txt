@@ -216,7 +216,8 @@ func returnGetsImplicitlyUnwrapped() -> String! {
       (type_identifier))
     (function_body
       (statements
-        (control_transfer_statement)))))
+        (control_transfer_statement
+          (nil_literal))))))
 
 ================================================================================
 Variadic functions
