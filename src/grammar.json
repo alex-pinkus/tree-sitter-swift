@@ -252,8 +252,8 @@
           "name": "regex_literal"
         },
         {
-          "type": "STRING",
-          "value": "nil"
+          "type": "SYMBOL",
+          "name": "nil_literal"
         }
       ]
     },
@@ -809,6 +809,10 @@
           "value": "false"
         }
       ]
+    },
+    "nil_literal": {
+      "type": "STRING",
+      "value": "nil"
     },
     "_string_literal": {
       "type": "CHOICE",

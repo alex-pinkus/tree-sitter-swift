@@ -211,6 +211,32 @@ foo() ? bar() : baz()
         (value_arguments)))))
 
 ================================================================================
+Ternary expression with nil arms
+================================================================================
+
+false ? "foo" : nil
+false ? nil : "bar"
+false ? nil : nil
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (ternary_expression
+    (boolean_literal)
+    (line_string_literal
+      (line_str_text))
+    (nil_literal))
+  (ternary_expression
+    (boolean_literal)
+    (nil_literal)
+    (line_string_literal
+      (line_str_text)))
+  (ternary_expression
+    (boolean_literal)
+    (nil_literal)
+    (nil_literal)))
+
+================================================================================
 Multiple expressions on one line using semicolons
 ================================================================================
 
@@ -636,7 +662,8 @@ let result: MyEnumType = condition ? .someEnumCase : .someOtherEnum
     (ternary_expression
       (tuple_expression
         (equality_expression
-          (simple_identifier)))
+          (simple_identifier)
+          (nil_literal)))
       (array_literal
         (prefix_expression
           (simple_identifier)))

@@ -303,7 +303,7 @@ module.exports = grammar({
         $.boolean_literal,
         $._string_literal,
         $.regex_literal,
-        "nil"
+        $.nil_literal
       ),
     real_literal: ($) =>
       token(
@@ -323,6 +323,7 @@ module.exports = grammar({
     oct_literal: ($) => token(seq("0", /[oO]/, OCT_DIGITS)),
     bin_literal: ($) => token(seq("0", /[bB]/, BIN_DIGITS)),
     boolean_literal: ($) => choice("true", "false"),
+    nil_literal: ($) => "nil",
     // String literals
     _string_literal: ($) =>
       choice(
