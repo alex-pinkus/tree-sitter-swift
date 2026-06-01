@@ -241,6 +241,64 @@ private var dictionary: [String: Any?]?
               (type_identifier))))))))
 
 ================================================================================
+Double optional in lambda parameter
+================================================================================
+
+let closure = { (v: AnyObject??) -> String? in
+    return nil
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (property_declaration
+    (value_binding_pattern)
+    (pattern
+      (simple_identifier))
+    (lambda_literal
+      (lambda_function_type
+        (lambda_function_type_parameters
+          (lambda_parameter
+            (simple_identifier)
+            (optional_type
+              (user_type
+                (type_identifier)))))
+        (optional_type
+          (user_type
+            (type_identifier))))
+      (statements
+        (control_transfer_statement)))))
+
+================================================================================
+Double optional array element in lambda parameter (ReactKit regression)
+================================================================================
+
+let closure = { (values: [AnyObject??], _) -> String? in nil }
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (property_declaration
+    (value_binding_pattern)
+    (pattern
+      (simple_identifier))
+    (lambda_literal
+      (lambda_function_type
+        (lambda_function_type_parameters
+          (lambda_parameter
+            (simple_identifier)
+            (array_type
+              (optional_type
+                (user_type
+                  (type_identifier)))))
+          (lambda_parameter
+            (simple_identifier)))
+        (optional_type
+          (user_type
+            (type_identifier))))
+      (statements))))
+
+================================================================================
 Implicitly unwrapped optional types
 ================================================================================
 
@@ -385,3 +443,26 @@ let closure: () throws(MyError) -> Void = {}
         (user_type
           (type_identifier))))
     (lambda_literal)))
+
+================================================================================
+Bracket-qualified nested type in generic argument
+================================================================================
+
+func f(range: Range<[String].Index>) {}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (simple_identifier)
+    (parameter
+      (simple_identifier)
+      (user_type
+        (type_identifier)
+        (type_arguments
+          (bracket_qualified_type
+            (array_type
+              (user_type
+                (type_identifier)))
+            (type_identifier)))))
+    (function_body)))
