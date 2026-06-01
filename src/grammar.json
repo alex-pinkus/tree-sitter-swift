@@ -2135,7 +2135,7 @@
     },
     "navigation_expression": {
       "type": "PREC_LEFT",
-      "value": -1,
+      "value": 12,
       "content": {
         "type": "SEQ",
         "members": [
