@@ -272,7 +272,7 @@ module.exports = grammar({
     simple_identifier: ($) =>
       choice(
         LEXICAL_IDENTIFIER,
-        /`[^\r\n` ]*`/,
+        /`[^\r\n`]+`/,
         /\$[0-9]+/,
         token(seq("$", LEXICAL_IDENTIFIER)),
         $._contextual_simple_identifier

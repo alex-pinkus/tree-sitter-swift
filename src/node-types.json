@@ -24915,7 +24915,6 @@
   {
     "type": "source_file",
     "named": true,
-    "root": true,
     "fields": {},
     "children": {
       "multiple": true,
@@ -31549,8 +31548,7 @@
   },
   {
     "type": "comment",
-    "named": true,
-    "extra": true
+    "named": true
   },
   {
     "type": "compiler",
@@ -31578,6 +31576,10 @@
   },
   {
     "type": "deinit",
+    "named": false
+  },
+  {
+    "type": "delegate",
     "named": false
   },
   {
@@ -31750,8 +31752,7 @@
   },
   {
     "type": "multiline_comment",
-    "named": true,
-    "extra": true
+    "named": true
   },
   {
     "type": "mutating",
@@ -31802,6 +31803,10 @@
     "named": false
   },
   {
+    "type": "param",
+    "named": false
+  },
+  {
     "type": "postfix",
     "named": false
   },
@@ -31815,6 +31820,10 @@
   },
   {
     "type": "private",
+    "named": false
+  },
+  {
+    "type": "property",
     "named": false
   },
   {
@@ -31846,6 +31855,10 @@
     "named": true
   },
   {
+    "type": "receiver",
+    "named": false
+  },
+  {
     "type": "repeat",
     "named": false
   },
@@ -31867,6 +31880,10 @@
   },
   {
     "type": "set",
+    "named": false
+  },
+  {
+    "type": "setparam",
     "named": false
   },
   {
@@ -31919,6 +31936,14 @@
   },
   {
     "type": "try",
+    "named": false
+  },
+  {
+    "type": "try!",
+    "named": false
+  },
+  {
+    "type": "try?",
     "named": false
   },
   {

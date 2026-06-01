@@ -31,6 +31,25 @@ let `default` = 0
     (integer_literal)))
 
 ================================================================================
+Raw identifiers with spaces (SE-0451)
+================================================================================
+
+let `my value` = 5
+func `my function`() {}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (property_declaration
+    (value_binding_pattern)
+    (pattern
+      (simple_identifier))
+    (integer_literal))
+  (function_declaration
+    (simple_identifier)
+    (function_body)))
+
+================================================================================
 C-style compound declaration
 ================================================================================
 
