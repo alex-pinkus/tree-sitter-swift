@@ -1179,6 +1179,42 @@ for try await value in values {
               (simple_identifier))))))))
 
 ================================================================================
+Prefix operator binds to navigation chain, not just the base (#272)
+================================================================================
+
+!foo.bar
+!foo.bar.baz
+!Enum.case.variable
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (prefix_expression
+    (bang)
+    (navigation_expression
+      (simple_identifier)
+      (navigation_suffix
+        (simple_identifier))))
+  (prefix_expression
+    (bang)
+    (navigation_expression
+      (navigation_expression
+        (simple_identifier)
+        (navigation_suffix
+          (simple_identifier)))
+      (navigation_suffix
+        (simple_identifier))))
+  (prefix_expression
+    (bang)
+    (navigation_expression
+      (navigation_expression
+        (simple_identifier)
+        (navigation_suffix
+          (simple_identifier)))
+      (navigation_suffix
+        (simple_identifier)))))
+
+================================================================================
 Negation at the start of a line
 ================================================================================
 

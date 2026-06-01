@@ -46,7 +46,7 @@ const PRECS = {
   do: -1,
   fully_open_range: -1,
   range: -1,
-  navigation: -1,
+  navigation: 12,
   expr: -1,
   ty: -1,
   call: -2,
