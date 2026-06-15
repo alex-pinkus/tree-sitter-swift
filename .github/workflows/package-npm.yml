@@ -112,6 +112,7 @@ jobs:
             cd - > /dev/null
           done < <(find . -name grammar.js -not -path './node_modules/*' -not -path './.build/*')
       - name: Build x64 binary
+        shell: ${{runner.os == 'Windows' && 'pwsh' || 'bash'}}
         run: npm x -- prebuildify --arch x64 -t 20.9.0
       - name: Set up cross-compilation
         if: runner.os == 'Linux'
@@ -121,6 +122,7 @@ jobs:
           printf '%s\n' >> "$GITHUB_ENV" \
             'CC=aarch64-linux-gnu-gcc' 'CXX=aarch64-linux-gnu-g++'
       - name: Build arm64 binary
+        if: runner.os != 'Windows'
         run: npm x -- prebuildify --arch arm64 -t 20.9.0
       - name: Upload binaries
         uses: actions/upload-artifact@v4
