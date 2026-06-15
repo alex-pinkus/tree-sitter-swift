@@ -1,0 +1,166 @@
+name: Package tarball (npm)
+
+on:
+  workflow_call:
+    inputs:
+      package-name:
+        description: The name of the package
+        default: ${{github.event.repository.name}}
+        type: string
+      environment-name:
+        description: The name of the environment
+        default: npm
+        type: string
+      node-version:
+        description: The NodeJS version
+        default: ${{vars.NODE_VERSION || '22'}}
+        type: string
+      emscripten-version:
+        description: The Emscripten version
+        default: ${{vars.EMSCRIPTEN_VERSION || '3.1.64'}}
+        type: string
+      ubuntu-version:
+        description: The version of the Ubuntu runner image
+        default: ${{vars.UBUNTU_VERSION || '22.04'}}
+        type: string
+      generate:
+        description: Generate the parser artifacts
+        default: false
+        type: boolean
+      abi-version:
+        description: The tree-sitter ABI version
+        default: "14"
+        type: string
+    # secrets:
+    #   NODE_AUTH_TOKEN:
+    #     description: An authentication token for npm
+    #     required: true
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  build_wasm:
+    name: Build Wasm binaries
+    runs-on: ubuntu-${{inputs.ubuntu-version}}
+    continue-on-error: true
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up NodeJS
+        uses: actions/setup-node@v4
+        with:
+          cache: npm
+          node-version: ${{inputs.node-version}}
+      - name: Set up Emscripten
+        uses: mymindstorm/setup-emsdk@v14
+        with:
+          version: ${{inputs.emscripten-version}}
+      - name: Install dependencies
+        run: npm i --omit peer --omit optional
+      - name: Regenerate parser
+        if: ${{inputs.generate}}
+        run: |
+          while read -r grammar; do
+            grammar_dir=$(dirname "$grammar")
+            cd "$grammar_dir"
+            npm x -- tree-sitter generate
+            cd - > /dev/null
+          done < <(find . -name grammar.js -not -path './node_modules/*' -not -path './.build/*')
+        env:
+          TREE_SITTER_ABI_VERSION: ${{inputs.abi-version}}
+      - name: Build Wasm binaries
+        run: |-
+          while read -r grammar; do
+            npm x -- tree-sitter build-wasm "${grammar%/grammar.js}"
+          done < <(find . -name grammar.js -not -path './node_modules/*')
+      - name: Upload binaries
+        uses: actions/upload-artifact@v4
+        with:
+          path: "*.wasm"
+          name: prebuilds-Wasm
+          retention-days: 2
+
+  build_node:
+    name: Build NodeJS binaries on ${{matrix.os}}
+    runs-on: ${{matrix.os}}
+    strategy:
+      matrix:
+        os:
+          - "ubuntu-${{inputs.ubuntu-version}}"
+          # - windows-latest
+          - macos-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up NodeJS
+        uses: actions/setup-node@v4
+        with:
+          cache: npm
+          node-version: ${{inputs.node-version}}
+      - name: Install dependencies
+        run: npm i --omit peer --omit optional
+      - name: Regenerate parser
+        if: ${{inputs.generate}}
+        shell: bash
+        run: |
+          while read -r grammar; do
+            grammar_dir=$(dirname "$grammar")
+            cd "$grammar_dir"
+            npm x -- tree-sitter generate
+            cd - > /dev/null
+          done < <(find . -name grammar.js -not -path './node_modules/*' -not -path './.build/*')
+      - name: Build x64 binary
+        run: npm x -- prebuildify --arch x64 -t 20.9.0
+      - name: Set up cross-compilation
+        if: runner.os == 'Linux'
+        run: |-
+          sudo apt-get update
+          sudo apt-get install g++-aarch64-linux-gnu
+          printf '%s\n' >> "$GITHUB_ENV" \
+            'CC=aarch64-linux-gnu-gcc' 'CXX=aarch64-linux-gnu-g++'
+      - name: Build arm64 binary
+        run: npm x -- prebuildify --arch arm64 -t 20.9.0
+      - name: Upload binaries
+        uses: actions/upload-artifact@v4
+        with:
+          path: prebuilds/**
+          name: prebuilds-${{runner.os}}
+          retention-days: 2
+
+  package:
+    name: Package tarball npm
+    needs: [build_wasm, build_node]
+    runs-on: ubuntu-${{inputs.ubuntu-version}}
+    environment:
+      name: ${{inputs.environment-name}}
+      # url: https://www.npmjs.com/package/${{inputs.package-name}}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up NodeJS
+        uses: actions/setup-node@v4
+        with:
+          cache: npm
+          node-version: ${{inputs.node-version}}
+          registry-url: https://registry.npmjs.org/
+      - name: Download binaries
+        uses: actions/download-artifact@v4
+        with:
+          path: prebuilds
+          pattern: prebuilds-*
+          merge-multiple: true
+      - name: Check binaries
+        run: tree prebuilds
+      - name: Move Wasm binaries to root
+        continue-on-error: true
+        run: mv -v prebuilds/*.wasm .
+      - name: Create package tarball
+        run: npm pack
+      - name: Upload package tarball
+        uses: actions/upload-artifact@v4
+        with:
+          path: tree-sitter-swift-*.tgz
+          name: package-tarball
+          retention-days: 2
