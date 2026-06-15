@@ -2,7 +2,7 @@ name: Package packages
 
 on:
   push:
-    tags: ["*"]
+    # tags: ["*"]
 
 concurrency:
   group: ${{github.workflow}}-${{github.ref}}
