@@ -101,6 +101,8 @@ jobs:
           node-version: ${{inputs.node-version}}
       - name: Install dependencies
         run: npm i --omit peer --omit optional
+        env:
+          npm_config_msvs_version: "2022"
       - name: Regenerate parser
         if: ${{inputs.generate}}
         shell: bash
@@ -113,6 +115,8 @@ jobs:
           done < <(find . -name grammar.js -not -path './node_modules/*' -not -path './.build/*')
       - name: Build x64 binary
         run: npm x -- prebuildify --arch x64 -t 20.9.0
+        env:
+          npm_config_msvs_version: "2022"
       - name: Set up cross-compilation
         if: runner.os == 'Linux'
         run: |-
@@ -122,6 +126,8 @@ jobs:
             'CC=aarch64-linux-gnu-gcc' 'CXX=aarch64-linux-gnu-g++'
       - name: Build arm64 binary
         run: npm x -- prebuildify --arch arm64 -t 20.9.0
+        env:
+          npm_config_msvs_version: "2022"
       - name: Upload binaries
         uses: actions/upload-artifact@v4
         with:
