@@ -89,7 +89,7 @@ jobs:
       matrix:
         os:
           - "ubuntu-${{inputs.ubuntu-version}}"
-          # - windows-latest
+          - windows-latest
           - macos-latest
     steps:
       - name: Checkout repository
