@@ -99,6 +99,12 @@ jobs:
         with:
           cache: npm
           node-version: ${{inputs.node-version}}
+      - name: Set up MSVC
+        if: runner.os == 'Windows'
+        uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: x64
+          vsversion: "2022"
       - name: Install dependencies
         run: npm i --omit peer --omit optional
       - name: Regenerate parser
