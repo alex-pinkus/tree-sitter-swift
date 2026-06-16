@@ -116,7 +116,7 @@ jobs:
           done < <(find . -name grammar.js -not -path './node_modules/*' -not -path './.build/*')
       - name: Build x64 binary
         if: runner.os != 'Windows'
-        run: npm x -- prebuildify --arch x64 -t 20.9.0
+        run: npm x -- prebuildify --arch x64
       - name: Build x64 binary (Windows)
         if: runner.os == 'Windows'
         shell: pwsh
