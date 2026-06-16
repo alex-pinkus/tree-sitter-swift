@@ -101,7 +101,7 @@ jobs:
           cache: npm
           node-version: ${{inputs.node-version}}
       - name: Install dependencies
-        run: npm i --omit peer --omit optional
+        run: npm i --omit peer --omit optional --ignore-scripts
         env:
           npm_config_msvs_version: ${{matrix.msvs-version}}
       - name: Regenerate parser
