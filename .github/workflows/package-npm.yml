@@ -36,6 +36,9 @@ on:
     #     description: An authentication token for npm
     #     required: true
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 defaults:
   run:
     shell: bash
@@ -89,7 +92,7 @@ jobs:
       matrix:
         include:
           - os: "ubuntu-${{inputs.ubuntu-version}}"
-          - os: windows-2022
+          - os: windows-latest
             msvs-version: "2022"
           - os: macos-latest
     steps:
