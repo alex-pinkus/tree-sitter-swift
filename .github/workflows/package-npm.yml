@@ -89,7 +89,8 @@ jobs:
       matrix:
         include:
           - os: "ubuntu-${{inputs.ubuntu-version}}"
-          - os: windows-latest
+          - os: windows-2022
+            msvs-version: "2022"
           - os: macos-latest
     steps:
       - name: Checkout repository
@@ -99,12 +100,10 @@ jobs:
         with:
           cache: npm
           node-version: ${{inputs.node-version}}
-      - name: Install VS 2022 C++ Build Tools
-        if: matrix.install-vs
-        shell: pwsh
-        run: choco install visualstudio2022-workload-vctools -y
       - name: Install dependencies
         run: npm i --omit peer --omit optional
+        env:
+          npm_config_msvs_version: ${{matrix.msvs-version}}
       - name: Regenerate parser
         if: ${{inputs.generate}}
         shell: bash
@@ -122,6 +121,8 @@ jobs:
         if: runner.os == 'Windows'
         shell: pwsh
         run: npm x -- prebuildify --arch x64 -t 20.9.0
+        env:
+          npm_config_msvs_version: ${{matrix.msvs-version}}
       - name: Set up cross-compilation
         if: runner.os == 'Linux'
         run: |-
