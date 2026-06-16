@@ -87,10 +87,10 @@ jobs:
     runs-on: ${{matrix.os}}
     strategy:
       matrix:
-        os:
-          - "ubuntu-${{inputs.ubuntu-version}}"
-          - windows-latest
-          - macos-latest
+        include:
+          - os: "ubuntu-${{inputs.ubuntu-version}}"
+          - os: windows-latest
+          - os: macos-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -99,12 +99,10 @@ jobs:
         with:
           cache: npm
           node-version: ${{inputs.node-version}}
-      - name: Set up MSVC
-        if: runner.os == 'Windows'
-        uses: ilammy/msvc-dev-cmd@v1
-        with:
-          arch: x64
-          vsversion: "2022"
+      - name: Install VS 2022 C++ Build Tools
+        if: matrix.install-vs
+        shell: pwsh
+        run: choco install visualstudio2022-workload-vctools -y
       - name: Install dependencies
         run: npm i --omit peer --omit optional
       - name: Regenerate parser
