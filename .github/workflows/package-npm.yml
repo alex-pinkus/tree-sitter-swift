@@ -36,9 +36,6 @@ on:
     #     description: An authentication token for npm
     #     required: true
 
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-
 defaults:
   run:
     shell: bash
@@ -50,14 +47,14 @@ jobs:
     continue-on-error: true
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: Set up NodeJS
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           cache: npm
           node-version: ${{inputs.node-version}}
       - name: Set up Emscripten
-        uses: mymindstorm/setup-emsdk@v14
+        uses: emscripten-core/setup-emsdk@v16
         with:
           version: ${{inputs.emscripten-version}}
       - name: Install dependencies
@@ -79,7 +76,7 @@ jobs:
             npm x -- tree-sitter build-wasm "${grammar%/grammar.js}"
           done < <(find . -name grammar.js -not -path './node_modules/*')
       - name: Upload binaries
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           path: "*.wasm"
           name: prebuilds-Wasm
@@ -97,9 +94,9 @@ jobs:
           - os: macos-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: Set up NodeJS
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           cache: npm
           node-version: ${{inputs.node-version}}
@@ -137,7 +134,7 @@ jobs:
         if: runner.os != 'Windows'
         run: npm x -- prebuildify --arch arm64 -t 20.9.0
       - name: Upload binaries
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           path: prebuilds/**
           name: prebuilds-${{runner.os}}
@@ -152,15 +149,15 @@ jobs:
       # url: https://www.npmjs.com/package/${{inputs.package-name}}
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: Set up NodeJS
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           cache: npm
           node-version: ${{inputs.node-version}}
           registry-url: https://registry.npmjs.org/
       - name: Download binaries
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v7
         with:
           path: prebuilds
           pattern: prebuilds-*
@@ -173,7 +170,7 @@ jobs:
       - name: Create package tarball
         run: npm pack
       - name: Upload package tarball
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           path: tree-sitter-swift-*.tgz
           name: package-tarball
