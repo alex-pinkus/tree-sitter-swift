@@ -89,7 +89,7 @@ jobs:
       matrix:
         include:
           - os: "ubuntu-${{inputs.ubuntu-version}}"
-          - os: windows-2025
+          - os: windows-2022
           - os: macos-latest
     steps:
       - name: Checkout repository
