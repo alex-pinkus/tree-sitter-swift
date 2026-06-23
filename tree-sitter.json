@@ -15,7 +15,7 @@
     }
   ],
   "metadata": {
-    "version": "0.7.3",
+    "version": "0.21.0",
     "license": "MIT",
     "description": "A tree-sitter grammar for the Swift programming language.",
     "authors": [
