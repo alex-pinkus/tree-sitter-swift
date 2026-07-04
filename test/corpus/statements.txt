@@ -801,6 +801,64 @@ func doSomething() {
           (simple_identifier))))))
 
 ================================================================================
+If let with try await function call
+================================================================================
+
+func doSomething() async throws {
+    if let a = try await Foo.getValue() {
+        return a
+    }
+    guard let b = try await Foo.getValue() else {
+        return defaultValue
+    }
+    return b
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (simple_identifier)
+    (throws)
+    (function_body
+      (statements
+        (if_statement
+          (value_binding_pattern)
+          (simple_identifier)
+          (try_expression
+            (try_operator)
+            (await_expression
+              (call_expression
+                (navigation_expression
+                  (simple_identifier)
+                  (navigation_suffix
+                    (simple_identifier)))
+                (call_suffix
+                  (value_arguments)))))
+          (statements
+            (control_transfer_statement
+              (simple_identifier))))
+        (guard_statement
+          (value_binding_pattern)
+          (simple_identifier)
+          (try_expression
+            (try_operator)
+            (await_expression
+              (call_expression
+                (navigation_expression
+                  (simple_identifier)
+                  (navigation_suffix
+                    (simple_identifier)))
+                (call_suffix
+                  (value_arguments)))))
+          (else)
+          (statements
+            (control_transfer_statement
+              (simple_identifier))))
+        (control_transfer_statement
+          (simple_identifier))))))
+
+================================================================================
 Compound if let
 ================================================================================
 

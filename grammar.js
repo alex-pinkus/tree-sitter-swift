@@ -121,6 +121,9 @@ module.exports = grammar({
     // all the options and pick the best one that doesn't error out.
     [$.try_expression, $._unary_expression],
     [$.try_expression, $._expression],
+    // `try await foo()!` is ambiguous between `(try await foo())!` and `try (await foo())!` until the postfix
+    // operator is consumed; parse both and pick the survivor.
+    [$.try_expression, $._primary_expression],
     // await {expression} has the same special cases as `try`.
     [$.await_expression, $._unary_expression],
     [$.await_expression, $._expression],
@@ -852,6 +855,10 @@ module.exports = grammar({
               prec.right(-2, $._expression),
               prec.left(0, $._binary_expression),
               prec.left(0, $.call_expression),
+              // Also special-case `try await foo()`: without this, the `await_expression` is only reachable through
+              // the low-precedence `_expression` branch, so `if let x = try await foo() { ... }` resolves the `{` as
+              // a trailing closure on `foo()` instead of the if-body.
+              prec.left(0, $.await_expression),
               // Similarly special case the ternary expression, where `try` may come earlier than it is actually needed.
               // When the parser just encounters some identifier after a `try`, it should prefer the `call_expression` (so
               // this should be lower in priority than that), but when we encounter an ambiguous expression that might be

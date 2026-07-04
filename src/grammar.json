@@ -3334,6 +3334,14 @@
                   }
                 },
                 {
+                  "type": "PREC_LEFT",
+                  "value": 0,
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "await_expression"
+                  }
+                },
+                {
                   "type": "PREC_DYNAMIC",
                   "value": 1,
                   "content": {
@@ -11428,6 +11436,10 @@
     [
       "try_expression",
       "_expression"
+    ],
+    [
+      "try_expression",
+      "_primary_expression"
     ],
     [
       "await_expression",
