@@ -172,7 +172,7 @@ const uint64_t OP_SYMBOL_SUPPRESSOR[OPERATOR_COUNT] = {
     0, // EQ_EQ,
     0, // PLUS_THEN_WS,
     0, // MINUS_THEN_WS,
-    1UL << FAKE_TRY_BANG, // BANG,
+    1ULL << FAKE_TRY_BANG, // BANG,
         0, // THROWS_KEYWORD,
         0, // RETHROWS_KEYWORD,
         0, // DEFAULT_KEYWORD,
