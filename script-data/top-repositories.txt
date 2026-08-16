@@ -36,7 +36,7 @@ AudioKit AudioKit/AudioKit 5.7.2
 Starscream daltoniam/Starscream 4.0.8
 MessageKit MessageKit/MessageKit 5.0.0
 KeychainAccess kishikawakatsumi/KeychainAccess v4.2.2
-Nuke kean/Nuke 13.0.6
+Nuke kean/Nuke 13.2.0
 Swinject Swinject/Swinject 2.10.0
 GRDB groue/GRDB.swift v7.11.1 0 2
 GRDB groue/GRDB.swift v7.11.1 1 2
