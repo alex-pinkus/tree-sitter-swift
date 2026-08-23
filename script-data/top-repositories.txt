@@ -17,10 +17,10 @@ HeroTransitions HeroTransitions/Hero 1.6.4
 Kingfisher onevcat/Kingfisher 8.11.0
 shadowsocks shadowsocks/ShadowsocksX-NG v1.10.3
 SnapKit SnapKit/SnapKit 6.0.0
-SwiftLint realm/SwiftLint 0.65.0 0 2
-SwiftLint realm/SwiftLint 0.65.0 1 2
+SwiftLint realm/SwiftLint 0.65.1 0 2
+SwiftLint realm/SwiftLint 0.65.1 1 2
 Carthage Carthage/Carthage 0.40.0
-Rectangle rxhanson/Rectangle v0.98
+Rectangle rxhanson/Rectangle v0.99
 PromiseKit mxcl/PromiseKit 8.2.0
 Moya Moya/Moya 15.0.3
 MonitorControl MonitorControl/MonitorControl v4.3.3
