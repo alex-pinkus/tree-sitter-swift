@@ -1702,7 +1702,7 @@
                   "type": "ALIAS",
                   "content": {
                     "type": "SYMBOL",
-                    "name": "_nil_coalescing_operator"
+                    "name": "_double_optional"
                   },
                   "named": false,
                   "value": "??"
@@ -8484,6 +8484,15 @@
       "named": false,
       "value": "??"
     },
+    "_double_optional": {
+      "type": "ALIAS",
+      "content": {
+        "type": "SYMBOL",
+        "name": "_double_optional_custom"
+      },
+      "named": false,
+      "value": "??"
+    },
     "_as": {
       "type": "ALIAS",
       "content": {
@@ -11579,6 +11588,10 @@
     {
       "type": "SYMBOL",
       "name": "_nil_coalescing_operator_custom"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "_double_optional_custom"
     },
     {
       "type": "SYMBOL",

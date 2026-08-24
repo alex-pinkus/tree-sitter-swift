@@ -223,6 +223,7 @@ module.exports = grammar({
     $._conjunction_operator_custom,
     $._disjunction_operator_custom,
     $._nil_coalescing_operator_custom,
+    $._double_optional_custom,
     $._eq_custom,
     $._eq_eq_custom,
     $._plus_then_ws,
@@ -496,11 +497,9 @@ module.exports = grammar({
           repeat1(
             choice(
               alias($._immediate_quest, "?"),
-              // The external scanner always tokenizes `??` as NIL_COALESCING_OPERATOR.
-              // In type position (e.g. `(v: AnyObject??)`) that single token represents
-              // two consecutive optional markers; accept it here since nil-coalescing is
-              // an expression-only construct and cannot appear in a type.
-              alias($._nil_coalescing_operator, "??")
+              // The scanner keeps an immediate `??` type suffix distinct from a
+              // nil-coalescing operator that follows whitespace.
+              alias($._double_optional, "??")
             )
           )
         )
@@ -1730,6 +1729,7 @@ module.exports = grammar({
     _disjunction_operator: ($) => alias($._disjunction_operator_custom, "||"),
     _nil_coalescing_operator: ($) =>
       alias($._nil_coalescing_operator_custom, "??"),
+    _double_optional: ($) => alias($._double_optional_custom, "??"),
     _as: ($) => alias($._as_custom, "as"),
     _as_quest: ($) => alias($._as_quest_custom, "as?"),
     _as_bang: ($) => alias($._as_bang_custom, "as!"),

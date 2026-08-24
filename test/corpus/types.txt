@@ -26,6 +26,46 @@ something as! A
       (type_identifier))))
 
 ================================================================================
+Optional casts followed by nil-coalescing
+================================================================================
+
+let x = y as? String ?? "z"
+let flag = d.get() as? Bool ?? true
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (property_declaration
+    (value_binding_pattern)
+    (pattern
+      (simple_identifier))
+    (nil_coalescing_expression
+      (as_expression
+        (simple_identifier)
+        (as_operator)
+        (user_type
+          (type_identifier)))
+      (line_string_literal
+        (line_str_text))))
+  (property_declaration
+    (value_binding_pattern)
+    (pattern
+      (simple_identifier))
+    (nil_coalescing_expression
+      (as_expression
+        (call_expression
+          (navigation_expression
+            (simple_identifier)
+            (navigation_suffix
+              (simple_identifier)))
+          (call_suffix
+            (value_arguments)))
+        (as_operator)
+        (user_type
+          (type_identifier)))
+      (boolean_literal))))
+
+================================================================================
 Nested types
 ================================================================================
 
