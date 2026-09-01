@@ -402,6 +402,53 @@ case let .isExecutable(path?):
               (simple_identifier))))))))
 
 ================================================================================
+Switch patterns with individual where clauses
+================================================================================
+
+switch value {
+case .a where first, .b where second:
+    break
+case .c, .d where condition:
+    break
+default:
+    break
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (switch_statement
+    (simple_identifier)
+    (switch_entry
+      (switch_pattern
+        (pattern
+          (simple_identifier)))
+      (where_keyword)
+      (simple_identifier)
+      (switch_pattern
+        (pattern
+          (simple_identifier)))
+      (where_keyword)
+      (simple_identifier)
+      (statements
+        (control_transfer_statement)))
+    (switch_entry
+      (switch_pattern
+        (pattern
+          (simple_identifier)))
+      (switch_pattern
+        (pattern
+          (simple_identifier)))
+      (where_keyword)
+      (simple_identifier)
+      (statements
+        (control_transfer_statement)))
+    (switch_entry
+      (default_keyword)
+      (statements
+        (control_transfer_statement)))))
+
+================================================================================
 Switch with extra parentheses
 ================================================================================
 
