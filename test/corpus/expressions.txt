@@ -1028,6 +1028,21 @@ let two = 2
     + 2
     - 2
 
+let mask = 1
+    | 2
+
+let intersection = 3
+    & 1
+
+let difference = 3
+    ^ 1
+
+let doubled = 1
+    << 1
+
+let halved = 2
+    >> 1
+
 --------------------------------------------------------------------------------
 
 (source_file
@@ -1059,6 +1074,41 @@ let two = 2
       (additive_expression
         (integer_literal)
         (integer_literal))
+      (integer_literal)))
+  (property_declaration
+    (value_binding_pattern)
+    (pattern
+      (simple_identifier))
+    (bitwise_operation
+      (integer_literal)
+      (integer_literal)))
+  (property_declaration
+    (value_binding_pattern)
+    (pattern
+      (simple_identifier))
+    (bitwise_operation
+      (integer_literal)
+      (integer_literal)))
+  (property_declaration
+    (value_binding_pattern)
+    (pattern
+      (simple_identifier))
+    (bitwise_operation
+      (integer_literal)
+      (integer_literal)))
+  (property_declaration
+    (value_binding_pattern)
+    (pattern
+      (simple_identifier))
+    (bitwise_operation
+      (integer_literal)
+      (integer_literal)))
+  (property_declaration
+    (value_binding_pattern)
+    (pattern
+      (simple_identifier))
+    (bitwise_operation
+      (integer_literal)
       (integer_literal))))
 
 ================================================================================
