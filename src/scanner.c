@@ -226,9 +226,6 @@ static bool is_cross_semi_token(enum TokenType op) {
     switch(op) {
     case ARROW_OPERATOR:
     case DOT_OPERATOR:
-    case CONJUNCTION_OPERATOR:
-    case DISJUNCTION_OPERATOR:
-    case NIL_COALESCING_OPERATOR:
     case EQUAL_SIGN:
     case EQ_EQ:
     case PLUS_THEN_WS:
@@ -251,8 +248,10 @@ static bool is_cross_semi_token(enum TokenType op) {
     }
 }
 
-#define NON_CONSUMING_CROSS_SEMI_CHAR_COUNT 3
-const uint32_t NON_CONSUMING_CROSS_SEMI_CHARS[NON_CONSUMING_CROSS_SEMI_CHAR_COUNT] = { '?', ':', '{' };
+#define NON_CONSUMING_CROSS_SEMI_CHAR_COUNT 8
+const uint32_t NON_CONSUMING_CROSS_SEMI_CHARS[NON_CONSUMING_CROSS_SEMI_CHAR_COUNT] = {
+    '?', ':', '{', '&', '|', '^', '<', '>'
+};
 
 /**
  * All possible results of having performed some sort of parsing.
