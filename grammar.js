@@ -1132,11 +1132,13 @@ module.exports = grammar({
         choice(
           seq(
             "case",
-            seq(
-              $.switch_pattern,
-              optional(seq($.where_keyword, $._expression))
-            ),
-            repeat(seq(",", $.switch_pattern))
+            sep1(
+              seq(
+                $.switch_pattern,
+                optional(seq($.where_keyword, $._expression))
+              ),
+              ","
+            )
           ),
           $.default_keyword
         ),
