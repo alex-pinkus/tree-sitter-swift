@@ -1,5 +1,5 @@
 Alamofire Alamofire/Alamofire 5.12.0
-iina iina/iina v1.4.2-build164
+iina iina/iina v1.5.0-beta1
 Charts danielgindi/Charts 5.1.0
 lottie-ios airbnb/lottie-ios 4.6.1
 vapor vapor/vapor 3.3.3
