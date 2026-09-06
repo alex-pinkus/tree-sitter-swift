@@ -74,3 +74,21 @@ class X {
         (user_type
           (type_identifier))
         (function_body)))))
+
+================================================================================
+Annotation with an empty argument list
+================================================================================
+
+@Test()
+class Empty { }
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (class_declaration
+    (modifiers
+      (attribute
+        (user_type
+          (type_identifier))))
+    (type_identifier)
+    (class_body)))

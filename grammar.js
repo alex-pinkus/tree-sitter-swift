@@ -1926,7 +1926,7 @@ module.exports = grammar({
         "@",
         $.user_type,
         // attribute arguments are a mess of special cases, maybe this is good enough?
-        optional(seq("(", sep1Opt($._attribute_argument, ","), ")"))
+        optional(seq("(", optional(sep1Opt($._attribute_argument, ",")), ")"))
       ),
     _attribute_argument: ($) =>
       choice(
