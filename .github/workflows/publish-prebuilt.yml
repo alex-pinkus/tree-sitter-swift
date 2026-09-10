@@ -3,6 +3,7 @@ name: Publish package to npm
 on:
   push:
     branches: ["with-generated-files"]
+  workflow_dispatch:
 
 concurrency:
   group: ${{github.workflow}}-${{github.ref}}

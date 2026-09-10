@@ -55,3 +55,9 @@ tag_name=$(basename $ref)-with-generated-files
 git tag $tag_name
 git push dest $tag_name
 echo "Checkin complete!"
+
+# Pushes made with the default GITHUB_TOKEN do not trigger workflows
+# (https://docs.github.com/en/actions/how-tos/writing-workflows/choosing-when-your-workflow-runs/triggering-a-workflow),
+# so the push above never starts publish-prebuilt.yml. workflow_dispatch is
+# exempt from that restriction, so dispatch the publish explicitly.
+gh workflow run publish-prebuilt.yml --ref $branch_name
