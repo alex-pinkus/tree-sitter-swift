@@ -42,7 +42,8 @@
     "bindings/node/*",
     "queries/*",
     "scripts/*",
-    "src/**"
+    "src/**",
+    "*.wasm"
   ],
   "author": "Alex Pinkus <alex.pinkus@gmail.com>",
   "license": "MIT",
