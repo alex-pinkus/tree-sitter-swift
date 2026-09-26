@@ -1455,3 +1455,191 @@ extension LottieLoopMode: Equatable {
                 (statements
                   (control_transfer_statement
                     (boolean_literal)))))))))))
+
+================================================================================
+For unsafe in
+================================================================================
+
+for unsafe x in seq {
+    unsafe readValue(x)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (for_statement
+    (pattern
+      (simple_identifier))
+    (simple_identifier)
+    (statements
+      (unsafe_expression
+        (call_expression
+          (simple_identifier)
+          (call_suffix
+            (value_arguments
+              (value_argument
+                (simple_identifier)))))))))
+
+================================================================================
+For unsafe in unsafe collection
+================================================================================
+
+for unsafe x in unsafe seq {
+    unsafe readValue(x)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (for_statement
+    (pattern
+      (simple_identifier))
+    (unsafe_expression
+      (simple_identifier))
+    (statements
+      (unsafe_expression
+        (call_expression
+          (simple_identifier)
+          (call_suffix
+            (value_arguments
+              (value_argument
+                (simple_identifier)))))))))
+
+================================================================================
+For try await unsafe in try await
+================================================================================
+
+for try await unsafe x in try await seq() {
+    unsafe readValue(x)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (for_statement
+    (try_operator)
+    (pattern
+      (simple_identifier))
+    (try_expression
+      (try_operator)
+      (await_expression
+        (call_expression
+          (simple_identifier)
+          (call_suffix
+            (value_arguments)))))
+    (statements
+      (unsafe_expression
+        (call_expression
+          (simple_identifier)
+          (call_suffix
+            (value_arguments
+              (value_argument
+                (simple_identifier)))))))))
+
+================================================================================
+Guard statement with two unsafe bindings
+================================================================================
+
+guard let a = unsafe a, let b = unsafe b else {
+    return
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (guard_statement
+    (value_binding_pattern)
+    (simple_identifier)
+    (unsafe_expression
+      (simple_identifier))
+    (value_binding_pattern)
+    (simple_identifier)
+    (unsafe_expression
+      (simple_identifier))
+    (else)
+    (statements
+      (control_transfer_statement))))
+
+================================================================================
+If-let statement with an unsafe binding and an unsafe body call
+================================================================================
+
+if let value = unsafe makeValue(pointer) {
+    unsafe readValue(value)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (if_statement
+    (value_binding_pattern)
+    (simple_identifier)
+    (unsafe_expression
+      (call_expression
+        (simple_identifier)
+        (call_suffix
+          (value_arguments
+            (value_argument
+              (simple_identifier))))))
+    (statements
+      (unsafe_expression
+        (call_expression
+          (simple_identifier)
+          (call_suffix
+            (value_arguments
+              (value_argument
+                (simple_identifier)))))))))
+
+================================================================================
+Return unsafe expression
+================================================================================
+
+func f() -> Wrapper {
+    return unsafe Wrapper(storage: raw)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (simple_identifier)
+    (user_type
+      (type_identifier))
+    (function_body
+      (statements
+        (control_transfer_statement
+          (unsafe_expression
+            (call_expression
+              (simple_identifier)
+              (call_suffix
+                (value_arguments
+                  (value_argument
+                    (value_argument_label
+                      (simple_identifier))
+                    (simple_identifier)))))))))))
+
+================================================================================
+Throw unsafe expression
+================================================================================
+
+func f() throws {
+    throw unsafe SomeError(raw)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (simple_identifier)
+    (throws)
+    (function_body
+      (statements
+        (control_transfer_statement
+          (throw_keyword)
+          (unsafe_expression
+            (call_expression
+              (simple_identifier)
+              (call_suffix
+                (value_arguments
+                  (value_argument
+                    (simple_identifier)))))))))))

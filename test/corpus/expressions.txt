@@ -1754,6 +1754,7 @@ doLast {
               (simple_identifier)
               (call_suffix
                 (value_arguments)))))))))
+
 ================================================================================
 Consume expression
 ================================================================================
@@ -1858,3 +1859,489 @@ let y = consume self.x
         (self_expression)
         (navigation_suffix
           (simple_identifier))))))
+
+================================================================================
+Unsafe expression
+================================================================================
+
+unsafe f(x)
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (unsafe_expression
+    (call_expression
+      (simple_identifier)
+      (call_suffix
+        (value_arguments
+          (value_argument
+            (simple_identifier)))))))
+
+================================================================================
+Unsafe expression in let binding
+================================================================================
+
+let p = unsafe c_function(buffer)
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (property_declaration
+    (value_binding_pattern)
+    (pattern
+      (simple_identifier))
+    (unsafe_expression
+      (call_expression
+        (simple_identifier)
+        (call_suffix
+          (value_arguments
+            (value_argument
+              (simple_identifier))))))))
+
+================================================================================
+Unsafe expression in assignment
+================================================================================
+
+unsafe self.storage = raw
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (unsafe_expression
+    (assignment
+      (directly_assignable_expression
+        (navigation_expression
+          (self_expression)
+          (navigation_suffix
+            (simple_identifier))))
+      (simple_identifier))))
+
+================================================================================
+Nested unsafe expressions
+================================================================================
+
+unsafe outer(unsafe inner())
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (unsafe_expression
+    (call_expression
+      (simple_identifier)
+      (call_suffix
+        (value_arguments
+          (value_argument
+            (unsafe_expression
+              (call_expression
+                (simple_identifier)
+                (call_suffix
+                  (value_arguments))))))))))
+
+================================================================================
+Unsafe expression wrapping a call with a nested call argument
+================================================================================
+
+let s = unsafe Wrapper(storage: c_function(buffer))
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (property_declaration
+    (value_binding_pattern)
+    (pattern
+      (simple_identifier))
+    (unsafe_expression
+      (call_expression
+        (simple_identifier)
+        (call_suffix
+          (value_arguments
+            (value_argument
+              (value_argument_label
+                (simple_identifier))
+              (call_expression
+                (simple_identifier)
+                (call_suffix
+                  (value_arguments
+                    (value_argument
+                      (simple_identifier))))))))))))
+
+================================================================================
+Unsafe expression in a trailing closure call
+================================================================================
+
+unsafe withUnsafeMutablePointer(to: &value) { unsafe readValue($0) }
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (unsafe_expression
+    (call_expression
+      (simple_identifier)
+      (call_suffix
+        (value_arguments
+          (value_argument
+            (value_argument_label
+              (simple_identifier))
+            (prefix_expression
+              (simple_identifier))))
+        (lambda_literal
+          (statements
+            (unsafe_expression
+              (call_expression
+                (simple_identifier)
+                (call_suffix
+                  (value_arguments
+                    (value_argument
+                      (simple_identifier))))))))))))
+
+================================================================================
+Unsafe expression in a closure body
+================================================================================
+
+let closure = {
+    unsafe readValue(pointer)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (property_declaration
+    (value_binding_pattern)
+    (pattern
+      (simple_identifier))
+    (lambda_literal
+      (statements
+        (unsafe_expression
+          (call_expression
+            (simple_identifier)
+            (call_suffix
+              (value_arguments
+                (value_argument
+                  (simple_identifier))))))))))
+
+================================================================================
+Unsafe expression in a defer body
+================================================================================
+
+func f() {
+    defer {
+        unsafe readValue(pointer)
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (simple_identifier)
+    (function_body
+      (statements
+        (call_expression
+          (simple_identifier)
+          (call_suffix
+            (lambda_literal
+              (statements
+                (unsafe_expression
+                  (call_expression
+                    (simple_identifier)
+                    (call_suffix
+                      (value_arguments
+                        (value_argument
+                          (simple_identifier))))))))))))))
+
+================================================================================
+Unsafe expression in string interpolation
+================================================================================
+
+let message = "\(unsafe pointer.pointee)"
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (property_declaration
+    (value_binding_pattern)
+    (pattern
+      (simple_identifier))
+    (line_string_literal
+      (interpolated_expression
+        (unsafe_expression
+          (navigation_expression
+            (simple_identifier)
+            (navigation_suffix
+              (simple_identifier))))))))
+
+================================================================================
+Unsafe member access expression
+================================================================================
+
+let value = unsafe pointer.pointee
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (property_declaration
+    (value_binding_pattern)
+    (pattern
+      (simple_identifier))
+    (unsafe_expression
+      (navigation_expression
+        (simple_identifier)
+        (navigation_suffix
+          (simple_identifier))))))
+
+================================================================================
+Try then unsafe expression
+================================================================================
+
+let a = try unsafe f()
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (property_declaration
+    (value_binding_pattern)
+    (pattern
+      (simple_identifier))
+    (try_expression
+      (try_operator)
+      (unsafe_expression
+        (call_expression
+          (simple_identifier)
+          (call_suffix
+            (value_arguments)))))))
+
+================================================================================
+Unsafe then try expression
+================================================================================
+
+let a = unsafe try f()
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (property_declaration
+    (value_binding_pattern)
+    (pattern
+      (simple_identifier))
+    (unsafe_expression
+      (try_expression
+        (try_operator)
+        (call_expression
+          (simple_identifier)
+          (call_suffix
+            (value_arguments)))))))
+
+================================================================================
+Await then unsafe expression
+================================================================================
+
+let a = await unsafe f()
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (property_declaration
+    (value_binding_pattern)
+    (pattern
+      (simple_identifier))
+    (await_expression
+      (unsafe_expression
+        (call_expression
+          (simple_identifier)
+          (call_suffix
+            (value_arguments)))))))
+
+================================================================================
+Unsafe then await expression
+================================================================================
+
+let a = unsafe await f()
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (property_declaration
+    (value_binding_pattern)
+    (pattern
+      (simple_identifier))
+    (unsafe_expression
+      (await_expression
+        (call_expression
+          (simple_identifier)
+          (call_suffix
+            (value_arguments)))))))
+
+================================================================================
+Try await then unsafe expression
+================================================================================
+
+let a = try await unsafe f()
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (property_declaration
+    (value_binding_pattern)
+    (pattern
+      (simple_identifier))
+    (try_expression
+      (try_operator)
+      (await_expression
+        (unsafe_expression
+          (call_expression
+            (simple_identifier)
+            (call_suffix
+              (value_arguments))))))))
+
+================================================================================
+Unsafe followed by newline then a new statement
+================================================================================
+
+let a = unsafe
+let b = 2
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (property_declaration
+    (value_binding_pattern)
+    (pattern
+      (simple_identifier))
+    (simple_identifier))
+  (property_declaration
+    (value_binding_pattern)
+    (pattern
+      (simple_identifier))
+    (integer_literal)))
+
+================================================================================
+Unsafe as an identifier: variable declaration
+================================================================================
+
+let unsafe = 1
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (property_declaration
+    (value_binding_pattern)
+    (pattern
+      (simple_identifier))
+    (integer_literal)))
+
+================================================================================
+Unsafe as an identifier: function declaration
+================================================================================
+
+func unsafe() {}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (simple_identifier)
+    (function_body)))
+
+================================================================================
+Unsafe as an identifier: call with no arguments
+================================================================================
+
+let a = unsafe()
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (property_declaration
+    (value_binding_pattern)
+    (pattern
+      (simple_identifier))
+    (call_expression
+      (simple_identifier)
+      (call_suffix
+        (value_arguments)))))
+
+================================================================================
+Unsafe as an identifier: call with an argument
+================================================================================
+
+let a = unsafe(x)
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (property_declaration
+    (value_binding_pattern)
+    (pattern
+      (simple_identifier))
+    (call_expression
+      (simple_identifier)
+      (call_suffix
+        (value_arguments
+          (value_argument
+            (simple_identifier)))))))
+
+================================================================================
+Unsafe as an identifier: assignment source
+================================================================================
+
+x = unsafe
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (assignment
+    (directly_assignable_expression
+      (simple_identifier))
+    (simple_identifier)))
+
+================================================================================
+Unsafe as an identifier: enum case name
+================================================================================
+
+enum E { case unsafe }
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (class_declaration
+    (type_identifier)
+    (enum_class_body
+      (enum_entry
+        (simple_identifier)))))
+
+================================================================================
+Unsafe as an identifier: implicit member expression
+================================================================================
+
+let a: E = .unsafe
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (property_declaration
+    (value_binding_pattern)
+    (pattern
+      (simple_identifier))
+    (type_annotation
+      (user_type
+        (type_identifier)))
+    (prefix_expression
+      (simple_identifier))))
+
+================================================================================
+Unsafe as an identifier: qualified enum case reference
+================================================================================
+
+let a = Foo.unsafe
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (property_declaration
+    (value_binding_pattern)
+    (pattern
+      (simple_identifier))
+    (navigation_expression
+      (simple_identifier)
+      (navigation_suffix
+        (simple_identifier)))))

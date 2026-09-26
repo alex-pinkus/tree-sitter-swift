@@ -92,3 +92,38 @@ class Empty { }
           (type_identifier))))
     (type_identifier)
     (class_body)))
+
+================================================================================
+Unsafe attribute on a function
+================================================================================
+
+@unsafe func f() {}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (modifiers
+      (attribute
+        (user_type
+          (type_identifier))))
+    (simple_identifier)
+    (function_body)))
+
+================================================================================
+Safe attribute on a final class
+================================================================================
+
+@safe final class C {}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (class_declaration
+    (modifiers
+      (attribute
+        (user_type
+          (type_identifier)))
+      (inheritance_modifier))
+    (type_identifier)
+    (class_body)))

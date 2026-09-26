@@ -1920,3 +1920,57 @@ struct Foo<T: ~Copyable>: ~Copyable {
         (type_annotation
           (user_type
             (type_identifier)))))))
+
+================================================================================
+Unsafe attribute on a conformance
+================================================================================
+
+extension X: @unsafe P {}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (class_declaration
+    (user_type
+      (type_identifier))
+    (attribute
+      (user_type
+        (type_identifier)))
+    (inheritance_specifier
+      (user_type
+        (type_identifier)))
+    (class_body)))
+
+================================================================================
+Unowned unsafe and unowned safe properties
+================================================================================
+
+class D {
+    unowned(unsafe) var ref: AnyObject
+    unowned(safe) var ref2: AnyObject
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (class_declaration
+    (type_identifier)
+    (class_body
+      (property_declaration
+        (modifiers
+          (ownership_modifier))
+        (value_binding_pattern)
+        (pattern
+          (simple_identifier))
+        (type_annotation
+          (user_type
+            (type_identifier))))
+      (property_declaration
+        (modifiers
+          (ownership_modifier))
+        (value_binding_pattern)
+        (pattern
+          (simple_identifier))
+        (type_annotation
+          (user_type
+            (type_identifier)))))))
