@@ -186,6 +186,10 @@
           "value": "package"
         },
         {
+          "type": "STRING",
+          "value": "unsafe"
+        },
+        {
           "type": "SYMBOL",
           "name": "_parameter_ownership_modifier"
         }
@@ -3342,6 +3346,14 @@
                   }
                 },
                 {
+                  "type": "PREC_LEFT",
+                  "value": 0,
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "unsafe_expression"
+                  }
+                },
+                {
                   "type": "PREC_DYNAMIC",
                   "value": 1,
                   "content": {
@@ -3389,6 +3401,14 @@
                   "content": {
                     "type": "SYMBOL",
                     "name": "call_expression"
+                  }
+                },
+                {
+                  "type": "PREC_LEFT",
+                  "value": 0,
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "unsafe_expression"
                   }
                 },
                 {
@@ -3476,6 +3496,81 @@
       },
       "named": false,
       "value": "consume"
+    },
+    "unsafe_expression": {
+      "type": "PREC_RIGHT",
+      "value": -2,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "_unsafe_operator"
+          },
+          {
+            "type": "FIELD",
+            "name": "expr",
+            "content": {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "PREC_RIGHT",
+                  "value": -2,
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "_expression"
+                  }
+                },
+                {
+                  "type": "PREC_LEFT",
+                  "value": 0,
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "call_expression"
+                  }
+                },
+                {
+                  "type": "PREC_LEFT",
+                  "value": 0,
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "try_expression"
+                  }
+                },
+                {
+                  "type": "PREC_LEFT",
+                  "value": 0,
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "await_expression"
+                  }
+                },
+                {
+                  "type": "PREC_DYNAMIC",
+                  "value": 1,
+                  "content": {
+                    "type": "PREC_LEFT",
+                    "value": -1,
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "ternary_expression"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "_unsafe_operator": {
+      "type": "ALIAS",
+      "content": {
+        "type": "STRING",
+        "value": "unsafe"
+      },
+      "named": false,
+      "value": "unsafe"
     },
     "ternary_expression": {
       "type": "PREC_RIGHT",
@@ -3674,6 +3769,10 @@
         {
           "type": "SYMBOL",
           "name": "consume_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "unsafe_expression"
         },
         {
           "type": "SYMBOL",
@@ -5760,6 +5859,18 @@
             ]
           },
           {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "_unsafe_operator"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          },
+          {
             "type": "FIELD",
             "name": "item",
             "content": {
@@ -5830,6 +5941,15 @@
           },
           "named": true,
           "value": "await_expression"
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "for_statement_unsafe"
+          },
+          "named": true,
+          "value": "unsafe_expression"
         }
       ]
     },
@@ -5839,6 +5959,19 @@
         {
           "type": "SYMBOL",
           "name": "_await_operator"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_expression"
+        }
+      ]
+    },
+    "for_statement_unsafe": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_unsafe_operator"
         },
         {
           "type": "SYMBOL",
@@ -11498,12 +11631,28 @@
       "_expression"
     ],
     [
+      "await_expression",
+      "_primary_expression"
+    ],
+    [
       "consume_expression",
       "_unary_expression"
     ],
     [
       "consume_expression",
       "_expression"
+    ],
+    [
+      "unsafe_expression",
+      "_unary_expression"
+    ],
+    [
+      "unsafe_expression",
+      "_expression"
+    ],
+    [
+      "unsafe_expression",
+      "_primary_expression"
     ],
     [
       "_local_property_declaration",
@@ -11580,6 +11729,10 @@
     [
       "_contextual_simple_identifier",
       "_consume_operator"
+    ],
+    [
+      "_contextual_simple_identifier",
+      "_unsafe_operator"
     ]
   ],
   "precedences": [],
