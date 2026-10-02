@@ -1974,3 +1974,28 @@ class D {
         (type_annotation
           (user_type
             (type_identifier)))))))
+
+================================================================================
+Isolated deinitializer
+================================================================================
+
+actor A { isolated deinit { print("x") } }
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (class_declaration
+    (type_identifier)
+    (class_body
+      (deinit_declaration
+        (modifiers
+          (parameter_modifier))
+        (function_body
+          (statements
+            (call_expression
+              (simple_identifier)
+              (call_suffix
+                (value_arguments
+                  (value_argument
+                    (line_string_literal
+                      (line_str_text))))))))))))

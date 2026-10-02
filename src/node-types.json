@@ -1101,6 +1101,20 @@
     "type": "array_type",
     "named": true,
     "fields": {
+      "count": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "integer_literal",
+            "named": true
+          },
+          {
+            "type": "simple_identifier",
+            "named": true
+          }
+        ]
+      },
       "element": {
         "multiple": true,
         "required": true,
@@ -12953,6 +12967,10 @@
           "named": true
         },
         {
+          "type": "parameter_modifiers",
+          "named": true
+        },
+        {
           "type": "property_behavior_modifier",
           "named": true
         },
@@ -16595,6 +16613,10 @@
       "types": [
         {
           "type": "lambda_function_type_parameters",
+          "named": true
+        },
+        {
+          "type": "parameter_modifiers",
           "named": true
         },
         {
@@ -20598,6 +20620,10 @@
             "named": true
           },
           {
+            "type": "bracket_qualified_type",
+            "named": true
+          },
+          {
             "type": "dictionary_type",
             "named": true
           },
@@ -23467,6 +23493,10 @@
           "named": true
         },
         {
+          "type": "parameter_modifiers",
+          "named": true
+        },
+        {
           "type": "statements",
           "named": true
         },
@@ -25187,6 +25217,7 @@
   {
     "type": "source_file",
     "named": true,
+    "root": true,
     "fields": {},
     "children": {
       "multiple": true,
@@ -26317,6 +26348,10 @@
         },
         {
           "type": "parameter",
+          "named": true
+        },
+        {
+          "type": "parameter_modifiers",
           "named": true
         },
         {
@@ -29229,7 +29264,7 @@
     "fields": {
       "name": {
         "multiple": true,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "array_type",
@@ -29294,6 +29329,10 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "integer_literal",
+          "named": true
+        },
         {
           "type": "type_modifiers",
           "named": true
@@ -32506,7 +32545,8 @@
   },
   {
     "type": "comment",
-    "named": true
+    "named": true,
+    "extra": true
   },
   {
     "type": "compiler",
@@ -32529,15 +32569,15 @@
     "named": false
   },
   {
+    "type": "copy",
+    "named": false
+  },
+  {
     "type": "default_keyword",
     "named": true
   },
   {
     "type": "deinit",
-    "named": false
-  },
-  {
-    "type": "delegate",
     "named": false
   },
   {
@@ -32689,6 +32729,10 @@
     "named": false
   },
   {
+    "type": "isolated",
+    "named": false
+  },
+  {
     "type": "keyPath",
     "named": false
   },
@@ -32710,7 +32754,8 @@
   },
   {
     "type": "multiline_comment",
-    "named": true
+    "named": true,
+    "extra": true
   },
   {
     "type": "mutating",
@@ -32737,6 +32782,10 @@
     "named": true
   },
   {
+    "type": "of",
+    "named": false
+  },
+  {
     "type": "open",
     "named": false
   },
@@ -32761,10 +32810,6 @@
     "named": false
   },
   {
-    "type": "param",
-    "named": false
-  },
-  {
     "type": "postfix",
     "named": false
   },
@@ -32778,10 +32823,6 @@
   },
   {
     "type": "private",
-    "named": false
-  },
-  {
-    "type": "property",
     "named": false
   },
   {
@@ -32813,10 +32854,6 @@
     "named": true
   },
   {
-    "type": "receiver",
-    "named": false
-  },
-  {
     "type": "repeat",
     "named": false
   },
@@ -32837,11 +32874,11 @@
     "named": false
   },
   {
-    "type": "set",
+    "type": "sending",
     "named": false
   },
   {
-    "type": "setparam",
+    "type": "set",
     "named": false
   },
   {
@@ -32894,14 +32931,6 @@
   },
   {
     "type": "try",
-    "named": false
-  },
-  {
-    "type": "try!",
-    "named": false
-  },
-  {
-    "type": "try?",
     "named": false
   },
   {
