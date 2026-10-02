@@ -300,6 +300,7 @@ module.exports = grammar({
         "actor",
         "async",
         "consume",
+        "copy",
         "discard",
         "each",
         "lazy",
@@ -407,7 +408,8 @@ module.exports = grammar({
       seq($._hash_symbol, /\/((\/[^#])|[^\n])+\/#/),
 
     _multiline_regex_literal: ($) =>
-      seq($._hash_symbol, /\/\n/, /(\/[^#]|[^/])*?\n\/#/),
+      // The closing `/#` may be indented, as it is in practice.
+      seq($._hash_symbol, /\/\n/, /(\/[^#]|[^/])*?\n[ \t]*\/#/),
 
     _oneline_regex_literal: ($) =>
       token(
@@ -497,7 +499,17 @@ module.exports = grammar({
         $._arrow_operator,
         field("return_type", $._type)
       ),
-    array_type: ($) => seq("[", field("element", $._type), "]"),
+    array_type: ($) =>
+      choice(
+        seq("[", field("element", $._type), "]"),
+        seq(
+          "[",
+          field("count", choice($.integer_literal, $.simple_identifier)),
+          "of",
+          field("element", $._type),
+          "]"
+        )
+      ),
     dictionary_type: ($) =>
       seq("[", field("key", $._type), ":", field("value", $._type), "]"),
     optional_type: ($) =>
@@ -505,7 +517,13 @@ module.exports = grammar({
         seq(
           field(
             "wrapped",
-            choice($.user_type, $.tuple_type, $.array_type, $.dictionary_type)
+            choice(
+              $.user_type,
+              $.tuple_type,
+              $.array_type,
+              $.dictionary_type,
+              $.bracket_qualified_type
+            )
           ),
           repeat1(
             choice(
@@ -820,7 +838,10 @@ module.exports = grammar({
       seq("(", optional(sep1Opt($.value_argument, ",")), ")"),
     _fn_call_lambda_arguments: ($) =>
       sep1($.lambda_literal, seq(field("name", $.simple_identifier), ":")),
-    type_arguments: ($) => prec.left(seq("<", sep1Opt($._type, ","), ">")),
+    type_arguments: ($) =>
+      prec.left(
+        seq("<", sep1Opt(choice($._type, $.integer_literal), ","), ">")
+      ),
     value_arguments: ($) =>
       seq(
         choice(
@@ -920,7 +941,8 @@ module.exports = grammar({
           )
         )
       ),
-    _consume_operator: ($) => alias("consume", "consume"),
+    _consume_operator: ($) =>
+      choice(alias("consume", "consume"), alias("copy", "copy")),
     // `unsafe` marks an expression as containing unsafe constructs, e.g. `unsafe someBuffer[i]`. Composes with `try`
     // and `await` in either order, exactly like a Swift 6.2 strict-memory-safety `unsafe` expression: `try unsafe
     // f()`, `unsafe try f()`, `await unsafe f()`, and `try await unsafe f()` all keep the real callee intact.
@@ -979,7 +1001,7 @@ module.exports = grammar({
         prec.dynamic(DYNAMIC_PRECS.call, seq($._expression, $.call_suffix))
       ),
     macro_invocation: ($) =>
-      prec(
+      prec.right(
         PRECS.call,
         prec.dynamic(
           DYNAMIC_PRECS.call,
@@ -987,7 +1009,8 @@ module.exports = grammar({
             $._hash_symbol,
             $.simple_identifier,
             optional($.type_parameters),
-            $.call_suffix
+            // A freestanding macro may take no arguments at all: `#isolation`
+            optional($.call_suffix)
           )
         )
       ),
@@ -1105,6 +1128,7 @@ module.exports = grammar({
           optional(
             seq(
               $._arrow_operator,
+              optional($.parameter_modifiers),
               field("return_type", $._possibly_implicitly_unwrapped_type)
             )
           )
@@ -1598,6 +1622,7 @@ module.exports = grammar({
           optional(
             seq(
               $._arrow_operator,
+              optional($.parameter_modifiers),
               field("return_type", $._possibly_implicitly_unwrapped_type)
             )
           ),
@@ -1683,6 +1708,7 @@ module.exports = grammar({
     type_parameter: ($) =>
       seq(
         optional($.type_parameter_modifiers),
+        optional("let"),
         $._type_parameter_possibly_packed,
         optional(seq(":", $._type))
       ),
@@ -1899,6 +1925,7 @@ module.exports = grammar({
           optional(
             seq(
               $._arrow_operator,
+              optional($.parameter_modifiers),
               field("return_type", $._possibly_implicitly_unwrapped_type)
             )
           ),
@@ -1988,7 +2015,14 @@ module.exports = grammar({
         // References to param names (used in `@objc(foo:bar:)`)
         repeat1(seq($.simple_identifier, ":")),
         // Version restrictions (iOS 3.4.5, Swift 5.0.0)
-        seq(repeat1($.simple_identifier), sep1($.integer_literal, "."))
+        seq(repeat1($.simple_identifier), sep1($.integer_literal, ".")),
+        // Labeled version restrictions (`@backDeployed(before: macOS 14)`)
+        seq(
+          $.simple_identifier,
+          ":",
+          repeat1($.simple_identifier),
+          sep1($.integer_literal, ".")
+        )
       ),
     ////////////////////////////////
     // Patterns - https://docs.swift.org/swift-book/ReferenceManual/Patterns.html
@@ -2145,7 +2179,8 @@ module.exports = grammar({
       ),
     ownership_modifier: ($) =>
       choice("weak", "unowned", "unowned(safe)", "unowned(unsafe)"),
-    _parameter_ownership_modifier: ($) => choice("borrowing", "consuming"),
+    _parameter_ownership_modifier: ($) =>
+      choice("borrowing", "consuming", "sending", "isolated"),
     use_site_target: ($) =>
       seq(
         choice(

@@ -127,3 +127,24 @@ Safe attribute on a final class
       (inheritance_modifier))
     (type_identifier)
     (class_body)))
+
+================================================================================
+Back deployed attribute with a version label
+================================================================================
+
+@backDeployed(before: macOS 14) public func f() {}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (modifiers
+      (attribute
+        (user_type
+          (type_identifier))
+        (simple_identifier)
+        (simple_identifier)
+        (integer_literal))
+      (visibility_modifier))
+    (simple_identifier)
+    (function_body)))

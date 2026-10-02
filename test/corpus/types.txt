@@ -508,3 +508,97 @@ func f(range: Range<[String].Index>) {}
                 (type_identifier)))
             (type_identifier)))))
     (function_body)))
+
+================================================================================
+Integer generic parameters
+================================================================================
+
+struct Matrix<let rows: Int, let cols: Int> {}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (class_declaration
+    (type_identifier)
+    (type_parameters
+      (type_parameter
+        (type_identifier)
+        (user_type
+          (type_identifier)))
+      (type_parameter
+        (type_identifier)
+        (user_type
+          (type_identifier))))
+    (class_body)))
+
+================================================================================
+Inline array type sugar
+================================================================================
+
+let a: [3 of Int] = [1, 2, 3]
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (property_declaration
+    (value_binding_pattern)
+    (pattern
+      (simple_identifier))
+    (type_annotation
+      (array_type
+        (integer_literal)
+        (user_type
+          (type_identifier))))
+    (array_literal
+      (integer_literal)
+      (integer_literal)
+      (integer_literal))))
+
+================================================================================
+Integer type argument
+================================================================================
+
+var b = InlineArray<4, Int>(repeating: 0)
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (property_declaration
+    (value_binding_pattern)
+    (pattern
+      (simple_identifier))
+    (constructor_expression
+      (user_type
+        (type_identifier)
+        (type_arguments
+          (integer_literal)
+          (user_type
+            (type_identifier))))
+      (constructor_suffix
+        (value_arguments
+          (value_argument
+            (value_argument_label
+              (simple_identifier))
+            (integer_literal)))))))
+
+================================================================================
+Optional member of a bracket-qualified type
+================================================================================
+
+let i: [Int].Index? = nil
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (property_declaration
+    (value_binding_pattern)
+    (pattern
+      (simple_identifier))
+    (type_annotation
+      (optional_type
+        (bracket_qualified_type
+          (array_type
+            (user_type
+              (type_identifier)))
+          (type_identifier))))
+    (nil_literal)))
