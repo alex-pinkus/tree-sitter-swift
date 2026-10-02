@@ -2345,3 +2345,19 @@ let a = Foo.unsafe
       (simple_identifier)
       (navigation_suffix
         (simple_identifier)))))
+
+================================================================================
+Copy operator expression
+================================================================================
+
+let y = copy x
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (property_declaration
+    (value_binding_pattern)
+    (pattern
+      (simple_identifier))
+    (consume_expression
+      (simple_identifier))))

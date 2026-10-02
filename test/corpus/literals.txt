@@ -827,3 +827,22 @@ String interpolation with trailing commas
       (integer_literal))
     (interpolated_expression
       (integer_literal))))
+
+================================================================================
+Multiline extended regex with an indented close
+================================================================================
+
+let r = #/
+    (?<prefix> [A-Z]+ )  # letters
+    -
+    (?<digits> \d+ )
+    /#
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (property_declaration
+    (value_binding_pattern)
+    (pattern
+      (simple_identifier))
+    (regex_literal)))
