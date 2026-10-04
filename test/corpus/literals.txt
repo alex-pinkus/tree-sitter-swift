@@ -242,7 +242,8 @@ let _ = nil
   (property_declaration
     (value_binding_pattern)
     (pattern
-      (wildcard_pattern))))
+      (wildcard_pattern))
+    (nil_literal)))
 
 ================================================================================
 Raw strings
@@ -572,21 +573,21 @@ let y = array.reduce(1, /) + otherArray.reduce(1, /)
     (pattern
       (simple_identifier))
     (call_expression
-      (navigation_expression
-        (additive_expression
-          (call_expression
-            (navigation_expression
-              (simple_identifier)
-              (navigation_suffix
-                (simple_identifier)))
-            (call_suffix
-              (value_arguments
-                (value_argument
-                  (integer_literal))
-                (value_argument))))
-          (simple_identifier))
-        (navigation_suffix
-          (simple_identifier)))
+      (additive_expression
+        (call_expression
+          (navigation_expression
+            (simple_identifier)
+            (navigation_suffix
+              (simple_identifier)))
+          (call_suffix
+            (value_arguments
+              (value_argument
+                (integer_literal))
+              (value_argument))))
+        (navigation_expression
+          (simple_identifier)
+          (navigation_suffix
+            (simple_identifier))))
       (call_suffix
         (value_arguments
           (value_argument
@@ -826,3 +827,22 @@ String interpolation with trailing commas
       (integer_literal))
     (interpolated_expression
       (integer_literal))))
+
+================================================================================
+Multiline extended regex with an indented close
+================================================================================
+
+let r = #/
+    (?<prefix> [A-Z]+ )  # letters
+    -
+    (?<digits> \d+ )
+    /#
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (property_declaration
+    (value_binding_pattern)
+    (pattern
+      (simple_identifier))
+    (regex_literal)))

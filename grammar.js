@@ -46,7 +46,7 @@ const PRECS = {
   do: -1,
   fully_open_range: -1,
   range: -1,
-  navigation: -1,
+  navigation: 12,
   expr: -1,
   ty: -1,
   call: -2,
@@ -57,6 +57,7 @@ const PRECS = {
   ternary_binary_suffix: -2,
   await: -2,
   consume: -2,
+  unsafe: -2,
   assignment: -3,
   comment: -3,
   lambda: -3,
@@ -121,12 +122,24 @@ module.exports = grammar({
     // all the options and pick the best one that doesn't error out.
     [$.try_expression, $._unary_expression],
     [$.try_expression, $._expression],
+    // `try await foo()!` is ambiguous between `(try await foo())!` and `try (await foo())!` until the postfix
+    // operator is consumed; parse both and pick the survivor.
+    [$.try_expression, $._primary_expression],
     // await {expression} has the same special cases as `try`.
     [$.await_expression, $._unary_expression],
     [$.await_expression, $._expression],
+    // `await unsafe foo()!` is ambiguous between `(await unsafe foo())!` and `await (unsafe foo())!` until the
+    // postfix operator is consumed, same as `try await foo()!` above.
+    [$.await_expression, $._primary_expression],
     // consume {expression} has the same special cases as `try` and `await`.
     [$.consume_expression, $._unary_expression],
     [$.consume_expression, $._expression],
+    // unsafe {expression} has the same special cases as `try`, `await`, and `consume`.
+    [$.unsafe_expression, $._unary_expression],
+    [$.unsafe_expression, $._expression],
+    // `unsafe try foo()!` / `unsafe await foo()!` have the same postfix-operator ambiguity as `try await foo()!`
+    // above.
+    [$.unsafe_expression, $._primary_expression],
     // In a computed property, when you see an @attribute, it's not yet clear if that's going to be for a
     // locally-declared class or a getter / setter specifier.
     [
@@ -180,6 +193,8 @@ module.exports = grammar({
     [$._contextual_simple_identifier, $.visibility_modifier],
     // `consume` is a contextual keyword: identifier in most positions, operator in `consume x`.
     [$._contextual_simple_identifier, $._consume_operator],
+    // `unsafe` is a contextual keyword: identifier in most positions, operator in `unsafe x`.
+    [$._contextual_simple_identifier, $._unsafe_operator],
   ],
   extras: ($) => [
     $.comment,
@@ -220,6 +235,7 @@ module.exports = grammar({
     $._conjunction_operator_custom,
     $._disjunction_operator_custom,
     $._nil_coalescing_operator_custom,
+    $._double_optional_custom,
     $._eq_custom,
     $._eq_eq_custom,
     $._plus_then_ws,
@@ -272,7 +288,7 @@ module.exports = grammar({
     simple_identifier: ($) =>
       choice(
         LEXICAL_IDENTIFIER,
-        /`[^\r\n` ]*`/,
+        /`[^\r\n`]+`/,
         /\$[0-9]+/,
         token(seq("$", LEXICAL_IDENTIFIER)),
         $._contextual_simple_identifier
@@ -284,11 +300,13 @@ module.exports = grammar({
         "actor",
         "async",
         "consume",
+        "copy",
         "discard",
         "each",
         "lazy",
         "repeat",
         "package",
+        "unsafe",
         $._parameter_ownership_modifier
       ),
     identifier: ($) => sep1($.simple_identifier, $._dot),
@@ -303,7 +321,7 @@ module.exports = grammar({
         $.boolean_literal,
         $._string_literal,
         $.regex_literal,
-        "nil"
+        $.nil_literal
       ),
     real_literal: ($) =>
       token(
@@ -323,6 +341,7 @@ module.exports = grammar({
     oct_literal: ($) => token(seq("0", /[oO]/, OCT_DIGITS)),
     bin_literal: ($) => token(seq("0", /[bB]/, BIN_DIGITS)),
     boolean_literal: ($) => choice("true", "false"),
+    nil_literal: ($) => "nil",
     // String literals
     _string_literal: ($) =>
       choice(
@@ -389,7 +408,8 @@ module.exports = grammar({
       seq($._hash_symbol, /\/((\/[^#])|[^\n])+\/#/),
 
     _multiline_regex_literal: ($) =>
-      seq($._hash_symbol, /\/\n/, /(\/[^#]|[^/])*?\n\/#/),
+      // The closing `/#` may be indented, as it is in practice.
+      seq($._hash_symbol, /\/\n/, /(\/[^#]|[^/])*?\n[ \t]*\/#/),
 
     _oneline_regex_literal: ($) =>
       token(
@@ -479,7 +499,17 @@ module.exports = grammar({
         $._arrow_operator,
         field("return_type", $._type)
       ),
-    array_type: ($) => seq("[", field("element", $._type), "]"),
+    array_type: ($) =>
+      choice(
+        seq("[", field("element", $._type), "]"),
+        seq(
+          "[",
+          field("count", choice($.integer_literal, $.simple_identifier)),
+          "of",
+          field("element", $._type),
+          "]"
+        )
+      ),
     dictionary_type: ($) =>
       seq("[", field("key", $._type), ":", field("value", $._type), "]"),
     optional_type: ($) =>
@@ -487,16 +517,20 @@ module.exports = grammar({
         seq(
           field(
             "wrapped",
-            choice($.user_type, $.tuple_type, $.array_type, $.dictionary_type)
+            choice(
+              $.user_type,
+              $.tuple_type,
+              $.array_type,
+              $.dictionary_type,
+              $.bracket_qualified_type
+            )
           ),
           repeat1(
             choice(
               alias($._immediate_quest, "?"),
-              // The external scanner always tokenizes `??` as NIL_COALESCING_OPERATOR.
-              // In type position (e.g. `(v: AnyObject??)`) that single token represents
-              // two consecutive optional markers; accept it here since nil-coalescing is
-              // an expression-only construct and cannot appear in a type.
-              alias($._nil_coalescing_operator, "??")
+              // The scanner keeps an immediate `??` type suffix distinct from a
+              // nil-coalescing operator that follows whitespace.
+              alias($._double_optional, "??")
             )
           )
         )
@@ -804,7 +838,10 @@ module.exports = grammar({
       seq("(", optional(sep1Opt($.value_argument, ",")), ")"),
     _fn_call_lambda_arguments: ($) =>
       sep1($.lambda_literal, seq(field("name", $.simple_identifier), ":")),
-    type_arguments: ($) => prec.left(seq("<", sep1Opt($._type, ","), ">")),
+    type_arguments: ($) =>
+      prec.left(
+        seq("<", sep1Opt(choice($._type, $.integer_literal), ","), ">")
+      ),
     value_arguments: ($) =>
       seq(
         choice(
@@ -851,6 +888,12 @@ module.exports = grammar({
               prec.right(-2, $._expression),
               prec.left(0, $._binary_expression),
               prec.left(0, $.call_expression),
+              // Also special-case `try await foo()`: without this, the `await_expression` is only reachable through
+              // the low-precedence `_expression` branch, so `if let x = try await foo() { ... }` resolves the `{` as
+              // a trailing closure on `foo()` instead of the if-body.
+              prec.left(0, $.await_expression),
+              // Also special-case `try unsafe foo()`, for the same reason as `try await foo()` above.
+              prec.left(0, $.unsafe_expression),
               // Similarly special case the ternary expression, where `try` may come earlier than it is actually needed.
               // When the parser just encounters some identifier after a `try`, it should prefer the `call_expression` (so
               // this should be lower in priority than that), but when we encounter an ambiguous expression that might be
@@ -872,6 +915,8 @@ module.exports = grammar({
               // Prefer direct calls over indirect (same as with `try`).
               prec.right(-2, $._expression),
               prec.left(0, $.call_expression),
+              // Also special-case `await unsafe foo()`, for the same reason as `try await foo()` above.
+              prec.left(0, $.unsafe_expression),
               // Special case ternary to `await` the whole thing (same as with `try`).
               prec.dynamic(1, prec.left(-1, $.ternary_expression))
             )
@@ -896,7 +941,34 @@ module.exports = grammar({
           )
         )
       ),
-    _consume_operator: ($) => alias("consume", "consume"),
+    _consume_operator: ($) =>
+      choice(alias("consume", "consume"), alias("copy", "copy")),
+    // `unsafe` marks an expression as containing unsafe constructs, e.g. `unsafe someBuffer[i]`. Composes with `try`
+    // and `await` in either order, exactly like a Swift 6.2 strict-memory-safety `unsafe` expression: `try unsafe
+    // f()`, `unsafe try f()`, `await unsafe f()`, and `try await unsafe f()` all keep the real callee intact.
+    unsafe_expression: ($) =>
+      prec.right(
+        PRECS.unsafe,
+        seq(
+          $._unsafe_operator,
+          field(
+            "expr",
+            choice(
+              // Prefer direct calls over indirect (same as with `try`/`consume`).
+              prec.right(-2, $._expression),
+              prec.left(0, $.call_expression),
+              // Also special-case `unsafe try foo()` and `unsafe await foo()`, for the same reason `try` special-cases
+              // `await`: without this, `try_expression`/`await_expression` are only reachable through the
+              // low-precedence `_expression` branch, which loses to trailing-closure ambiguity.
+              prec.left(0, $.try_expression),
+              prec.left(0, $.await_expression),
+              // Special case ternary to `unsafe` the whole thing (same as with `try`).
+              prec.dynamic(1, prec.left(-1, $.ternary_expression))
+            )
+          )
+        )
+      ),
+    _unsafe_operator: ($) => alias("unsafe", "unsafe"),
     ternary_expression: ($) =>
       prec.right(
         PRECS.ternary,
@@ -929,7 +1001,7 @@ module.exports = grammar({
         prec.dynamic(DYNAMIC_PRECS.call, seq($._expression, $.call_suffix))
       ),
     macro_invocation: ($) =>
-      prec(
+      prec.right(
         PRECS.call,
         prec.dynamic(
           DYNAMIC_PRECS.call,
@@ -937,7 +1009,8 @@ module.exports = grammar({
             $._hash_symbol,
             $.simple_identifier,
             optional($.type_parameters),
-            $.call_suffix
+            // A freestanding macro may take no arguments at all: `#isolation`
+            optional($.call_suffix)
           )
         )
       ),
@@ -955,6 +1028,7 @@ module.exports = grammar({
         $.try_expression,
         $.await_expression,
         $.consume_expression,
+        $.unsafe_expression,
         $.discard_statement,
         $._referenceable_operator,
         $.key_path_expression,
@@ -1054,6 +1128,7 @@ module.exports = grammar({
           optional(
             seq(
               $._arrow_operator,
+              optional($.parameter_modifiers),
               field("return_type", $._possibly_implicitly_unwrapped_type)
             )
           )
@@ -1125,11 +1200,13 @@ module.exports = grammar({
         choice(
           seq(
             "case",
-            seq(
-              $.switch_pattern,
-              optional(seq($.where_keyword, $._expression))
-            ),
-            repeat(seq(",", $.switch_pattern))
+            sep1(
+              seq(
+                $.switch_pattern,
+                optional(seq($.where_keyword, $._expression))
+              ),
+              ","
+            )
           ),
           $.default_keyword
         ),
@@ -1274,6 +1351,7 @@ module.exports = grammar({
           "for",
           optional($.try_operator),
           optional($._await_operator),
+          optional($._unsafe_operator),
           field("item", alias($._binding_pattern_no_expr, $.pattern)),
           optional($.type_annotation),
           "in",
@@ -1283,12 +1361,18 @@ module.exports = grammar({
         )
       ),
     _for_statement_collection: ($) =>
-      // If this expression has "await", this triggers some special-cased logic to prefer function calls. We prefer
-      // the opposite, though, since function calls may contain trailing code blocks, which are undesirable here.
+      // If this expression has "await" or "unsafe", this triggers some special-cased logic to prefer function calls.
+      // We prefer the opposite, though, since function calls may contain trailing code blocks, which are undesirable
+      // here.
       //
-      // To fix that, we simply undo the special casing by defining our own `await_expression`.
-      choice($._expression, alias($.for_statement_await, $.await_expression)),
+      // To fix that, we simply undo the special casing by defining our own `await_expression`/`unsafe_expression`.
+      choice(
+        $._expression,
+        alias($.for_statement_await, $.await_expression),
+        alias($.for_statement_unsafe, $.unsafe_expression)
+      ),
     for_statement_await: ($) => seq($._await_operator, $._expression),
+    for_statement_unsafe: ($) => seq($._unsafe_operator, $._expression),
 
     while_statement: ($) =>
       prec(
@@ -1538,6 +1622,7 @@ module.exports = grammar({
           optional(
             seq(
               $._arrow_operator,
+              optional($.parameter_modifiers),
               field("return_type", $._possibly_implicitly_unwrapped_type)
             )
           ),
@@ -1623,6 +1708,7 @@ module.exports = grammar({
     type_parameter: ($) =>
       seq(
         optional($.type_parameter_modifiers),
+        optional("let"),
         $._type_parameter_possibly_packed,
         optional(seq(":", $._type))
       ),
@@ -1722,6 +1808,7 @@ module.exports = grammar({
     _disjunction_operator: ($) => alias($._disjunction_operator_custom, "||"),
     _nil_coalescing_operator: ($) =>
       alias($._nil_coalescing_operator_custom, "??"),
+    _double_optional: ($) => alias($._double_optional_custom, "??"),
     _as: ($) => alias($._as_custom, "as"),
     _as_quest: ($) => alias($._as_quest_custom, "as?"),
     _as_bang: ($) => alias($._as_bang_custom, "as!"),
@@ -1838,6 +1925,7 @@ module.exports = grammar({
           optional(
             seq(
               $._arrow_operator,
+              optional($.parameter_modifiers),
               field("return_type", $._possibly_implicitly_unwrapped_type)
             )
           ),
@@ -1916,7 +2004,7 @@ module.exports = grammar({
         "@",
         $.user_type,
         // attribute arguments are a mess of special cases, maybe this is good enough?
-        optional(seq("(", sep1Opt($._attribute_argument, ","), ")"))
+        optional(seq("(", optional(sep1Opt($._attribute_argument, ",")), ")"))
       ),
     _attribute_argument: ($) =>
       choice(
@@ -1927,7 +2015,14 @@ module.exports = grammar({
         // References to param names (used in `@objc(foo:bar:)`)
         repeat1(seq($.simple_identifier, ":")),
         // Version restrictions (iOS 3.4.5, Swift 5.0.0)
-        seq(repeat1($.simple_identifier), sep1($.integer_literal, "."))
+        seq(repeat1($.simple_identifier), sep1($.integer_literal, ".")),
+        // Labeled version restrictions (`@backDeployed(before: macOS 14)`)
+        seq(
+          $.simple_identifier,
+          ":",
+          repeat1($.simple_identifier),
+          sep1($.integer_literal, ".")
+        )
       ),
     ////////////////////////////////
     // Patterns - https://docs.swift.org/swift-book/ReferenceManual/Patterns.html
@@ -2084,7 +2179,8 @@ module.exports = grammar({
       ),
     ownership_modifier: ($) =>
       choice("weak", "unowned", "unowned(safe)", "unowned(unsafe)"),
-    _parameter_ownership_modifier: ($) => choice("borrowing", "consuming"),
+    _parameter_ownership_modifier: ($) =>
+      choice("borrowing", "consuming", "sending", "isolated"),
     use_site_target: ($) =>
       seq(
         choice(

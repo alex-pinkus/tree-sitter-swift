@@ -216,7 +216,8 @@ func returnGetsImplicitlyUnwrapped() -> String! {
       (type_identifier))
     (function_body
       (statements
-        (control_transfer_statement)))))
+        (control_transfer_statement
+          (nil_literal))))))
 
 ================================================================================
 Variadic functions
@@ -1530,3 +1531,88 @@ f = { [weak x, y, z,] in
           (simple_identifier)))
       (comment))))
 
+================================================================================
+Sending parameter modifier
+================================================================================
+
+func f(_ x: sending Item) {}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (simple_identifier)
+    (parameter
+      (simple_identifier)
+      (simple_identifier)
+      (parameter_modifiers
+        (parameter_modifier))
+      (user_type
+        (type_identifier)))
+    (function_body)))
+
+================================================================================
+Sending function result
+================================================================================
+
+func f() -> sending Item { Item() }
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (simple_identifier)
+    (parameter_modifiers
+      (parameter_modifier))
+    (user_type
+      (type_identifier))
+    (function_body
+      (statements
+        (call_expression
+          (simple_identifier)
+          (call_suffix
+            (value_arguments)))))))
+
+================================================================================
+Isolated parameter modifier
+================================================================================
+
+func f(actor: isolated Ledger) {}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (simple_identifier)
+    (parameter
+      (simple_identifier)
+      (parameter_modifiers
+        (parameter_modifier))
+      (user_type
+        (type_identifier)))
+    (function_body)))
+
+================================================================================
+Isolation macro as a default argument
+================================================================================
+
+func f(isolation: isolated (any Actor)? = #isolation) async {}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (simple_identifier)
+    (parameter
+      (simple_identifier)
+      (parameter_modifiers
+        (parameter_modifier))
+      (optional_type
+        (tuple_type
+          (tuple_type_item
+            (existential_type
+              (user_type
+                (type_identifier)))))))
+    (macro_invocation
+      (simple_identifier))
+    (function_body)))

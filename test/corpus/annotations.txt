@@ -74,3 +74,77 @@ class X {
         (user_type
           (type_identifier))
         (function_body)))))
+
+================================================================================
+Annotation with an empty argument list
+================================================================================
+
+@Test()
+class Empty { }
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (class_declaration
+    (modifiers
+      (attribute
+        (user_type
+          (type_identifier))))
+    (type_identifier)
+    (class_body)))
+
+================================================================================
+Unsafe attribute on a function
+================================================================================
+
+@unsafe func f() {}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (modifiers
+      (attribute
+        (user_type
+          (type_identifier))))
+    (simple_identifier)
+    (function_body)))
+
+================================================================================
+Safe attribute on a final class
+================================================================================
+
+@safe final class C {}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (class_declaration
+    (modifiers
+      (attribute
+        (user_type
+          (type_identifier)))
+      (inheritance_modifier))
+    (type_identifier)
+    (class_body)))
+
+================================================================================
+Back deployed attribute with a version label
+================================================================================
+
+@backDeployed(before: macOS 14) public func f() {}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (modifiers
+      (attribute
+        (user_type
+          (type_identifier))
+        (simple_identifier)
+        (simple_identifier)
+        (integer_literal))
+      (visibility_modifier))
+    (simple_identifier)
+    (function_body)))
