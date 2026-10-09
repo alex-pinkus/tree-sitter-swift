@@ -939,6 +939,165 @@ case .guarded:
         (control_transfer_statement)))))
 
 ================================================================================
+Attributes and modifiers on later statements in a switch case
+================================================================================
+
+switch a {
+case .a:
+  b()
+  @W var y
+case .b:
+  b()
+  @W let y = 1
+case .c:
+  b()
+  @W func g() {}
+case .d:
+  b()
+  weak var y = x
+case .e:
+  b()
+  lazy var y = x
+case .f:
+  b()
+  final class C {}
+case .g:
+  b()
+  unowned(unsafe) var y = x
+case .h:
+  b()
+  package.f()
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (switch_statement
+    (simple_identifier)
+    (switch_entry
+      (switch_pattern
+        (pattern
+          (simple_identifier)))
+      (statements
+        (call_expression
+          (simple_identifier)
+          (call_suffix
+            (value_arguments)))
+        (property_declaration
+          (attribute
+            (user_type
+              (type_identifier)))
+          (value_binding_pattern)
+          (pattern
+            (simple_identifier)))))
+    (switch_entry
+      (switch_pattern
+        (pattern
+          (simple_identifier)))
+      (statements
+        (call_expression
+          (simple_identifier)
+          (call_suffix
+            (value_arguments)))
+        (property_declaration
+          (attribute
+            (user_type
+              (type_identifier)))
+          (value_binding_pattern)
+          (pattern
+            (simple_identifier))
+          (integer_literal))))
+    (switch_entry
+      (switch_pattern
+        (pattern
+          (simple_identifier)))
+      (statements
+        (call_expression
+          (simple_identifier)
+          (call_suffix
+            (value_arguments)))
+        (function_declaration
+          (attribute
+            (user_type
+              (type_identifier)))
+          (simple_identifier)
+          (function_body))))
+    (switch_entry
+      (switch_pattern
+        (pattern
+          (simple_identifier)))
+      (statements
+        (call_expression
+          (simple_identifier)
+          (call_suffix
+            (value_arguments)))
+        (property_declaration
+          (ownership_modifier)
+          (value_binding_pattern)
+          (pattern
+            (simple_identifier))
+          (simple_identifier))))
+    (switch_entry
+      (switch_pattern
+        (pattern
+          (simple_identifier)))
+      (statements
+        (call_expression
+          (simple_identifier)
+          (call_suffix
+            (value_arguments)))
+        (property_declaration
+          (property_behavior_modifier)
+          (value_binding_pattern)
+          (pattern
+            (simple_identifier))
+          (simple_identifier))))
+    (switch_entry
+      (switch_pattern
+        (pattern
+          (simple_identifier)))
+      (statements
+        (call_expression
+          (simple_identifier)
+          (call_suffix
+            (value_arguments)))
+        (class_declaration
+          (inheritance_modifier)
+          (type_identifier)
+          (class_body))))
+    (switch_entry
+      (switch_pattern
+        (pattern
+          (simple_identifier)))
+      (statements
+        (call_expression
+          (simple_identifier)
+          (call_suffix
+            (value_arguments)))
+        (property_declaration
+          (ownership_modifier)
+          (value_binding_pattern)
+          (pattern
+            (simple_identifier))
+          (simple_identifier))))
+    (switch_entry
+      (switch_pattern
+        (pattern
+          (simple_identifier)))
+      (statements
+        (call_expression
+          (simple_identifier)
+          (call_suffix
+            (value_arguments)))
+        (call_expression
+          (navigation_expression
+            (simple_identifier)
+            (navigation_suffix
+              (simple_identifier)))
+          (call_suffix
+            (value_arguments)))))))
+
+================================================================================
 Imports
 ================================================================================
 
