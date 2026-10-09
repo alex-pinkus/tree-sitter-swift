@@ -475,6 +475,470 @@ case let .success((successfulResult)):
           (simple_identifier))))))
 
 ================================================================================
+@unknown cases after statements in a switch
+================================================================================
+
+switch a {
+case .call:
+  f()
+@unknown default:
+  break
+}
+
+switch a {
+case .inlineSemicolon: f();
+@unknown case _:
+  break
+}
+
+switch a {
+case .ownLineSemicolon:
+  f();
+@unknown default:
+  break
+}
+
+switch a {
+case .several:
+  let x = f()
+  g(x)
+  h()
+@unknown case _:
+  break
+}
+
+switch a {
+case .trailingClosure:
+  f {
+    g()
+  }
+@unknown default:
+  break
+}
+
+switch a {
+case .closureValue:
+  let c = {
+    g()
+  }
+@unknown case _:
+  break
+}
+
+switch a {
+case .ifElse:
+  if x {
+    f()
+  } else {
+    g()
+  }
+@unknown default:
+  break
+}
+
+switch a {
+case .conditionalCompilation:
+  #if DEBUG
+  f()
+  #endif
+@unknown case _:
+  break
+}
+
+switch a {
+case .returnValue:
+  return x
+@unknown default:
+  break
+}
+
+switch a {
+case .breaks:
+  break
+@unknown
+default:
+  break
+}
+
+switch a {
+case .throwing:
+  throw e
+@unknown case _:
+  break
+}
+
+switch a {
+case .doCatch:
+  do {
+    try f()
+  } catch {
+    g()
+  }
+@unknown default:
+  break
+}
+
+switch a {
+case .nestedSwitch:
+  switch b {
+  case .c:
+    f()
+  default:
+    g()
+  }
+@unknown case _:
+  break
+}
+
+switch a {
+case .guarded:
+  guard x else {
+    return
+  }
+@unknown default:
+  break
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (switch_statement
+    (simple_identifier)
+    (switch_entry
+      (switch_pattern
+        (pattern
+          (simple_identifier)))
+      (statements
+        (call_expression
+          (simple_identifier)
+          (call_suffix
+            (value_arguments)))))
+    (switch_entry
+      (modifiers
+        (attribute
+          (user_type
+            (type_identifier))))
+      (default_keyword)
+      (statements
+        (control_transfer_statement))))
+  (switch_statement
+    (simple_identifier)
+    (switch_entry
+      (switch_pattern
+        (pattern
+          (simple_identifier)))
+      (statements
+        (call_expression
+          (simple_identifier)
+          (call_suffix
+            (value_arguments)))))
+    (switch_entry
+      (modifiers
+        (attribute
+          (user_type
+            (type_identifier))))
+      (switch_pattern
+        (pattern
+          (wildcard_pattern)))
+      (statements
+        (control_transfer_statement))))
+  (switch_statement
+    (simple_identifier)
+    (switch_entry
+      (switch_pattern
+        (pattern
+          (simple_identifier)))
+      (statements
+        (call_expression
+          (simple_identifier)
+          (call_suffix
+            (value_arguments)))))
+    (switch_entry
+      (modifiers
+        (attribute
+          (user_type
+            (type_identifier))))
+      (default_keyword)
+      (statements
+        (control_transfer_statement))))
+  (switch_statement
+    (simple_identifier)
+    (switch_entry
+      (switch_pattern
+        (pattern
+          (simple_identifier)))
+      (statements
+        (property_declaration
+          (value_binding_pattern)
+          (pattern
+            (simple_identifier))
+          (call_expression
+            (simple_identifier)
+            (call_suffix
+              (value_arguments))))
+        (call_expression
+          (simple_identifier)
+          (call_suffix
+            (value_arguments
+              (value_argument
+                (simple_identifier)))))
+        (call_expression
+          (simple_identifier)
+          (call_suffix
+            (value_arguments)))))
+    (switch_entry
+      (modifiers
+        (attribute
+          (user_type
+            (type_identifier))))
+      (switch_pattern
+        (pattern
+          (wildcard_pattern)))
+      (statements
+        (control_transfer_statement))))
+  (switch_statement
+    (simple_identifier)
+    (switch_entry
+      (switch_pattern
+        (pattern
+          (simple_identifier)))
+      (statements
+        (call_expression
+          (simple_identifier)
+          (call_suffix
+            (lambda_literal
+              (statements
+                (call_expression
+                  (simple_identifier)
+                  (call_suffix
+                    (value_arguments)))))))))
+    (switch_entry
+      (modifiers
+        (attribute
+          (user_type
+            (type_identifier))))
+      (default_keyword)
+      (statements
+        (control_transfer_statement))))
+  (switch_statement
+    (simple_identifier)
+    (switch_entry
+      (switch_pattern
+        (pattern
+          (simple_identifier)))
+      (statements
+        (property_declaration
+          (value_binding_pattern)
+          (pattern
+            (simple_identifier))
+          (lambda_literal
+            (statements
+              (call_expression
+                (simple_identifier)
+                (call_suffix
+                  (value_arguments))))))))
+    (switch_entry
+      (modifiers
+        (attribute
+          (user_type
+            (type_identifier))))
+      (switch_pattern
+        (pattern
+          (wildcard_pattern)))
+      (statements
+        (control_transfer_statement))))
+  (switch_statement
+    (simple_identifier)
+    (switch_entry
+      (switch_pattern
+        (pattern
+          (simple_identifier)))
+      (statements
+        (if_statement
+          (simple_identifier)
+          (statements
+            (call_expression
+              (simple_identifier)
+              (call_suffix
+                (value_arguments))))
+          (else)
+          (statements
+            (call_expression
+              (simple_identifier)
+              (call_suffix
+                (value_arguments)))))))
+    (switch_entry
+      (modifiers
+        (attribute
+          (user_type
+            (type_identifier))))
+      (default_keyword)
+      (statements
+        (control_transfer_statement))))
+  (switch_statement
+    (simple_identifier)
+    (switch_entry
+      (switch_pattern
+        (pattern
+          (simple_identifier)))
+      (statements
+        (directive
+          (simple_identifier))
+        (call_expression
+          (simple_identifier)
+          (call_suffix
+            (value_arguments)))
+        (directive)))
+    (switch_entry
+      (modifiers
+        (attribute
+          (user_type
+            (type_identifier))))
+      (switch_pattern
+        (pattern
+          (wildcard_pattern)))
+      (statements
+        (control_transfer_statement))))
+  (switch_statement
+    (simple_identifier)
+    (switch_entry
+      (switch_pattern
+        (pattern
+          (simple_identifier)))
+      (statements
+        (control_transfer_statement
+          (simple_identifier))))
+    (switch_entry
+      (modifiers
+        (attribute
+          (user_type
+            (type_identifier))))
+      (default_keyword)
+      (statements
+        (control_transfer_statement))))
+  (switch_statement
+    (simple_identifier)
+    (switch_entry
+      (switch_pattern
+        (pattern
+          (simple_identifier)))
+      (statements
+        (control_transfer_statement)))
+    (switch_entry
+      (modifiers
+        (attribute
+          (user_type
+            (type_identifier))))
+      (default_keyword)
+      (statements
+        (control_transfer_statement))))
+  (switch_statement
+    (simple_identifier)
+    (switch_entry
+      (switch_pattern
+        (pattern
+          (simple_identifier)))
+      (statements
+        (control_transfer_statement
+          (throw_keyword)
+          (simple_identifier))))
+    (switch_entry
+      (modifiers
+        (attribute
+          (user_type
+            (type_identifier))))
+      (switch_pattern
+        (pattern
+          (wildcard_pattern)))
+      (statements
+        (control_transfer_statement))))
+  (switch_statement
+    (simple_identifier)
+    (switch_entry
+      (switch_pattern
+        (pattern
+          (simple_identifier)))
+      (statements
+        (do_statement
+          (statements
+            (try_expression
+              (try_operator)
+              (call_expression
+                (simple_identifier)
+                (call_suffix
+                  (value_arguments)))))
+          (catch_block
+            (catch_keyword)
+            (statements
+              (call_expression
+                (simple_identifier)
+                (call_suffix
+                  (value_arguments))))))))
+    (switch_entry
+      (modifiers
+        (attribute
+          (user_type
+            (type_identifier))))
+      (default_keyword)
+      (statements
+        (control_transfer_statement))))
+  (switch_statement
+    (simple_identifier)
+    (switch_entry
+      (switch_pattern
+        (pattern
+          (simple_identifier)))
+      (statements
+        (switch_statement
+          (simple_identifier)
+          (switch_entry
+            (switch_pattern
+              (pattern
+                (simple_identifier)))
+            (statements
+              (call_expression
+                (simple_identifier)
+                (call_suffix
+                  (value_arguments)))))
+          (switch_entry
+            (default_keyword)
+            (statements
+              (call_expression
+                (simple_identifier)
+                (call_suffix
+                  (value_arguments))))))))
+    (switch_entry
+      (modifiers
+        (attribute
+          (user_type
+            (type_identifier))))
+      (switch_pattern
+        (pattern
+          (wildcard_pattern)))
+      (statements
+        (control_transfer_statement))))
+  (switch_statement
+    (simple_identifier)
+    (switch_entry
+      (switch_pattern
+        (pattern
+          (simple_identifier)))
+      (statements
+        (guard_statement
+          (simple_identifier)
+          (else)
+          (statements
+            (control_transfer_statement)))))
+    (switch_entry
+      (modifiers
+        (attribute
+          (user_type
+            (type_identifier))))
+      (default_keyword)
+      (statements
+        (control_transfer_statement)))))
+
+================================================================================
 Imports
 ================================================================================
 
