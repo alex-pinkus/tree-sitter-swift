@@ -5764,45 +5764,41 @@
       "name": "_expression"
     },
     "statements": {
-      "type": "PREC_LEFT",
-      "value": 0,
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "SYMBOL",
-            "name": "_local_statement"
-          },
-          {
-            "type": "REPEAT",
-            "content": {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "SYMBOL",
-                  "name": "_semi"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "_local_statement"
-                }
-              ]
-            }
-          },
-          {
-            "type": "CHOICE",
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_local_statement"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SEQ",
             "members": [
               {
                 "type": "SYMBOL",
                 "name": "_semi"
               },
               {
-                "type": "BLANK"
+                "type": "SYMBOL",
+                "name": "_local_statement"
               }
             ]
           }
-        ]
-      }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_semi"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
     },
     "_local_statement": {
       "type": "CHOICE",
@@ -11781,6 +11777,9 @@
     ],
     [
       "modifiers"
+    ],
+    [
+      "statements"
     ],
     [
       "_additive_operator",

@@ -104,6 +104,9 @@ module.exports = grammar({
     // After a `{` in a function or switch context, it's ambigous whether we're starting a set of local statements or
     // applying some modifiers to a capture or pattern.
     [$.modifiers],
+    // Inside a switch case, an attribute or modifier after a statement could start either the next statement or the
+    // next case's modifiers (`@unknown default:`).
+    [$.statements],
     // `+(...)` is ambigously either "call the function produced by a reference to the operator `+`" or "use the unary
     // operator `+` on the result of the parenthetical expression."
     [$._additive_operator, $._prefix_unary_operator],
@@ -1307,13 +1310,10 @@ module.exports = grammar({
     // Statements - https://docs.swift.org/swift-book/ReferenceManual/Statements.html
     ////////////////////////////////
     statements: ($) =>
-      prec.left(
-        // Left precedence is required in switch statements
-        seq(
-          $._local_statement,
-          repeat(seq($._semi, $._local_statement)),
-          optional($._semi)
-        )
+      seq(
+        $._local_statement,
+        repeat(seq($._semi, $._local_statement)),
+        optional($._semi)
       ),
     _local_statement: ($) =>
       choice(
