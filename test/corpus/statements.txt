@@ -1098,6 +1098,70 @@ case .h:
             (value_arguments)))))))
 
 ================================================================================
+`open` as an identifier on later statements in a switch case
+================================================================================
+
+switch a {
+case .a:
+  b()
+  open(c)
+case .b:
+  b()
+  open.f()
+default:
+  b()
+  open = c
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (switch_statement
+    (simple_identifier)
+    (switch_entry
+      (switch_pattern
+        (pattern
+          (simple_identifier)))
+      (statements
+        (call_expression
+          (simple_identifier)
+          (call_suffix
+            (value_arguments)))
+        (call_expression
+          (simple_identifier)
+          (call_suffix
+            (value_arguments
+              (value_argument
+                (simple_identifier)))))))
+    (switch_entry
+      (switch_pattern
+        (pattern
+          (simple_identifier)))
+      (statements
+        (call_expression
+          (simple_identifier)
+          (call_suffix
+            (value_arguments)))
+        (call_expression
+          (navigation_expression
+            (simple_identifier)
+            (navigation_suffix
+              (simple_identifier)))
+          (call_suffix
+            (value_arguments)))))
+    (switch_entry
+      (default_keyword)
+      (statements
+        (call_expression
+          (simple_identifier)
+          (call_suffix
+            (value_arguments)))
+        (assignment
+          (directly_assignable_expression
+            (simple_identifier))
+          (simple_identifier))))))
+
+================================================================================
 Imports
 ================================================================================
 
