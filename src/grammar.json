@@ -184,6 +184,10 @@
         },
         {
           "type": "STRING",
+          "value": "open"
+        },
+        {
+          "type": "STRING",
           "value": "repeat"
         },
         {

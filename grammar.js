@@ -307,6 +307,7 @@ module.exports = grammar({
         "discard",
         "each",
         "lazy",
+        "open",
         "repeat",
         "package",
         "unsafe",
