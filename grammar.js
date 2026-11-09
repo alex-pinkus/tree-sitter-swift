@@ -1234,8 +1234,19 @@ module.exports = grammar({
     catch_block: ($) =>
       seq(
         $.catch_keyword,
-        field("error", optional(alias($._binding_pattern_no_expr, $.pattern))),
-        optional($.where_clause),
+        optional(
+          sep1(
+            choice(
+              seq(
+                field("error", alias($._binding_pattern_no_expr, $.pattern)),
+                optional($.where_clause)
+              ),
+              // `catch where cond` binds the implicit `error`
+              $.where_clause
+            ),
+            ","
+          )
+        ),
         $._block
       ),
     where_clause: ($) => prec.left(seq($.where_keyword, $._expression)),
