@@ -1277,6 +1277,83 @@ do {
         (integer_literal)))))
 
 ================================================================================
+Do-catch with several patterns in one clause
+================================================================================
+
+do {
+    try work()
+} catch let DecodingError.typeMismatch(_, ctx), let DecodingError.valueNotFound(_, ctx) {
+} catch MyError.a where flagA, MyError.b, MyError.c where flagC {
+} catch is A, is B {
+} catch where flag {
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (do_statement
+    (statements
+      (try_expression
+        (try_operator)
+        (call_expression
+          (simple_identifier)
+          (call_suffix
+            (value_arguments)))))
+    (catch_block
+      (catch_keyword)
+      (pattern
+        (value_binding_pattern)
+        (user_type
+          (type_identifier))
+        (simple_identifier)
+        (pattern
+          (wildcard_pattern))
+        (pattern
+          (simple_identifier)))
+      (pattern
+        (value_binding_pattern)
+        (user_type
+          (type_identifier))
+        (simple_identifier)
+        (pattern
+          (wildcard_pattern))
+        (pattern
+          (simple_identifier))))
+    (catch_block
+      (catch_keyword)
+      (pattern
+        (user_type
+          (type_identifier))
+        (simple_identifier))
+      (where_clause
+        (where_keyword)
+        (simple_identifier))
+      (pattern
+        (user_type
+          (type_identifier))
+        (simple_identifier))
+      (pattern
+        (user_type
+          (type_identifier))
+        (simple_identifier))
+      (where_clause
+        (where_keyword)
+        (simple_identifier)))
+    (catch_block
+      (catch_keyword)
+      (pattern
+        (user_type
+          (type_identifier)))
+      (pattern
+        (user_type
+          (type_identifier))))
+    (catch_block
+      (catch_keyword)
+      (where_clause
+        (where_keyword)
+        (simple_identifier)))))
+
+================================================================================
 Discard self
 ================================================================================
 
