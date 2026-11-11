@@ -1157,7 +1157,7 @@ module.exports = grammar({
         )
       ),
     self_expression: ($) => "self",
-    super_expression: ($) => seq("super"),
+    super_expression: ($) => "super",
     _else_options: ($) => choice($._block, $.if_statement),
     if_statement: ($) =>
       prec.right(
@@ -2170,7 +2170,7 @@ module.exports = grammar({
     mutation_modifier: ($) => choice("mutating", "nonmutating"),
     property_modifier: ($) =>
       choice("static", "dynamic", "optional", "class", "distributed"),
-    inheritance_modifier: ($) => choice("final"),
+    inheritance_modifier: ($) => "final",
     parameter_modifier: ($) =>
       choice(
         "inout",
@@ -2250,9 +2250,9 @@ module.exports = grammar({
           choice(
             // Using regexes here, rather than actually validating the string literal, because complex string literals
             // cannot be used inside `token()` and we need that to ensure we get the right precedence.
-            seq(/error([^\r\n]*)/),
-            seq(/warning([^\r\n]*)/),
-            seq(/sourceLocation([^\r\n]*)/)
+            /error([^\r\n]*)/,
+            /warning([^\r\n]*)/,
+            /sourceLocation([^\r\n]*)/
           )
         )
       ),

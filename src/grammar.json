@@ -4785,13 +4785,8 @@
       "value": "self"
     },
     "super_expression": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "super"
-        }
-      ]
+      "type": "STRING",
+      "value": "super"
     },
     "_else_options": {
       "type": "CHOICE",
@@ -11203,13 +11198,8 @@
       ]
     },
     "inheritance_modifier": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "final"
-        }
-      ]
+      "type": "STRING",
+      "value": "final"
     },
     "parameter_modifier": {
       "type": "CHOICE",
@@ -11681,31 +11671,16 @@
             "type": "CHOICE",
             "members": [
               {
-                "type": "SEQ",
-                "members": [
-                  {
-                    "type": "PATTERN",
-                    "value": "error([^\\r\\n]*)"
-                  }
-                ]
+                "type": "PATTERN",
+                "value": "error([^\\r\\n]*)"
               },
               {
-                "type": "SEQ",
-                "members": [
-                  {
-                    "type": "PATTERN",
-                    "value": "warning([^\\r\\n]*)"
-                  }
-                ]
+                "type": "PATTERN",
+                "value": "warning([^\\r\\n]*)"
               },
               {
-                "type": "SEQ",
-                "members": [
-                  {
-                    "type": "PATTERN",
-                    "value": "sourceLocation([^\\r\\n]*)"
-                  }
-                ]
+                "type": "PATTERN",
+                "value": "sourceLocation([^\\r\\n]*)"
               }
             ]
           }

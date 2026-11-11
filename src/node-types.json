@@ -15348,11 +15348,6 @@
     }
   },
   {
-    "type": "inheritance_modifier",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "inheritance_specifier",
     "named": true,
     "fields": {
@@ -26366,11 +26361,6 @@
     }
   },
   {
-    "type": "super_expression",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "suppressed_constraint",
     "named": true,
     "fields": {
@@ -32408,14 +32398,6 @@
     "named": false
   },
   {
-    "type": "?",
-    "named": false
-  },
-  {
-    "type": "??",
-    "named": false
-  },
-  {
     "type": "@",
     "named": false
   },
@@ -32653,10 +32635,6 @@
     "named": false
   },
   {
-    "type": "final",
-    "named": false
-  },
-  {
     "type": "for",
     "named": false
   },
@@ -32707,6 +32685,10 @@
   {
     "type": "infix",
     "named": false
+  },
+  {
+    "type": "inheritance_modifier",
+    "named": true
   },
   {
     "type": "init",
@@ -32906,8 +32888,8 @@
     "named": false
   },
   {
-    "type": "super",
-    "named": false
+    "type": "super_expression",
+    "named": true
   },
   {
     "type": "swift",
