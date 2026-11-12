@@ -461,6 +461,91 @@ func math() {
             (integer_literal)))))))
 
 ================================================================================
+Empty tuple expressions
+================================================================================
+
+func unit(completion: (Result<Void, Error>) -> Void) {
+    completion(.success(()))
+    log(tag: "reset", payload: ())
+    let pair = (1, ())
+    let empty = ()
+    continuation.resume(returning: ())
+    return ()
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (simple_identifier)
+    (parameter
+      (simple_identifier)
+      (function_type
+        (tuple_type
+          (tuple_type_item
+            (user_type
+              (type_identifier)
+              (type_arguments
+                (user_type
+                  (type_identifier))
+                (user_type
+                  (type_identifier))))))
+        (user_type
+          (type_identifier))))
+    (function_body
+      (statements
+        (call_expression
+          (simple_identifier)
+          (call_suffix
+            (value_arguments
+              (value_argument
+                (call_expression
+                  (prefix_expression
+                    (simple_identifier))
+                  (call_suffix
+                    (value_arguments
+                      (value_argument
+                        (tuple_expression)))))))))
+        (call_expression
+          (simple_identifier)
+          (call_suffix
+            (value_arguments
+              (value_argument
+                (value_argument_label
+                  (simple_identifier))
+                (line_string_literal
+                  (line_str_text)))
+              (value_argument
+                (value_argument_label
+                  (simple_identifier))
+                (tuple_expression)))))
+        (property_declaration
+          (value_binding_pattern)
+          (pattern
+            (simple_identifier))
+          (tuple_expression
+            (integer_literal)
+            (tuple_expression)))
+        (property_declaration
+          (value_binding_pattern)
+          (pattern
+            (simple_identifier))
+          (tuple_expression))
+        (call_expression
+          (navigation_expression
+            (simple_identifier)
+            (navigation_suffix
+              (simple_identifier)))
+          (call_suffix
+            (value_arguments
+              (value_argument
+                (value_argument_label
+                  (simple_identifier))
+                (tuple_expression)))))
+        (control_transfer_statement
+          (tuple_expression))))))
+
+================================================================================
 Function calls
 ================================================================================
 
