@@ -1528,13 +1528,13 @@ let bullet =
       (conjunction_expression
         (simple_identifier)
         (tuple_expression
-          (equality_expression
-            (simple_identifier)
-            (disjunction_expression
-              (integer_literal)
-              (prefix_expression
-                (bang)
-                (simple_identifier))))))
+          (disjunction_expression
+            (equality_expression
+              (simple_identifier)
+              (integer_literal))
+            (prefix_expression
+              (bang)
+              (simple_identifier)))))
       (statements
         (line_string_literal))
       (else)

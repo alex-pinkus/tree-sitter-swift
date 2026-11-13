@@ -572,27 +572,27 @@ let y = array.reduce(1, /) + otherArray.reduce(1, /)
     (value_binding_pattern)
     (pattern
       (simple_identifier))
-    (call_expression
-      (additive_expression
-        (call_expression
-          (navigation_expression
-            (simple_identifier)
-            (navigation_suffix
-              (simple_identifier)))
-          (call_suffix
-            (value_arguments
-              (value_argument
-                (integer_literal))
-              (value_argument))))
+    (additive_expression
+      (call_expression
         (navigation_expression
           (simple_identifier)
           (navigation_suffix
-            (simple_identifier))))
-      (call_suffix
-        (value_arguments
-          (value_argument
-            (integer_literal))
-          (value_argument))))))
+            (simple_identifier)))
+        (call_suffix
+          (value_arguments
+            (value_argument
+              (integer_literal))
+            (value_argument))))
+      (call_expression
+        (navigation_expression
+          (simple_identifier)
+          (navigation_suffix
+            (simple_identifier)))
+        (call_suffix
+          (value_arguments
+            (value_argument
+              (integer_literal))
+            (value_argument)))))))
 
 ================================================================================
 Unapplied custom operators
@@ -663,15 +663,15 @@ let e = !/y / .foo() // Prefix '!/' with infix '/' and operand '.foo()'
     (value_binding_pattern)
     (pattern
       (simple_identifier))
-    (call_expression
+    (multiplicative_expression
       (prefix_expression
         (custom_operator)
-        (multiplicative_expression
-          (simple_identifier)
-          (prefix_expression
-            (simple_identifier))))
-      (call_suffix
-        (value_arguments))))
+        (simple_identifier))
+      (call_expression
+        (prefix_expression
+          (simple_identifier))
+        (call_suffix
+          (value_arguments)))))
   (comment))
 
 ================================================================================

@@ -1718,17 +1718,17 @@ If try
 
 (source_file
   (if_statement
-    (try_expression
-      (try_operator)
-      (equality_expression
-        (simple_identifier)
-        (conjunction_expression
-          (nil_literal)
-          (conjunction_expression
+    (conjunction_expression
+      (conjunction_expression
+        (try_expression
+          (try_operator)
+          (equality_expression
             (simple_identifier)
-            (prefix_expression
-              (bang)
-              (simple_identifier))))))
+            (nil_literal)))
+        (simple_identifier))
+      (prefix_expression
+        (bang)
+        (simple_identifier)))
     (statements
       (control_transfer_statement
         (simple_identifier)))))
