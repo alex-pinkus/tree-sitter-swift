@@ -1409,17 +1409,17 @@ func makePairs<each First, each Second>(
       (statements
         (control_transfer_statement
           (tuple_expression
-            (call_expression
-              (value_pack_expansion
-                (simple_identifier))
-              (call_suffix
-                (value_arguments
-                  (value_argument
-                    (value_parameter_pack
-                      (simple_identifier)))
-                  (value_argument
-                    (value_parameter_pack
-                      (simple_identifier))))))))))))
+            (value_pack_expansion
+              (call_expression
+                (simple_identifier)
+                (call_suffix
+                  (value_arguments
+                    (value_argument
+                      (value_parameter_pack
+                        (simple_identifier)))
+                    (value_argument
+                      (value_parameter_pack
+                        (simple_identifier)))))))))))))
 
 ===
 Parameter lists with trailing commas

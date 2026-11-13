@@ -23,30 +23,46 @@
  * SOFTWARE.
  */
 const PRECS = {
-  multiplication: 11,
-  addition: 10,
-  infix_operations: 9,
-  nil_coalescing: 8,
-  check: 7,
-  prefix_operations: 7,
-  comparison: 6,
-  postfix_operations: 6,
-  equality: 5,
-  conjunction: 4,
-  disjunction: 3,
+  // The binary operators, in Swift's order (its standard library's precedence groups):
+  disjunction: 3, // ||
+  conjunction: 4, // &&
+  equality: 5, // == (ComparisonPrecedence, as are the next two)
+  comparison: 6, // <
+  // An operator the scanner lexes as `custom_operator`: the comparisons it takes from
+  // the standard library (`!=`, `<=`, `>=`, `===`, `~=`) as well as user-defined ones.
+  infix_operations: 6,
+  nil_coalescing: 8, // ??
+  check: 9, // is (CastingPrecedence, with `as`)
+  as: 9,
+  // RangeFormationPrecedence (`..<`, `...`) sits between casting and addition.
+  range: 10,
+  addition: 11, // + - | ^
+  multiplication: 12, // * / % &
+  bitwise_shift: 13, // << >>
+  // Prefix operators bind tighter than any binary operator (`-a * b` is `(-a) * b`,
+  // `~a & b` is `(~a) & b`) and looser than calls (`!f()` is `!(f())`).
+  prefix_operations: 14,
+  // Above every binary and prefix operator: see `call_expression`.
+  call_with_arguments: 15,
+  // An implicit member (`.foo`) is complete before an argument list applies to it: `.foo(x)`
+  // calls `.foo`, as it always has. `x!`, `x++` bind at the same level.
+  implicit_member: 16,
+  postfix_operations: 16,
+  // Highest: `.a.b` and `!a.b` keep the navigation inside the prefix.
+  navigation: 17,
   block: 2,
   loop: 1,
   keypath: 1,
   parameter_pack: 1,
   control_transfer: 0,
-  as: -1,
   tuple: -1,
   if: -1,
   switch: -1,
   do: -1,
   fully_open_range: -1,
-  range: -1,
-  navigation: 12,
+  // `a...` with nothing after it: below everything, so `0...(n / 2)` and `.min ... .max`
+  // are ranges, not a call or a member of `0...`.
+  open_end_range: -1,
   expr: -1,
   ty: -1,
   call: -2,
@@ -118,7 +134,23 @@ module.exports = grammar({
     // a ? b : c () could be calling c(), or it could be calling a function that's produced by the result of
     // `(a ? b : c)`. We have a small hack to force it to be the former of these by intentionally introducing a
     // conflict.
-    [$.call_suffix, $.expr_hack_at_ternary_binary_call_suffix],
+    [$._call_suffix_with_arguments, $.expr_hack_at_ternary_binary_call_suffix],
+    // `foo() { }` is one call with a trailing closure, or a call followed by something else that opens with `{`
+    // (an `if` body, say). The same choice `call_suffix` leaves to the parser.
+    [$._call_suffix_with_arguments],
+    // `each x...` / `repeat x...`: a pack, an open-ended range of one, or the start of a closed range.
+    [$.open_end_range_expression, $.range_expression, $.value_parameter_pack],
+    [$.open_end_range_expression, $.range_expression, $.value_pack_expansion],
+    [
+      $.open_end_range_expression,
+      $.range_expression,
+      $.nil_coalescing_expression,
+    ],
+    [$.open_end_range_expression, $.range_expression, $.disjunction_expression],
+    [$.open_end_range_expression, $.range_expression, $.conjunction_expression],
+    [$.open_end_range_expression, $.range_expression, $.comparison_expression],
+    [$.open_end_range_expression, $.range_expression, $.equality_expression],
+    [$.open_end_range_expression, $.range_expression, $.infix_expression],
     // try {expression} is a bit magic and applies quite broadly: `try foo()` and `try foo { }` show that this is right
     // associative, and `try foo ? bar() : baz` even more so. But it doesn't always win: something like
     // `if try foo { } ...` should award its braces to the `if`. In order to make this actually happen, we need to parse
@@ -591,7 +623,11 @@ module.exports = grammar({
           $.assignment,
           $.value_parameter_pack,
           $.value_pack_expansion,
-          seq($._expression, alias($._immediate_quest, "?"))
+          // Optional chaining (`a?.b`) binds as tightly as the navigation it starts.
+          prec(
+            PRECS.navigation,
+            seq($._expression, alias($._immediate_quest, "?"))
+          )
         )
       ),
     // Unary expressions
@@ -603,6 +639,7 @@ module.exports = grammar({
         $.constructor_expression,
         $.navigation_expression,
         $.prefix_expression,
+        alias($._operator_prefix_expression, $.prefix_expression),
         $.as_expression,
         $.selector_expression,
         $.open_start_range_expression,
@@ -667,21 +704,35 @@ module.exports = grammar({
       choice($._open_ended_range_operator, $._three_dot_operator),
     open_end_range_expression: ($) =>
       prec.right(
-        PRECS.range,
+        PRECS.open_end_range,
         seq(field("start", $._expression), $._three_dot_operator)
       ),
     prefix_expression: ($) =>
       prec.left(
+        PRECS.implicit_member,
+        seq(
+          field("operation", $._implicit_member_dot),
+          field("target", prefix_target($))
+        )
+      ),
+    // `!x`, `-x`, `&x`: a `prefix_expression` too, but a rule of its own so that `try`, `await`,
+    // `consume` and `unsafe` can prefer it directly (`if try !f(x) { ... }`) without also
+    // preferring `try .success` over `try .success(x)`.
+    _operator_prefix_expression: ($) =>
+      prec.left(
         PRECS.prefix_operations,
         seq(
           field("operation", $._prefix_unary_operator),
-          field(
-            "target",
-            choice(
-              $._expression,
-              alias(choice("async", "if", "switch"), $._expression)
-            )
-          )
+          field("target", prefix_target($))
+        )
+      ),
+    // A prefix operator applied directly to a call, for the direct routes above.
+    _operator_prefix_call: ($) =>
+      prec.left(
+        PRECS.prefix_operations,
+        seq(
+          field("operation", $._prefix_unary_operator),
+          field("target", $.call_expression)
         )
       ),
     as_expression: ($) =>
@@ -737,7 +788,7 @@ module.exports = grammar({
         seq(
           field("start", $._expression),
           field("op", $._range_operator),
-          field("end", $._expr_hack_at_ternary_binary_suffix)
+          field("end", $._expression)
         )
       ),
     infix_expression: ($) =>
@@ -746,7 +797,7 @@ module.exports = grammar({
         seq(
           field("lhs", $._expression),
           field("op", $.custom_operator),
-          field("rhs", $._expr_hack_at_ternary_binary_suffix)
+          field("rhs", $._expression)
         )
       ),
     nil_coalescing_expression: ($) =>
@@ -755,7 +806,7 @@ module.exports = grammar({
         seq(
           field("value", $._expression),
           $._nil_coalescing_operator,
-          field("if_nil", $._expr_hack_at_ternary_binary_suffix)
+          field("if_nil", $._expression)
         )
       ),
     check_expression: ($) =>
@@ -769,10 +820,11 @@ module.exports = grammar({
       ),
     comparison_expression: ($) =>
       prec.left(
+        PRECS.comparison,
         seq(
           field("lhs", $._expression),
           field("op", $._comparison_operator),
-          field("rhs", $._expr_hack_at_ternary_binary_suffix)
+          field("rhs", $._expression)
         )
       ),
     equality_expression: ($) =>
@@ -781,7 +833,7 @@ module.exports = grammar({
         seq(
           field("lhs", $._expression),
           field("op", $._equality_operator),
-          field("rhs", $._expr_hack_at_ternary_binary_suffix)
+          field("rhs", $._expression)
         )
       ),
     conjunction_expression: ($) =>
@@ -790,7 +842,7 @@ module.exports = grammar({
         seq(
           field("lhs", $._expression),
           field("op", $._conjunction_operator),
-          field("rhs", $._expr_hack_at_ternary_binary_suffix)
+          field("rhs", $._expression)
         )
       ),
     disjunction_expression: ($) =>
@@ -799,16 +851,16 @@ module.exports = grammar({
         seq(
           field("lhs", $._expression),
           field("op", $._disjunction_operator),
-          field("rhs", $._expr_hack_at_ternary_binary_suffix)
+          field("rhs", $._expression)
         )
       ),
+    // One node, three of Swift's precedence groups: `&` multiplies, `|` and `^` add, and `<<`
+    // and `>>` shift, above both.
     bitwise_operation: ($) =>
-      prec.left(
-        seq(
-          field("lhs", $._expression),
-          field("op", $._bitwise_binary_operator),
-          field("rhs", $._expr_hack_at_ternary_binary_suffix)
-        )
+      choice(
+        bitwise_production($, PRECS.bitwise_shift, choice("<<", ">>")),
+        bitwise_production($, PRECS.multiplication, "&"),
+        bitwise_production($, PRECS.addition, choice("|", "^"))
       ),
     custom_operator: ($) => choice(token(/[\/]+[*]+/), $._custom_operator),
     // Suffixes
@@ -843,8 +895,14 @@ module.exports = grammar({
     _fn_call_lambda_arguments: ($) =>
       sep1($.lambda_literal, seq(field("name", $.simple_identifier), ":")),
     type_arguments: ($) =>
+      // Where `<` ... `>` reads both as generic arguments and as two comparisons
+      // (`MemoryLayout<T>.size`, `AsyncStream<E>.makeStream()`), the generic reading wins, as it
+      // does in Swift itself.
       prec.left(
-        seq("<", sep1Opt(choice($._type, $.integer_literal), ","), ">")
+        prec.dynamic(
+          1,
+          seq("<", sep1Opt(choice($._type, $.integer_literal), ","), ">")
+        )
       ),
     value_arguments: ($) =>
       seq(
@@ -890,8 +948,14 @@ module.exports = grammar({
               // left associativity for the direct calls, which is technically wrong but is the only way to resolve the
               // ambiguity of `if foo { ... }` in the correct direction.
               prec.right(-2, $._expression),
-              prec.left(0, $._binary_expression),
+              // Where both read, `try` covers the whole expression (`try a == b && c`); this
+              // narrower route is for the shapes only it parses (`if try a == b { }`).
+              prec.dynamic(-1, prec.left(-1, $._binary_expression)),
               prec.left(0, $.call_expression),
+              // A prefixed call (`try !f(x)`) is a `prefix_expression` around the call, so it needs the same
+              // direct route as a call: through `_expression`, `if try !f(x) { ... }` gives its `{` to `f(x)`.
+              // Only a call: `try !a && b` still covers the whole `&&`.
+              prec.left(0, alias($._operator_prefix_call, $.prefix_expression)),
               // Also special-case `try await foo()`: without this, the `await_expression` is only reachable through
               // the low-precedence `_expression` branch, so `if let x = try await foo() { ... }` resolves the `{` as
               // a trailing closure on `foo()` instead of the if-body.
@@ -919,6 +983,10 @@ module.exports = grammar({
               // Prefer direct calls over indirect (same as with `try`).
               prec.right(-2, $._expression),
               prec.left(0, $.call_expression),
+              // A prefixed call (`try !f(x)`) is a `prefix_expression` around the call, so it needs the same
+              // direct route as a call: through `_expression`, `if try !f(x) { ... }` gives its `{` to `f(x)`.
+              // Only a call: `try !a && b` still covers the whole `&&`.
+              prec.left(0, alias($._operator_prefix_call, $.prefix_expression)),
               // Also special-case `await unsafe foo()`, for the same reason as `try await foo()` above.
               prec.left(0, $.unsafe_expression),
               // Special case ternary to `await` the whole thing (same as with `try`).
@@ -939,6 +1007,10 @@ module.exports = grammar({
               // Prefer direct calls over indirect (same as with `try`).
               prec.right(-2, $._expression),
               prec.left(0, $.call_expression),
+              // A prefixed call (`try !f(x)`) is a `prefix_expression` around the call, so it needs the same
+              // direct route as a call: through `_expression`, `if try !f(x) { ... }` gives its `{` to `f(x)`.
+              // Only a call: `try !a && b` still covers the whole `&&`.
+              prec.left(0, alias($._operator_prefix_call, $.prefix_expression)),
               // Special case ternary to `consume` the whole thing (same as with `try`).
               prec.dynamic(1, prec.left(-1, $.ternary_expression))
             )
@@ -961,6 +1033,10 @@ module.exports = grammar({
               // Prefer direct calls over indirect (same as with `try`/`consume`).
               prec.right(-2, $._expression),
               prec.left(0, $.call_expression),
+              // A prefixed call (`try !f(x)`) is a `prefix_expression` around the call, so it needs the same
+              // direct route as a call: through `_expression`, `if try !f(x) { ... }` gives its `{` to `f(x)`.
+              // Only a call: `try !a && b` still covers the whole `&&`.
+              prec.left(0, alias($._operator_prefix_call, $.prefix_expression)),
               // Also special-case `unsafe try foo()` and `unsafe await foo()`, for the same reason `try` special-cases
               // `await`: without this, `try_expression`/`await_expression` are only reachable through the
               // low-precedence `_expression` branch, which loses to trailing-closure ambiguity.
@@ -1000,9 +1076,45 @@ module.exports = grammar({
     expr_hack_at_ternary_binary_call_suffix: ($) =>
       prec(PRECS.call_suffix, $.value_arguments),
     call_expression: ($) =>
+      choice(
+        // A call with parenthesised (or subscript) arguments binds tighter than any binary
+        // operator: `a && b()` calls `b`, never `a && b`. The `(`/`[` decides that on its
+        // own, so this production carries a precedence above every operator.
+        prec(
+          PRECS.call_with_arguments,
+          prec.dynamic(
+            DYNAMIC_PRECS.call,
+            seq(
+              $._expression,
+              alias($._call_suffix_with_arguments, $.call_suffix)
+            )
+          )
+        ),
+        // A call made of trailing closures alone stays below the operators, so that the
+        // `{` after `if a == b` opens the `if`'s body rather than a closure passed to `b`.
+        prec(
+          PRECS.call,
+          prec.dynamic(
+            DYNAMIC_PRECS.call,
+            seq(
+              $._expression,
+              alias($._call_suffix_closures_only, $.call_suffix)
+            )
+          )
+        )
+      ),
+    _call_suffix_with_arguments: ($) =>
       prec(
-        PRECS.call,
-        prec.dynamic(DYNAMIC_PRECS.call, seq($._expression, $.call_suffix))
+        PRECS.call_suffix,
+        choice(
+          $.value_arguments,
+          seq($.value_arguments, $._fn_call_lambda_arguments)
+        )
+      ),
+    _call_suffix_closures_only: ($) =>
+      prec(
+        PRECS.call_suffix,
+        prec.dynamic(-1, $._fn_call_lambda_arguments) // Prefer to treat `foo() { }` as one call not two
       ),
     macro_invocation: ($) =>
       prec.right(
@@ -1293,19 +1405,11 @@ module.exports = grammar({
     as_operator: ($) => choice($._as, $._as_quest, $._as_bang),
     _prefix_unary_operator: ($) =>
       prec.right(
-        choice(
-          "++",
-          "--",
-          "-",
-          "+",
-          $.bang,
-          "&",
-          "~",
-          $._dot,
-          $.custom_operator
-        )
+        choice("++", "--", "-", "+", $.bang, "&", "~", $.custom_operator)
       ),
-    _bitwise_binary_operator: ($) => choice("&", "|", "^", "<<", ">>"),
+    // A rule of its own, as when it was one of `_prefix_unary_operator`'s choices: the reduction is
+    // where a `case` pattern (`.repeat(let x)`) and an expression (`.repeat(3)`) part ways.
+    _implicit_member_dot: ($) => prec.right($._dot),
     _postfix_unary_operator: ($) => choice("++", "--", $.bang),
     directly_assignable_expression: ($) => $._expression,
 
@@ -2267,6 +2371,25 @@ module.exports = grammar({
       choice(alias("unused1", "try?"), alias("unused2", "try!")),
   },
 });
+function bitwise_production($, precedence, operator) {
+  return prec.left(
+    precedence,
+    seq(
+      field("lhs", $._expression),
+      field("op", operator),
+      field("rhs", $._expression)
+    )
+  );
+}
+
+// What a prefix operator applies to. Inlined (not a rule of its own) so that it adds no reduction.
+function prefix_target($) {
+  return choice(
+    $._expression,
+    alias(choice("async", "if", "switch"), $._expression)
+  );
+}
+
 function sep1(rule, separator) {
   return seq(rule, repeat(seq(separator, rule)));
 }

@@ -107,18 +107,18 @@ let messagePredicate = #Predicate<Message> { message in
               (lambda_parameter
                 (simple_identifier))))
           (statements
-            (comparison_expression
-              (navigation_expression
-                (simple_identifier)
-                (navigation_suffix
-                  (simple_identifier)))
-              (conjunction_expression
-                (integer_literal)
-                (equality_expression
-                  (navigation_expression
-                    (simple_identifier)
-                    (navigation_suffix
-                      (simple_identifier)))
-                  (line_string_literal
-                    (line_str_text)))))))))))
+            (conjunction_expression
+              (comparison_expression
+                (navigation_expression
+                  (simple_identifier)
+                  (navigation_suffix
+                    (simple_identifier)))
+                (integer_literal))
+              (equality_expression
+                (navigation_expression
+                  (simple_identifier)
+                  (navigation_suffix
+                    (simple_identifier)))
+                (line_string_literal
+                  (line_str_text))))))))))
 

@@ -1,0 +1,464 @@
+================================================================================
+An operator's operand stops at a looser operator
+================================================================================
+
+a == b || c
+a < b || c
+a != nil || c
+a ?? b || c
+a || b == c
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (disjunction_expression
+    (equality_expression
+      (simple_identifier)
+      (simple_identifier))
+    (simple_identifier))
+  (disjunction_expression
+    (comparison_expression
+      (simple_identifier)
+      (simple_identifier))
+    (simple_identifier))
+  (disjunction_expression
+    (infix_expression
+      (simple_identifier)
+      (custom_operator)
+      (nil_literal))
+    (simple_identifier))
+  (disjunction_expression
+    (nil_coalescing_expression
+      (simple_identifier)
+      (simple_identifier))
+    (simple_identifier))
+  (disjunction_expression
+    (simple_identifier)
+    (equality_expression
+      (simple_identifier)
+      (simple_identifier))))
+
+================================================================================
+A call binds tighter than any binary operator
+================================================================================
+
+a && b()
+a + b(1)
+a || b() && c
+x * f(1) / g(2)
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (conjunction_expression
+    (simple_identifier)
+    (call_expression
+      (simple_identifier)
+      (call_suffix
+        (value_arguments))))
+  (additive_expression
+    (simple_identifier)
+    (call_expression
+      (simple_identifier)
+      (call_suffix
+        (value_arguments
+          (value_argument
+            (integer_literal))))))
+  (disjunction_expression
+    (simple_identifier)
+    (conjunction_expression
+      (call_expression
+        (simple_identifier)
+        (call_suffix
+          (value_arguments)))
+      (simple_identifier)))
+  (multiplicative_expression
+    (multiplicative_expression
+      (simple_identifier)
+      (call_expression
+        (simple_identifier)
+        (call_suffix
+          (value_arguments
+            (value_argument
+              (integer_literal))))))
+    (call_expression
+      (simple_identifier)
+      (call_suffix
+        (value_arguments
+          (value_argument
+            (integer_literal)))))))
+
+================================================================================
+A trailing closure does not take the body of an if
+================================================================================
+
+if a == f(x) { }
+if a == b { }
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (if_statement
+    (equality_expression
+      (simple_identifier)
+      (call_expression
+        (simple_identifier)
+        (call_suffix
+          (value_arguments
+            (value_argument
+              (simple_identifier)))))))
+  (if_statement
+    (equality_expression
+      (simple_identifier)
+      (simple_identifier))))
+
+================================================================================
+Prefix operators apply to the whole postfix chain, implicit members are called
+================================================================================
+
+!f()
+-x + y
+!a.b()
+x = .a.b()
+x = -.x
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (prefix_expression
+    (bang)
+    (call_expression
+      (simple_identifier)
+      (call_suffix
+        (value_arguments))))
+  (additive_expression
+    (prefix_expression
+      (simple_identifier))
+    (simple_identifier))
+  (prefix_expression
+    (bang)
+    (call_expression
+      (navigation_expression
+        (simple_identifier)
+        (navigation_suffix
+          (simple_identifier)))
+      (call_suffix
+        (value_arguments))))
+  (assignment
+    (directly_assignable_expression
+      (simple_identifier))
+    (call_expression
+      (prefix_expression
+        (navigation_expression
+          (simple_identifier)
+          (navigation_suffix
+            (simple_identifier))))
+      (call_suffix
+        (value_arguments))))
+  (assignment
+    (directly_assignable_expression
+      (simple_identifier))
+    (prefix_expression
+      (prefix_expression
+        (simple_identifier)))))
+
+================================================================================
+Postfix operators, optional chaining and casts bind tighter than binary operators
+================================================================================
+
+a ?? b!
+a.b == c?.d
+a ?? b as Any
+x as? T ?? d
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (nil_coalescing_expression
+    (simple_identifier)
+    (postfix_expression
+      (simple_identifier)
+      (bang)))
+  (equality_expression
+    (navigation_expression
+      (simple_identifier)
+      (navigation_suffix
+        (simple_identifier)))
+    (navigation_expression
+      (simple_identifier)
+      (navigation_suffix
+        (simple_identifier))))
+  (nil_coalescing_expression
+    (simple_identifier)
+    (as_expression
+      (simple_identifier)
+      (as_operator)
+      (user_type
+        (type_identifier))))
+  (nil_coalescing_expression
+    (as_expression
+      (simple_identifier)
+      (as_operator)
+      (user_type
+        (type_identifier)))
+    (simple_identifier)))
+
+================================================================================
+Bitwise operators follow Swift's precedence groups
+================================================================================
+
+a & b == c
+x << 4 + y
+a | b | c
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (equality_expression
+    (bitwise_operation
+      (simple_identifier)
+      (simple_identifier))
+    (simple_identifier))
+  (additive_expression
+    (bitwise_operation
+      (simple_identifier)
+      (integer_literal))
+    (simple_identifier))
+  (bitwise_operation
+    (bitwise_operation
+      (simple_identifier)
+      (simple_identifier))
+    (simple_identifier)))
+
+================================================================================
+Generic arguments win over comparisons
+================================================================================
+
+let n = MemoryLayout<T>.size
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (property_declaration
+    (value_binding_pattern)
+    (pattern
+      (simple_identifier))
+    (navigation_expression
+      (user_type
+        (type_identifier)
+        (type_arguments
+          (user_type
+            (type_identifier))))
+      (navigation_suffix
+        (simple_identifier)))))
+
+================================================================================
+try with implicit members and prefixed calls
+================================================================================
+
+let r = try .success(x)
+if try !f(x) { }
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (property_declaration
+    (value_binding_pattern)
+    (pattern
+      (simple_identifier))
+    (try_expression
+      (try_operator)
+      (call_expression
+        (prefix_expression
+          (simple_identifier))
+        (call_suffix
+          (value_arguments
+            (value_argument
+              (simple_identifier)))))))
+  (if_statement
+    (try_expression
+      (try_operator)
+      (prefix_expression
+        (bang)
+        (call_expression
+          (simple_identifier)
+          (call_suffix
+            (value_arguments
+              (value_argument
+                (simple_identifier)))))))))
+
+================================================================================
+Prefix operators bind tighter than every binary operator
+================================================================================
+
+~a & b
+-a << 2
+-a * b
+-f(x) * 2
+-1 as Any?
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (bitwise_operation
+    (prefix_expression
+      (simple_identifier))
+    (simple_identifier))
+  (bitwise_operation
+    (prefix_expression
+      (simple_identifier))
+    (integer_literal))
+  (multiplicative_expression
+    (prefix_expression
+      (simple_identifier))
+    (simple_identifier))
+  (multiplicative_expression
+    (prefix_expression
+      (call_expression
+        (simple_identifier)
+        (call_suffix
+          (value_arguments
+            (value_argument
+              (simple_identifier))))))
+    (integer_literal))
+  (as_expression
+    (prefix_expression
+      (integer_literal))
+    (as_operator)
+    (optional_type
+      (user_type
+        (type_identifier)))))
+
+================================================================================
+Ranges, casts and type checks against neighbouring operators
+================================================================================
+
+r == 0..<5
+x < a..<b
+let n = 0..<n + 1
+a ?? b is T
+let r = 0...(n / 2)
+let m = .min ... .max
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (equality_expression
+    (simple_identifier)
+    (range_expression
+      (integer_literal)
+      (integer_literal)))
+  (comparison_expression
+    (simple_identifier)
+    (range_expression
+      (simple_identifier)
+      (simple_identifier)))
+  (property_declaration
+    (value_binding_pattern)
+    (pattern
+      (simple_identifier))
+    (range_expression
+      (integer_literal)
+      (additive_expression
+        (simple_identifier)
+        (integer_literal))))
+  (nil_coalescing_expression
+    (simple_identifier)
+    (check_expression
+      (simple_identifier)
+      (user_type
+        (type_identifier))))
+  (property_declaration
+    (value_binding_pattern)
+    (pattern
+      (simple_identifier))
+    (range_expression
+      (integer_literal)
+      (tuple_expression
+        (multiplicative_expression
+          (simple_identifier)
+          (integer_literal)))))
+  (property_declaration
+    (value_binding_pattern)
+    (pattern
+      (simple_identifier))
+    (range_expression
+      (prefix_expression
+        (simple_identifier))
+      (prefix_expression
+        (simple_identifier)))))
+
+================================================================================
+Operators the scanner reads as custom operators rank as comparisons
+================================================================================
+
+x >= a ?? 0
+x != a as T
+a != b || c
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (infix_expression
+    (simple_identifier)
+    (custom_operator)
+    (nil_coalescing_expression
+      (simple_identifier)
+      (integer_literal)))
+  (infix_expression
+    (simple_identifier)
+    (custom_operator)
+    (as_expression
+      (simple_identifier)
+      (as_operator)
+      (user_type
+        (type_identifier))))
+  (disjunction_expression
+    (infix_expression
+      (simple_identifier)
+      (custom_operator)
+      (simple_identifier))
+    (simple_identifier)))
+
+================================================================================
+try covers the whole expression after it
+================================================================================
+
+let a = try a == b && c
+let b = try !a && b
+let c = await -a + b
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (property_declaration
+    (value_binding_pattern)
+    (pattern
+      (simple_identifier))
+    (try_expression
+      (try_operator)
+      (conjunction_expression
+        (equality_expression
+          (simple_identifier)
+          (simple_identifier))
+        (simple_identifier))))
+  (property_declaration
+    (value_binding_pattern)
+    (pattern
+      (simple_identifier))
+    (try_expression
+      (try_operator)
+      (conjunction_expression
+        (prefix_expression
+          (bang)
+          (simple_identifier))
+        (simple_identifier))))
+  (property_declaration
+    (value_binding_pattern)
+    (pattern
+      (simple_identifier))
+    (await_expression
+      (additive_expression
+        (prefix_expression
+          (simple_identifier))
+        (simple_identifier)))))
