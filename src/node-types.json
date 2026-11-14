@@ -4696,7 +4696,7 @@
     "named": true,
     "fields": {
       "error": {
-        "multiple": false,
+        "multiple": true,
         "required": false,
         "types": [
           {
