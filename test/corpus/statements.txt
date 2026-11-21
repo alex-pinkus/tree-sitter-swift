@@ -1670,6 +1670,225 @@ func doSomething() async throws {
           (simple_identifier))))))
 
 ================================================================================
+If let with try or await on a bare name
+================================================================================
+
+func load() async {
+    if let a = try? await task {
+        use(a)
+    }
+    if let b = await task {
+        use(b)
+    }
+    if let c = try? box.value {
+        use(c)
+    }
+    if try await ready {
+        go()
+    }
+    while let d = await queue {
+        use(d)
+    }
+    switch await state {
+    default:
+        go()
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (simple_identifier)
+    (function_body
+      (statements
+        (if_statement
+          (value_binding_pattern)
+          (simple_identifier)
+          (try_expression
+            (try_operator)
+            (await_expression
+              (simple_identifier)))
+          (statements
+            (call_expression
+              (simple_identifier)
+              (call_suffix
+                (value_arguments
+                  (value_argument
+                    (simple_identifier)))))))
+        (if_statement
+          (value_binding_pattern)
+          (simple_identifier)
+          (await_expression
+            (simple_identifier))
+          (statements
+            (call_expression
+              (simple_identifier)
+              (call_suffix
+                (value_arguments
+                  (value_argument
+                    (simple_identifier)))))))
+        (if_statement
+          (value_binding_pattern)
+          (simple_identifier)
+          (try_expression
+            (try_operator)
+            (navigation_expression
+              (simple_identifier)
+              (navigation_suffix
+                (simple_identifier))))
+          (statements
+            (call_expression
+              (simple_identifier)
+              (call_suffix
+                (value_arguments
+                  (value_argument
+                    (simple_identifier)))))))
+        (if_statement
+          (try_expression
+            (try_operator)
+            (await_expression
+              (simple_identifier)))
+          (statements
+            (call_expression
+              (simple_identifier)
+              (call_suffix
+                (value_arguments)))))
+        (while_statement
+          (value_binding_pattern)
+          (simple_identifier)
+          (await_expression
+            (simple_identifier))
+          (statements
+            (call_expression
+              (simple_identifier)
+              (call_suffix
+                (value_arguments
+                  (value_argument
+                    (simple_identifier)))))))
+        (switch_statement
+          (await_expression
+            (simple_identifier))
+          (switch_entry
+            (default_keyword)
+            (statements
+              (call_expression
+                (simple_identifier)
+                (call_suffix
+                  (value_arguments))))))))))
+
+================================================================================
+If await on a member
+================================================================================
+
+func ready(_ items: [Item]) async -> Bool {
+    for item in items {
+        if await item.isReady { return true }
+    }
+    return false
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (simple_identifier)
+    (parameter
+      (simple_identifier)
+      (simple_identifier)
+      (array_type
+        (user_type
+          (type_identifier))))
+    (user_type
+      (type_identifier))
+    (function_body
+      (statements
+        (for_statement
+          (pattern
+            (simple_identifier))
+          (simple_identifier)
+          (statements
+            (if_statement
+              (await_expression
+                (navigation_expression
+                  (simple_identifier)
+                  (navigation_suffix
+                    (simple_identifier))))
+              (statements
+                (control_transfer_statement
+                  (boolean_literal))))))
+        (control_transfer_statement
+          (boolean_literal))))))
+
+================================================================================
+Try and await keep a trailing closure outside a condition
+================================================================================
+
+func load() async throws {
+    let a = try await withCheckedThrowingContinuation { c in c.resume() }
+    try withLock { go() }
+    let b = try? box.map { $0 }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (simple_identifier)
+    (throws)
+    (function_body
+      (statements
+        (property_declaration
+          (value_binding_pattern)
+          (pattern
+            (simple_identifier))
+          (try_expression
+            (try_operator)
+            (await_expression
+              (call_expression
+                (simple_identifier)
+                (call_suffix
+                  (lambda_literal
+                    (lambda_function_type
+                      (lambda_function_type_parameters
+                        (lambda_parameter
+                          (simple_identifier))))
+                    (statements
+                      (call_expression
+                        (navigation_expression
+                          (simple_identifier)
+                          (navigation_suffix
+                            (simple_identifier)))
+                        (call_suffix
+                          (value_arguments))))))))))
+        (try_expression
+          (try_operator)
+          (call_expression
+            (simple_identifier)
+            (call_suffix
+              (lambda_literal
+                (statements
+                  (call_expression
+                    (simple_identifier)
+                    (call_suffix
+                      (value_arguments))))))))
+        (property_declaration
+          (value_binding_pattern)
+          (pattern
+            (simple_identifier))
+          (try_expression
+            (try_operator)
+            (call_expression
+              (navigation_expression
+                (simple_identifier)
+                (navigation_suffix
+                  (simple_identifier)))
+              (call_suffix
+                (lambda_literal
+                  (statements
+                    (simple_identifier)))))))))))
+
+================================================================================
 Compound if let
 ================================================================================
 
