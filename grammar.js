@@ -65,6 +65,9 @@ const PRECS = {
   open_end_range: -1,
   expr: -1,
   ty: -1,
+  // `try`/`await` on a bare name in a condition (`_condition_effect_on_name`): above the
+  // routes through `_expression`, which only meet it on a `{`, `,` or `else` ending the condition.
+  condition_effect: 1,
   call: -2,
   ternary: -2,
   try: -2,
@@ -1284,12 +1287,59 @@ module.exports = grammar({
         )
       ),
     _if_condition_sequence_item: ($) =>
-      choice($._if_let_binding, $._expression, $.availability_condition),
+      choice(
+        $._if_let_binding,
+        $._expression,
+        $._condition_effect_on_name,
+        $.availability_condition
+      ),
     _if_let_binding: ($) =>
       seq(
         $._direct_or_indirect_binding,
-        optional(seq($._equal_sign, $._expression)),
+        optional(
+          seq($._equal_sign, choice($._expression, $._condition_effect_on_name))
+        ),
         optional($.where_clause)
+      ),
+    // `try`/`await` on a bare name or member in a condition (`if let x = try? await task { ... }`,
+    // `while let x = await queue { ... }`, `if await item.isReady { ... }`) and in a `switch` subject
+    // (`switch await state { ... }`). Through `_expression`, the `{` after the name was taken for a
+    // trailing closure passed to it, since `try` and `await` reach a call through their own
+    // higher-precedence routes, and Swift never reads a trailing closure there. These productions
+    // exist only in those positions, and only the `{`, `,` or `else` that may end one decides between
+    // them and `_expression`: every other shape (`try a == b`, `try? f()`, `await a.b()`) still goes
+    // through `_expression`. The trees are the same `try_expression` and `await_expression`.
+    _condition_effect_on_name: ($) =>
+      prec(
+        PRECS.condition_effect,
+        choice(
+          alias($._condition_try_on_name, $.try_expression),
+          alias($._condition_await_on_name, $.await_expression)
+        )
+      ),
+    _condition_try_on_name: ($) =>
+      prec(
+        PRECS.condition_effect,
+        seq(
+          $.try_operator,
+          field(
+            "expr",
+            choice(
+              alias($._condition_await_on_name, $.await_expression),
+              $._condition_name
+            )
+          )
+        )
+      ),
+    _condition_await_on_name: ($) =>
+      prec(
+        PRECS.condition_effect,
+        seq($._await_operator, field("expr", $._condition_name))
+      ),
+    _condition_name: ($) =>
+      prec(
+        PRECS.condition_effect,
+        choice($.simple_identifier, $.navigation_expression)
       ),
     guard_statement: ($) =>
       prec.right(
@@ -1306,7 +1356,7 @@ module.exports = grammar({
         PRECS["switch"],
         seq(
           "switch",
-          field("expr", $._expression),
+          field("expr", choice($._expression, $._condition_effect_on_name)),
           "{",
           repeat($.switch_entry),
           "}"
