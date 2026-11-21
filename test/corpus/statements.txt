@@ -1889,6 +1889,46 @@ func load() async throws {
                     (simple_identifier)))))))))))
 
 ================================================================================
+Guard and repeat-while with try or await on a bare name
+================================================================================
+
+func load() async {
+    guard let a = try? await task else { return }
+    repeat {
+        go()
+    } while await queue.isOpen
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (simple_identifier)
+    (function_body
+      (statements
+        (guard_statement
+          (value_binding_pattern)
+          (simple_identifier)
+          (try_expression
+            (try_operator)
+            (await_expression
+              (simple_identifier)))
+          (else)
+          (statements
+            (control_transfer_statement)))
+        (repeat_while_statement
+          (statements
+            (call_expression
+              (simple_identifier)
+              (call_suffix
+                (value_arguments))))
+          (await_expression
+            (navigation_expression
+              (simple_identifier)
+              (navigation_suffix
+                (simple_identifier)))))))))
+
+================================================================================
 Compound if let
 ================================================================================
 

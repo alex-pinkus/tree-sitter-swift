@@ -66,7 +66,7 @@ const PRECS = {
   expr: -1,
   ty: -1,
   // `try`/`await` on a bare name in a condition (`_condition_effect_on_name`): above the
-  // routes through `_expression`, which only meet it on a `{`, `,` or `else` ending the condition.
+  // routes through `_expression`, which only meet it on a `{` or `,` ending the condition.
   condition_effect: 1,
   call: -2,
   ternary: -2,
@@ -300,7 +300,7 @@ module.exports = grammar({
     // custom scanner so that it can avoid triggering `$.bang` for that case.
     $._fake_try_bang,
   ],
-  inline: ($) => [$._locally_permitted_modifiers],
+  inline: ($) => [$._locally_permitted_modifiers, $._condition_effect_on_name],
   rules: {
     ////////////////////////////////
     // File Structure
@@ -1287,28 +1287,42 @@ module.exports = grammar({
         )
       ),
     _if_condition_sequence_item: ($) =>
-      choice(
-        $._if_let_binding,
-        $._expression,
-        $._condition_effect_on_name,
-        $.availability_condition
-      ),
+      choice($._if_let_binding, $._condition_value, $.availability_condition),
     _if_let_binding: ($) =>
-      seq(
-        $._direct_or_indirect_binding,
-        optional(
-          seq($._equal_sign, choice($._expression, $._condition_effect_on_name))
+      choice(
+        seq(
+          $._direct_or_indirect_binding,
+          optional(seq($._equal_sign, $._expression)),
+          optional($.where_clause)
         ),
-        optional($.where_clause)
+        seq(
+          $._direct_or_indirect_binding,
+          $._equal_sign,
+          $._condition_effect_on_name,
+          optional($.where_clause)
+        )
       ),
     // `try`/`await` on a bare name or member in a condition (`if let x = try? await task { ... }`,
     // `while let x = await queue { ... }`, `if await item.isReady { ... }`) and in a `switch` subject
     // (`switch await state { ... }`). Through `_expression`, the `{` after the name was taken for a
     // trailing closure passed to it, since `try` and `await` reach a call through their own
     // higher-precedence routes, and Swift never reads a trailing closure there. These productions
-    // exist only in those positions, and only the `{`, `,` or `else` that may end one decides between
+    // exist only in those positions, and only the `{` or `,` that may end one decides between
     // them and `_expression`: every other shape (`try a == b`, `try? f()`, `await a.b()`) still goes
     // through `_expression`. The trees are the same `try_expression` and `await_expression`.
+    //
+    // `guard` (ended by `else`) and `repeat ... while` (ended by the statement's end) have no `{` to
+    // misread, so they keep the plain `_plain_condition_sequence_item`.
+    //
+    // The factoring of these rules (a hidden `_condition_value` for a plain condition, the `let`
+    // binding as two productions, `_condition_effect_on_name` inlined, `guard` and `repeat` left out)
+    // is deliberate. Query analysis in `ts_query_new` never converges for patterns on
+    // `dictionary_literal` or `if_statement` and stops at its iteration cap, so its cost is the size of
+    // its walk at that point, which swings by orders of magnitude with how these productions are
+    // factored, even between factorings that build the same trees: the first version of this change
+    // (a `choice` with `_condition_effect_on_name` in each of the three positions) made compiling some
+    // `dictionary_literal` queries ~400x slower. Re-time query compilation after changing them.
+    _condition_value: ($) => choice($._expression, $._condition_effect_on_name),
     _condition_effect_on_name: ($) =>
       prec(
         PRECS.condition_effect,
@@ -1341,12 +1355,20 @@ module.exports = grammar({
         PRECS.condition_effect,
         choice($.simple_identifier, $.navigation_expression)
       ),
+    _plain_condition_sequence_item: ($) =>
+      choice($._plain_if_let_binding, $._expression, $.availability_condition),
+    _plain_if_let_binding: ($) =>
+      seq(
+        $._direct_or_indirect_binding,
+        optional(seq($._equal_sign, $._expression)),
+        optional($.where_clause)
+      ),
     guard_statement: ($) =>
       prec.right(
         PRECS["if"],
         seq(
           "guard",
-          sep1(field("condition", $._if_condition_sequence_item), ","),
+          sep1(field("condition", $._plain_condition_sequence_item), ","),
           $["else"],
           $._block
         )
@@ -1564,7 +1586,7 @@ module.exports = grammar({
           // Make sure we make it to the `while` before assuming this is a parameter pack.
           repeat($._implicit_semi),
           "while",
-          sep1(field("condition", $._if_condition_sequence_item), ",")
+          sep1(field("condition", $._plain_condition_sequence_item), ",")
         )
       ),
     control_transfer_statement: ($) =>
