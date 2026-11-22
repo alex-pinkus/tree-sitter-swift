@@ -1821,6 +1821,139 @@ func ready(_ items: [Item]) async -> Bool {
           (boolean_literal))))))
 
 ================================================================================
+Await on an operator expression in a condition
+================================================================================
+
+func load(_ flags: Flags, ready: Bool) async throws {
+    if await flags.isEnabled && ready { go() }
+    if await flags.count == 0 { go() }
+    while await queue.isOpen || ready { go() }
+    if let a = await task, await a.count > 1 && ready { go() }
+    if try await flags.isEnabled && ready { go() }
+    switch await flags.isEnabled && ready {
+    default: go()
+    }
+    let b = await flags.isEnabled && ready
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (simple_identifier)
+    (parameter
+      (simple_identifier)
+      (simple_identifier)
+      (user_type
+        (type_identifier)))
+    (parameter
+      (simple_identifier)
+      (user_type
+        (type_identifier)))
+    (throws)
+    (function_body
+      (statements
+        (if_statement
+          (await_expression
+            (conjunction_expression
+              (navigation_expression
+                (simple_identifier)
+                (navigation_suffix
+                  (simple_identifier)))
+              (simple_identifier)))
+          (statements
+            (call_expression
+              (simple_identifier)
+              (call_suffix
+                (value_arguments)))))
+        (if_statement
+          (await_expression
+            (equality_expression
+              (navigation_expression
+                (simple_identifier)
+                (navigation_suffix
+                  (simple_identifier)))
+              (integer_literal)))
+          (statements
+            (call_expression
+              (simple_identifier)
+              (call_suffix
+                (value_arguments)))))
+        (while_statement
+          (await_expression
+            (disjunction_expression
+              (navigation_expression
+                (simple_identifier)
+                (navigation_suffix
+                  (simple_identifier)))
+              (simple_identifier)))
+          (statements
+            (call_expression
+              (simple_identifier)
+              (call_suffix
+                (value_arguments)))))
+        (if_statement
+          (value_binding_pattern)
+          (simple_identifier)
+          (await_expression
+            (simple_identifier))
+          (conjunction_expression
+            (await_expression
+              (comparison_expression
+                (navigation_expression
+                  (simple_identifier)
+                  (navigation_suffix
+                    (simple_identifier)))
+                (integer_literal)))
+            (simple_identifier))
+          (statements
+            (call_expression
+              (simple_identifier)
+              (call_suffix
+                (value_arguments)))))
+        (if_statement
+          (try_expression
+            (try_operator)
+            (await_expression
+              (conjunction_expression
+                (navigation_expression
+                  (simple_identifier)
+                  (navigation_suffix
+                    (simple_identifier)))
+                (simple_identifier))))
+          (statements
+            (call_expression
+              (simple_identifier)
+              (call_suffix
+                (value_arguments)))))
+        (switch_statement
+          (await_expression
+            (conjunction_expression
+              (navigation_expression
+                (simple_identifier)
+                (navigation_suffix
+                  (simple_identifier)))
+              (simple_identifier)))
+          (switch_entry
+            (default_keyword)
+            (statements
+              (call_expression
+                (simple_identifier)
+                (call_suffix
+                  (value_arguments))))))
+        (property_declaration
+          (value_binding_pattern)
+          (pattern
+            (simple_identifier))
+          (await_expression
+            (conjunction_expression
+              (navigation_expression
+                (simple_identifier)
+                (navigation_suffix
+                  (simple_identifier)))
+              (simple_identifier))))))))
+
+================================================================================
 Try and await keep a trailing closure outside a condition
 ================================================================================
 
