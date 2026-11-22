@@ -3674,6 +3674,18 @@
                   }
                 },
                 {
+                  "type": "PREC_DYNAMIC",
+                  "value": -1,
+                  "content": {
+                    "type": "PREC_LEFT",
+                    "value": -1,
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "_binary_expression"
+                    }
+                  }
+                },
+                {
                   "type": "PREC_LEFT",
                   "value": 0,
                   "content": {

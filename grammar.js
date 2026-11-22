@@ -985,6 +985,9 @@ module.exports = grammar({
             choice(
               // Prefer direct calls over indirect (same as with `try`).
               prec.right(-2, $._expression),
+              // Where both read, `await` covers the whole expression (`await a == b && c`), as `try` does;
+              // this narrower route is for the shapes only it parses (`if await a && b { }`).
+              prec.dynamic(-1, prec.left(-1, $._binary_expression)),
               prec.left(0, $.call_expression),
               // A prefixed call (`try !f(x)`) is a `prefix_expression` around the call, so it needs the same
               // direct route as a call: through `_expression`, `if try !f(x) { ... }` gives its `{` to `f(x)`.
