@@ -1768,6 +1768,82 @@ typealias Handler = @Sendable
         (type_identifier)))))
 
 ================================================================================
+Capture list on the line after a closure's attribute
+================================================================================
+
+func run() {
+    let k = { @MainActor
+        [weak self] (x: Int) in print(x, self as Any) }
+    let s = { @Sendable
+        [weak self] () -> Void in print(self as Any) }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (simple_identifier)
+    (function_body
+      (statements
+        (property_declaration
+          (value_binding_pattern)
+          (pattern
+            (simple_identifier))
+          (lambda_literal
+            (attribute
+              (user_type
+                (type_identifier)))
+            (capture_list
+              (capture_list_item
+                (ownership_modifier)
+                (simple_identifier)))
+            (lambda_function_type
+              (lambda_function_type_parameters
+                (lambda_parameter
+                  (simple_identifier)
+                  (user_type
+                    (type_identifier)))))
+            (statements
+              (call_expression
+                (simple_identifier)
+                (call_suffix
+                  (value_arguments
+                    (value_argument
+                      (simple_identifier))
+                    (value_argument
+                      (as_expression
+                        (self_expression)
+                        (as_operator)
+                        (user_type
+                          (type_identifier))))))))))
+        (property_declaration
+          (value_binding_pattern)
+          (pattern
+            (simple_identifier))
+          (lambda_literal
+            (attribute
+              (user_type
+                (type_identifier)))
+            (capture_list
+              (capture_list_item
+                (ownership_modifier)
+                (simple_identifier)))
+            (lambda_function_type
+              (user_type
+                (type_identifier)))
+            (statements
+              (call_expression
+                (simple_identifier)
+                (call_suffix
+                  (value_arguments
+                    (value_argument
+                      (as_expression
+                        (self_expression)
+                        (as_operator)
+                        (user_type
+                          (type_identifier))))))))))))))
+
+================================================================================
 Parenthesis at the start of a line after a member access
 ================================================================================
 
