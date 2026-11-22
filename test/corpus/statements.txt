@@ -1670,6 +1670,104 @@ func doSomething() async throws {
           (simple_identifier))))))
 
 ================================================================================
+Function type on the line after an attribute
+================================================================================
+
+func run(completion: @escaping @Sendable
+         (Int) -> Void) {
+    let handler: @MainActor
+        (Int) -> Void = { print($0) }
+    let k = { @MainActor
+        (x: Int) in print(x) }
+    completion(1)
+}
+typealias Handler = @Sendable
+    (Int) -> Void
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (simple_identifier)
+    (parameter
+      (simple_identifier)
+      (parameter_modifiers
+        (parameter_modifier))
+      (type_modifiers
+        (attribute
+          (user_type
+            (type_identifier))))
+      (function_type
+        (tuple_type
+          (tuple_type_item
+            (user_type
+              (type_identifier))))
+        (user_type
+          (type_identifier))))
+    (function_body
+      (statements
+        (property_declaration
+          (value_binding_pattern)
+          (pattern
+            (simple_identifier))
+          (type_annotation
+            (type_modifiers
+              (attribute
+                (user_type
+                  (type_identifier))))
+            (function_type
+              (tuple_type
+                (tuple_type_item
+                  (user_type
+                    (type_identifier))))
+              (user_type
+                (type_identifier))))
+          (lambda_literal
+            (statements
+              (call_expression
+                (simple_identifier)
+                (call_suffix
+                  (value_arguments
+                    (value_argument
+                      (simple_identifier))))))))
+        (property_declaration
+          (value_binding_pattern)
+          (pattern
+            (simple_identifier))
+          (lambda_literal
+            (attribute
+              (user_type
+                (type_identifier))
+              (simple_identifier)
+              (simple_identifier))
+            (statements
+              (call_expression
+                (simple_identifier)
+                (call_suffix
+                  (value_arguments
+                    (value_argument
+                      (simple_identifier))))))))
+        (call_expression
+          (simple_identifier)
+          (call_suffix
+            (value_arguments
+              (value_argument
+                (integer_literal))))))))
+  (typealias_declaration
+    (type_identifier)
+    (type_modifiers
+      (attribute
+        (user_type
+          (type_identifier))))
+    (function_type
+      (tuple_type
+        (tuple_type_item
+          (user_type
+            (type_identifier))))
+      (user_type
+        (type_identifier)))))
+
+================================================================================
 Parenthesis at the start of a line after a member access
 ================================================================================
 
