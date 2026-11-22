@@ -1085,11 +1085,13 @@ bool tree_sitter_swift_external_scanner_scan(
     // expression has just ended (an `as` cast could follow it), the newline would otherwise be skipped and the bracket
     // taken as a call or subscript suffix: inside an `if` condition, a block read as a trailing closure then
     // subscripts the next line (`if f() { return }` NEWLINE `[1].forEach { ... }`). Ending the expression anyway
-    // fails that reading, and the parser keeps the one in which the line break ended a statement. During error
-    // recovery every symbol is valid, the semi included, so this does not apply.
+    // fails that reading, and the parser keeps the one in which the line break ended a statement. The same holds
+    // after a member access read as a type (only a `.` may follow, not an operand such as a raw string): there the
+    // bracket would open a constructor's arguments (`let p = o.q` NEWLINE `(a ?? b).run()` read as `o.q(a ?? b)`).
+    // During error recovery every symbol is valid, the semi included, so this does not apply.
     if (
         saw_line_break &&
-        valid_symbols[AS_KEYWORD] &&
+        (valid_symbols[AS_KEYWORD] || (valid_symbols[DOT_OPERATOR] && !valid_symbols[RAW_STR_PART])) &&
         !valid_symbols[IMPLICIT_SEMI] &&
         (lexer->lookahead == '(' || lexer->lookahead == '[')
     ) {
