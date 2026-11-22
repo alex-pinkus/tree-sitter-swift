@@ -1754,6 +1754,53 @@ func f() {
                   (integer_literal))))))))))
 
 ================================================================================
+Parenthesized statement with a trailing closure after a condition's block
+================================================================================
+
+func g() {
+    if ready() { log() }
+    (items as [Int]).forEach { use($0) }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (simple_identifier)
+    (function_body
+      (statements
+        (if_statement
+          (call_expression
+            (simple_identifier)
+            (call_suffix
+              (value_arguments)))
+          (statements
+            (call_expression
+              (simple_identifier)
+              (call_suffix
+                (value_arguments)))))
+        (call_expression
+          (navigation_expression
+            (tuple_expression
+              (as_expression
+                (simple_identifier)
+                (as_operator)
+                (array_type
+                  (user_type
+                    (type_identifier)))))
+            (navigation_suffix
+              (simple_identifier)))
+          (call_suffix
+            (lambda_literal
+              (statements
+                (call_expression
+                  (simple_identifier)
+                  (call_suffix
+                    (value_arguments
+                      (value_argument
+                        (simple_identifier)))))))))))))
+
+================================================================================
 If let with try or await on a bare name
 ================================================================================
 
