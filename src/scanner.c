@@ -1158,11 +1158,12 @@ bool tree_sitter_swift_external_scanner_scan(
 
     // The same after a dotted name read as a type (only a `.` may follow, not an operand such as a raw string): there
     // the bracket would open a constructor's arguments (`let p = o.q` NEWLINE `(a ?? b).run()` read as
-    // `o.q(a ?? b)`). An attribute's name is in that position too, and there a function type or closure parameters
-    // DO follow on the next line (`@escaping @Sendable` NEWLINE `(Int) -> Void`), so the bracketed group is looked
-    // past first: only one followed by what continues a statement that starts with it (`.`, `?`, `!`, `=`, a
-    // subscript or a call) ends the expression. Past the group nothing may change what this call returns, so it
-    // returns what the code below would have for a `(` or `[`.
+    // `o.q(a ?? b)`). An attribute's name never gets here: its dots are not `_dot` (see `_attribute_name`), so `.`
+    // is not valid after it, and there a function type, closure parameters or a capture list may follow on the next
+    // line (`@escaping @Sendable` NEWLINE `(Int) -> Void`, `{ @MainActor` NEWLINE `[weak self] (x: Int) in`). The
+    // bracketed group is also looked past first: only one followed by what continues a statement that starts with it
+    // (`.`, `?`, `!`, `=`, a subscript or a call) ends the expression. Past the group nothing may change what this
+    // call returns, so it returns what the code below would have for a `(` or `[`.
     if (
         saw_line_break &&
         valid_symbols[DOT_OPERATOR] &&

@@ -2192,10 +2192,15 @@ module.exports = grammar({
     attribute: ($) =>
       seq(
         "@",
-        $.user_type,
+        alias($._attribute_name, $.user_type),
         // attribute arguments are a mess of special cases, maybe this is good enough?
         optional(seq("(", optional(sep1Opt($._attribute_argument, ",")), ")"))
       ),
+    // An attribute's name is a `user_type` whose dots are plain, immediate `.` tokens rather than the scanner's
+    // `_dot`. After a name the scanner may then tell an attribute apart from a dotted name read as a type, which it
+    // ends at a newline before a bracketed group that starts a statement: after an attribute, a function type,
+    // closure parameters or a capture list may follow on the next line (`{ @MainActor` NEWLINE `[weak self] in`).
+    _attribute_name: ($) => sep1($._simple_user_type, token.immediate(".")),
     _attribute_argument: ($) =>
       choice(
         // labeled function parameters, used in custom property wrappers
