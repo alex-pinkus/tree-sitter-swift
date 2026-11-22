@@ -1670,6 +1670,77 @@ func doSomething() async throws {
           (simple_identifier))))))
 
 ================================================================================
+Parenthesis at the start of a line after a member access
+================================================================================
+
+func run(_ options: Options) {
+    let processor = options.processor
+    (options.queue ?? fallback).execute { processor.go() }
+    startCount = Resources.total
+    // registerHooks()
+    (bytes, count) = memoryInfo()
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (simple_identifier)
+    (parameter
+      (simple_identifier)
+      (simple_identifier)
+      (user_type
+        (type_identifier)))
+    (function_body
+      (statements
+        (property_declaration
+          (value_binding_pattern)
+          (pattern
+            (simple_identifier))
+          (navigation_expression
+            (simple_identifier)
+            (navigation_suffix
+              (simple_identifier))))
+        (call_expression
+          (navigation_expression
+            (tuple_expression
+              (nil_coalescing_expression
+                (navigation_expression
+                  (simple_identifier)
+                  (navigation_suffix
+                    (simple_identifier)))
+                (simple_identifier)))
+            (navigation_suffix
+              (simple_identifier)))
+          (call_suffix
+            (lambda_literal
+              (statements
+                (call_expression
+                  (navigation_expression
+                    (simple_identifier)
+                    (navigation_suffix
+                      (simple_identifier)))
+                  (call_suffix
+                    (value_arguments)))))))
+        (assignment
+          (directly_assignable_expression
+            (simple_identifier))
+          (navigation_expression
+            (simple_identifier)
+            (navigation_suffix
+              (simple_identifier))))
+        (comment)
+        (assignment
+          (directly_assignable_expression
+            (tuple_expression
+              (simple_identifier)
+              (simple_identifier)))
+          (call_expression
+            (simple_identifier)
+            (call_suffix
+              (value_arguments))))))))
+
+================================================================================
 Bracket or parenthesis at the start of a line after a block
 ================================================================================
 
