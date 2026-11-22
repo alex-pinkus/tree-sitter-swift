@@ -10832,8 +10832,13 @@
           "value": "@"
         },
         {
-          "type": "SYMBOL",
-          "name": "user_type"
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_attribute_name"
+          },
+          "named": true,
+          "value": "user_type"
         },
         {
           "type": "CHOICE",
@@ -10900,6 +10905,34 @@
               "type": "BLANK"
             }
           ]
+        }
+      ]
+    },
+    "_attribute_name": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_simple_user_type"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "IMMEDIATE_TOKEN",
+                "content": {
+                  "type": "STRING",
+                  "value": "."
+                }
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_simple_user_type"
+              }
+            ]
+          }
         }
       ]
     },
