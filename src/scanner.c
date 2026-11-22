@@ -1058,6 +1058,63 @@ static bool eat_raw_str_part(
     return false;
 }
 
+/// Advances past the bracketed group at the lookahead (`(...)` or `[...]`, nesting and string literals included) and
+/// reports whether what follows it on its line continues a statement that the group starts: a member access, an
+/// optional or forced unwrap, an assignment (`=` but not `==`), a subscript or a call. A function type
+/// (`(Int) -> Void`), closure parameters (`(x) in`) or anything else answers no.
+static bool bracket_group_starts_statement(TSLexer *lexer) {
+    int depth = 0;
+    while (!lexer->eof(lexer)) {
+        int32_t c = lexer->lookahead;
+        if (c == '"') {
+            lexer->advance(lexer, false);
+            while (!lexer->eof(lexer) && lexer->lookahead != '"' && lexer->lookahead != '\n') {
+                if (lexer->lookahead == '\\') {
+                    lexer->advance(lexer, false);
+                    if (lexer->eof(lexer)) {
+                        return false;
+                    }
+                }
+                lexer->advance(lexer, false);
+            }
+            if (lexer->lookahead != '"') {
+                return false;
+            }
+            lexer->advance(lexer, false);
+            continue;
+        }
+        if (c == '(' || c == '[' || c == '{') {
+            depth++;
+        } else if (c == ')' || c == ']' || c == '}') {
+            depth--;
+            if (depth == 0) {
+                lexer->advance(lexer, false);
+                break;
+            }
+        }
+        lexer->advance(lexer, false);
+    }
+    if (depth != 0) {
+        return false;
+    }
+    while (lexer->lookahead == ' ' || lexer->lookahead == '\t') {
+        lexer->advance(lexer, false);
+    }
+    switch (lexer->lookahead) {
+        case '.':
+        case '?':
+        case '!':
+        case '[':
+        case '(':
+            return true;
+        case '=':
+            lexer->advance(lexer, false);
+            return lexer->lookahead != '=';
+        default:
+            return false;
+    }
+}
+
 bool tree_sitter_swift_external_scanner_scan(
     void *payload,
     TSLexer *lexer,
@@ -1080,18 +1137,18 @@ bool tree_sitter_swift_external_scanner_scan(
         return false;
     }
 
+    bool has_ws_result = (ws_directive == CONTINUE_PARSING_TOKEN_FOUND);
+
     // A `(` or `[` at the start of a line never opens a call's or subscript's arguments: it begins a new expression.
     // Where a statement may end here, `eat_whitespace` has already emitted `_implicit_semi`. Where one may not, but an
     // expression has just ended (an `as` cast could follow it), the newline would otherwise be skipped and the bracket
     // taken as a call or subscript suffix: inside an `if` condition, a block read as a trailing closure then
     // subscripts the next line (`if f() { return }` NEWLINE `[1].forEach { ... }`). Ending the expression anyway
-    // fails that reading, and the parser keeps the one in which the line break ended a statement. The same holds
-    // after a member access read as a type (only a `.` may follow, not an operand such as a raw string): there the
-    // bracket would open a constructor's arguments (`let p = o.q` NEWLINE `(a ?? b).run()` read as `o.q(a ?? b)`).
-    // During error recovery every symbol is valid, the semi included, so this does not apply.
+    // fails that reading, and the parser keeps the one in which the line break ended a statement. During error
+    // recovery every symbol is valid, the semi included, so this does not apply.
     if (
         saw_line_break &&
-        (valid_symbols[AS_KEYWORD] || (valid_symbols[DOT_OPERATOR] && !valid_symbols[RAW_STR_PART])) &&
+        valid_symbols[AS_KEYWORD] &&
         !valid_symbols[IMPLICIT_SEMI] &&
         (lexer->lookahead == '(' || lexer->lookahead == '[')
     ) {
@@ -1099,7 +1156,30 @@ bool tree_sitter_swift_external_scanner_scan(
         return true;
     }
 
-    bool has_ws_result = (ws_directive == CONTINUE_PARSING_TOKEN_FOUND);
+    // The same after a dotted name read as a type (only a `.` may follow, not an operand such as a raw string): there
+    // the bracket would open a constructor's arguments (`let p = o.q` NEWLINE `(a ?? b).run()` read as
+    // `o.q(a ?? b)`). An attribute's name is in that position too, and there a function type or closure parameters
+    // DO follow on the next line (`@escaping @Sendable` NEWLINE `(Int) -> Void`), so the bracketed group is looked
+    // past first: only one followed by what continues a statement that starts with it (`.`, `?`, `!`, `=`, a
+    // subscript or a call) ends the expression. Past the group nothing may change what this call returns, so it
+    // returns what the code below would have for a `(` or `[`.
+    if (
+        saw_line_break &&
+        valid_symbols[DOT_OPERATOR] &&
+        !valid_symbols[RAW_STR_PART] &&
+        !valid_symbols[IMPLICIT_SEMI] &&
+        (lexer->lookahead == '(' || lexer->lookahead == '[')
+    ) {
+        if (bracket_group_starts_statement(lexer)) {
+            lexer->result_symbol = IMPLICIT_SEMI;
+            return true;
+        }
+        if (has_ws_result) {
+            lexer->result_symbol = ws_result;
+            return true;
+        }
+        return false;
+    }
 
     // Now consume comments (before custom operators so that those aren't treated as comments)
     enum TokenType comment_result;
