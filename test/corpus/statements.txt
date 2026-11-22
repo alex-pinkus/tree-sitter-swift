@@ -1670,6 +1670,90 @@ func doSomething() async throws {
           (simple_identifier))))))
 
 ================================================================================
+Bracket or parenthesis at the start of a line after a block
+================================================================================
+
+func f() {
+    if ready() { return }
+    ["a"].forEach { work($0) }
+    while let x = next() { use(x) }
+    (y as Z).run()
+    let v = make { 1 }[0]
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (simple_identifier)
+    (function_body
+      (statements
+        (if_statement
+          (call_expression
+            (simple_identifier)
+            (call_suffix
+              (value_arguments)))
+          (statements
+            (control_transfer_statement)))
+        (call_expression
+          (navigation_expression
+            (array_literal
+              (line_string_literal
+                (line_str_text)))
+            (navigation_suffix
+              (simple_identifier)))
+          (call_suffix
+            (lambda_literal
+              (statements
+                (call_expression
+                  (simple_identifier)
+                  (call_suffix
+                    (value_arguments
+                      (value_argument
+                        (simple_identifier)))))))))
+        (while_statement
+          (value_binding_pattern)
+          (simple_identifier)
+          (call_expression
+            (simple_identifier)
+            (call_suffix
+              (value_arguments)))
+          (statements
+            (call_expression
+              (simple_identifier)
+              (call_suffix
+                (value_arguments
+                  (value_argument
+                    (simple_identifier)))))))
+        (call_expression
+          (navigation_expression
+            (tuple_expression
+              (as_expression
+                (simple_identifier)
+                (as_operator)
+                (user_type
+                  (type_identifier))))
+            (navigation_suffix
+              (simple_identifier)))
+          (call_suffix
+            (value_arguments)))
+        (property_declaration
+          (value_binding_pattern)
+          (pattern
+            (simple_identifier))
+          (call_expression
+            (call_expression
+              (simple_identifier)
+              (call_suffix
+                (lambda_literal
+                  (statements
+                    (integer_literal)))))
+            (call_suffix
+              (value_arguments
+                (value_argument
+                  (integer_literal))))))))))
+
+================================================================================
 If let with try or await on a bare name
 ================================================================================
 

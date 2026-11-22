@@ -770,7 +770,8 @@ static enum ParseDirective eat_comment(
 static enum ParseDirective eat_whitespace(
     TSLexer *lexer,
     const bool *valid_symbols,
-    enum TokenType *symbol_result
+    enum TokenType *symbol_result,
+    bool *saw_line_break
 ) {
     enum ParseDirective ws_directive = CONTINUE_PARSING_NOTHING_FOUND;
     bool semi_is_valid = valid_symbols[IMPLICIT_SEMI] && valid_symbols[EXPLICIT_SEMI];
@@ -788,6 +789,10 @@ static enum ParseDirective eat_whitespace(
         lexer->advance(lexer, true);
 
         lexer->mark_end(lexer);
+
+        if (lookahead == '\n' || lookahead == '\r') {
+            *saw_line_break = true;
+        }
 
         if (ws_directive == CONTINUE_PARSING_NOTHING_FOUND && (lookahead == '\n' || lookahead == '\r')) {
             ws_directive = CONTINUE_PARSING_TOKEN_FOUND;
@@ -1064,7 +1069,8 @@ bool tree_sitter_swift_external_scanner_scan(
     // Consume any whitespace at the start.
     bool token_is_immediate = !should_treat_as_wspace(lexer->lookahead);
     enum TokenType ws_result;
-    enum ParseDirective ws_directive = eat_whitespace(lexer, valid_symbols, &ws_result);
+    bool saw_line_break = false;
+    enum ParseDirective ws_directive = eat_whitespace(lexer, valid_symbols, &ws_result, &saw_line_break);
     if (ws_directive == STOP_PARSING_TOKEN_FOUND) {
         lexer->result_symbol = ws_result;
         return true;
@@ -1072,6 +1078,23 @@ bool tree_sitter_swift_external_scanner_scan(
 
     if (ws_directive == STOP_PARSING_NOTHING_FOUND || ws_directive == STOP_PARSING_END_OF_FILE) {
         return false;
+    }
+
+    // A `(` or `[` at the start of a line never opens a call's or subscript's arguments: it begins a new expression.
+    // Where a statement may end here, `eat_whitespace` has already emitted `_implicit_semi`. Where one may not, but an
+    // expression has just ended (an `as` cast could follow it), the newline would otherwise be skipped and the bracket
+    // taken as a call or subscript suffix: inside an `if` condition, a block read as a trailing closure then
+    // subscripts the next line (`if f() { return }` NEWLINE `[1].forEach { ... }`). Ending the expression anyway
+    // fails that reading, and the parser keeps the one in which the line break ended a statement. During error
+    // recovery every symbol is valid, the semi included, so this does not apply.
+    if (
+        saw_line_break &&
+        valid_symbols[AS_KEYWORD] &&
+        !valid_symbols[IMPLICIT_SEMI] &&
+        (lexer->lookahead == '(' || lexer->lookahead == '[')
+    ) {
+        lexer->result_symbol = IMPLICIT_SEMI;
+        return true;
     }
 
     bool has_ws_result = (ws_directive == CONTINUE_PARSING_TOKEN_FOUND);
