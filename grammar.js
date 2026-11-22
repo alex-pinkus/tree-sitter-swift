@@ -951,9 +951,6 @@ module.exports = grammar({
               // left associativity for the direct calls, which is technically wrong but is the only way to resolve the
               // ambiguity of `if foo { ... }` in the correct direction.
               prec.right(-2, $._expression),
-              // Where both read, `try` covers the whole expression (`try a == b && c`); this
-              // narrower route is for the shapes only it parses (`if try a == b { }`).
-              prec.dynamic(-1, prec.left(-1, $._binary_expression)),
               prec.left(0, $.call_expression),
               // A prefixed call (`try !f(x)`) is a `prefix_expression` around the call, so it needs the same
               // direct route as a call: through `_expression`, `if try !f(x) { ... }` gives its `{` to `f(x)`.
@@ -985,9 +982,6 @@ module.exports = grammar({
             choice(
               // Prefer direct calls over indirect (same as with `try`).
               prec.right(-2, $._expression),
-              // Where both read, `await` covers the whole expression (`await a == b && c`), as `try` does;
-              // this narrower route is for the shapes only it parses (`if await a && b { }`).
-              prec.dynamic(-1, prec.left(-1, $._binary_expression)),
               prec.left(0, $.call_expression),
               // A prefixed call (`try !f(x)`) is a `prefix_expression` around the call, so it needs the same
               // direct route as a call: through `_expression`, `if try !f(x) { ... }` gives its `{` to `f(x)`.
@@ -1343,7 +1337,8 @@ module.exports = grammar({
             "expr",
             choice(
               alias($._condition_await_on_name, $.await_expression),
-              $._condition_name
+              $._condition_name,
+              $._binary_expression
             )
           )
         )
@@ -1351,7 +1346,7 @@ module.exports = grammar({
     _condition_await_on_name: ($) =>
       prec(
         PRECS.condition_effect,
-        seq($._await_operator, field("expr", $._condition_name))
+        seq($._await_operator, field("expr", choice($._condition_name, $._binary_expression)))
       ),
     _condition_name: ($) =>
       prec(
