@@ -1897,15 +1897,15 @@ func load(_ flags: Flags, ready: Bool) async throws {
           (simple_identifier)
           (await_expression
             (simple_identifier))
-          (conjunction_expression
-            (await_expression
+          (await_expression
+            (conjunction_expression
               (comparison_expression
                 (navigation_expression
                   (simple_identifier)
                   (navigation_suffix
                     (simple_identifier)))
-                (integer_literal)))
-            (simple_identifier))
+                (integer_literal))
+              (simple_identifier)))
           (statements
             (call_expression
               (simple_identifier)
@@ -1952,6 +1952,98 @@ func load(_ flags: Flags, ready: Bool) async throws {
                 (navigation_suffix
                   (simple_identifier)))
               (simple_identifier))))))))
+
+================================================================================
+Try and await cover the whole operator expression in a condition
+================================================================================
+
+func check(_ a: Int, _ b: Int, ready: Bool, x: Any) async throws {
+    if await a == b && ready { go() }
+    if try a < b || ready { go() }
+    if try await a + b > 1 && ready { go() }
+    while await x is Int && ready { go() }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (simple_identifier)
+    (parameter
+      (simple_identifier)
+      (simple_identifier)
+      (user_type
+        (type_identifier)))
+    (parameter
+      (simple_identifier)
+      (simple_identifier)
+      (user_type
+        (type_identifier)))
+    (parameter
+      (simple_identifier)
+      (user_type
+        (type_identifier)))
+    (parameter
+      (simple_identifier)
+      (user_type
+        (type_identifier)))
+    (throws)
+    (function_body
+      (statements
+        (if_statement
+          (await_expression
+            (conjunction_expression
+              (equality_expression
+                (simple_identifier)
+                (simple_identifier))
+              (simple_identifier)))
+          (statements
+            (call_expression
+              (simple_identifier)
+              (call_suffix
+                (value_arguments)))))
+        (if_statement
+          (try_expression
+            (try_operator)
+            (disjunction_expression
+              (comparison_expression
+                (simple_identifier)
+                (simple_identifier))
+              (simple_identifier)))
+          (statements
+            (call_expression
+              (simple_identifier)
+              (call_suffix
+                (value_arguments)))))
+        (if_statement
+          (try_expression
+            (try_operator)
+            (await_expression
+              (conjunction_expression
+                (comparison_expression
+                  (additive_expression
+                    (simple_identifier)
+                    (simple_identifier))
+                  (integer_literal))
+                (simple_identifier))))
+          (statements
+            (call_expression
+              (simple_identifier)
+              (call_suffix
+                (value_arguments)))))
+        (while_statement
+          (await_expression
+            (conjunction_expression
+              (check_expression
+                (simple_identifier)
+                (user_type
+                  (type_identifier)))
+              (simple_identifier)))
+          (statements
+            (call_expression
+              (simple_identifier)
+              (call_suffix
+                (value_arguments)))))))))
 
 ================================================================================
 Try and await keep a trailing closure outside a condition
@@ -2187,17 +2279,17 @@ If try
 
 (source_file
   (if_statement
-    (conjunction_expression
+    (try_expression
+      (try_operator)
       (conjunction_expression
-        (try_expression
-          (try_operator)
+        (conjunction_expression
           (equality_expression
             (simple_identifier)
-            (nil_literal)))
-        (simple_identifier))
-      (prefix_expression
-        (bang)
-        (simple_identifier)))
+            (nil_literal))
+          (simple_identifier))
+        (prefix_expression
+          (bang)
+          (simple_identifier))))
     (statements
       (control_transfer_statement
         (simple_identifier)))))
