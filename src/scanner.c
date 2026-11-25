@@ -1,5 +1,5 @@
 #include "tree_sitter/parser.h"
-#include "tree_sitter/alloc.h"
+#include <stdlib.h>
 #include <string.h>
 #include <wctype.h>
 
@@ -279,8 +279,8 @@ struct ScannerState {
 };
 
 void *tree_sitter_swift_external_scanner_create() {
-    void *payload = ts_calloc(1, sizeof(struct ScannerState));
-    if (payload == NULL) {
+    void *payload = calloc(1, sizeof(struct ScannerState));
+    if (!payload) {
 #ifdef __wasm__
         __builtin_trap();
 #else
@@ -291,7 +291,7 @@ void *tree_sitter_swift_external_scanner_create() {
 }
 
 void tree_sitter_swift_external_scanner_destroy(void *payload) {
-    ts_free(payload);
+    free(payload);
 }
 
 void tree_sitter_swift_external_scanner_reset(void *payload) {
