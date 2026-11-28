@@ -1060,63 +1060,6 @@ static bool eat_raw_str_part(
     return false;
 }
 
-/// Advances past the bracketed group at the lookahead (`(...)` or `[...]`, nesting and string literals included) and
-/// reports whether what follows it on its line continues a statement that the group starts: a member access, an
-/// optional or forced unwrap, an assignment (`=` but not `==`), a subscript or a call. A function type
-/// (`(Int) -> Void`), closure parameters (`(x) in`) or anything else answers no.
-static bool bracket_group_starts_statement(TSLexer *lexer) {
-    int depth = 0;
-    while (!lexer->eof(lexer)) {
-        int32_t c = lexer->lookahead;
-        if (c == '"') {
-            lexer->advance(lexer, false);
-            while (!lexer->eof(lexer) && lexer->lookahead != '"' && lexer->lookahead != '\n') {
-                if (lexer->lookahead == '\\') {
-                    lexer->advance(lexer, false);
-                    if (lexer->eof(lexer)) {
-                        return false;
-                    }
-                }
-                lexer->advance(lexer, false);
-            }
-            if (lexer->lookahead != '"') {
-                return false;
-            }
-            lexer->advance(lexer, false);
-            continue;
-        }
-        if (c == '(' || c == '[' || c == '{') {
-            depth++;
-        } else if (c == ')' || c == ']' || c == '}') {
-            depth--;
-            if (depth == 0) {
-                lexer->advance(lexer, false);
-                break;
-            }
-        }
-        lexer->advance(lexer, false);
-    }
-    if (depth != 0) {
-        return false;
-    }
-    while (lexer->lookahead == ' ' || lexer->lookahead == '\t') {
-        lexer->advance(lexer, false);
-    }
-    switch (lexer->lookahead) {
-        case '.':
-        case '?':
-        case '!':
-        case '[':
-        case '(':
-            return true;
-        case '=':
-            lexer->advance(lexer, false);
-            return lexer->lookahead != '=';
-        default:
-            return false;
-    }
-}
-
 bool tree_sitter_swift_external_scanner_scan(
     void *payload,
     TSLexer *lexer,
@@ -1160,12 +1103,10 @@ bool tree_sitter_swift_external_scanner_scan(
 
     // The same after a dotted name read as a type (only a `.` may follow, not an operand such as a raw string): there
     // the bracket would open a constructor's arguments (`let p = o.q` NEWLINE `(a ?? b).run()` read as
-    // `o.q(a ?? b)`). An attribute's name never gets here: its dots are not `_dot` (see `_attribute_name`), so `.`
-    // is not valid after it, and there a function type, closure parameters or a capture list may follow on the next
-    // line (`@escaping @Sendable` NEWLINE `(Int) -> Void`, `{ @MainActor` NEWLINE `[weak self] (x: Int) in`). The
-    // bracketed group is also looked past first: only one followed by what continues a statement that starts with it
-    // (`.`, `?`, `!`, `=`, a subscript or a call) ends the expression. Past the group nothing may change what this
-    // call returns, so it returns what the code below would have for a `(` or `[`.
+    // `o.q(a ?? b)`, `(a) == b` as `o.q(a) == b`). An attribute's name never gets here: its dots are not `_dot` (see
+    // `_attribute_name`), so `.` is not valid after it, and there a function type, closure parameters or a capture
+    // list may follow on the next line (`@escaping @Sendable` NEWLINE `(Int) -> Void`, `{ @MainActor` NEWLINE
+    // `[weak self] (x: Int) in`).
     if (
         saw_line_break &&
         valid_symbols[DOT_OPERATOR] &&
@@ -1173,15 +1114,8 @@ bool tree_sitter_swift_external_scanner_scan(
         !valid_symbols[IMPLICIT_SEMI] &&
         (lexer->lookahead == '(' || lexer->lookahead == '[')
     ) {
-        if (bracket_group_starts_statement(lexer)) {
-            lexer->result_symbol = IMPLICIT_SEMI;
-            return true;
-        }
-        if (has_ws_result) {
-            lexer->result_symbol = ws_result;
-            return true;
-        }
-        return false;
+        lexer->result_symbol = IMPLICIT_SEMI;
+        return true;
     }
 
     // Now consume comments (before custom operators so that those aren't treated as comments)

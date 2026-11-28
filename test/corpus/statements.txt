@@ -1915,6 +1915,75 @@ func run(_ options: Options) {
               (value_arguments))))))))
 
 ================================================================================
+Any bracketed group at the start of a line after a member access
+================================================================================
+
+func run(_ options: Options) {
+    let processor = options.processor
+    (processor) == current
+    let queue = options.queue
+    (try? queue.drain())
+    let limit = options.limit
+    [first, second] + rest
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (simple_identifier)
+    (parameter
+      (simple_identifier)
+      (simple_identifier)
+      (user_type
+        (type_identifier)))
+    (function_body
+      (statements
+        (property_declaration
+          (value_binding_pattern)
+          (pattern
+            (simple_identifier))
+          (navigation_expression
+            (simple_identifier)
+            (navigation_suffix
+              (simple_identifier))))
+        (equality_expression
+          (tuple_expression
+            (simple_identifier))
+          (simple_identifier))
+        (property_declaration
+          (value_binding_pattern)
+          (pattern
+            (simple_identifier))
+          (navigation_expression
+            (simple_identifier)
+            (navigation_suffix
+              (simple_identifier))))
+        (tuple_expression
+          (try_expression
+            (try_operator)
+            (call_expression
+              (navigation_expression
+                (simple_identifier)
+                (navigation_suffix
+                  (simple_identifier)))
+              (call_suffix
+                (value_arguments)))))
+        (property_declaration
+          (value_binding_pattern)
+          (pattern
+            (simple_identifier))
+          (navigation_expression
+            (simple_identifier)
+            (navigation_suffix
+              (simple_identifier))))
+        (additive_expression
+          (array_literal
+            (simple_identifier)
+            (simple_identifier))
+          (simple_identifier))))))
+
+================================================================================
 Bracket or parenthesis at the start of a line after a block
 ================================================================================
 
