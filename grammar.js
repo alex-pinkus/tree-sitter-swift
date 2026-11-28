@@ -69,7 +69,10 @@ const PRECS = {
   // routes through `_expression`, which only meet it on a `{` or `,` ending the condition.
   condition_effect: 1,
   call: -2,
-  ternary: -2,
+  // Above `ternary_binary_suffix`: a `?` after a ternary's last operand opens a ternary of that operand
+  // (`a ? b : c ? d : e` is `a ? b : (c ? d : e)`, as Swift reads it) instead of ending the first one
+  // there, which read `(a ? b : c) ? d : e`.
+  ternary: -1,
   try: -2,
   call_suffix: -2,
   range_suffix: -2,
