@@ -5395,6 +5395,10 @@
           {
             "type": "SYMBOL",
             "name": "navigation_expression"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "constructor_expression"
           }
         ]
       }

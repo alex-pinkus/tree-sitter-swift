@@ -1353,10 +1353,18 @@ module.exports = grammar({
         PRECS.condition_effect,
         seq($._await_operator, field("expr", $._condition_name))
       ),
+    // A generic type's initializer (`if let b = try? Box<Int>(x) { ... }`) is here too: `try` and `await` reach a
+    // call through a route of their own, but a `constructor_expression` only through `_expression`, where the `{`
+    // went to `Box<Int>(x)` as a trailing closure and the only reading left was the comparisons
+    // `(Box < Int) > (x)`.
     _condition_name: ($) =>
       prec(
         PRECS.condition_effect,
-        choice($.simple_identifier, $.navigation_expression)
+        choice(
+          $.simple_identifier,
+          $.navigation_expression,
+          $.constructor_expression
+        )
       ),
     _plain_condition_sequence_item: ($) =>
       choice($._plain_if_let_binding, $._expression, $.availability_condition),
