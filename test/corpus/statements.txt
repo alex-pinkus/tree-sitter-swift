@@ -2265,6 +2265,112 @@ func load() async throws {
                     (simple_identifier)))))))))))
 
 ================================================================================
+Try and await on a generic type's initializer in a condition
+================================================================================
+
+func load() async throws {
+    if let a = try? Box<Int>(x: d) { }
+    while let b = await Queue<Job>(on: q) { }
+    if let c = try? Pair<A, B>(a, b) { }
+    if let e = try await Box<Int>() { }
+    switch try? Box<Int>(x: d) { default: break }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (simple_identifier)
+    (throws)
+    (function_body
+      (statements
+        (if_statement
+          (value_binding_pattern)
+          (simple_identifier)
+          (try_expression
+            (try_operator)
+            (constructor_expression
+              (user_type
+                (type_identifier)
+                (type_arguments
+                  (user_type
+                    (type_identifier))))
+              (constructor_suffix
+                (value_arguments
+                  (value_argument
+                    (value_argument_label
+                      (simple_identifier))
+                    (simple_identifier)))))))
+        (while_statement
+          (value_binding_pattern)
+          (simple_identifier)
+          (await_expression
+            (constructor_expression
+              (user_type
+                (type_identifier)
+                (type_arguments
+                  (user_type
+                    (type_identifier))))
+              (constructor_suffix
+                (value_arguments
+                  (value_argument
+                    (value_argument_label
+                      (simple_identifier))
+                    (simple_identifier)))))))
+        (if_statement
+          (value_binding_pattern)
+          (simple_identifier)
+          (try_expression
+            (try_operator)
+            (constructor_expression
+              (user_type
+                (type_identifier)
+                (type_arguments
+                  (user_type
+                    (type_identifier))
+                  (user_type
+                    (type_identifier))))
+              (constructor_suffix
+                (value_arguments
+                  (value_argument
+                    (simple_identifier))
+                  (value_argument
+                    (simple_identifier)))))))
+        (if_statement
+          (value_binding_pattern)
+          (simple_identifier)
+          (try_expression
+            (try_operator)
+            (await_expression
+              (constructor_expression
+                (user_type
+                  (type_identifier)
+                  (type_arguments
+                    (user_type
+                      (type_identifier))))
+                (constructor_suffix
+                  (value_arguments))))))
+        (switch_statement
+          (try_expression
+            (try_operator)
+            (constructor_expression
+              (user_type
+                (type_identifier)
+                (type_arguments
+                  (user_type
+                    (type_identifier))))
+              (constructor_suffix
+                (value_arguments
+                  (value_argument
+                    (value_argument_label
+                      (simple_identifier))
+                    (simple_identifier))))))
+          (switch_entry
+            (default_keyword)
+            (statements
+              (control_transfer_statement))))))))
+
+================================================================================
 Guard and repeat-while with try or await on a bare name
 ================================================================================
 
