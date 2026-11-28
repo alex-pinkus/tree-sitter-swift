@@ -170,6 +170,68 @@ someVeryLongFunctionCall()
     (simple_identifier)))
 
 ================================================================================
+Nested ternary is right-associative
+================================================================================
+
+a ? b : c ? d : e
+let x = a ? b ? 1 : 2 : r ? 3 : 4
+let y = isLarge
+    ? .large
+    : isSmall ? .small : .medium
+let z = (a ? b : c) ? d : e
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (ternary_expression
+    (simple_identifier)
+    (simple_identifier)
+    (ternary_expression
+      (simple_identifier)
+      (simple_identifier)
+      (simple_identifier)))
+  (property_declaration
+    (value_binding_pattern)
+    (pattern
+      (simple_identifier))
+    (ternary_expression
+      (simple_identifier)
+      (ternary_expression
+        (simple_identifier)
+        (integer_literal)
+        (integer_literal))
+      (ternary_expression
+        (simple_identifier)
+        (integer_literal)
+        (integer_literal))))
+  (property_declaration
+    (value_binding_pattern)
+    (pattern
+      (simple_identifier))
+    (ternary_expression
+      (simple_identifier)
+      (prefix_expression
+        (simple_identifier))
+      (ternary_expression
+        (simple_identifier)
+        (prefix_expression
+          (simple_identifier))
+        (prefix_expression
+          (simple_identifier)))))
+  (property_declaration
+    (value_binding_pattern)
+    (pattern
+      (simple_identifier))
+    (ternary_expression
+      (tuple_expression
+        (ternary_expression
+          (simple_identifier)
+          (simple_identifier)
+          (simple_identifier)))
+      (simple_identifier)
+      (simple_identifier))))
+
+================================================================================
 Ternary within another expression
 ================================================================================
 
